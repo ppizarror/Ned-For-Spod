@@ -4,3 +4,4 @@
 .pydevproject
 .settings/
 *.pyc
+data/saves/*.txt
