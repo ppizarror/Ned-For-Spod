@@ -444,14 +444,20 @@ class View:
                             if i == 0:
                                 pass
                             else:
-                                if score[0] != STATE_NULL:
-                                    self.screen.blit(self.resultsFontTitleContent.render(score[1], 1, score[0]), (
-                                        self.resultsScreenPos[0] + 460, self.resultsScreenPos[1] + 130 + 19 * i))
-                                    self.screen.blit(self.resultsFontTitleContent.render(score[2], 1, score[0]), (
-                                        self.resultsScreenPos[0] + 505, self.resultsScreenPos[1] + 130 + 19 * i))
-                                    self.screen.blit(self.resultsFontTitleContent.render(score[3], 1, score[0]), (
-                                        self.resultsScreenPos[0] + 600, self.resultsScreenPos[1] + 130 + 19 * i))
-                                else:
+                                try:
+                                    if score[0] != STATE_NULL:
+                                        self.screen.blit(self.resultsFontTitleContent.render(score[1], 1, score[0]), (
+                                            self.resultsScreenPos[0] + 460, self.resultsScreenPos[1] + 130 + 19 * i))
+                                        self.screen.blit(self.resultsFontTitleContent.render(score[2], 1, score[0]), (
+                                            self.resultsScreenPos[0] + 505, self.resultsScreenPos[1] + 130 + 19 * i))
+                                        self.screen.blit(self.resultsFontTitleContent.render(score[3], 1, score[0]), (
+                                            self.resultsScreenPos[0] + 600, self.resultsScreenPos[1] + 130 + 19 * i))
+                                    else:
+                                        self.screen.blit(
+                                            self.resultsFontTitleContent.render(self.lang.get(33), 1,
+                                                                                COLOR_VELOCIMETER),
+                                            (self.resultsScreenPos[0] + 540, self.resultsScreenPos[1] + 126 + 19 * i))
+                                except:
                                     self.screen.blit(
                                         self.resultsFontTitleContent.render(self.lang.get(33), 1, COLOR_VELOCIMETER),
                                         (self.resultsScreenPos[0] + 540, self.resultsScreenPos[1] + 126 + 19 * i))

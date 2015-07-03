@@ -9,6 +9,7 @@
 # Fecha: ABRIL 2015
 
 # Importación de librerías
+from colors import Color
 import sys
 
 # Constantes de errores
@@ -24,14 +25,19 @@ BR_ERRORxNO_VALID_SUBMIT_EMPTY = 6
 BR_ERRORxNO_VALID_SUBMIT_NOT_EQUAL = 7
 ERROR_BADCONFIG = "La linea '{0}' del archivo de configuraciones '{1}' no es valida"
 ERROR_BADINDEXCONFIG = "El indice seleccionado <{0}> no pertenece a las configuraciones cargadas"
+ERROR_BADLAUNCHBIN = "La clase debe ser importada desde bin"
 ERROR_CANTTRANSLATE = "El texto no se puede traducir"
 ERROR_CONFIGBADEXPORT = "No se pudo guardar el archivo de configuraciones"
 ERROR_CONFIGNOTEXISTENT = "El parametro <{0}> no existe en las configuraciones"
 ERROR_CREATE_MENU = "No se puede crear el menu inicial, posible error en archivo de configuraciones"
-ERROR_HEADER = "[ERR] "
+ERROR_HEADER = Color.RED + "[ERROR] " + Color.END
 ERROR_IMPORTERROREXTERNAL = "Ha ocurrido un error al importar las librerias de sistema externas"
 ERROR_IMPORTERRORINTERNAL = "Ha ocurrido un error al importar las librerias internas de la aplicacion"
+ERROR_IMPORTERRORMECHANIZE = "Ha ocurrido un error al importar la libreria external/mechanize"
+ERROR_IMPORTERRORPIL = "Ha ocurrido un error al importar la libreria PIL (Python Image Library) en external/pil"
+ERROR_IMPORTERRORPYGAME = "Ha ocurrido un error al importar la libreria pygame"
 ERROR_IMPORTSYSTEMERROR = "Ha ocurrido un error al importar las librerias de sistema"
+ERROR_IMPORTWCONIO = "Error al importar WConio"
 ERROR_LANGBADINDEX = "El indice <{0}> debe ser un numero entero mayor o igual a 10"
 ERROR_LANGNOTEXIST = "ID[{0}] no existe en el archivo de idiomas <{1}>"
 ERROR_NOCONFIGFILE = "No existe archivo de configuraciones '{0}'"
@@ -44,6 +50,7 @@ ERROR_SCOREBOARD_FAKESCORE = "ERROR_FAKESCORE"
 ERROR_SCOREBOARD_FAKETIME = "ERROR_FAKETIME"
 ERROR_SCOREBOARD_FAKETRACK = "ERROR_FAKETRACK"
 ERROR_SCOREBOARD_NOCONECTION = "ERROR_NO_CONECTION"
+ERROR_SCOREBOARD_NOCONECTIONMSG = "Error al conectar con el servidor"
 ERROR_SCOREBOARD_NOCONECTIONDB = "ERROR_NOCONECTION_DB"
 ERROR_SCOREBOARD_NO_SCORES = "NO_SCORES"
 ERROR_TAG_CANTRETRIEVEHTML = 16
@@ -52,7 +59,7 @@ ERROR_TAG_INITNOTFINDED = 13
 ERROR_TAG_LASTNOTFINDED = 15
 ERROR_TRACKNOTEXIST = "La pista ID:<{0}> no existe"
 NO_ERROR = "OK"
-WARNING_HEADER = "[WARNING] "
+WARNING_HEADER = Color.BLUE + "[WARNING] " + Color.END
 WARNING_NOCONFIGFOUND = "No se han encontrado configuraciones en el archivo '{0}'"
 
 
@@ -88,4 +95,4 @@ def warning(error, *args):
     :return: void
     """
     print (WARNING_HEADER
-            + createMSG(error, *args))
+           + createMSG(error, *args))

@@ -27,21 +27,27 @@ if __binconfig.isTrue("DONT_WRITE_BYTECODE"):
 
 # Importación de librerías externas
 try:
-    from pil import Image
     import mechanize
 except:
-    errors.throw(errors.ERROR_IMPORTERsROREXTERNAL)
+    errors.throw(errors.ERROR_IMPORTERRORMECHANIZE)
+try:
+    from pil import Image
+except:
+    errors.throw(errors.ERROR_IMPORTERRORPIL)
 
 # Importación de librerías internas
 try:
-    from hashdir import md5file, path_checksum
-    from noStdOut import noStdOut
     from pygame.locals import *
-    import langs
     import pygame
     import pygame.gfxdraw
-    import username
+except:
+    errors.throw(errors.ERROR_IMPORTERRORPYGAME)
+try:
+    from hashdir import md5file, path_checksum
+    from noStdOut import noStdOut
+    import langs
     import utils
+    import username
 except:
     errors.throw(errors.ERROR_IMPORTERRORINTERNAL)
 

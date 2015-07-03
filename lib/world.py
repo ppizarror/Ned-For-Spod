@@ -11,6 +11,7 @@ if __name__ == '__main__': from path import *
 
 # Importación de librerías
 from bin import pygame
+from bin.browser import Browser, HREF_HEADERS
 from bin.errors import ERROR_HEADER, throw, ERROR_TRACKNOTEXIST
 from player import Player
 from resources.images import getImages
@@ -92,9 +93,12 @@ class World:
                        ]
         self.soundsChannel = [pygame.mixer.Channel(0), pygame.mixer.Channel(1), pygame.mixer.Channel(2),
                               pygame.mixer.Channel(3)]
-        # se configuran los canales de sonido
+        # Se configuran los canales de sonido
         for i in range(len(self.soundsChannel)):
             self.soundsChannel[i].set_volume(float(self.configWorld.getValue("CHANNEL_" + str(i))))
+        # Se crea el navegador web
+        self.browser = Browser()
+        self.browser.addHeaders(HREF_HEADERS)
 
     def clearActualMap(self):
         """
@@ -198,8 +202,8 @@ class World:
                 self.actualMap.addCar(int(self.userConfig.getValue("TYPECAR")), self.userConfig.getValue("TEXTURE"),
                                       True, 0, True, self.actualMap.getTrackLogic(), \
                                       self.sounds, self.soundsChannel, self.checksum, self.scoreConfig, self.playerName,
-                                      self.actualMap.getTrackTitle(), \
-                                      self.gameConfig, rotate=-270, verbose=self.verbose)
+                                      self.actualMap.getTrackTitle(), self.gameConfig, self.browser, rotate=-270,
+                                      verbose=self.verbose)
                 # Se agregan decoraciones
                 self.actualMap.addDecoration(self.loadImage("tree0", alpha=True), (1650, 0))
                 self.actualMap.addDecoration(self.loadImage("tree0", alpha=True), (1400, -250))
@@ -274,8 +278,8 @@ class World:
                 self.actualMap.addCar(int(self.userConfig.getValue("TYPECAR")), self.userConfig.getValue("TEXTURE"),
                                       True, 180, True, self.actualMap.getTrackLogic(), \
                                       self.sounds, self.soundsChannel, self.checksum, self.scoreConfig, self.playerName,
-                                      self.actualMap.getTrackTitle(), \
-                                      self.gameConfig, rotate=-270, verbose=self.verbose)
+                                      self.actualMap.getTrackTitle(), self.gameConfig, self.browser, rotate=-270,
+                                      verbose=self.verbose)
                 # Se agregan decoraciones
                 self.actualMap.addDecoration(self.loadImage("tree3", alpha=True), (1400, 1000))
                 self.actualMap.addDecoration(self.loadImage("tree3", alpha=True), (-2200, 1000))
@@ -359,8 +363,8 @@ class World:
                 self.actualMap.addCar(int(self.userConfig.getValue("TYPECAR")), self.userConfig.getValue("TEXTURE"),
                                       True, 180, True, self.actualMap.getTrackLogic(), \
                                       self.sounds, self.soundsChannel, self.checksum, self.scoreConfig, self.playerName,
-                                      self.actualMap.getTrackTitle(), \
-                                      self.gameConfig, rotate=-270, verbose=self.verbose)
+                                      self.actualMap.getTrackTitle(), self.gameConfig, self.browser, rotate=-270,
+                                      verbose=self.verbose)
                 # Se agregan decoraciones
                 self.actualMap.addDecoration(self.loadImage("tree0", alpha=True), (0, -300))
                 self.actualMap.addDecoration(self.loadImage("tree0", alpha=True), (-1500, -300))
@@ -461,8 +465,8 @@ class World:
                 self.actualMap.addCar(int(self.userConfig.getValue("TYPECAR")), self.userConfig.getValue("TEXTURE"),
                                       True, 270, True, self.actualMap.getTrackLogic(), \
                                       self.sounds, self.soundsChannel, self.checksum, self.scoreConfig, self.playerName,
-                                      self.actualMap.getTrackTitle(), \
-                                      self.gameConfig, rotate=-270, verbose=self.verbose)
+                                      self.actualMap.getTrackTitle(), self.gameConfig, self.browser, rotate=-270,
+                                      verbose=self.verbose)
                 # Se agregan decoraciones
                 self.actualMap.addDecoration(self.loadImage("tree0", alpha=True), (-457, 433))
                 self.actualMap.addDecoration(self.loadImage("tree1", alpha=True), (-1147, 493))

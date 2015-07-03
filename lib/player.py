@@ -11,6 +11,7 @@ if __name__ == '__main__': from path import *
 
 # Importación de librerías
 from bin import pygame
+from bin.browser import unescape
 from bin.errors import *
 from bin.utils import urlencode, Request, urlopen, getBetweenTags
 from bin.hashdir import md5str
@@ -18,6 +19,7 @@ from math import sqrt
 from operator import pos
 import math
 import random
+import string
 
 # Definición de constantes
 ACELCONST = 300  # aceleracion por dt
@@ -75,6 +77,7 @@ TIMETO_SHOW_FRENADO = 0.3  # tiempo que se debe presionar continuamente el botó
 TRACK_NOT_DEFINED = "$notdefined$"  # pista no definida
 VALIDUSERNAME = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"  # caracteres válidos para un nombre de jugador online
 VEL_PASTO = 60  # velocidad máxima en el pasto
+WEB_BROWSER = True  # indica si se usa el navegador web pasado por argumento o no
 WHITE = (255, 255, 255)  # color blanco
 
 
@@ -203,6 +206,15 @@ def sgnSin(angle):
         return 0
 
 
+def stringCleaner(s):
+    """
+    Elimina todos los caracteres inválidos de un strig
+    :param string: String a limpiar
+    :return: String
+    """
+    return filter(lambda x: x in string.printable, s)
+
+
 def validUsername(username):
     """
     Retorna un nombre de jugador válido para el scoreboard online
@@ -225,9 +237,8 @@ class Player:
 
     # noinspection PyShadowingNames
     def __init__(self, type, texture, shadow_texture, pos, angle, playable, mark_track, mark_ground, logic_track,
-                 totalLaps, \
-                 sounds, sounds_channels, ghost, hash, scoreConfig, username, trackname, trackobjetives, automatic,
-                 mapLimits, window, gameConfig, **kwargs):
+                 totalLaps, sounds, sounds_channels, ghost, hash, scoreConfig, username, trackname, trackobjetives,
+                 automatic, mapLimits, window, gameConfig, browser, **kwargs):
         """
         Función constructora
         :param type: Tipo de auto
@@ -252,6 +263,7 @@ class Player:
         :param mapLimits: Límites (xi,yi,xf,yf) de la pista
         :param window: Ventana del programa
         :param gameConfig: Configuraciones del juego
+        :param browser: Navegador web
         :param kwargs: Argumentos adicionales
         :return: void
         """
@@ -266,6 +278,7 @@ class Player:
         self.agarre = 0  # agarre del auto al suelo (para las curvas)
         self.angle = angle % 360  # angulo de rotacion del auto en radianes
         self.automatic = automatic  # transmision del auto automatica/manual
+        self.browser = browser  # navegador web
         self.cambio = 0  # cambio del vehiculo
         self.defaultAngle = angle % 360  # ángulo por defecto
         self.desacel = 0  # frenado del auto
@@ -309,6 +322,7 @@ class Player:
         self.score = 0  # puntaje de la pista
         self.scoreBoardOnline = []  # scoreboard online
         self.scoreConfig = scoreConfig  # configuraciones de los puntajes
+        self.scoreLink = scoreConfig.getValue("WEB_I")  # link del scoreboard
         self.soundGear = sounds[0]  # sonido del motor al acelerar
         self.soundGearChannel = sounds_channels[0]  # canal de sonido del motor
         self.soundGearPlaying = 0
@@ -1273,25 +1287,30 @@ class Player:
                                                                                       1 - self.totalLaps)) + 0.3 / (
                                           current_min ** 1.5)))
                         # Se sube el puntaje a la web
-                        http_header = {"User-Agent": self.scoreConfig.getValue("HEADER")}
-                        scoreboard_insert_url = self.scoreConfig.getValue("WEB_I").format(self.hash[0], self.hash[1],
-                                                                                          self.hash[2],
-                                                                                          md5str(self.trackName), \
-                                                                                          validUsername(self.username),
-                                                                                          self.score,
-                                                                                          round(current_min, 1),
-                                                                                          self.type)
-                        request_object = Request(scoreboard_insert_url, None, http_header)
+                        scoreboard_insert_url = self.scoreLink.format(self.hash[0], self.hash[1], self.hash[2],
+                                                                      md5str(self.trackName),
+                                                                      validUsername(self.username),
+                                                                      self.score, round(current_min, 1), self.type)
+                        if WEB_BROWSER:
+                            self.browser.abrirLink(scoreboard_insert_url)
+                        else:
+                            http_header = {"User-Agent": self.scoreConfig.getValue("HEADER")}
+                            request_object = Request(scoreboard_insert_url, None, http_header)
                         # Si existe comunicación con el servidor
                         try:
-                            response = urlopen(request_object)
+                            if self.verbose:
+                                print "Conectando con el servidor ...",
+                            if WEB_BROWSER:
+                                scoreboard = unescape(self.browser.getHtml())
+                            else:
+                                response = urlopen(request_object)
+                                scoreboard = response.read()
                             # Se obtiene el scoreboard
-                            scoreboard = response.read()
                             scoreboard_list = str(scoreboard).strip().split("<br>")
-                            status = scoreboard_list[0]
+                            status = stringCleaner(scoreboard_list[0])
                             self.scoreBoardOnline.append(status)
                             for i in range(1, len(scoreboard_list) - 1):
-                                line = scoreboard_list[i]
+                                line = stringCleaner(scoreboard_list[i])
                                 if line != "NULL":
                                     color = getBetweenTags(line, "<color>", "</color>")
                                     player = getBetweenTags(line, "<player>", "</player>")[0:10]
@@ -1304,8 +1323,12 @@ class Player:
                                     self.scoreBoardOnline.append([color, indexp, player, score])
                                 else:
                                     self.scoreBoardOnline.append([line])
+                            if self.verbose:
+                                print "ok"
                         # Error de conexión
                         except:
+                            if self.verbose:
+                                warning(ERROR_SCOREBOARD_NOCONECTIONMSG)
                             self.scoreBoardOnline = [ERROR_SCOREBOARD_NOCONECTION]
                     # si no se acabo la carrera se reemplaza el fantasma
                     else:

@@ -30,7 +30,8 @@ except:
 try:
     import WConio
 except:
-    pass
+    if os.name == "nt":
+        errors.warning(errors.ERROR_IMPORTWCONIO)
 
 # Constantes
 _CMD_COLORS = {"blue": 0x10,

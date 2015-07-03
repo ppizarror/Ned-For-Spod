@@ -49,7 +49,7 @@ class mapTrack:
         self.track_coords = []  # coordenadas de la pista
 
     def addCar(self, type, texture, automatic, angle, player, logic_track, sounds, sound_channels, checksum,
-               scoreconfig, username, tracktitle, gameConfig, **kwargs):
+               scoreconfig, username, tracktitle, gameConfig, browser, **kwargs):
         """
         Función que añade un auto al modelo
         :param type: Tipo de auto
@@ -65,6 +65,7 @@ class mapTrack:
         :param username: Username del usuario
         :param tracktitle: Título de la pista
         :param gameConfig: Configuraciones del juego
+        :param browser: Navegador web
         :param kwargs: Parámetros adicionales
         :return: void
         """
@@ -89,17 +90,16 @@ class mapTrack:
             self.player = Player(type, image, self.loadImage(shadow, alpha=True),
                                  (pos[0] / 2 - imageWidth / 2, pos[1] / 2 - imageHeight / 2), \
                                  angle, True, self.getMarcasFrenado(), self.getMarcasTierra(), logic_track, self.laps,
-                                 sounds, sound_channels, \
-                                 self.loadImage(ghost, alpha=True), checksum, scoreconfig, username, tracktitle,
-                                 self.objetives, automatic, self.getMapLimits(), \
-                                 self.window, gameConfig, **kwargs)
+                                 sounds, sound_channels, self.loadImage(ghost, alpha=True), checksum, scoreconfig,
+                                 username, tracktitle,
+                                 self.objetives, automatic, self.getMapLimits(), self.window, gameConfig, browser,
+                                 **kwargs)
         else:
             self.enemies.append(Player(type, self.loadImage(texture, **kwargs), self.loadImage(shadow, alpha=True), \
                                        pos, angle, False, self.getMarcasFrenado(), self.getMarcasTierra(), logic_track,
-                                       self.laps, sounds, sound_channels, \
-                                       self.loadImage(ghost, alpha=True), checksum, scoreconfig, username, tracktitle,
-                                       self.objetives, automatic, self.getMapLimits(), \
-                                       self.window, gameConfig, **kwargs))
+                                       self.laps, sounds, sound_channels, self.loadImage(ghost, alpha=True), checksum,
+                                       scoreconfig, username, tracktitle, self.objetives, automatic,
+                                       self.getMapLimits(), self.window, gameConfig, browser, **kwargs))
 
     def addDecoration(self, texture, pos, **kwargs):
         """
