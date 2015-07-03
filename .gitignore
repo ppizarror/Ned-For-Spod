@@ -1,9 +1,22 @@
+# OSX
 .DS_Store
+
+# Pycharm
 .idea/
+
+# Pydev
 .project
 .pydevproject
+
+# Eclipse
 .settings/
+
+# Compiled python files
 *.pyc
+
+# Saved files
 data/saves/*.txt
+
+# Windows thumb file
 Thumbs.db
 
