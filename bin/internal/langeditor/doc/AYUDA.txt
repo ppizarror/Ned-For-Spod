@@ -1,0 +1,115 @@
+Versión actual: 1.7
+
+Contenidos:
+	I)   Cómo funcionan los idiomas
+	II)  Cómo crear un nuevo idioma
+	III) Cómo cargar un idioma
+	IV)  Cómo guardar un idioma
+	V)   Manipulación de la información
+		V.I)    Borrar una entrada
+		V.II)	Buscar una entrada
+		V.III)	Insertar un string
+		V.III)	Modificar un string
+	VI)  Exportación a varios idiomas
+	VII) Recuperación de los idiomas
+	VIII) Traducción automática
+
+I) COMO FUNCIONAN LOS IDIOMAS
+Un archivo de idioma cualquiera creado en este programa tendrá la
+siguiente estructura:
+	10 // Nuevo|Juego
+	11 // Cargar|Juego
+	12 // Guardar|Juego
+	13 // Abortar|Juego
+	14 // Estadísticas
+	15 // Salir
+	16 // Archivo
+	...
+	{n} // {string}
+{n} significa el ID o identificador de cada {string} o cadena de texto
+dentro del juego se llama por {n} para consultar por un cierto {string}
+naturalmente, cada string tiene un y sólo un string.
+La separación fisica entre {n} y {string} son estas dos barras (//), 
+estas tipificarán la división virtual entre id y string.
+Cada | significa un espacio en cada string, normalmente {string} no
+tendrá espacios vacios.
+El juego cargará luego cada archivo de idioma y asignará en una matriz
+de datos con puntero en {n} y contenido {string}, si {id} no existe
+luego se lanza un mensaje de error.
+
+II) COMO CREAR UN NUEVO IDIOMA
+Para crear un nuevo idioma dirijase al menú Archivo / Nuevo, también
+puede usar el atajo de teclado Ctrl+N.
+Tras esto una ventana le pedirá el nombre de su archivo de idioma, se
+recomenda usar nombres cortos como EN, ES, IT, FR, AR, RU, etc.
+
+III) COMO CARGAR UN IDIOMA
+Para cargar un idioma dirijase al menú Archivo / Cargar, o mediante el
+atajo de teclado Ctrl+L.
+Tras esto se abrirá una ventana para consultar por un archivo, si este
+no está corrupto se procederá con la carga del archivo.
+
+IV) COMO GUARDAR UN IDIOMA
+Para cargar un idioma dirijase al menú Archivo / Guardar, o mediante el
+atajo de teclado Ctrl+G.
+Tras esto se guardará automáticamente el idioma.
+
+V) MANIPULACIÓN DE LA INFORMACIÓN
+V.I) Para borrar una entrada pulse el link del menú Edición / Borrar o
+mediante el atajo de teclado Ctrl+B, luego ingrese el ID a buscar, si
+este existe y tiene asociado un string se procederá con la eliminación.
+V.II) Para buscar una entrada pulse el link del menú Edición / Buscar o
+mediante el atajo de teclado Ctrl+F, luego ingrese el ID a a buscar, si
+este existe se le redigirá a el correspondiente string.
+V.III) Para insertar un string pulse el link del menú Edición / Insertar
+o mediante el atajo de teclado Ctrl+I, luego ingrese el string y pulse
+el botón insertar.
+V.IV)  Para modificar un string pulse el link del menú Edición/ Modificar
+o mediante el atajo de teclado Ctrl+M, luego ingrese el id a buscar, si
+este existe se abrirá un diálogo para modificar el string asociado al
+id buscado, luego pulse el botón Modificar para guardar la entrada.
+Es menester informar que cualquier cambio no guardado será perdido.
+
+VI) EXPORTACIÓN A VARIOS IDIOMAS
+Para exportar un archivo utilize el script llamado _export.py, en él
+ingrese el nombre de su archivo de idiomas, tras ello se generará un
+archivo de nombre similar al ingresado pero con la extensión _exported.
+Es necesario que el archivo _export.py esté en el mismo directorio del
+archivo de idioma a trabajar.
+Tras ello puede traducir fácilmente su archivo usando el traductor de
+google, para ello visite la web http://translate.google.com/ y haga
+click en "traduce un documento" luego ingrese el archivo generado por
+_export.py.
+Guarde el archivo generado en cualquier archivo de texto, este debe
+estar en formato UTF-8 (para ello guarde cambiando la codificación)
+desde la misma ventana de guardar en el bloc de notas de windows
+(notepad).
+Luego utilice la herramienta _transformer.py para generar un archivo
+válido para importarlo, esta herramienta borrará todos los carácteres
+no deseados de {n} y {string}
+Por último utilice el script _import.py para generar el archivo final
+de idiomas.
+Puede probar su archivo con el programa principal para revisar su
+correcto funcionamiento.
+ALERTA: para que un archivo de idiomas sea válido este debe tener una
+referencia en el archivo config/langs.txt, si no está ingrese el nombre
+de su archivo más el formato (como los demás).
+
+VII) RECUPERACIÓN DE UN IDIOMA
+Si un archivo de idiomas no funciona tras alguna modificación es porque
+algún caracter se ha guardado de mala forma o el archivo ha quedado
+corrupto. Para recuperar luego su archivo dirijase a la carpeta recover, 
+allí encontrará todas las versiones guardadas de su archivo de idioma
+ordenada por fecha.
+Simplemente copie el archivo de recuperación a la carpeta inicial y
+reemplace el nombre por el original.
+Esta caracteristica puede estar desactivada.
+
+VIII) TRADUCCIÓN AUTOMÁTICA
+También se permite la traducción automática de los ficheros gracias
+a varias consultas http.
+Para ello abra el archivo translate.py, luego ingrese el archivo de origen
+a traducir y el idioma de destino (para consultar los idiomas disponibles
+abra el archivo TRANSLATE_LANGS.
+Tras el idioma ingrese el nombre del archivo de origen y el script
+automáticamente comenzará a traducir las lineas.

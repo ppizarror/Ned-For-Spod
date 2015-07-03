@@ -1,0 +1,8 @@
+10 // Test|string
+11 // Test|integer
+12 // Test|name:{0}
+13 // Test|name:{0}|altername:{1}
+14 // Test|sum|{0}+{1}={2}
+15 // Test|symbols|*[]_:!"#$%&/()=?
+16 // Test|utf8|japanese|日本語
+17 // Test|languages|ጃፓንኛ,|العربية,|Беларуская|,|བོད་ཡིག,|ქართული

@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: WConio
+Version: 1.5
+Summary: WConio
+Home-page: http://newcenturycomputers.net/projects/wconio.html
+Author: Chris Gonnerman
+Author-email: chris.gonnerman@newcenturycomputers.net
+License: UNKNOWN
+Description: Windows Console I/O
+Keywords: console screen
+Platform: Win32

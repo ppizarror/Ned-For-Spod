@@ -1,0 +1,1 @@
+<player>Pablox900</player><oro>0</oro><plata>0</plata><bronce>1</bronce><oro_t>4.9</oro_t><plata_t>4.9</plata_t><bronce_t>4.9</bronce_t>
