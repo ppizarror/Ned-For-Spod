@@ -29,11 +29,17 @@ CONFIG_SEPARATOR = " = "
 FALSE = "FALSE"
 TRUE = "TRUE"
 
-# Carga configuraciones y retorna sus elementos
-class configLoader:
 
-    # Constructor, recibe un nombre de archivo como parámetro
+class configLoader:
+    """Carga configuraciones y retorna sus elementos"""
+
     def __init__(self, filename, **kwargs):
+        """
+        Función constructora
+        :param filename: Nombre del archivo
+        :param kwargs: Parámetros adicionales
+        :return: void
+        """
         # Se carga el archivo de configuraciones
         try:
             file = open(filename.replace("\\", "/"), "r")
@@ -62,11 +68,17 @@ class configLoader:
                 errors.warning(errors.WARNING_NOCONFIGFOUND, filename)
             else:
                 print CONFIG_LOAD.format(filename)
-        else: self.verbose = False
+        else:
+            self.verbose = False
         file.close()
 
-    # Función que exporta las configuraciones a un directorio
     def export(self, replace=True, name=None):
+        """
+        Función que exporta las configuraciones a un directorio
+        :param replace: Reemplaza el archivo anterior
+        :param name: Nombre del archivo nuevo
+        :return: void
+        """
         try:
             if replace:
                 name = self.filename
@@ -83,8 +95,12 @@ class configLoader:
         except:
             if self.verbose: errors.throw(errors.ERROR_CONFIGBADEXPORT)
 
-    # Función que retorna true si el parámetro del archivo es verdadero
     def isTrue(self, param):
+        """
+        Función que retorna true si el parámetro del archivo es verdadero
+        :param param: Parámetro a buscar
+        :return: booleano
+        """
         if param in self.getParameters():
             if self.configs[param] == TRUE:
                 return True
@@ -93,8 +109,11 @@ class configLoader:
         else:
             errors.warning(errors.ERROR_CONFIGNOTEXISTENT, param)
 
-    # Retorna una lista con todos los parametros cargados
     def getParameters(self):
+        """
+        Retorna una lista con todos los parametros cargados
+        :return: Lista de parámetros
+        """
         allconfigs = []
         for i in self.config_single:
             allconfigs.append(i)
@@ -102,8 +121,12 @@ class configLoader:
             allconfigs.append(j)
         return allconfigs
 
-    # Retorna el valor del parametro param
     def getValue(self, param):
+        """
+        Retorna el valor del parametro param
+        :param param: Parámetro
+        :return: valor
+        """
         if str(param).isdigit():
             param = int(param)
             if 0 <= param < len(self.config_single):
@@ -116,8 +139,11 @@ class configLoader:
             else:
                 errors.warning(errors.ERROR_CONFIGNOTEXISTENT, param)
 
-    # Imprime una lista con todos los parametros cargados
     def printParameters(self):
+        """
+        Imprime una lista con todos los parametros cargados
+        :return: void
+        """
         if self.totalconfigs + len(self.config_single) > 0:
             print CONFIG_PRINTPARAMETER
             if self.totalconfigs > 0:
@@ -129,8 +155,13 @@ class configLoader:
             print CONFIG_PRINTNOCONFIG
         return
 
-    # Define un parametro
     def setParameter(self, paramName, paramValue):
+        """
+        Define un parametro
+        :param paramName: Nombre del parámetro
+        :param paramValue: Valor del parámetro
+        :return: void
+        """
         self.configs[paramName] = paramValue
 
 # Test

@@ -10,9 +10,9 @@
 
 # Importación de librerías
 import os
-__actualpath = str(os.path.abspath(os.path.dirname(__file__))).replace("\\", "/") + "/"
 
 # Definición de directorios
+__actualpath = str(os.path.abspath(os.path.dirname(__file__))).replace("\\", "/") + "/"
 DIR = __actualpath.replace("/bin", "")
 _DIR_BIN = __actualpath
 _DIR_LIB = __actualpath.replace("/bin", "/lib")

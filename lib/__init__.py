@@ -13,5 +13,6 @@
 from path import *
 from bin import configLoader
 import libdir
+
 # noinspection PyProtectedMember
 __binconfig = configLoader(libdir._LIB_CONFIG + "lib.ini")

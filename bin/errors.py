@@ -42,19 +42,38 @@ ERROR_TAG_INITNOTFINDED = 13
 ERROR_TAG_LASTNOTFINDED = 15
 ERROR_TRACKNOTEXIST = "La pista ID:<{0}> no existe"
 NO_ERROR = "OK"
-
 WARNING_NOCONFIGFOUND = "No se han encontrado configuraciones en el archivo '{0}'"
 
-# Función que crea un mensaje de error dado argumentos iniciales
+
 def createMSG(message, *args):
+    """
+    Función que crea un mensaje de error dado argumentos iniciales
+    :param message: Código de error
+    :param args: Mensaje
+    :return: void
+    """
     return message.format(*args)
 
-# Función que termina el programa mostrando un mensaje de error
-def throw(error, *args):
-    print(ERROR_HEADER + createMSG(error, *args))
-    try: exit()
-    except: sys.exit()
 
-# Función que imprime en pantalla un mensaje de error
+def throw(error, *args):
+    """
+    Función que termina el programa mostrando un mensaje de error
+    :param error: Código de error
+    :param args: Mensaje
+    :return: void
+    """
+    print(ERROR_HEADER + createMSG(error, *args))
+    try:
+        exit()
+    except:
+        sys.exit()
+
+
 def warning(error, *args):
+    """
+    Función que imprime en pantalla un mensaje de error
+    :param error: Código de error
+    :param args: Mensaje
+    :return: void
+    """
     print ("Aviso :: " + createMSG(error, *args))

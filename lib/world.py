@@ -20,25 +20,49 @@ from track import mapTrack
 # Definición de constantes
 NEXT_TRACK = -1
 TRACKS = {
-          1: "El origen",
-          2: "Serona rw",
-          3: "Riverside intl",
-          4: "Santiago intl"
+    1: "El origen",
+    2: "Serona rw",
+    3: "Riverside intl",
+    4: "Santiago intl"
 }
 
-# Retorna el siguiente elemento de la lista de pistas
+
 def getNextTrack(index):
+    """
+    Retorna el siguiente elemento de la lista de pistas
+    :param index: Indice del diccionario
+    :return: Llave o -1
+    """
     keys = TRACKS.keys()
-    if index in keys: return keys[(keys.index(index) + 1) % len(keys)]
-    else: return -1
+    if index in keys:
+        return keys[(keys.index(index) + 1) % len(keys)]
+    else:
+        return -1
+
 
 class World:
+    """Mundo lógico"""
 
-    # Función constructora
     def __init__(self, configWorld, configMap, window, checksum, scoreConfig, userConfig, lang, gameConfig, **kwargs):
+        """
+        Función constructora
+        :param configWorld: Configuraciones del mundo
+        :param configMap: Configuraciones del mapa
+        :param window: Ventana de la aplicación
+        :param checksum: Checksum de la aplicación
+        :param scoreConfig: Configuraciones del scoreboard
+        :param userConfig: Configuraciones del usuario
+        :param lang: Diccionario de idioma
+        :param gameConfig: Configuraciones del juego
+        :param kwargs: Parámetros adicionales
+        :return: void
+        """
+
         # Se define si se imprime o no en consola
-        if kwargs.get("verbose"): self.verbose = True
-        else: self.verbose = False
+        if kwargs.get("verbose"):
+            self.verbose = True
+        else:
+            self.verbose = False
         # Variables de clase
         self.actualMap = None  # mapa actual
         self.actualMapIndex = -1  # indice del mapa actual
@@ -54,36 +78,54 @@ class World:
         self.window = window  # ventana del programa
         # Se cargan los sonidos
         self.sound_state = gameConfig.isTrue("ENABLESOUND")  # define si se activan los sonidos o no
-        self.sounds = [[self.loadSound("m1"), self.loadSound("n"), self.loadSound("m1"), self.loadSound("m2"), self.loadSound("m3"), \
+        self.sounds = [[self.loadSound("m1"), self.loadSound("n"), self.loadSound("m1"), self.loadSound("m2"),
+                        self.loadSound("m3"), \
                         self.loadSound("m4"), self.loadSound("m5")], \
-                       [self.loadSound("r1"), self.loadSound("n"), self.loadSound("r1"), self.loadSound("r2"), self.loadSound("r3"), self.loadSound("r4"), \
-                           self.loadSound("r5")], \
+                       [self.loadSound("r1"), self.loadSound("n"), self.loadSound("r1"), self.loadSound("r2"),
+                        self.loadSound("r3"), self.loadSound("r4"), \
+                        self.loadSound("r5")], \
                        self.loadSound("offroad"), \
                        [self.loadSound("track1"), self.loadSound("track2"), self.loadSound("track3")], \
                        self.loadSound("results"), \
                        self.loadSound("intro"), \
                        self.loadSound("wheelborder")
                        ]
-        self.soundsChannel = [pygame.mixer.Channel(0), pygame.mixer.Channel(1), pygame.mixer.Channel(2), pygame.mixer.Channel(3)]
+        self.soundsChannel = [pygame.mixer.Channel(0), pygame.mixer.Channel(1), pygame.mixer.Channel(2),
+                              pygame.mixer.Channel(3)]
         # se configuran los canales de sonido
         for i in range(len(self.soundsChannel)):
             self.soundsChannel[i].set_volume(float(self.configWorld.getValue("CHANNEL_" + str(i))))
 
-    # Borra el mapa actual
     def clearActualMap(self):
+        """
+        Borra el mapa actual
+        :return: void
+        """
         if self.actualMap is not None:
             self.actualMap.clean()
 
-    # Retorna el indice del mapa actual
     def getActualIndex(self):
+        """
+        Retorna el índice del mapa actual
+        :return: void
+        """
         return self.actualMapIndex
 
-    # Retorna el mapa actual
     def getActualMap(self):
+        """
+        Retorna el mapa actual
+        :return: Objeto <track>
+        """
         return self.actualMap
 
-    # Función que carga una imagen
     def loadImage(self, texture_name, color_key=(0, 0, 0), **kwargs):
+        """
+        Función que carga una imagen
+        :param texture_name: Path de la textura
+        :param color_key: Tono de color
+        :param kwargs: Parámetros adicionales
+        :return: Imagen
+        """
         # Si la imagen no ha sido cargada entonces se carga y se guarda
         # Si se rota
         if kwargs.get("rotate"):
@@ -122,9 +164,14 @@ class World:
                     if self.verbose: print self.lang.get(53, self.langs.get(51, texture_name))
             return self.images[texture_name]
 
-    # Función que crea un mapa
     def loadMap(self, index=None):
-        if index is None: index = int(self.configMap.getValue("DEFAULTMAP"))
+        """
+        Crea un mapa
+        :param index: Indice de la pista a cargar
+        :return: void
+        """
+        if index is None:
+            index = int(self.configMap.getValue("DEFAULTMAP"))
         else:
             if index == NEXT_TRACK: index = getNextTrack(self.actualMapIndex)
         # Si el indice no existe
@@ -148,8 +195,10 @@ class World:
                 # Se define el fondo del mundo
                 self.actualMap.setBackground(self.loadImage("grass", alpha=False))
                 # Se agrega al jugador
-                self.actualMap.addCar(int(self.userConfig.getValue("TYPECAR")), self.userConfig.getValue("TEXTURE"), True, 0, True, self.actualMap.getTrackLogic(), \
-                                      self.sounds, self.soundsChannel, self.checksum, self.scoreConfig, self.playerName, self.actualMap.getTrackTitle(), \
+                self.actualMap.addCar(int(self.userConfig.getValue("TYPECAR")), self.userConfig.getValue("TEXTURE"),
+                                      True, 0, True, self.actualMap.getTrackLogic(), \
+                                      self.sounds, self.soundsChannel, self.checksum, self.scoreConfig, self.playerName,
+                                      self.actualMap.getTrackTitle(), \
                                       self.gameConfig, rotate=-270, verbose=self.verbose)
                 # Se agregan decoraciones
                 self.actualMap.addDecoration(self.loadImage("tree0", alpha=True), (1650, 0))
@@ -222,8 +271,10 @@ class World:
                 # Se define el fondo del mundo
                 self.actualMap.setBackground(self.loadImage("sand3", alpha=False))
                 # Se agrega al jugador
-                self.actualMap.addCar(int(self.userConfig.getValue("TYPECAR")), self.userConfig.getValue("TEXTURE"), True, 180, True, self.actualMap.getTrackLogic(), \
-                                      self.sounds, self.soundsChannel, self.checksum, self.scoreConfig, self.playerName, self.actualMap.getTrackTitle(), \
+                self.actualMap.addCar(int(self.userConfig.getValue("TYPECAR")), self.userConfig.getValue("TEXTURE"),
+                                      True, 180, True, self.actualMap.getTrackLogic(), \
+                                      self.sounds, self.soundsChannel, self.checksum, self.scoreConfig, self.playerName,
+                                      self.actualMap.getTrackTitle(), \
                                       self.gameConfig, rotate=-270, verbose=self.verbose)
                 # Se agregan decoraciones
                 self.actualMap.addDecoration(self.loadImage("tree3", alpha=True), (1400, 1000))
@@ -305,8 +356,10 @@ class World:
                 # Se define el fondo del mundo
                 self.actualMap.setBackground(self.loadImage("grass5", alpha=False))
                 # Se agrega al jugador
-                self.actualMap.addCar(int(self.userConfig.getValue("TYPECAR")), self.userConfig.getValue("TEXTURE"), True, 180, True, self.actualMap.getTrackLogic(), \
-                                      self.sounds, self.soundsChannel, self.checksum, self.scoreConfig, self.playerName, self.actualMap.getTrackTitle(), \
+                self.actualMap.addCar(int(self.userConfig.getValue("TYPECAR")), self.userConfig.getValue("TEXTURE"),
+                                      True, 180, True, self.actualMap.getTrackLogic(), \
+                                      self.sounds, self.soundsChannel, self.checksum, self.scoreConfig, self.playerName,
+                                      self.actualMap.getTrackTitle(), \
                                       self.gameConfig, rotate=-270, verbose=self.verbose)
                 # Se agregan decoraciones
                 self.actualMap.addDecoration(self.loadImage("tree0", alpha=True), (0, -300))
@@ -405,8 +458,10 @@ class World:
                 # Se define el fondo del mundo
                 self.actualMap.setBackground(self.loadImage("grass", alpha=False))
                 # Se agrega al jugador
-                self.actualMap.addCar(int(self.userConfig.getValue("TYPECAR")), self.userConfig.getValue("TEXTURE"), True, 270, True, self.actualMap.getTrackLogic(), \
-                                      self.sounds, self.soundsChannel, self.checksum, self.scoreConfig, self.playerName, self.actualMap.getTrackTitle(), \
+                self.actualMap.addCar(int(self.userConfig.getValue("TYPECAR")), self.userConfig.getValue("TEXTURE"),
+                                      True, 270, True, self.actualMap.getTrackLogic(), \
+                                      self.sounds, self.soundsChannel, self.checksum, self.scoreConfig, self.playerName,
+                                      self.actualMap.getTrackTitle(), \
                                       self.gameConfig, rotate=-270, verbose=self.verbose)
                 # Se agregan decoraciones
                 self.actualMap.addDecoration(self.loadImage("tree0", alpha=True), (-457, 433))
@@ -528,8 +583,12 @@ class World:
                 print self.langs.get(53, self.langs.get(57, self.actualMap.getTrackTitle()))
                 self.clearActualMap()
 
-    # Carga un sonido
     def loadSound(self, sound_file):
+        """
+        Carga un sonido
+        :param sound_file: Archivo de sonido
+        :return: Sonido
+        """
         try:
             if self.verbose: print self.langs.get(52, sound_file)
             return pygame.mixer.Sound(getSounds(sound_file))

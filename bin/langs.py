@@ -32,12 +32,24 @@ NULL_LANG = NULL_IDENTIFIER + "{0}>"
 
 # Definicion de funciones
 def _totalspaces(index):
+    """
+    Retorna la cantidad de espacios
+    :param index: Indice
+    :return: Integer
+    """
     return int(round(math.log(index, 10), 2) + 1) * " "
 
-# Carga un archivo de idioma y maneja sus elementos, adicionalmente traduce lineas
+
 class langLoader:
+    """Carga un archivo de idioma y maneja sus elementos, adicionalmente traduce lineas"""
 
     def __init__(self, language, **kwargs):
+        """
+        Función constructora
+        :param language: Idioma a cargar (path)
+        :param kwargs: Parámetros adicionales
+        :return: void
+        """
         language = str(language).upper()
         if language + langconfig.getValue(0) in langavaiable.getParameters():
             try:
@@ -60,8 +72,14 @@ class langLoader:
         else:
             errors.throw(errors.ERROR_NOLANGDEFINED)
 
-    # Retorna un string asociado al indice -index- en el archivo de idiomas cargado
     def get(self, index, *args, **kwargs):
+        """
+        Retorna un string asociado al indice -index- en el archivo de idiomas cargado
+        :param index: Indice del string
+        :param args: Argumentos
+        :param kwargs: Parámetros
+        :return: String
+        """
         if str(index).isdigit():
             try:  # Si existe el lang en la matriz de datos
                 if kwargs.get("noformat") or len(args) == 0:
@@ -75,19 +93,28 @@ class langLoader:
             errors.warning(errors.ERROR_LANGBADINDEX, str(index))
             return NULL_LANG.format(str(index))
 
-    # Imprime todos los elementos del idioma
     def printAll(self):
+        """
+        Imprime todos los elementos del idioma
+        :return: void
+        """
         print LANG_PRINT_TITLE
         for key in self.lang.keys():
             print LANG_PRINT_ELEMENT.format(str(key), _totalspaces(key), self.lang[key])
 
-    # Función que traduce un texto usando el servicio de google traductor
     def translate(self, index, to):
+        """
+        Función que traduce un texto usando el servicio de google traductor
+        :param index: Indice del string
+        :param to: Idioma destino
+        :return: String
+        """
         text = self.get(index)
         if langselfconfig.isTrue("TRANSLATIONS"):  # Si el servicio de traducciones esta activado
             if not NULL_IDENTIFIER in text:
                 try:  # Se consulta por la traducción al servicio de google
-                    return googleTranslate(text, to, langtranslateconfig.getValue("WEB_HEADER"), langtranslateconfig.getValue("WEB_GOOGLETRANSLATE"))
+                    return googleTranslate(text, to, langtranslateconfig.getValue("WEB_HEADER"),
+                                           langtranslateconfig.getValue("WEB_GOOGLETRANSLATE"))
                 except:  # Si ocurre algún error en la traducción
                     return text
             else:

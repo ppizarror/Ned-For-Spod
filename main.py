@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Archivo principal del juego, maneja el patron modelo-vista-controlador
-# y lanza el main loop.
+# Archivo principal del juego.
 # Carga todas las configuraciones.
 # Obtiene el checksum del proyecto.
 
@@ -26,8 +25,12 @@ pygame.init()
 # Definición de constantes
 VERBOSE = False  # imprime el estado del juego en consola
 
-# Prepara las ventanas, define modelos, controlador y vista y corre el programa
+
 def main():
+    """
+    Prepara las ventanas, define modelos, controlador y vista y corre el programa
+    :return: void
+    """
 
     # Se obtiene el checksum del juego
     checksum = [path_checksum('lib', VERBOSE), md5file('main.py', VERBOSE).upper(), path_checksum('bin', VERBOSE)]
@@ -51,8 +54,11 @@ def main():
     # Se comprueba que el nombre de jugador no sea Player, si no es valido se pide uno nuevo
     if not username.validate(userConfig.getValue("NAME")):
         new_name = username.request(lang.get(111), lang.get(112))
-        if new_name is not username.NO_VALID_NAME: userConfig.setParameter("NAME", new_name); userConfig.export()
-        else: utils.destroyProcess()
+        if new_name is not username.NO_VALID_NAME:
+            userConfig.setParameter("NAME", new_name);
+            userConfig.export()
+        else:
+            utils.destroyProcess()
 
     # Creación de ventana
     window = Window(windowConfig, lang.get(10), pygame.image.load(getIcons("icon")), display_info)  # ventana
@@ -61,7 +67,7 @@ def main():
 
     # Se crea el mundo
     world = World(worldConfig, mapConfig, window, checksum, scoreConfig, userConfig, lang, gameConfig, verbose=VERBOSE)
-    # world.loadMap(4)
+    # TEST: world.loadMap(4)
 
     # Se crean los menús de inicio y pause
     menus = createUImenu(lang, window, world, gameConfig, userConfig, viewConfig, windowConfig, worldConfig, mapConfig)
@@ -78,8 +84,7 @@ def main():
     # Se lanza el mainloop
     while True:
         clock.tick(fps)
-        state = control.event_loop()
-        vista.draw(state)
+        vista.draw(control.event_loop())
 
 # Si se ejecuta el programa
 if __name__ == '__main__':

@@ -17,29 +17,58 @@ _LOOKTYPES = ["py", "txt", "pyc", "ini", "data"]
 _MSG = ["checksum -s -d ({0})", "md5 -f ({0})", "checksum -r ({0})"]
 _NONE_ = "462CAB92B7C70601299CD65B4FDC81E6"
 
-# Función que cuenta la profundidad de un directorio
+
 def count_depth(folder):
+    """
+    Función que cuenta la profundidad de un directorio
+    :param folder: Carpeta
+    :return: Integer
+    """
     depth = 0
     for ch in folder:
         if ch is _FOLDERSEP: depth += 1
     return depth
 
-# Función que retorna la profundidad de un directorio en forma de carácter
+
 def get_depth(folder):
-    return "\t"*count_depth(folder)
+    """
+    Función que retorna la profundidad de un directorio en forma de carácter
+    :param folder: Carpeta
+    :return: String
+    """
+    return "\t" * count_depth(folder)
 
-# Función que retorna la profundidad de un sub-directorio en forma de carácter
+
 def get_depth_subfolder(folder):
-    return "\t"*(count_depth(folder) + 1)
+    """
+    Función que retorna la profundidad de un sub-directorio en forma de carácter
+    :param folder: Carpeta
+    :return: String
+    """
+    return "\t" * (count_depth(folder) + 1)
 
-# Función que retorna el tipo de archivo de un cierto elemento de un directorio
+
 def get_filetype(filename):
+    """
+    Función que retorna el tipo de archivo de un cierto elemento de un directorio
+    :param filename: Nombre de archivo
+    :return: String
+    """
     filename = filename.strip().split(".")
-    if len(filename) < 2: return _FOLDERTYPE
-    else: return filename[1]
+    if len(filename) < 2:
+        return _FOLDERTYPE
+    else:
+        return filename[1]
 
-# Función que genera el md5 de una carpeta
+
 def folder_checksum(folder, checksum, verbose):
+    """
+    Función que genera el md5 de una carpeta
+    :param folder: Carpeta
+    :param checksum: Checksum parcial
+    :param verbose: Indica si imprime
+    :return: void
+    """
     try:
         dir_files = os.listdir(folder)
         for filename in dir_files:
@@ -49,10 +78,17 @@ def folder_checksum(folder, checksum, verbose):
             elif filetype is _FOLDERTYPE and not "~" in filename:
                 if verbose: print get_depth_subfolder(filename) + _MSG[0].format(filename)
                 folder_checksum(folder + _FOLDERSEP + filename, checksum, verbose)
-    except: checksum.append(_NONE_)
+    except:
+        checksum.append(_NONE_)
 
-# Función que crea el md5 de un archivo
+
 def md5file(filepath, verbose=False):
+    """
+    Función que crea el md5 de un archivo
+    :param filepath: Archivo
+    :param verbose: Indica si imprime
+    :return: String md5
+    """
     if verbose: print get_depth(filepath) + _MSG[1].format(filepath)
     with open(filepath, 'rb') as fh:
         m = hashlib.md5()
@@ -62,13 +98,24 @@ def md5file(filepath, verbose=False):
             m.update(data)
         return m.hexdigest()
 
-# Función que crea el md5 de un string (o numero)
+
 def md5str(string):
+    """
+    Función que crea el md5 de un string
+    :param string: String
+    :return: md5
+    """
     string = str(string)
     return hashlib.md5(string).hexdigest().upper()
 
-# Genera el md5 de un directorio
+
 def path_checksum(path, verbose=False):
+    """
+    Genera el md5 de un directorio
+    :param path: Directorio raiz
+    :param verbose: Indica si imprime
+    :return: String md5
+    """
     if verbose: print _MSG[2].format(path)
     files_checksum = []
     folder_checksum(path, files_checksum, verbose)

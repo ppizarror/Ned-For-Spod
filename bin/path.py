@@ -10,13 +10,11 @@
 
 # Importa las librerías de sistema
 import sys
-reload(sys)
-
-# Importación de librerías internas
 # noinspection PyProtectedMember
 from bindir import _DIR_BIN, _DIR_LIB
 
 # Se agregan los directorios al path del sistema
+reload(sys)
 sys.path.append(_DIR_BIN)
 sys.path.append(_DIR_BIN + "/external/")
 sys.path.append(_DIR_BIN + "/external/PIL/")

@@ -11,7 +11,11 @@ import sys
 from tkFileDialog import *
 import tkFont
 import ttk
-import winsound
+
+try:
+    import winsound
+except:
+    pass
 
 
 # Configuración de librerías
@@ -49,15 +53,19 @@ def loadFromArchive(archive):
     archive.close()
     return l
 
+
 # Genera un archivo dado una matriz
 def save_from_list(archive, lista):
     archive = open(archive, "w")
     k = 0
     l = len(lista)
     for i in lista:
-        if k != l - 1: archive.write(i + "\n")
-        else: archive.write(i)
+        if k != l - 1:
+            archive.write(i + "\n")
+        else:
+            archive.write(i)
     archive.close()
+
 
 # Borrar una matriz
 def delMatrix(matrix):
@@ -65,18 +73,27 @@ def delMatrix(matrix):
     if a > 0:
         for k in range(a): matrix.pop(0)  # @UnusedVariable
 
+
 # Función que reemplaza los caracteres restrictivos
 def replaceStrict(a):
-    return a.replace(",", "%XCOM%").replace(";", "%XPYC%").replace(":", "%XDP%").replace("-", "%XGUI%").replace("\\", "").replace("'", "%XII%")
+    return a.replace(",", "%XCOM%").replace(";", "%XPYC%").replace(":", "%XDP%").replace("-", "%XGUI%").replace("\\",
+                                                                                                                "").replace(
+        "'", "%XII%")
+
 
 # Función que retorna los caracteres restrictivos
 def putStrict(a):
-    return a.replace("%XCOM%", ",").replace("%XPYC%", ";").replace("%XDP%", ":").replace("%XGUI%", "-").replace("%XII%", "'")
+    return a.replace("%XCOM%", ",").replace("%XPYC%", ";").replace("%XDP%", ":").replace("%XGUI%", "-").replace("%XII%",
+                                                                                                                "'")
+
 
 # Función que comprueba si un texto es digito
 def isNumerable(x):
-    if x.strip().isdigit(): return True
-    else: return False
+    if x.strip().isdigit():
+        return True
+    else:
+        return False
+
 
 # Función que ordena las columnas segun orden
 def sortby(tree, col, descending):
@@ -86,7 +103,8 @@ def sortby(tree, col, descending):
     tree.heading(col, command=lambda col=col: sortby(tree, col, int(not descending)))
 
 # Se cargan la lista de idiomas disponibles
-try: LANGLIST = loadFromArchive(LANGFILE)
+try:
+    LANGLIST = loadFromArchive(LANGFILE)
 except:
     archive = open(LANGFILE, "w")
     archive.close()
@@ -94,20 +112,23 @@ except:
 
 # Clase pop
 class pop:
-
     # Función constructora
     def __init__(self, properties):
         title = properties[0]
         icon = properties[1]
         typeObject = properties[2]
         size = properties[4], properties[3]
-        if title == "Error" or title == "Precaucion": self.w = Toplevel()
-        else: self.w = Tk()
+        if title == "Error" or title == "Precaucion":
+            self.w = Toplevel()
+        else:
+            self.w = Tk()
         self.w.protocol("WM_DELETE_WINDOW", self.kill)
         self.values = []
-        if size[0] != 0 and size[1] != 0: self.w.minsize(width=size[0], height=size[1])  # Alineación de la ventana a la mitad de la pantalla
+        if size[0] != 0 and size[1] != 0: self.w.minsize(width=size[0], height=size[
+            1])  # Alineación de la ventana a la mitad de la pantalla
         self.w.resizable(width=False, height=False)
-        self.w.geometry('%dx%d+%d+%d' % (size[0], size[1], (self.w.winfo_screenwidth() - size[0]) / 2, (self.w.winfo_screenheight() - size[1]) / 2))
+        self.w.geometry('%dx%d+%d+%d' % (
+            size[0], size[1], (self.w.winfo_screenwidth() - size[0]) / 2, (self.w.winfo_screenheight() - size[1]) / 2))
         self.w.focus_force()
         self.w.title(title)
         self.w.iconbitmap(icon)
@@ -123,7 +144,7 @@ class pop:
             Yscroll = Scrollbar(self.w)
             Yscroll.pack(side=RIGHT, fill=Y)
             texto = Text(self.w, wrap=NONE,
-            yscrollcommand=Yscroll.set, xscrollcommand=None)
+                         yscrollcommand=Yscroll.set, xscrollcommand=None)
             texto.focus_force()
             for i in archivo: texto.insert(INSERT, i)
             texto.pack()
@@ -133,15 +154,18 @@ class pop:
             self.w.bind("<Return>", self.destruir)
             self.w.bind("<Escape>", self.destruir)
         elif typeObject == "ask":  # Realiza una pregunta que tiene resultado True/False
-            winsound.MessageBeep(-1)
+            try:
+                winsound.MessageBeep(-1)
+            except:
+                pass
             Label(self.w, text=properties[5], font=DEFAULT_FONT_TITLE, border=10).pack()
             F = Frame(self.w)
             F.pack()
-            Button(F, text="Si", command=lambda:self.response("si"), width=5, relief=GROOVE).pack(side=LEFT)
+            Button(F, text="Si", command=lambda: self.response("si"), width=5, relief=GROOVE).pack(side=LEFT)
             Label(F, text=" ").pack(side=LEFT)
-            Button(F, text="No", command=lambda:self.response("no"), width=5, relief=GROOVE).pack(side=LEFT)
+            Button(F, text="No", command=lambda: self.response("no"), width=5, relief=GROOVE).pack(side=LEFT)
             Label(F, text=" ").pack(side=LEFT)
-            Button(F, text="Cancelar", command=lambda:self.response("cancel"), width=8, relief=GROOVE).pack()
+            Button(F, text="Cancelar", command=lambda: self.response("cancel"), width=8, relief=GROOVE).pack()
         elif typeObject == "borrar":
             f = Frame(self.w, border=10)
             f.pack()
@@ -153,7 +177,10 @@ class pop:
             Button(self.w, text="Borrar", relief=GROOVE, command=self.borrar).pack()
             self.w.bind("<Escape>", self.destruir)
         elif typeObject == "error":
-            winsound.MessageBeep(0)
+            try:
+                winsound.MessageBeep(0)
+            except:
+                pass
             Label(self.w, text=properties[5], wraplength=250, anchor=N, border=10).pack()
             Label(self.w, text="")
             Button(self.w, text="Cerrar", command=self.w.destroy, relief=GROOVE).pack()
@@ -233,9 +260,12 @@ class pop:
     def insert(self, e=None):
         a = self.insertentry.get().decode('utf-8')
         if len(a) != 0:
-            if AUTOTITLE:self.values.append(str(a).title())
-            else:self.values.append(str(a))
-        else: self.values.append(False)
+            if AUTOTITLE:
+                self.values.append(str(a).title())
+            else:
+                self.values.append(str(a))
+        else:
+            self.values.append(False)
         self.sent = True
         self.destruir()
 
@@ -249,9 +279,12 @@ class pop:
 
     # Función que envia una respuesta
     def response(self, res):
-        if res == "si": self.values.append("si")
-        elif res == "no": self.values.append("no")
-        else: self.values.append("cancel")
+        if res == "si":
+            self.values.append("si")
+        elif res == "no":
+            self.values.append("no")
+        else:
+            self.values.append("cancel")
         self.sent = True
         self.destruir()
 
@@ -271,29 +304,37 @@ try:
         c_command = i.split("=")
         if c_command[0].strip() == "XSIZE":
             c_after_command = str(c_command[1]).split(",")
-            if isNumerable(c_after_command[0]) and int(c_after_command[0]) >= C_DATA[0]: C_DATA[0] = int(c_after_command[0])
+            if isNumerable(c_after_command[0]) and int(c_after_command[0]) >= C_DATA[0]: C_DATA[0] = int(
+                c_after_command[0])
         if c_command[0].strip() == "YSIZE":
             c_after_command = str(c_command[1]).split(",")
-            if isNumerable(c_after_command[0]) and int(c_after_command[0]) >= C_DATA[1]: C_DATA[1] = int(c_after_command[0])
+            if isNumerable(c_after_command[0]) and int(c_after_command[0]) >= C_DATA[1]: C_DATA[1] = int(
+                c_after_command[0])
         if c_command[0].strip() == "DEFAULTLANG":
             c_after_command = str(c_command[1]).split(",")
             if (c_after_command[0].strip() != "%") and (c_after_command[0].strip().upper() + LANGEND in LANGLIST):
                 C_DATA[2] = c_after_command[0].strip().upper()
         if c_command[0].strip() == "AUTOFOCUS":
             c_after_command = str(c_command[1]).split(",")
-            if c_after_command[0].strip().upper() == "ON":C_DATA[3] = True
-            else:C_DATA[3] = False
+            if c_after_command[0].strip().upper() == "ON":
+                C_DATA[3] = True
+            else:
+                C_DATA[3] = False
         if c_command[0].strip() == "REZISE":
             c_after_command = str(c_command[1]).split(",")
-            if c_after_command[0].strip().upper() == "ON": C_DATA[4] = True
-            else: C_DATA[4] = False
+            if c_after_command[0].strip().upper() == "ON":
+                C_DATA[4] = True
+            else:
+                C_DATA[4] = False
         if c_command[0].strip() == "DELIMITER":
             c_after_command = str(c_command[1]).split(",")
             if len(c_after_command[0].strip()) > 0: C_DATA[5] = c_after_command[0].strip()
         if c_command[0].strip() == "AUTOTITLE":
             c_after_command = str(c_command[1]).split(",")
-            if c_after_command[0].strip().upper() == "ON": C_DATA[6] = True
-            else: C_DATA[6] = False
+            if c_after_command[0].strip().upper() == "ON":
+                C_DATA[6] = True
+            else:
+                C_DATA[6] = False
     conf_file.close()
 except:
     # Se genera un nuevo archivo de configuraciones
@@ -330,15 +371,16 @@ archive.write(DATADELIMITER + "\n")
 archive.close()
 DATADELIMITER = DATADELIMITER.replace("*", " ")
 
-class langs:
 
+class langs:
     # Función constructora
     def __init__(self, lang=False):
         self.root = Tk()
         self.root.title(TITLE)
         self.root.minsize(width=PROGRAMSIZE[0], height=PROGRAMSIZE[1])
-        self.root.geometry('%dx%d+%d+%d' % (PROGRAMSIZE[0], PROGRAMSIZE[1], (self.root.winfo_screenwidth() - PROGRAMSIZE[0]) / 2, \
-                                            (self.root.winfo_screenheight() - PROGRAMSIZE[1] - 50) / 2))
+        self.root.geometry(
+            '%dx%d+%d+%d' % (PROGRAMSIZE[0], PROGRAMSIZE[1], (self.root.winfo_screenwidth() - PROGRAMSIZE[0]) / 2, \
+                             (self.root.winfo_screenheight() - PROGRAMSIZE[1] - 50) / 2))
         self.root.iconbitmap(ICONPROGRAM)
         self.root.focus_force()
         # Menu
@@ -396,7 +438,8 @@ class langs:
         if lang == "False":
             self._delete_all()
             self._hide_tree()
-        else: self.loadLang(0, str(lang) + LANGEND)
+        else:
+            self.loadLang(0, str(lang) + LANGEND)
         self.root.mainloop(0)
 
     # Establece el widget de la lista
@@ -426,13 +469,14 @@ class langs:
                 self.tree.selection_set(item)
                 self.tree.focus_set()
                 self.tree.focus(item)
-            except: pass
+            except:
+                pass
 
     # Escribe la lista
     def _build_tree(self):
         for col in ml_columns:
             self.tree.heading(col, text=col,
-                command=lambda c=col: sortby(self.tree, c, 0))
+                              command=lambda c=col: sortby(self.tree, c, 0))
             self.tree.column(col, width=tkFont.Font().measure(col.title()))
         for item in self.ml_data:
             self._insert_item(item)
@@ -449,8 +493,9 @@ class langs:
                 self.tree.item(item, values=(a, str(q.values[0])))
                 self.ml_data[i] = (a, q.values[0])
                 if q.values[0] != b: self.titlefy(True)
-            del(q)
-        except: pass
+            del (q)
+        except:
+            pass
 
     # Borrado de un elemento
     def _delete_element(self, event=None):
@@ -464,7 +509,8 @@ class langs:
                 self.tree.selection_set(self.tree.get_children()[pos])
                 self.tree.focus_set()
                 self.tree.focus(self.tree.get_children()[pos])
-        except: pass
+        except:
+            pass
 
     # Borra un elemento de la lista
     def _delete_item(self, i):
@@ -488,15 +534,18 @@ class langs:
         self._delete_all()
         for item in self.ml_data:
             (a, b) = item
-            try: self.tree.insert('', 'end', values=(a, b.decode('utf-8')))
+            try:
+                self.tree.insert('', 'end', values=(a, b.decode('utf-8')))
             except:
                 e = pop(["Error al cargar el idioma", ALERTICON, "error", 75, 300, "Hay un error en la linea {0}," + \
-                         " no se puede cargar. Posible error en el formato del archivo. Este debe ser UTF-8".format(str(int(a)))])
+                         " no se puede cargar. Posible error en el formato del archivo. Este debe ser UTF-8".format(
+                             str(int(a)))])
                 e.w.mainloop(0)
             if RESIZE:  # Ajusta el largo de las columnas
                 for indx, val in enumerate(item):
                     ilen = tkFont.Font().measure(val)
-                    if self.tree.column(ml_columns[indx], width=None) < ilen: self.tree.column(ml_columns[indx], width=ilen)
+                    if self.tree.column(ml_columns[indx], width=None) < ilen: self.tree.column(ml_columns[indx],
+                                                                                               width=ilen)
 
     # Muestra la lista
     def _show_tree(self):
@@ -528,15 +577,19 @@ class langs:
                             self.titlefy(True)
                             break
                     if item == "":
-                        if notfound == "": notfound += str(k) + " "
-                        else: notfound += "," + str(k) + " "
+                        if notfound == "":
+                            notfound += str(k) + " "
+                        else:
+                            notfound += "," + str(k) + " "
                 if notfound != "":
-                    if notfound.count(",") == 0: msg = "La ID " + notfound + " no ha sido encontrada."
-                    else: msg = "Las IDs: " + notfound + "no han sido encontradas."
+                    if notfound.count(",") == 0:
+                        msg = "La ID " + notfound + " no ha sido encontrada."
+                    else:
+                        msg = "Las IDs: " + notfound + "no han sido encontradas."
                     e = pop(["Error", ALERTICON, "error", 75, 250, msg])
                     e.w.mainloop(0)
-                    del(e)
-            del(q)
+                    del (e)
+            del (q)
 
     # Función que busca un string (elegido, o a buscar)
     def buscar(self, t="", m=False, e=False):
@@ -555,8 +608,8 @@ class langs:
                 if item == "":
                     e = pop(["Error", ALERTICON, "error", 75, 250, "Elemento no encontrado."])
                     e.w.mainloop(0)
-                    del(e)
-            del(q)
+                    del (e)
+            del (q)
 
     # Busca un id en la matriz y lo elimina
     def deletefromid(self, j):
@@ -584,12 +637,17 @@ class langs:
             e = pop(["Aviso", ALERTICON, "ask", 80, 250, "Desea guardar?"])
             e.w.mainloop(1)
             if e.sent:
-                if e.values[0] == "si": self.saveLang()
-                elif e.values[0] == "cancel": return
-                else: pass
-            del(e)
-        try: os.remove("main.pyc")
-        except: pass
+                if e.values[0] == "si":
+                    self.saveLang()
+                elif e.values[0] == "cancel":
+                    return
+                else:
+                    pass
+            del (e)
+        try:
+            os.remove("main.pyc")
+        except:
+            pass
         os.system("taskkill /PID " + str(os.getpid()) + " /F")
 
     # Función que carga la ayuda al programa
@@ -606,13 +664,15 @@ class langs:
             q = pop(['Insertar', ICONPROGRAM, 'insert', 73, 280])
             q.w.mainloop(1)
             if q.sent and q.values[0] != False:
-                try: i = int(self.ml_data[len(self.ml_data) - 1][0]) + 1
-                except: i = 10
+                try:
+                    i = int(self.ml_data[len(self.ml_data) - 1][0]) + 1
+                except:
+                    i = 10
                 item = (str(i).zfill(5), q.values[0])
                 self.ml_data.append(item)
                 self._insert_item(item)
                 self.titlefy(True)
-            del(q)
+            del (q)
 
     # Función que crea un nuevo idioma
     def newLang(self, e=False):
@@ -627,7 +687,7 @@ class langs:
                     self.namelang = lang
                     self.loaded = True
                     self._show_tree()
-                del(e)
+                del (e)
             else:
                 self.namelang = lang
                 self.loaded = True
@@ -635,7 +695,7 @@ class langs:
             self.titlefy()
             self._delete_all()
             delMatrix(self.ml_data)
-        del(q)
+        del (q)
 
     # Función que modifica un string (a buscar)
     def modificar(self, t="", m=False, e=False):
@@ -654,12 +714,12 @@ class langs:
                                 self.tree.item(k, values=self.ml_data[i])
                                 self.titlefy(True)
                                 break
-                    del(e)
+                    del (e)
                 else:
                     e = pop(["Error", ALERTICON, "error", 75, 250, "Elemento no encontrado."])
                     e.w.mainloop(0)
-                    del(e)
-            del(q)
+                    del (e)
+            del (q)
 
     # Función que carga la licencia del programa
     def licencia(self, e=False):
@@ -668,7 +728,8 @@ class langs:
     def loadLang(self, e=False, t="Noset"):  # Función que carga un idioma
         try:
             if t == "Noset":
-                archivo = str(askopenfilename(title="Cargar idioma", initialdir=DATALANGS, defaultextension=LANGEND, filetypes=[("LANG", LANGEND)]))
+                archivo = str(askopenfilename(title="Cargar idioma", initialdir=DATALANGS, defaultextension=LANGEND,
+                                              filetypes=[("LANG", LANGEND)]))
                 namelang = archivo.split("/")
                 self.namelang = namelang[len(namelang) - 1]
             else:
@@ -697,7 +758,7 @@ class langs:
             delMatrix(self.ml_data)
             e = pop(["Error al cargar", ALERTICON, "error", 75, 300, "Error al cargar el idioma"])
             e.w.mainloop(0)
-            del(e)
+            del (e)
 
     # Función que guarda un idioma
     def saveLang(self, e=False):
@@ -709,18 +770,19 @@ class langs:
                     save_from_list(LANGFILE, LANGLIST)
                 self.ml_data.sort()
                 archive = open(DATALANGS + self.namelang, "w")  # Se guarda el archivo de idioma
-                for i in self.ml_data: archive.write(str(int(i[0])) + DATADELIMITER + str(i[1]).replace(" ", "|") + "\n")
+                for i in self.ml_data: archive.write(
+                    str(int(i[0])) + DATADELIMITER + str(i[1]).replace(" ", "|") + "\n")
                 archive.close()
                 # Se guarda el archivo de idioma en la carpeta de recuperación
-#                 archive = open(DATARECOVER + self.namelang.replace(LANGEND, \
-#                                                                   " - ") + str(datetime.datetime.now())[0:19].replace(":", "-") + LANGEND, "w")
-#                 for i in self.ml_data: archive.write(str(int(i[0])) + DATADELIMITER + str(i[1]).replace(" ", "|") + "\n")
-#                 archive.close()
+                #                 archive = open(DATARECOVER + self.namelang.replace(LANGEND, \
+                #                                                                   " - ") + str(datetime.datetime.now())[0:19].replace(":", "-") + LANGEND, "w")
+                #                 for i in self.ml_data: archive.write(str(int(i[0])) + DATADELIMITER + str(i[1]).replace(" ", "|") + "\n")
+                #                 archive.close()
                 self.titlefy()
             except:
                 e = pop(["Error", ALERTICON, "error", 75, 275, "Error al guardar el idioma"])
                 e.w.mainloop(0)
-                del(e)
+                del (e)
 
     # Modifica el titulo del programa
     def titlefy(self, asterisco=False):
@@ -730,5 +792,6 @@ class langs:
         else:
             self.root.title(TITLE + " - " + self.namelang.replace(LANGEND, ""))
             self.changes = False
+
 
 langs(str(C_DATA[2]))

@@ -25,17 +25,34 @@ def pygame_to_pil_img(pg_surface):
     # noinspection PyDeprecation
     return Image.fromstring('RGB', pg_surface.get_size(), imgstr)
 
-class Controller:
 
-    # Función constructora
+class Controller:
+    """Clase que maneja eventos"""
+
     # noinspection PyShadowingNames
     def __init__(self, world, clock, langs, config, window, menu, **kwargs):
+        """
+        Función constructora
+        :param world: Objeto mundo el cual posee todos los elementos lógicos del juego
+        :param clock: Objeto del tipo pygame.Clock()
+        :param langs: Diccionario de idioma
+        :param config: Configuraciones del controlador
+        :param window: Objeto ventana
+        :param menu: Menúes del juego
+        :param kwargs: Parámetros
+        :return: void
+        """
+
         # Se define si se imprime o no en consola
-        if kwargs.get("verbose"): self.verbose = True
-        else: self.verbose = False
+        if kwargs.get("verbose"):
+            self.verbose = True
+        else:
+            self.verbose = False
         # Modelos del juego
-        if world.getActualMap() is not None: self.player = world.getActualMap().getPlayer()
-        else: self.player = None
+        if world.getActualMap() is not None:
+            self.player = world.getActualMap().getPlayer()
+        else:
+            self.player = None
         # Variables del controlador
         self.clock = clock  # reloj del juego
         self.configs = config  # configuraciones del controlador
@@ -45,27 +62,41 @@ class Controller:
         self.window = window  # ventana
         self.world = world  # mundo del juego
 
-    # Elimina al jugador
     def delPlayer(self):
+        """
+        Elimina al jugador
+        :return: void
+        """
         self.player = None
 
-    # Desactiva el menu
     def disableMenu(self):
+        """
+        Desactiva el menú
+        :return: void
+        """
         self.inmenu = False
 
-    # Activa el menu
     def enableMenu(self):
+        """
+        Activa el menú
+        :return: void
+        """
         self.inmenu = True
 
-    # Función que verifica eventos
     def event_loop(self):
+        """
+        Función que verifica los eventos de entrada
+        :return: void
+        """
         time = float(self.clock.get_time()) / 1000.0  # tiempo que tomo el frame en generarse
         # Se obtienen los eventos base
         for event in pygame.event.get():
             # Si se cierra la ventana (con evento QUIT o ALT-F4)
             try:
-                if event.type == QUIT or (event.type == KEYDOWN and event.key == K_F4 and (key[K_LALT] or key[K_LALT])): utils.destroyProcess()
-            except: utils.destroyProcess()
+                if event.type == QUIT or (event.type == KEYDOWN and event.key == K_F4 and (
+                            key[K_LALT] or key[K_LALT])): utils.destroyProcess()
+            except:
+                utils.destroyProcess()
             # Si se presiona una tecla
             if event.type == KEYDOWN:
                 # Se activa el menu de pausa
@@ -95,14 +126,14 @@ class Controller:
                                 if self.verbose: print self.lang.get(58, fileimg)
                             except:
                                 if self.verbose: print self.lang.get(59)
-                        # Cambios
-#                         elif event.key == K_p:
-#                             self.player.subirCambio()
-#                         elif event.key == K_l:
-#                             self.player.bajarCambio()
-                        # Imprime posición para poner decoraciones
-#                         elif event.key == K_F12:
-#                             print (self.player.getPos()[0] - 217 - 200, self.player.getPos()[1] - 217)
+                                # Cambios
+                                #   elif event.key == K_p:
+                                #       self.player.subirCambio()
+                                #   elif event.key == K_l:
+                                #       self.player.bajarCambio()
+                                # Imprime posición para poner decoraciones
+                                #   elif event.key == K_F12:
+                                #       print (self.player.getPos()[0] - 217 - 200, self.player.getPos()[1] - 217)
                     else:
                         if event.key == K_RETURN: return STATE_NEXT
                 # Si no se esta jugando -> menu inicial
@@ -156,23 +187,28 @@ class Controller:
                 # Devolver a la pista
                 if key_pressed[K_BACKSPACE]:
                     self.player.returnToTrack()
-                # Mover la camara para map-testing
-#                 if key_pressed[K_l]:
-#                     self.player.posx -= 30
-#                 if key_pressed[K_j]:
-#                     self.player.posx += 30
-#                 if key_pressed[K_i]:
-#                     self.player.posy += 30
-#                 if key_pressed[K_k]:
-#                     self.player.posy -= 30
+                    # Mover la camara para map-testing
+                    #   if key_pressed[K_l]:
+                    #       self.player.posx -= 30
+                    #   if key_pressed[K_j]:
+                    #       self.player.posx += 30
+                    #   if key_pressed[K_i]:
+                    #       self.player.posy += 30
+                    #   if key_pressed[K_k]:
+                    #       self.player.posy -= 30
         # Si no existe un jugador se fuerza el menu
         else:
             self.enableMenu()
             return STATE_MENU
         # Se retorna el estado del controlador
-        if self.inmenu: return STATE_MENU
-        else: return STATE_PLAY
+        if self.inmenu:
+            return STATE_MENU
+        else:
+            return STATE_PLAY
 
-    # Define el jugador
     def setPlayer(self):
+        """
+        Define el jugador
+        :return: void
+        """
         self.player = self.world.getActualMap().getPlayer()
