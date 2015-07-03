@@ -5,3 +5,4 @@
 .settings/
 *.pyc
 data/saves/*.txt
+Thumbs.db
