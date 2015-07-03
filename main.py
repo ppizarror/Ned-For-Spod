@@ -9,7 +9,7 @@
 # Autor: PABLO PIZARRO @ ppizarro ~
 # Fecha: ABRIL 2015
 
-# Importacion de librerías
+# Importación de librerías
 from bin import *
 from config import DIR_CONFIG
 from lib.controller import Controller

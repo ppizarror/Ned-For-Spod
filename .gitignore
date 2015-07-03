@@ -1,6 +1,6 @@
+config/
 .DS_Store
 .idea/
 .project
 .pydevproject
 .settings/
-config/
