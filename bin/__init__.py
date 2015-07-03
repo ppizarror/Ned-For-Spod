@@ -28,6 +28,7 @@ if __binconfig.isTrue("DONT_WRITE_BYTECODE"):
 # Importación de librerías externas
 try:
     from pil import Image
+    import mechanize
 except:
     errors.throw(errors.ERROR_IMPORTERsROREXTERNAL)
 

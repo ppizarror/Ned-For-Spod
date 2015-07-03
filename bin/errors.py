@@ -12,13 +12,23 @@
 import sys
 
 # Constantes de errores
+BR_ERRORxERROR_SET_FORM = 8
+BR_ERRORxERROR_SET_SUBMIT = 9
+BR_ERRORxNO_ACCESS_WEB = 1
+BR_ERRORxNO_FORM = 3
+BR_ERRORxNO_FORMID = 2
+BR_ERRORxNO_OPENED = 0
+BR_ERRORxNO_SELECTED_FORM = 5
+BR_ERRORxNO_VALIDID = 4
+BR_ERRORxNO_VALID_SUBMIT_EMPTY = 6
+BR_ERRORxNO_VALID_SUBMIT_NOT_EQUAL = 7
 ERROR_BADCONFIG = "La linea '{0}' del archivo de configuraciones '{1}' no es valida"
 ERROR_BADINDEXCONFIG = "El indice seleccionado <{0}> no pertenece a las configuraciones cargadas"
 ERROR_CANTTRANSLATE = "El texto no se puede traducir"
 ERROR_CONFIGBADEXPORT = "No se pudo guardar el archivo de configuraciones"
 ERROR_CONFIGNOTEXISTENT = "El parametro <{0}> no existe en las configuraciones"
 ERROR_CREATE_MENU = "No se puede crear el menu inicial, posible error en archivo de configuraciones"
-ERROR_HEADER = "Error :: "
+ERROR_HEADER = "[ERR] "
 ERROR_IMPORTERROREXTERNAL = "Ha ocurrido un error al importar las librerias de sistema externas"
 ERROR_IMPORTERRORINTERNAL = "Ha ocurrido un error al importar las librerias internas de la aplicacion"
 ERROR_IMPORTSYSTEMERROR = "Ha ocurrido un error al importar las librerias de sistema"
@@ -42,6 +52,7 @@ ERROR_TAG_INITNOTFINDED = 13
 ERROR_TAG_LASTNOTFINDED = 15
 ERROR_TRACKNOTEXIST = "La pista ID:<{0}> no existe"
 NO_ERROR = "OK"
+WARNING_HEADER = "[WARNING] "
 WARNING_NOCONFIGFOUND = "No se han encontrado configuraciones en el archivo '{0}'"
 
 
@@ -76,4 +87,5 @@ def warning(error, *args):
     :param args: Mensaje
     :return: void
     """
-    print ("Aviso :: " + createMSG(error, *args))
+    print (WARNING_HEADER
+            + createMSG(error, *args))
