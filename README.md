@@ -7,13 +7,18 @@ Ned for Spod es un juego _top view_ de carreras de automóviles, el cual tiene p
 
 ## Descripción
 El juego posee tres tipos de vehículos distintos:
--Clásico
--Moderno
--Súper
+- Clásico
+- Moderno
+- Súper
+
 Cada tipo de vehículo posee una dificultad distinta (y así distintos tiempos de vuelta), múltiples colores por cada auto, cuatro pistas (de manera inicial), múltiples ambientes, sonidos, fantasma de vuelta rápida y algunos efectos gráficos.
+
 ![][image-2]
+
 ![][image-3]
+
 Adicionalmente tras cada vuelta el puntaje obtenido es subido a una plataforma online de puntajes, permitiendo así una mayor competitividad con el resto de los jugadores alrededor del mundo:
+
 ![][image-4]
 
 ## Requisitos
