@@ -18,11 +18,11 @@ Adicionalmente tras cada vuelta el puntaje obtenido es subido a una plataforma o
 
 ## Requisitos
 Ned for Spod funciona tanto en Windows como en Ubuntu, requiere la plataforma de Python 2.7 y la librería [http://www.pygame.org][1], adicionalmente se utilizan las siguientes librerías, las cuales se incluyen dentro del proyecto:
-    - mechanize
-	- PIL (Python Imaging Library)
-	- pyperclip
-	- WConio
-	Actualmente en OSX no se obtienen buenos resultados, sin embargo el programa puede ejecutarse sin mayores problemas.
+- mechanize
+- PIL (Python Imaging Library)
+- pyperclip
+- WConio
+Actualmente en OSX no se obtienen buenos resultados, sin embargo el programa puede ejecutarse sin mayores problemas.
 
 ## Licencia
 Este proyecto está licenciado bajo GPLv2 (GNU General Public License, version 2) [https://www.gnu.org/licenses/gpl-2.0.html][2].
