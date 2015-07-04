@@ -18,21 +18,23 @@ Adicionalmente tras cada vuelta el puntaje obtenido es subido a una plataforma o
 
 ## Requisitos
 Ned for Spod funciona tanto en Windows como en Ubuntu, requiere la plataforma de Python 2.7 y la librería [http://www.pygame.org][1], adicionalmente se utilizan las siguientes librerías, las cuales se incluyen dentro del proyecto:
-- mechanize
-- PIL (Python Imaging Library)
-- pyperclip
-- WConio
+- mechanize [https://pypi.python.org/pypi/mechanize/][2]
+- PIL (Python Imaging Library) [https://pypi.python.org/pypi/PIL][3]
+- pyperclip [https://pypi.python.org/pypi/pyperclip][4]
 Actualmente en OSX no se obtienen buenos resultados, sin embargo el programa puede ejecutarse sin mayores problemas.
 
 ## Licencia
-Este proyecto está licenciado bajo GPLv2 (GNU General Public License, version 2) [https://www.gnu.org/licenses/gpl-2.0.html][2].
+Este proyecto está licenciado bajo GPLv2 (GNU General Public License, version 2) [https://www.gnu.org/licenses/gpl-2.0.html][5].
 
 ## Autor
 Pablo Pizarro
 2015
 
 [1]:	http://www.pygame.org/ "http://www.pygame.org"
-[2]:	https://www.gnu.org/licenses/gpl-2.0.html
+[2]:	https://pypi.python.org/pypi/mechanize/
+[3]:	https://pypi.python.org/pypi/PIL
+[4]:	https://pypi.python.org/pypi/pyperclip
+[5]:	https://www.gnu.org/licenses/gpl-2.0.html
 
 [image-1]:	https://raw.githubusercontent.com/ppizarror/ppizarror.github.io/master/resources/images/nfs-python/splash.png "Menú principal"
 [image-2]:	https://raw.githubusercontent.com/ppizarror/ppizarror.github.io/master/resources/images/nfs-python/gameplay3.png "Vuelta en el desierto"
