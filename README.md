@@ -21,6 +21,7 @@ Ned for Spod funciona tanto en Windows como en Ubuntu, requiere la plataforma de
 - mechanize [https://pypi.python.org/pypi/mechanize/][2]
 - PIL (Python Imaging Library) [https://pypi.python.org/pypi/PIL][3]
 - pyperclip [https://pypi.python.org/pypi/pyperclip][4]
+
 Actualmente en OSX no se obtienen buenos resultados, sin embargo el programa puede ejecutarse sin mayores problemas.
 
 ## Licencia
