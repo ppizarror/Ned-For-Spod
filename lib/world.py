@@ -195,7 +195,7 @@ class World:
                 # Se definen las vueltas máximas
                 self.actualMap.setLaps(3)
                 # Se definen los objetivos del mapa
-                self.actualMap.setObjetives([(19.5, 22.0, 24.5), (17.0, 19.2, 22.5), (15.5, 17.1, 20.0)])
+                self.actualMap.setObjetives([(17.5, 19.5, 23.5), (17.0, 19.2, 22.5), (15.5, 17.1, 20.0)])
                 # Se define el fondo del mundo
                 self.actualMap.setBackground(self.loadImage("grass", alpha=False))
                 # Se agrega al jugador

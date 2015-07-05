@@ -474,11 +474,11 @@ class Player:
         self.lapCount = 1
         self.lapTime = 0
         self.soundMute()
-        del self.ghost;
+        del self.ghost
         self.ghost = None
-        del self.ghost_actual;
+        del self.ghost_actual
         self.ghost_actual = []
-        del self.totalTime;
+        del self.totalTime
         self.totalTime = []
         self.trackCheckPoint = self.checkTrack()
         self.lastIndexTrack = self.trackCheckPoint  # se define el indice actual como el primero de la pista
@@ -942,7 +942,6 @@ class Player:
         """
         # Classic: media velocidad, gran frenado, gran agarre y baja aceleracion
         if type == 1:
-            # variables independientes
             acel = MID_LOW * ACELCONST
             self.acel = [CAMBIO[0] * acel, CAMBIO[1] * acel, CAMBIO[2] * acel, CAMBIO[3] * acel, CAMBIO[4] * acel,
                          CAMBIO[5] * acel]
@@ -955,11 +954,9 @@ class Player:
             self.roce = LOW * ROCE
             self.rocePasto = MEDIUM * ROCE_PASTO
             self.velcambios = [50, 72, 100, 115, self.maxvelkmh, 2 * self.maxvelkmh]
-            # variables dependientes
             self.maxcambio = 5
         # Modern: media velocidad, medio frenado, medio agarre y media aceleracion
         elif type == 2:
-            # variables independientes
             acel = MEDIUM * ACELCONST
             self.acel = [CAMBIO[0] * acel, CAMBIO[1] * acel, CAMBIO[2] * acel, CAMBIO[3] * acel, CAMBIO[4] * acel,
                          CAMBIO[5] * acel]
@@ -972,11 +969,9 @@ class Player:
             self.roce = MEDIUM * ROCE
             self.rocePasto = MEDIUM * ROCE_PASTO
             self.velcambios = [80, 130, 170, 220, 240, self.maxvelkmh]
-            # variables dependientes
             self.maxcambio = 6
         # Super: alta velocidad, mal frenado, mal agarre, alta aceleracion
         elif type == 3:
-            # variables independientes
             acel = HIGH * ACELCONST
             self.acel = [CAMBIO[0] * acel, CAMBIO[1] * acel, CAMBIO[2] * acel, CAMBIO[3] * acel, CAMBIO[4] * acel,
                          CAMBIO[5] * acel]
@@ -989,7 +984,6 @@ class Player:
             self.roce = MEDIUM * ROCE
             self.rocePasto = HIGH * ROCE_PASTO
             self.velcambios = [120, 190, 260, 340, 400, self.maxvelkmh]
-            # variables dependientes
             self.maxcambio = 6
 
     def marcarFrenado(self, pos_rueda, index):
@@ -1328,6 +1322,7 @@ class Player:
                         # Error de conexión
                         except:
                             if self.verbose:
+                                print "fail"
                                 warning(ERROR_SCOREBOARD_NOCONECTIONMSG)
                             self.scoreBoardOnline = [ERROR_SCOREBOARD_NOCONECTION]
                     # si no se acabo la carrera se reemplaza el fantasma
@@ -1364,7 +1359,7 @@ class Player:
 
     def updateSound(self):
         """
-        Comprueba si los sondios están activos
+        Comprueba si los sonidos están activos
         :return: void
         """
         self.sound_state = self.gameConfig.isTrue("ENABLESOUND")

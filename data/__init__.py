@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# En data se almacena todo lo relacionado a la estructura lógica del
+# En data se almacena lo relacionado a la estructura lógica del
 # juego, eso es estadisticas, partidas guardadas, cache, eventos, etc
 # Al importar data se adquieren las direcciones de
 # todos los directorios dentro de data/
