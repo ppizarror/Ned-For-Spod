@@ -21,6 +21,10 @@ Adicionalmente tras cada vuelta el puntaje obtenido es subido a una plataforma o
 
 ![][image-4]
 
+Idiomas disponibles:
+- Español
+- Inglés
+
 ## Requisitos
 Ned for Spod funciona tanto en Windows como en Ubuntu, requiere la plataforma de Python 2.7 y la librería [http://www.pygame.org][1], adicionalmente se utilizan las siguientes librerías, las cuales se incluyen dentro del proyecto:
 - mechanize [https://pypi.python.org/pypi/mechanize/][2]
