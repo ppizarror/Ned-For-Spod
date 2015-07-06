@@ -13,7 +13,7 @@ import os
 # Constantes del programa
 _FOLDERSEP = "/"
 _FOLDERTYPE = "_FOLDER_"
-_LOOKTYPES = ["py", "txt", "pyc", "ini", "data"]
+_LOOKTYPES = ["py", "txt", "ini", "data"]
 _MSG = ["checksum -s -d ({0})", "md5 -f ({0})", "checksum -r ({0})"]
 _NONE_ = "462CAB92B7C70601299CD65B4FDC81E6"
 
