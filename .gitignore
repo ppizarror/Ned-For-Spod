@@ -20,3 +20,5 @@ data/saves/*.txt
 # Windows thumb file
 Thumbs.db
 
+# Hashing
+.hash
