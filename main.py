@@ -67,7 +67,7 @@ def main():
 
     # Se crea el mundo
     world = World(worldConfig, mapConfig, window, checksum, scoreConfig, userConfig, lang, gameConfig, verbose=VERBOSE)
-    # TEST: world.loadMap(4)
+    # TEST: world.loadMap(1)
 
     # Se crean los menús de inicio y pause
     menus = createUImenu(lang, window, world, gameConfig, userConfig, viewConfig, windowConfig, worldConfig, mapConfig)
