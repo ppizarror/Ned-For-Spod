@@ -29,13 +29,13 @@ Ned for Spod funciona tanto en Windows como en Ubuntu, requiere la plataforma de
 
 Actualmente en OSX no se obtienen buenos resultados, sin embargo el programa puede ejecutarse sin mayores problemas.
 
-## Ejecutar el juego
-Para correr el juego debes ingresar el siguiente comando en la terminal:
-_python main.py_
-
 ## Idiomas disponibles
 - Español
 - Inglés
+
+
+## Ejecutar
+Para correr el juego ingrese en la terminal:_python main.py_
 
 ## Licencia
 Este proyecto está licenciado bajo GPLv2 (GNU General Public License, version 2) [https://www.gnu.org/licenses/gpl-2.0.html][5].
