@@ -25,6 +25,7 @@ from _clientcookie import reraise_unmasked_exceptions, FileCookieJar, Cookie, \
 from _headersutil import join_header_words, split_header_words
 from _util import iso2time, time2isoz
 
+
 debug = logging.getLogger("mechanize").debug
 
 

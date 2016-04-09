@@ -9,7 +9,7 @@
 # Fecha: ABRIL 2015
 
 # Importación de librerías
-from menu import *
+from menu import *  # @UnusedWildImport
 
 # Configuraciones de menú
 MENU_FONT_TEXT_SIZE = 25

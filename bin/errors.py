@@ -9,8 +9,8 @@
 # Fecha: ABRIL 2015
 
 # Importación de librerías
-from colors import Color
 import sys
+from colors import Color
 
 # Constantes de errores
 BR_ERRORxERROR_SET_FORM = 8

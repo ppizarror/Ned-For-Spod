@@ -8,9 +8,10 @@
 # Fecha: ABRIL 2015
 
 # Importación de librerías
-from bin import *
-from selector import Selector
 import types
+from bin import *  # @UnusedWildImport
+from selector import Selector
+
 
 # Configuraciones de menú
 MENU_ALPHA = 90

@@ -13,13 +13,13 @@ import copy
 import htmlentitydefs
 import re
 
-import _sgmllib_copy as sgmllib
-
 import _beautifulsoup
 import _form
 from _headersutil import split_header_words, is_html as _is_html
 import _request
 import _rfc3986
+import _sgmllib_copy as sgmllib
+
 
 DEFAULT_ENCODING = "latin-1"
 

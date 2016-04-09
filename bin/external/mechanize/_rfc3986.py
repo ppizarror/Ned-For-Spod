@@ -14,9 +14,9 @@ included with the distribution).
 
 import re, urllib
 
+
 ## def chr_range(a, b):
 ##     return "".join(map(chr, range(ord(a), ord(b)+1)))
-
 ## UNRESERVED_URI_CHARS = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 ##                         "abcdefghijklmnopqrstuvwxyz"
 ##                         "0123456789"

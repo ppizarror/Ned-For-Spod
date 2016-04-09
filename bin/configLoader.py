@@ -13,9 +13,9 @@
 # Fecha: ABRIL 2015
 
 # Importación de librerías
-from utils import string2list
+import operator  # @UnusedImport
 import errors
-import operator
+from utils import string2list
 
 # Definición de constantes
 CONFIG_COMMENT = "#"
@@ -42,7 +42,7 @@ class configLoader:
         """
         # Se carga el archivo de configuraciones
         try:
-            file = open(filename.replace("\\", "/"), "r")
+            file = open(filename.replace("\\", "/"), "r")  # @ReservedAssignment
         except:
             errors.throw(errors.ERROR_NOCONFIGFILE, filename)
         # Variables

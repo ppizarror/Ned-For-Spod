@@ -40,16 +40,19 @@ SELF_CLOSING_TAGS and/or NESTABLE_TAGS.
 """ #"
 from __future__ import generators
 
+import re
+import types
+
+from _sgmllib_copy import SGMLParser, SGMLParseError
+import _sgmllib_copy as sgmllib
+
+
 __author__ = "Leonard Richardson (leonardr@segfault.org)"
 __version__ = "2.1.1"
 __date__ = "$Date: 2004/10/18 00:14:20 $"
 __copyright__ = "Copyright (c) 2004-2005 Leonard Richardson"
 __license__ = "PSF"
 
-from _sgmllib_copy import SGMLParser, SGMLParseError
-import types
-import re
-import _sgmllib_copy as sgmllib
 
 class NullType(object):
 

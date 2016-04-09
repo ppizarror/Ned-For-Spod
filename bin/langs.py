@@ -8,13 +8,13 @@
 # Fecha: ABRIL 2015
 
 # Importación de librerías y obtención de directorios
-from configLoader import configLoader
-# noinspection PyProtectedMember
-from bindir import _LANG_DIRCONFIG, _LANG_DIRLANGS, _DIR_CONFIG
-from utils import googleTranslate
-import errors
 import math
+from bindir import _LANG_DIRCONFIG, _LANG_DIRLANGS, _DIR_CONFIG
+from configLoader import configLoader
+import errors
+from utils import googleTranslate
 
+# noinspection PyProtectedMember
 # Se cargan las configuraciones
 langselfconfig = configLoader(_DIR_CONFIG + "langs.ini")
 langconfig = configLoader(_LANG_DIRCONFIG + "const.ini")
@@ -53,7 +53,7 @@ class langLoader:
         language = str(language).upper()
         if language + langconfig.getValue(0) in langavaiable.getParameters():
             try:
-                file = open(_LANG_DIRLANGS + language + langconfig.getValue(0), "r")
+                file = open(_LANG_DIRLANGS + language + langconfig.getValue(0), "r")  # @ReservedAssignment
             except:
                 errors.throw(errors.ERROR_NOLANGFILE, language)
             self.lang = {}

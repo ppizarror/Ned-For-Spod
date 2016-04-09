@@ -12,11 +12,14 @@ COPYING.txt included with the distribution).
 # XXX names and comments are not great here
 
 import os, re, time, struct, logging
-if os.name == "nt":
-    import _winreg
 
 from _clientcookie import FileCookieJar, CookieJar, Cookie, \
      MISSING_FILENAME_TEXT, LoadError
+
+
+if os.name == "nt":
+    import _winreg
+
 
 debug = logging.getLogger("mechanize").debug
 

@@ -10,7 +10,7 @@
 # Fecha: ABRIL 2015
 
 # Importación de librerías
-from bin import *
+from bin import *  # @UnusedWildImport
 from config import DIR_CONFIG
 from lib.controller import Controller
 from lib.uimenu import createUImenu
@@ -33,7 +33,7 @@ def main():
     """
 
     # Se obtiene el checksum del juego
-    checksum = [path_checksum('lib', VERBOSE), md5file('main.py', VERBOSE).upper(), path_checksum('bin', VERBOSE)]
+    checksum = [path_checksum('lib', VERBOSE), md5file('main.py', VERBOSE).upper(), path_checksum('bin', VERBOSE)]  # @UndefinedVariable
 
     # Se cargan las configuraciones
     controlConfig = configLoader(DIR_CONFIG + "control.ini", verbose=VERBOSE)

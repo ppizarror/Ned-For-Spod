@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-if __name__ == '__main__': from path import *
+if __name__ == '__main__': from path import *  # @UnusedWildImport
 
 # OBJETO
 # Maneja objetos del mundo, como pistas y decoraciones
@@ -13,7 +12,7 @@ if __name__ == '__main__': from path import *
 class gameObject:
     """Objetos del juego"""
 
-    def __init__(self, texture, type, pos):
+    def __init__(self, texture, type, pos):  # @ReservedAssignment
         """
         Función constructora
         :param texture: Textura del objeto

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-if __name__ == '__main__': from path import *
+if __name__ == '__main__': from path import *  # @UnusedWildImport
 
 # TRACK
 # Permite crear una pista, posee tanto decoraciones como coches
@@ -55,7 +55,7 @@ class mapTrack:
         :param type: Tipo de auto
         :param texture: Textura del auto
         :param automatic: Define si la transmisión es automático/manual
-        :param angle: Ángulo inicial del auto
+        :param angle: �?ngulo inicial del auto
         :param player: Indica si es jugable o AI
         :param logic_track: Entidades lógicas de la pista
         :param sounds: Sonidos de la pista
@@ -250,7 +250,7 @@ class mapTrack:
         """
         Función que carga una imagen
         :param texture_name: Dirección física de la textura
-        :param color_key: Índice de color
+        :param color_key: �?ndice de color
         :param kwargs: Parámetros adicionales
         :return: Objeto imagen
         """

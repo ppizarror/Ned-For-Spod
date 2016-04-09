@@ -4,19 +4,15 @@
 # Pablo Pizarro, 2013
 
 # Importación de librerias
-from Tkinter import *
-import datetime
+from Tkinter import *  # @UnusedWildImport
+import datetime  # @UnusedImport
 import os
-import sys
-from tkFileDialog import *
+import sys  # @UnusedImport @Reimport
+from tkFileDialog import *  # @UnusedWildImport
 import tkFont
 import ttk
-
-try:
-    import winsound
-except:
-    pass
-
+try: import winsound
+except: pass
 
 # Configuración de librerías
 reload(sys)
@@ -28,7 +24,7 @@ C_DATA = [650, 450, False, False, False, "*//*", False]
 DATADOCUMENTS = "doc/"
 DATAICONS = "icons/"
 DATACONFIG = "config/"
-DATALANGS = str(os.path.abspath(os.path.dirname(__file__))).replace("bin\\internal\\langeditor", "resources\\langs\\")
+DATALANGS = str(os.path.abspath(os.path.dirname(__file__))).replace("bin/internal/langeditor", "resources/langs/")
 DATARECOVER = "recover/"
 DEFAULT_FONT_TITLE = "Arial", 10
 EMAIL = "ppizarror@ing.uchile.cl"

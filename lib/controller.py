@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from fileinput import filename
-
-if __name__ == '__main__': from path import *
+if __name__ == '__main__': from path import *  # @UnusedWildImport
 
 # CONTROL
 # Maneja los eventos.
@@ -11,7 +9,8 @@ if __name__ == '__main__': from path import *
 # Fecha: ABRIL 2015
 
 # Importación de librerías
-from bin import *
+from fileinput import filename  # @UnusedImport
+from bin import *  # @UnusedWildImport
 from data import DIR_SAVES
 
 # Definición de constantes

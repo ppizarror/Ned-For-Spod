@@ -9,6 +9,15 @@ COPYING.txt included with the distribution).
 """
 
 import os, urllib2, bisect, httplib, types, tempfile
+
+from _request import Request
+import _response
+import _rfc3986
+import _sockettimeout
+import _urllib2_fork
+from _util import isstringlike
+
+
 try:
     import threading as _threading
 except ImportError:
@@ -19,12 +28,6 @@ except NameError:
     import sets
     set = sets.Set
 
-from _request import Request
-import _response
-import _rfc3986
-import _sockettimeout
-import _urllib2_fork
-from _util import isstringlike
 
 open_file = open
 

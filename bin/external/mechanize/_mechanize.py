@@ -12,12 +12,13 @@ included with the distribution).
 import copy, re, os, urllib, urllib2
 
 from _html import DefaultFactory
-import _response
 import _request
+import _response
 import _rfc3986
 import _sockettimeout
 import _urllib2_fork
 from _useragent import UserAgentBase
+
 
 class BrowserStateError(Exception): pass
 class LinkNotFoundError(Exception): pass

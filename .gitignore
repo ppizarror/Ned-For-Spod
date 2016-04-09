@@ -25,3 +25,6 @@ Thumbs.db
 
 # Exe files
 *.exe
+
+# Photoshop files
+*.psd

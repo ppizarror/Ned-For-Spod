@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-if __name__ == '__main__': from path import *
+if __name__ == '__main__': from path import *  # @UnusedWildImport
 
 # VISTA
 # Es el encargado de dibujar sobre la pantalla todos los modelos
@@ -10,17 +9,16 @@ if __name__ == '__main__': from path import *
 # Fecha: ABRIL 2015
 
 # Importación de librerías
-from bin import *
-from bin.errors import *
+from bin import *  # @UnusedWildImport
+from bin.errors import *  # @UnusedWildImport
+from controller import STATE_MENU, STATE_NEXT, STATE_PLAY
 from data import DIR_SAVES
-from player import TRACK_NOT_DEFINED, STATE_CORRECT, STATE_INVALIDPOS, STATE_NEWLAP, STATE_NULL, STATE_OFFROAD, \
-    STATE_WRONGWAY, METRICS, CAMBIO_NEUTRO, CAMBIO_REVERSA
+from player import TRACK_NOT_DEFINED, STATE_CORRECT, STATE_INVALIDPOS, STATE_NEWLAP, STATE_NULL, STATE_OFFROAD, STATE_WRONGWAY, METRICS, CAMBIO_NEUTRO, CAMBIO_REVERSA # @UnusedImport
 from resources.fonts import getFonts
 from resources.images import getImages
 from revolGraph import revolGraph
 from uimenu import MENU_INICIAL, MENU_PAUSE
 from world import NEXT_TRACK, getNextTrack, TRACKS
-from controller import STATE_MENU, STATE_NEXT, STATE_PLAY
 
 # Definición de constantes
 COLOR_ALERT = (165, 0, 0, 128)
@@ -234,7 +232,6 @@ class View:
                         (self.lapPos[0] - 121, self.lapPos[1] + 40))
                     # Se dibujan los objetivos
                     k = 0
-                    actual_time = self.map.getPlayer().getLapTimeNoFormat()
                     if self.map.player.getLapPos() == 1:
                         for obj in self.map.getPlayer().getTrackObjetives():
                             if k == 0:

@@ -8,9 +8,9 @@
 # Fecha: ABRIL 2015
 
 # Importación de librerías de entorno
-from path import *
+import sys  # @UnusedImport
 import errors
-import sys
+from path import *  # @UnusedWildImport
 
 # Importación de librerías de sistema
 try:
@@ -62,7 +62,6 @@ def compareVersion(ver1, ver2):
     """
     ver1 = ver1.split(".")
     ver2 = ver2.split(".")
-    ganador = 0
     for i in range(3):
         if int(ver1[i]) > int(ver2[i]):
             return 1
@@ -99,7 +98,7 @@ def delAccent(txt):
     :param txt: String
     :return: String con acentos eliminados
     """
-    txt = txt.replace("Á", "A").replace("É", "E").replace("Í", "I").replace("Ó", "O").replace("Ú", "U")
+    txt = txt.replace("�?", "A").replace("É", "E").replace("�?", "I").replace("Ó", "O").replace("Ú", "U")
     return txt.replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u")
 
 
@@ -111,7 +110,7 @@ def delMatrix(matrix):
     """
     a = len(matrix)
     if a > 0:
-        for k in range(a): matrix.pop(0)
+        for k in range(a): matrix.pop(0)  # @UnusedVariable
 
 
 def clrscr():
@@ -141,7 +140,7 @@ def generateRandom6():
     Genera un string de 6 carácteres aleatorios
     :return: String
     """
-    return ''.join(choice(string.ascii_uppercase) for i in range(6))
+    return ''.join(choice(string.ascii_uppercase) for i in range(6))  # @UnusedVariable
 
 
 def generateRandom12():
@@ -149,7 +148,7 @@ def generateRandom12():
     Genera un string de 12 carácteres aleatorios
     :return: String
     """
-    return ''.join(choice(string.ascii_uppercase) for i in range(12))
+    return ''.join(choice(string.ascii_uppercase) for i in range(12))  # @UnusedVariable
 
 
 def getBetweenTags(html, tagi, tagf):
@@ -206,10 +205,8 @@ def getTerminalSize():
     # noinspection PyShadowingNames
     def ioctl_GWINSZ(fd):
         try:
-            import fcntl, termios, struct, os
-
-            cr = struct.unpack('hh', fcntl.ioctl(fd, termios.TIOCGWINSZ,
-                                                 '1234'))
+            import fcntl, termios, struct
+            cr = struct.unpack('hh', fcntl.ioctl(fd, termios.TIOCGWINSZ, '1234'))
         except:
             return
         return cr
@@ -260,7 +257,6 @@ def googleTranslate(text, translate_lang, header, web, source_lang=None):
     string = re.sub(',,,|,,', ',"0",', response.read())
     n = json.loads(string)
     translate_text = n[0][0][0]
-    res_source_lang = n[2]
     return translate_text
 
 
@@ -285,8 +281,7 @@ def loadFile(archive, lang=_MSG_LOADINGFILE, **kwargs):
     :param kwargs: Parámetros adicionales
     :return: Lista
     """
-    if kwargs.get("show_state"): print lang.format("(...)" + archive[_CONSOLE_WRAP:].replace("//", "/")).replace("\"",
-                                                                                                                 ""),
+    if kwargs.get("show_state"): print lang.format("(...)" + archive[_CONSOLE_WRAP:].replace("//", "/")).replace("\"",""),
     try:
         l = list()
         archive = open(archive, "r")
@@ -311,7 +306,7 @@ def printMatrix(matrix):
         print "\n"
 
 
-def sortAndUniq(input):
+def sortAndUniq(input):  # @ReservedAssignment
     """
     Función que elimina datos repetidos
     :param input: Lista

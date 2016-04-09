@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-if __name__ == '__main__': from path import *
+if __name__ == '__main__': from path import *  # @UnusedWildImport
 
 # Sencillo navegador web
 #
@@ -9,10 +9,11 @@ if __name__ == '__main__': from path import *
 
 # Importación de librerías
 import cookielib
-import errors
 import htmlentitydefs
-import mechanize
 import re
+
+import errors
+import mechanize
 
 # Constantes
 HREF_HEADERS = "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1"

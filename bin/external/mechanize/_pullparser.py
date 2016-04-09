@@ -33,12 +33,12 @@ under the terms of the BSD or ZPL 2.1 licenses.
 
 """
 
-import re, htmlentitydefs
-import _sgmllib_copy as sgmllib
 import HTMLParser
+import re, htmlentitydefs
 from xml.sax import saxutils
 
 from _html import unescape, unescape_charref
+import _sgmllib_copy as sgmllib
 
 
 class NoMoreTokensError(Exception): pass

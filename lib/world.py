@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-if __name__ == '__main__': from path import *
+if __name__ == '__main__': from path import *  # @UnusedWildImport
 
 # WORLD
 # maneja distintos mapas
@@ -12,8 +11,8 @@ if __name__ == '__main__': from path import *
 # Importación de librerías
 from bin import pygame
 from bin.browser import Browser, HREF_HEADERS
-from bin.errors import ERROR_HEADER, throw, ERROR_TRACKNOTEXIST
-from player import Player
+from bin.errors import ERROR_HEADER, throw, ERROR_TRACKNOTEXIST  # @UnusedImport
+from player import Player  # @UnusedImport
 from resources.images import getImages
 from resources.sounds import getSounds
 from track import mapTrack

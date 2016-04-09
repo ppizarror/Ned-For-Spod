@@ -12,6 +12,7 @@
 # Importación de liberías
 import os
 
+
 # Definición de variables
 __actualpath = str(os.path.abspath(os.path.dirname(__file__))).replace("\\","/") + "/"
 

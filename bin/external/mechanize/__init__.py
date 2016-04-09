@@ -116,54 +116,9 @@ __all__ = [
 import logging
 import sys
 
-from _version import __version__
-
-# high-level stateful browser-style interface
-from _mechanize import \
-     Browser, History, \
-     BrowserStateError, LinkNotFoundError, FormNotFoundError
-
-# configurable URL-opener interface
-from _useragent import UserAgentBase, UserAgent
-from _html import \
-     Link, \
-     Factory, DefaultFactory, RobustFactory, \
-     FormsFactory, LinksFactory, TitleFactory, \
-     RobustFormsFactory, RobustLinksFactory, RobustTitleFactory
-
-# urllib2 work-alike interface.  This is a superset of the urllib2 interface.
-from _urllib2 import *
-import _urllib2
-if hasattr(_urllib2, "HTTPSHandler"):
-    __all__.append("HTTPSHandler")
-del _urllib2
-
-# misc
-from _http import HeadParser
-from _http import XHTMLCompatibleHeadParser
-from _opener import ContentTooShortError, OpenerFactory, urlretrieve
-from _response import \
-     response_seek_wrapper, seek_wrapped_response, make_response
-from _rfc3986 import urljoin
-from _util import http2time as str2time
-
-# cookies
 from _clientcookie import Cookie, CookiePolicy, DefaultCookiePolicy, \
      CookieJar, FileCookieJar, LoadError, request_host_lc as request_host, \
      effective_request_host
-from _lwpcookiejar import LWPCookieJar, lwp_cookie_str
-# 2.4 raises SyntaxError due to generator / try/finally use
-if sys.version_info[:2] > (2,4):
-    try:
-        import sqlite3
-    except ImportError:
-        pass
-    else:
-        from _firefox3cookiejar import Firefox3CookieJar
-from _mozillacookiejar import MozillaCookieJar
-from _msiecookiejar import MSIECookieJar
-
-# forms
 from _form import (
     AmbiguityError,
     ControlNotFoundError,
@@ -200,6 +155,50 @@ from _form import (
     TextControl,
     TextareaControl,
     )
+from _html import \
+     Link, \
+     Factory, DefaultFactory, RobustFactory, \
+     FormsFactory, LinksFactory, TitleFactory, \
+     RobustFormsFactory, RobustLinksFactory, RobustTitleFactory
+from _http import HeadParser
+from _http import XHTMLCompatibleHeadParser
+from _lwpcookiejar import LWPCookieJar, lwp_cookie_str
+from _mechanize import \
+     Browser, History, \
+     BrowserStateError, LinkNotFoundError, FormNotFoundError
+from _mozillacookiejar import MozillaCookieJar
+from _msiecookiejar import MSIECookieJar
+from _opener import ContentTooShortError, OpenerFactory, urlretrieve
+from _response import \
+     response_seek_wrapper, seek_wrapped_response, make_response
+from _rfc3986 import urljoin
+from _urllib2 import *
+import _urllib2
+from _useragent import UserAgentBase, UserAgent
+from _util import http2time as str2time
+from _version import __version__
+
+
+# high-level stateful browser-style interface
+# configurable URL-opener interface
+# urllib2 work-alike interface.  This is a superset of the urllib2 interface.
+if hasattr(_urllib2, "HTTPSHandler"):
+    __all__.append("HTTPSHandler")
+del _urllib2
+
+# misc
+
+# cookies
+# 2.4 raises SyntaxError due to generator / try/finally use
+if sys.version_info[:2] > (2,4):
+    try:
+        import sqlite3
+    except ImportError:
+        pass
+    else:
+        from _firefox3cookiejar import Firefox3CookieJar
+
+# forms
 
 # If you hate the idea of turning bugs into warnings, do:
 # import mechanize; mechanize.USE_BARE_EXCEPT = False

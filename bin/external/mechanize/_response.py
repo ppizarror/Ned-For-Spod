@@ -16,8 +16,8 @@ included with the distribution).
 
 """
 
-import copy, mimetools, urllib2
 from cStringIO import StringIO
+import copy, mimetools, urllib2
 
 
 def len_of_seekable(file_):

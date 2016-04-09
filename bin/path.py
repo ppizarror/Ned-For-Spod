@@ -10,9 +10,9 @@
 
 # Importa las librerías de sistema
 import sys
-# noinspection PyProtectedMember
-from bindir import _DIR_BIN, _DIR_LIB
+from bindir import _DIR_BIN, _DIR_LIB  # @UnusedImport
 
+# noinspection PyProtectedMember
 # Se agregan los directorios al path del sistema
 reload(sys)
 sys.path.append(_DIR_BIN)

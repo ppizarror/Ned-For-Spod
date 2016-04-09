@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-if __name__ == '__main__': from path import *
+if __name__ == '__main__': from path import *  # @UnusedWildImport
 
 # Provee una función para retornar el nombre de usuario si es que el actual no es válido
 #
@@ -9,13 +9,14 @@ if __name__ == '__main__': from path import *
 
 # Importación de librerías
 # noinspection PyProtectedMember
+import os
+import pygame, string  # @UnusedImport
+import pygame.gfxdraw
+from pygame.locals import *  # @UnusedWildImport
 from path import _DIR_BIN
-from pygame.locals import *
 from resources.fonts import getFonts
 from resources.icons import getIcons
-import os
-import pygame, string
-import pygame.gfxdraw
+
 
 # Constantes del programa
 COLOR_BLACK = (0, 0, 0, 200)  # color negro
@@ -219,7 +220,7 @@ def request(title, inputtext):
     """
     # Se crea la ventana
     os.environ['SDL_VIDEO_CENTERED'] = '1'
-    display = pygame.display.set_mode(SCREEN_SIZE, pygame.NOFRAME)
+    display = pygame.display.set_mode(SCREEN_SIZE, pygame.NOFRAME)  # @UnusedVariable
     pygame.display.set_caption(title)
     pygame.display.set_icon(pygame.image.load(getIcons("icon")))
     screen = pygame.display.get_surface()
@@ -240,7 +241,7 @@ def request(title, inputtext):
     # Se lanza el programa
     while True:
         clock.tick(60)  # se definen los fps
-        time = float(clock.get_time()) / 1000.0  # tiempo que tomo el frame en generarse
+        time = float(clock.get_time()) / 1000.0  # tiempo que tomo el frame en generarse @UnusedVariable
         screen.fill(COLOR_BLACK)  # se limpia la pantalla
 
         # Se dibuja el rectangulo rojo del titulo

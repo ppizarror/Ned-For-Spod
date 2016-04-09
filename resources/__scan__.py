@@ -14,9 +14,13 @@
 
 # Importación de librerías de sistema
 from datetime import date
-import math
+import math  # @UnusedImport
 import os
 import sys
+
+from bin import configLoader
+
+
 reload(sys)
 sys.setdefaultencoding('UTF8')
 sys.dont_write_bytecode = True
@@ -27,7 +31,6 @@ sys.path.append(__actualpath.replace("\\resources", "\\bin"))
 sys.path.append(__actualpath.replace("\\resources", ""))
 
 # Importación de librerías internas
-from bin import configLoader
 
 # Se cargan las configuraciones
 config = configLoader(".config/filetype.ini")

@@ -65,6 +65,7 @@ import inspect
 import logging
 import random
 import re
+import sgmllib
 import sys
 import urllib
 import urlparse
@@ -72,13 +73,11 @@ import warnings
 
 import _beautifulsoup
 import _request
-
-# from Python itself, for backwards compatibility of raised exceptions
-import sgmllib
-# bundled copy of sgmllib
 import _sgmllib_copy
 
 
+# from Python itself, for backwards compatibility of raised exceptions
+# bundled copy of sgmllib
 VERSION = "0.2.11"
 
 CHUNK = 1024  # size of chunks fed to parser, in bytes

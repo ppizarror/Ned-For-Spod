@@ -12,10 +12,13 @@ COPYING.txt included with the distribution).
 import os, re
 from types import StringType
 from types import UnicodeType
+
+import _rfc3986
+from _util import http2time
+
+
 STRING_TYPES = StringType, UnicodeType
 
-from _util import http2time
-import _rfc3986
 
 
 def is_html_file_extension(url, allow_xhtml):

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-if __name__ == '__main__': from path import *
+if __name__ == '__main__': from path import *  # @UnusedWildImport
 
 # PLAYER
 # Maneja lo que es un auto, sus texturas, propiedades y manejo lógico
@@ -10,16 +10,17 @@ if __name__ == '__main__': from path import *
 # Fecha: ABRIL 2015
 
 # Importación de librerías
-from bin import pygame
-from bin.browser import unescape
-from bin.errors import *
-from bin.utils import urlencode, Request, urlopen, getBetweenTags
-from bin.hashdir import md5str
-from math import sqrt
-from operator import pos
+from math import sqrt  # @UnusedImport
 import math
+from operator import pos
 import random
 import string
+from bin import pygame
+from bin.browser import unescape
+from bin.errors import *  # @UnusedWildImport
+from bin.hashdir import md5str
+from bin.utils import urlencode, Request, urlopen, getBetweenTags  # @UnusedImport
+
 
 # Definición de constantes
 ACELCONST = 300  # aceleracion por dt
@@ -135,10 +136,10 @@ def minAng(ang):
     :param ang: Angulo
     :return: Angulo minimo del cuadrante
     """
-    min = 360
+    min = 360  # @ReservedAssignment
     for i in range(5):
         if abs(90 * i - ang) < min:
-            min = abs(90 * i - ang)
+            min = abs(90 * i - ang)  # @ReservedAssignment
     return min
 
 
@@ -236,8 +237,8 @@ class Player:
     """Objeto player, que representa cualquier entidad en el mapa"""
 
     # noinspection PyShadowingNames
-    def __init__(self, type, texture, shadow_texture, pos, angle, playable, mark_track, mark_ground, logic_track,
-                 totalLaps, sounds, sounds_channels, ghost, hash, scoreConfig, username, trackname, trackobjetives,
+    def __init__(self, type, texture, shadow_texture, pos, angle, playable, mark_track, mark_ground, logic_track,  # @ReservedAssignment
+                 totalLaps, sounds, sounds_channels, ghost, hash, scoreConfig, username, trackname, trackobjetives,  # @ReservedAssignment
                  automatic, mapLimits, window, gameConfig, browser, **kwargs):
         """
         Función constructora
@@ -448,9 +449,9 @@ class Player:
         :param soundIdle: Indica si se deja el sonido del motor en indle
         :return: void
         """
-        for i in range(len(self.marks_ground)):
+        for i in range(len(self.marks_ground)):  # @UnusedVariable
             self.marks_ground.pop()
-        for j in range(len(self.marks_track)):
+        for j in range(len(self.marks_track)):  # @UnusedVariable
             self.marks_track.pop()
         self.loadType(self.type)
         self.angle = self.defaultAngle
@@ -934,7 +935,7 @@ class Player:
             else:
                 self.marcasFrenadoHB = [None, None]
 
-    def loadType(self, type):
+    def loadType(self, type):  # @ReservedAssignment
         """
         Cargar tipo de auto
         :param type: Tipo de auto
@@ -1114,9 +1115,9 @@ class Player:
         #
         w1 = self.width / 2
         h1 = self.height / 2
-        center_image = self.imagenRotada.get_rect()
+        # center_image = self.imagenRotada.get_rect()
         self.pos_center = (self.drawablepos[0] + w1, self.drawablepos[1] + h1)
-        largo = math.sqrt(((self.imagenRotadaSize[0] / 2) * 0.75) ** 2 + ((self.imagenRotadaSize[1] / 2) * 0.7) ** 2)
+        # largo = math.sqrt(((self.imagenRotadaSize[0] / 2) * 0.75) ** 2 + ((self.imagenRotadaSize[1] / 2) * 0.7) ** 2)
         pos_rueda1 = (self.pos_center[0] + 2 * w1 * 0.75, self.pos_center[1] + h1 / 2 * 0.8)
         pos_rueda2 = (self.pos_center[0] + 2 * w1 * 0.75, self.pos_center[1] - h1 / 2 * 0.8)
         pos_rueda3 = (self.pos_center[0] - 2 * w1 * 0.75, self.pos_center[1] - h1 / 2 * 0.8)

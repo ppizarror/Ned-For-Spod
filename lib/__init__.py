@@ -10,9 +10,9 @@
 # Fecha: ABRIL 2015
 
 # Configuración de entorno
-from path import *
 from bin import configLoader
 import libdir
+from path import *
 
 # noinspection PyProtectedMember
 __binconfig = configLoader(libdir._LIB_CONFIG + "lib.ini")

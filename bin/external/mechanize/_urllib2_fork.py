@@ -28,11 +28,12 @@ COPYING.txt included with the distribution).
 # complex proxies  XXX not sure what exactly was meant by this
 # abstract factory for opener
 
-import copy
 import base64
+import bisect
+import copy
 import httplib
-import mimetools
 import logging
+import mimetools
 import os
 import posixpath
 import random
@@ -40,9 +41,20 @@ import re
 import socket
 import sys
 import time
+from urllib import (unwrap, unquote, splittype, quote,
+     addinfourl, splitport,
+     splitattr, ftpwrapper, splituser, splitpasswd, splitvalue)
+from urllib import localhost, url2pathname, getproxies
 import urllib
+from urllib2 import HTTPError, URLError
 import urlparse
-import bisect
+
+from _clientcookie import CookieJar
+import _request
+from _response import closeable_response
+import _rfc3986
+import _sockettimeout
+
 
 try:
     from cStringIO import StringIO
@@ -90,21 +102,11 @@ def splithost(url):
     return None, url
 
 
-from urllib import (unwrap, unquote, splittype, quote,
-     addinfourl, splitport,
-     splitattr, ftpwrapper, splituser, splitpasswd, splitvalue)
 
 # support for FileHandler, proxies via environment variables
-from urllib import localhost, url2pathname, getproxies
 
-from urllib2 import HTTPError, URLError
 
-import _request
-import _rfc3986
-import _sockettimeout
 
-from _clientcookie import CookieJar
-from _response import closeable_response
 
 
 # used in User-Agent header sent

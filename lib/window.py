@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-if __name__ == '__main__': from path import *
+if __name__ == '__main__': from path import *  # @UnusedWildImport
 
 # Ventana del juego, instancia la ventana en función de la configuración inicial
 # Adicionalmente maneja tamaños y superficies
@@ -10,9 +9,9 @@ if __name__ == '__main__': from path import *
 # Fecha: ABRIL 2015
 
 # Importación de librerías
-from bin import pygame
-from pygame.locals import *
 import os
+from pygame.locals import *  # @UnusedWildImport
+from bin import pygame
 
 # Constantes del programa
 FORMAT_16_9 = "(16:9) {0}x{1}"
@@ -61,7 +60,7 @@ class Window:
         Función constructora
         :param configs: Configuración de la ventana
         :param title: Título de la aplicación
-        :param icon: Ícono de la aplicación
+        :param icon: �?cono de la aplicación
         :param info: Información de la ventana
         :param kwargs: Parámetros adicionales
         :return: void

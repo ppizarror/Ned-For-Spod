@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-if __name__ == '__main__': from path import *
+if __name__ == '__main__': from path import *  # @UnusedWildImport
 
 # CLASE USER-INTERFACE MENU
 # Crea los menús de interacción del juego, toma como argumento todas las variables
@@ -11,16 +10,16 @@ if __name__ == '__main__': from path import *
 # Fecha: ABRIL 2015
 
 # Importación de librerías
+import math  # @UnusedImport
+import random
 from bin import errors
 from bin import pygame
 from menu import Menu, MENU_BACK, MENU_EXIT
 from resources.fonts import getFonts
 from resources.images import getImages
 from resources.sounds import getSounds
-from textmenu import textMenu, TEXT_NEWLINE
+from textmenu import textMenu, TEXT_NEWLINE  # @UnusedImport
 from world import TRACKS
-import math
-import random
 
 # Constantes del prograMA
 MENU_PAUSE = "MENU_PAUSE"

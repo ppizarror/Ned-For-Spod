@@ -1,18 +1,27 @@
 # urllib2 work-alike interface
 # ...from urllib2...
+import httplib
 from urllib2 import \
      URLError, \
      HTTPError
-# ...and from mechanize
+
 from _auth import \
      HTTPProxyPasswordMgr, \
      HTTPSClientCertMgr
 from _debug import \
      HTTPResponseDebugProcessor, \
      HTTPRedirectDebugProcessor
-# crap ATM
-## from _gzip import \
-##      HTTPGzipProcessor
+from _http import \
+     HTTPEquivProcessor, \
+     HTTPRefererProcessor, \
+     HTTPRefreshProcessor, \
+     HTTPRobotRulesProcessor, \
+     RobotExclusionError
+from _opener import OpenerDirector, \
+     SeekableResponseOpener, \
+     build_opener, install_opener, urlopen
+from _request import \
+     Request
 from _urllib2_fork import \
      AbstractBasicAuthHandler, \
      AbstractDigestAuthHandler, \
@@ -33,18 +42,12 @@ from _urllib2_fork import \
      ProxyDigestAuthHandler, \
      ProxyHandler, \
      UnknownHandler
-from _http import \
-     HTTPEquivProcessor, \
-     HTTPRefererProcessor, \
-     HTTPRefreshProcessor, \
-     HTTPRobotRulesProcessor, \
-     RobotExclusionError
-import httplib
+
+
+# ...and from mechanize
+# crap ATM
+## from _gzip import \
+##      HTTPGzipProcessor
 if hasattr(httplib, 'HTTPS'):
     from _urllib2_fork import HTTPSHandler
 del httplib
-from _opener import OpenerDirector, \
-     SeekableResponseOpener, \
-     build_opener, install_opener, urlopen
-from _request import \
-     Request
