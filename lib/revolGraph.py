@@ -10,7 +10,6 @@ if __name__ == '__main__': from path import *  # @UnusedWildImport
 # Importación de librerías
 from bin import pygame
 
-
 class revolGraph:
     """Gráfico de revoluciones"""
 

@@ -23,7 +23,7 @@ from resources.icons import getIcons
 pygame.init()
 
 # Definición de constantes
-VERBOSE = False  # imprime el estado del juego en consola
+VERBOSE = True  # imprime el estado del juego en consola
 
 
 def main():

@@ -26,7 +26,6 @@ TRACKS = {
     4: "Santiago intl"
 }
 
-
 def getNextTrack(index):
     """
     Retorna el siguiente elemento de la lista de pistas

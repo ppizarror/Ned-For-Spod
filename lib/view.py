@@ -13,7 +13,7 @@ from bin import *  # @UnusedWildImport
 from bin.errors import *  # @UnusedWildImport
 from controller import STATE_MENU, STATE_NEXT, STATE_PLAY
 from data import DIR_SAVES
-from player import TRACK_NOT_DEFINED, STATE_CORRECT, STATE_INVALIDPOS, STATE_NEWLAP, STATE_NULL, STATE_OFFROAD, STATE_WRONGWAY, METRICS, CAMBIO_NEUTRO, CAMBIO_REVERSA # @UnusedImport
+from player import TRACK_NOT_DEFINED, STATE_CORRECT, STATE_INVALIDPOS, STATE_NEWLAP, STATE_NULL, STATE_OFFROAD, STATE_WRONGWAY, METRICS, CAMBIO_NEUTRO, CAMBIO_REVERSA  # @UnusedImport
 from resources.fonts import getFonts
 from resources.images import getImages
 from revolGraph import revolGraph

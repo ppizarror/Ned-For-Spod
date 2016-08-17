@@ -11,6 +11,9 @@
 import sys  # @UnusedImport
 import errors
 from path import *  # @UnusedWildImport
+import re
+import urllib2
+import json
 
 # Importación de librerías de sistema
 try:
@@ -28,7 +31,7 @@ except:
 
 # Importación de librerías externas
 try:
-    import WConio
+    import WConio  # @UnresolvedImport
 except:
     if os.name == "nt":
         errors.warning(errors.ERROR_IMPORTWCONIO)
@@ -80,12 +83,12 @@ def colorcmd(cmd, color):
     if color in _CMD_COLORS:
         color = _CMD_COLORS[color]
         try:
-            ctypes.windll.kernel32.SetConsoleTextAttribute(ctypes.windll.kernel32.GetStdHandle(-11), color)
+            ctypes.windll.kernel32.SetConsoleTextAttribute(ctypes.windll.kernel32.GetStdHandle(-11), color)  # @UndefinedVariable
         except:
             pass
         print cmd,
         try:
-            ctypes.windll.kernel32.SetConsoleTextAttribute(ctypes.windll.kernel32.GetStdHandle(-11), 0x07)
+            ctypes.windll.kernel32.SetConsoleTextAttribute(ctypes.windll.kernel32.GetStdHandle(-11), 0x07)  # @UndefinedVariable
         except:
             pass
     else:
@@ -132,7 +135,7 @@ def destroyProcess():
     if os.name == "nt":
         os.system("taskkill /PID " + str(os.getpid()) + " /F")
     else:
-        os.kill(os.getpid(), signal.SIGKILL)
+        os.kill(os.getpid(), signal.SIGKILL)  # @UndefinedVariable
 
 
 def generateRandom6():
@@ -205,7 +208,7 @@ def getTerminalSize():
     # noinspection PyShadowingNames
     def ioctl_GWINSZ(fd):
         try:
-            import fcntl, termios, struct
+            import fcntl, termios, struct  # @UnresolvedImport
             cr = struct.unpack('hh', fcntl.ioctl(fd, termios.TIOCGWINSZ, '1234'))
         except:
             return
@@ -214,7 +217,7 @@ def getTerminalSize():
     cr = ioctl_GWINSZ(0) or ioctl_GWINSZ(1) or ioctl_GWINSZ(2)
     if not cr:
         try:
-            fd = os.open(os.ctermid(), os.O_RDONLY)
+            fd = os.open(os.ctermid(), os.O_RDONLY)  # @UndefinedVariable
             cr = ioctl_GWINSZ(fd)
             os.close(fd)
         except:
@@ -231,7 +234,7 @@ def getVersion(label, headers):
     :return: String
     """
     http_headers = {"User-Agent": headers}
-    request_object = Request(LINK_PPPRJ, None, http_headers)
+    request_object = Request(LINK_PPPRJ, None, http_headers)  # @UndefinedVariable
     response = urllib2.urlopen(request_object)
     html = response.read()
     html = getBetweenTags(getBetweenTags(html, "<" + label + ">", "</" + label + ">"), "<version>", "</version>")

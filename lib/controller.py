@@ -93,7 +93,7 @@ class Controller:
             # Si se cierra la ventana (con evento QUIT o ALT-F4)
             try:
                 if event.type == QUIT or (event.type == KEYDOWN and event.key == K_F4 and (
-                            key[K_LALT] or key[K_LALT])): utils.destroyProcess()
+                            key[K_LALT] or key[K_LALT])): utils.destroyProcess()  # @UndefinedVariable
             except:
                 utils.destroyProcess()
             # Si se presiona una tecla

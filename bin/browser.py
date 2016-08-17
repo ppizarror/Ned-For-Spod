@@ -11,9 +11,8 @@ if __name__ == '__main__': from path import *  # @UnusedWildImport
 import cookielib
 import htmlentitydefs
 import re
-
 import errors
-import mechanize
+import mechanize  # @UnresolvedImport
 
 # Constantes
 HREF_HEADERS = "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1"

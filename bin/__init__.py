@@ -12,12 +12,10 @@
 
 # Importación de librerías iniciales
 import os
-
 import bindir
 from configLoader import configLoader
 import errors
 from path import *
-
 
 # Configuración de entorno
 # noinspection PyProtectedMember
@@ -29,11 +27,11 @@ if __binconfig.isTrue("DONT_WRITE_BYTECODE"):
 
 # Importación de librerías externas
 try:
-    import mechanize
+    import mechanize  # @UnresolvedImport @NoMove
 except:
     errors.throw(errors.ERROR_IMPORTERRORMECHANIZE)
 try:
-    from pil import Image
+    from pil import Image  # @UnresolvedImport
 except:
     errors.throw(errors.ERROR_IMPORTERRORPIL)
 

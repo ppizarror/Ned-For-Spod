@@ -17,7 +17,6 @@ from path import _DIR_BIN
 from resources.fonts import getFonts
 from resources.icons import getIcons
 
-
 # Constantes del programa
 COLOR_BLACK = (0, 0, 0, 200)  # color negro
 COLOR_WHITE = (255, 255, 255)  # color blanco

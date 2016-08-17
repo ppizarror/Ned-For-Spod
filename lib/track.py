@@ -14,7 +14,6 @@ from object import gameObject
 from player import Player
 from resources.images import getImages
 
-
 class mapTrack:
     """Pista de carreras"""
 
@@ -48,7 +47,7 @@ class mapTrack:
         self.track = []  # pista misma (imagen)
         self.track_coords = []  # coordenadas de la pista
 
-    def addCar(self, type, texture, automatic, angle, player, logic_track, sounds, sound_channels, checksum,
+    def addCar(self, type, texture, automatic, angle, player, logic_track, sounds, sound_channels, checksum,  # @DontTrace @ReservedAssignment
                scoreconfig, username, tracktitle, gameConfig, browser, **kwargs):
         """
         Función que añade un auto al modelo

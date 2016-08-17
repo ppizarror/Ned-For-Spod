@@ -17,6 +17,7 @@ import operator  # @UnusedImport
 import errors
 from utils import string2list
 
+
 # Definición de constantes
 CONFIG_COMMENT = "#"
 CONFIG_LOAD = "El archivo de configuraciones '{0}' ha sido cargado correctamente"
