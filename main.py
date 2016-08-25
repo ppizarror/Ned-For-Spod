@@ -11,16 +11,17 @@
 
 # Importación de librerías
 from bin import *  # @UnusedWildImport
-from config import DIR_CONFIG
-from lib.controller import Controller
-from lib.uimenu import createUImenu
-from lib.view import View
-from lib.window import Window
-from lib.world import World
-from resources.icons import getIcons
+from bin import configLoader, langs  # @UnresolvedImport
+from config import DIR_CONFIG  # @UnresolvedImport
+from lib.controller import Controller  # @UnresolvedImport
+from lib.uimenu import createUImenu  # @UnresolvedImport
+from lib.view import View  # @UnresolvedImport
+from lib.window import Window  # @UnresolvedImport
+from lib.world import World  # @UnresolvedImport
+from resources.icons import getIcons  # @UnresolvedImport
 
 # Iniciación de librerías
-pygame.init()
+pygame.init()  # @UndefinedVariable
 
 # Definición de constantes
 VERBOSE = True  # imprime el estado del juego en consola
@@ -36,7 +37,7 @@ def main():
     checksum = [path_checksum('lib', VERBOSE), md5file('main.py', VERBOSE).upper(), path_checksum('bin', VERBOSE)]  # @UndefinedVariable
 
     # Se cargan las configuraciones
-    controlConfig = configLoader(DIR_CONFIG + "control.ini", verbose=VERBOSE)
+    controlConfig = configLoader(DIR_CONFIG + "control.ini", verbose=VERBOSE)  # @UndefinedVariable
     gameConfig = configLoader(DIR_CONFIG + "game.ini", verbose=VERBOSE)
     mapConfig = configLoader(DIR_CONFIG + "map.ini", verbose=VERBOSE)
     scoreConfig = configLoader(DIR_CONFIG + "scoreboard.ini", verbose=VERBOSE)
@@ -46,23 +47,23 @@ def main():
     worldConfig = configLoader(DIR_CONFIG + "world.ini", verbose=VERBOSE)
 
     # Se carga el idioma
-    lang = langs.langLoader(gameConfig.getValue("LANG"))
+    lang = langs.langLoader(gameConfig.getValue("LANG"))  # @UndefinedVariable
 
     # Se carga la información de la pantalla del cliente
-    display_info = pygame.display.Info()
+    display_info = pygame.display.Info()  # @UndefinedVariable
 
     # Se comprueba que el nombre de jugador no sea Player, si no es valido se pide uno nuevo
-    if not username.validate(userConfig.getValue("NAME")):
-        new_name = username.request(lang.get(111), lang.get(112))
-        if new_name is not username.NO_VALID_NAME:
+    if not username.validate(userConfig.getValue("NAME")):  # @UndefinedVariable
+        new_name = username.request(lang.get(111), lang.get(112))  # @UndefinedVariable
+        if new_name is not username.NO_VALID_NAME:  # @UndefinedVariable
             userConfig.setParameter("NAME", new_name);
             userConfig.export()
         else:
-            utils.destroyProcess()
+            utils.destroyProcess()  # @UndefinedVariable
 
     # Creación de ventana
-    window = Window(windowConfig, lang.get(10), pygame.image.load(getIcons("icon")), display_info)  # ventana
-    clock = pygame.time.Clock()  # reloj
+    window = Window(windowConfig, lang.get(10), pygame.image.load(getIcons("icon")), display_info)  # @UndefinedVariable
+    clock = pygame.time.Clock()  # reloj @UndefinedVariable
     fps = int(gameConfig.getValue("FPS"))  # fps a dibujar
 
     # Se crea el mundo
