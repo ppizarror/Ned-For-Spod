@@ -12,7 +12,6 @@
 import sys
 from libdir import DIR_LIB, DIR_BIN
 
-
 # Se agregan directorios al path
 reload(sys)
 sys.path.append(DIR_LIB)

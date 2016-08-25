@@ -11,11 +11,12 @@
 # Fecha: ABRIL 2015
 
 # Importación de librerías iniciales
+from path import *
 import os
 import bindir
 from configLoader import configLoader
 import errors
-from path import *
+
 
 # Configuración de entorno
 # noinspection PyProtectedMember

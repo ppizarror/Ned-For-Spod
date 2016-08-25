@@ -10,6 +10,7 @@
 # Importación de librerías
 import os
 
+
 # noinspection PyClassHasNoInit
 class Color:
     """Permite manejar colores en la terminal"""

@@ -11,7 +11,7 @@
 
 # Importación de librerías
 from bin import *  # @UnusedWildImport
-from bin import configLoader, langs  # @UnresolvedImport
+from bin import configLoader, langs  # @UnresolvedImport @UnusedImport
 from config import DIR_CONFIG  # @UnresolvedImport
 from lib.controller import Controller  # @UnresolvedImport
 from lib.uimenu import createUImenu  # @UnresolvedImport
@@ -19,6 +19,7 @@ from lib.view import View  # @UnresolvedImport
 from lib.window import Window  # @UnresolvedImport
 from lib.world import World  # @UnresolvedImport
 from resources.icons import getIcons  # @UnresolvedImport
+
 
 # Iniciación de librerías
 pygame.init()  # @UndefinedVariable

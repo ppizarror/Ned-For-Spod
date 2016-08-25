@@ -20,7 +20,7 @@ STATE_PLAY = "PLAY"  # indica que se está jugando
 
 # Funciones del programa
 def pygame_to_pil_img(pg_surface):
-    imgstr = pygame.image.tostring(pg_surface, 'RGB')
+    imgstr = pygame.image.tostring(pg_surface, 'RGB')  # @UndefinedVariable
     # noinspection PyDeprecation
     return Image.fromstring('RGB', pg_surface.get_size(), imgstr)
 

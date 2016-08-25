@@ -12,7 +12,6 @@ import types
 from bin import *  # @UnusedWildImport
 from selector import Selector
 
-
 # Configuraciones de menú
 MENU_ALPHA = 90
 MENU_BACK = 0

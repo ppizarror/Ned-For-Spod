@@ -14,6 +14,7 @@ from object import gameObject
 from player import Player
 from resources.images import getImages
 
+
 class mapTrack:
     """Pista de carreras"""
 

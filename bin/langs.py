@@ -14,6 +14,7 @@ from configLoader import configLoader
 import errors
 from utils import googleTranslate
 
+
 # noinspection PyProtectedMember
 # Se cargan las configuraciones
 langselfconfig = configLoader(_DIR_CONFIG + "langs.ini")

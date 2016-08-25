@@ -17,12 +17,10 @@ from datetime import date
 import math  # @UnusedImport
 import os
 import sys
-
 from bin import configLoader
 
-
 reload(sys)
-sys.setdefaultencoding('UTF8')
+sys.setdefaultencoding('UTF8')  # @UndefinedVariable
 sys.dont_write_bytecode = True
 
 # Se obtiene el directorio actual
@@ -126,7 +124,7 @@ def isfolder(filename):
 
 # Función recursiva que añade todos los ficheros que se encuentren en parentfolder
 def look(parentfolder, folder, folderlist):
-    for file in os.listdir(folder):
+    for file in os.listdir(folder):  # @ReservedAssignment
         if isfolder(file):
             look(parentfolder, folder + "\\" + file, folderlist)
         else:

@@ -14,8 +14,8 @@ import pygame, string  # @UnusedImport
 import pygame.gfxdraw
 from pygame.locals import *  # @UnusedWildImport
 from path import _DIR_BIN
-from resources.fonts import getFonts
-from resources.icons import getIcons
+from resources.fonts import getFonts  # @UnresolvedImport
+from resources.icons import getIcons  # @UnresolvedImport
 
 # Constantes del programa
 COLOR_BLACK = (0, 0, 0, 200)  # color negro
