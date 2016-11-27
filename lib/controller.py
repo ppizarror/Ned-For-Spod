@@ -48,8 +48,8 @@ class Controller:
         else:
             self.verbose = False
         # Modelos del juego
-        if world.getActualMap() is not None:
-            self.player = world.getActualMap().getPlayer()
+        if world.get_actual_map() is not None:
+            self.player = world.get_actual_map().getPlayer()
         else:
             self.player = None
         # Variables del controlador
@@ -104,15 +104,15 @@ class Controller:
                     if self.inmenu:
                         self.inmenu = False
                         if self.player is not None:
-                            if not self.player.finishedLap(): self.player.soundUnpause()
+                            if not self.player.finished_lap(): self.player.sound_unpause()
                     # Abrir menu
                     else:
                         if self.player is not None:
-                            if not self.player.finishedLap(): self.player.soundPause()
+                            if not self.player.finished_lap(): self.player.sound_pause()
                         self.inmenu = True
                 # Si se esta jugando
                 if self.player is not None and not self.inmenu:
-                    if not self.player.finishedLap():
+                    if not self.player.finished_lap():
                         # Limpiar la vuelta
                         # elif event.key == K_F10:
                         #    self.player.clear()
@@ -161,17 +161,17 @@ class Controller:
         # Si existe un jugador
         if self.player is not None and not self.inmenu:
             # Si no ha terminado el circuito se puede conducir
-            if not self.player.finishedLap():
+            if not self.player.finished_lap():
                 # Acelerar
                 if key_pressed[K_UP] or key_pressed[K_w]:
                     self.player.acelerate(time)
                 else:
-                    self.player.stopAcelerating()
+                    self.player.stop_acelerating()
                 # Frenar
                 if key_pressed[K_DOWN] or key_pressed[K_s] or key_pressed[K_SPACE]:
-                    self.player.desacelerate(self.player.getDesacel(), time, True)
+                    self.player.desacelerate(self.player.get_desacel(), time, True)
                 else:
-                    self.player.stopTrackMarking()
+                    self.player.stop_track_marking()
                 # Doblar a la izquierda
                 if key_pressed[K_LEFT] or key_pressed[K_a]:
                     self.player.rotate(1, time)
@@ -185,7 +185,7 @@ class Controller:
                 #    self.player.stopTrackMarkingHB()
                 # Devolver a la pista
                 if key_pressed[K_BACKSPACE]:
-                    self.player.returnToTrack()
+                    self.player.return_to_track()
                     # Mover la camara para map-testing
                     #   if key_pressed[K_l]:
                     #       self.player.posx -= 30
@@ -210,4 +210,4 @@ class Controller:
         Define el jugador
         :return: void
         """
-        self.player = self.world.getActualMap().getPlayer()
+        self.player = self.world.get_actual_map().getPlayer()

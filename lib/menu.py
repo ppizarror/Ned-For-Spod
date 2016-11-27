@@ -132,8 +132,8 @@ class Menu(object):
         self.prevDraw = None  # menu previo
         self.size = 0  # numero de elementos en el menu
         # Posición del rectangulo de fondo
-        self.posx = (window.getWindowWidth() - self.width) / 2
-        self.posy = (window.getWindowHeight() - self.height) / 2
+        self.posx = (window.get_window_width() - self.width) / 2
+        self.posy = (window.get_window_height() - self.height) / 2
         # Puntos del rectangulo del fondo
         self.bgRect = [(self.posx, self.posy), (self.posx + self.width, self.posy),
                        (self.posx + self.width, self.posy + self.height), (self.posx, self.posy + self.height)]

@@ -11,7 +11,7 @@ if __name__ == '__main__': from path import *  # @UnusedWildImport
 from bin import pygame
 
 
-class revolGraph:
+class Revolgraph(object):
     """Gráfico de revoluciones"""
 
     def __init__(self, blocks, pos, width, height, space=0):
@@ -32,12 +32,17 @@ class revolGraph:
         delta_width = float(width - space * blocks) / blocks
         delta_color = 255 / blocks
         for i in range(blocks):
-            pos_a = (int(pos[0] + (delta_width + space) * i), int(pos[1] + height - delta_height * (i + 1)))
+            pos_a = (int(pos[0] + (delta_width + space) * i),
+                     int(pos[1] + height - delta_height * (i + 1)))
             pos_b = (
-                int(pos[0] + (delta_width + space) * i + delta_width), int(pos[1] + height - delta_height * (i + 1)))
-            pos_c = (int(pos[0] + (delta_width + space) * i + delta_width), int(pos[1] + height))
-            pos_d = (int(pos[0] + (delta_width + space) * i), int(pos[1] + height))
-            self.squares.append([(255, 255 - delta_color * i, 0), [pos_a, pos_b, pos_c, pos_d]])
+                int(pos[0] + (delta_width + space) * i + delta_width),
+                int(pos[1] + height - delta_height * (i + 1)))
+            pos_c = (int(pos[0] + (delta_width + space) * i + delta_width),
+                     int(pos[1] + height))
+            pos_d = (
+                int(pos[0] + (delta_width + space) * i), int(pos[1] + height))
+            self.squares.append([(255, 255 - delta_color * i, 0),
+                                 [pos_a, pos_b, pos_c, pos_d]])
 
     def draw(self, surface, percentage):
         """
@@ -47,4 +52,5 @@ class revolGraph:
         :return: void
         """
         for i in range(int(percentage) / self.delta_percentage):
-            pygame.draw.polygon(surface, self.squares[i][0], self.squares[i][1])
+            pygame.draw.polygon(surface, self.squares[i][0],
+                                self.squares[i][1])

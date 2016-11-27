@@ -84,7 +84,7 @@ class mapTrack:
         # Se instancia el objeto
         if player:
             del self.player
-            pos = self.window.getWindowSize()
+            pos = self.window.get_window_size()
             image = self.loadImage(texture, **kwargs)
             imageWidth, imageHeight = image.get_size()
             self.player = Player(type, image, self.loadImage(shadow, alpha=True),
@@ -139,8 +139,8 @@ class mapTrack:
         width, height = image.get_size()
         self.track.append(gameObject(image, 1, pos))
         self.track_coords.append(
-            [(self.window.getWindowWidth() / 2 - pos[0], self.window.getWindowHeight() / 2 - pos[1]), \
-             (self.window.getWindowWidth() / 2 - pos[0] + width, self.window.getWindowHeight() / 2 - pos[1] + height)])
+            [(self.window.get_window_width() / 2 - pos[0], self.window.get_window_height() / 2 - pos[1]), \
+             (self.window.get_window_width() / 2 - pos[0] + width, self.window.get_window_height() / 2 - pos[1] + height)])
 
     def clean(self):
         """

@@ -1,13 +1,14 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-if __name__ == '__main__': from path import *  # @UnusedWildImport
+# coding=utf-8
+"""
+CLASE USER-INTERFACE MENU
+Crea los menús de interacción del juego, toma como argumento todas las variables
+a las cuales el menu puede acceder, como idiomas, configuraciones y modelos
 
-# CLASE USER-INTERFACE MENU
-# Crea los menús de interacción del juego, toma como argumento todas las variables
-# a las cuales el menu puede acceder, como idiomas, configuraciones y modelos
-
-# Autor: PABLO PIZARRO @ ppizarro ~
-# Fecha: ABRIL 2015
+Autor: PABLO PIZARRO @ ppizarro ~
+Fecha: ABRIL 2015
+"""
+if __name__ == '__main__':
+    from path import *  # @UnusedWildImport
 
 # Importación de librerías
 import math  # @UnusedImport
@@ -26,59 +27,68 @@ MENU_PAUSE = "MENU_PAUSE"
 MENU_INICIAL = "MENU_INICIAL"
 
 
-class createUImenu:
+# noinspection PyPep8Naming
+class Createuimenu(object):
     """Crea los menús del juego"""
 
-    def __init__(self, langs, window, world, gameConfig, userConfig, viewConfig, windowConfig, worldConfig, mapConfig):
+    def __init__(self, langs, window, world, game_config, user_config,
+                 view_config, window_config, world_config, map_config):
         """
         Función constructora
         :param langs: Diccionario de idioma
         :param window: Ventana de la aplicación
         :param world: Objeto mundo
-        :param gameConfig: Configuraciones del juego
-        :param userConfig: Configuraciones de usuario
-        :param viewConfig: Configuraciones de la vista
-        :param windowConfig: Configuraciones de la ventana
-        :param worldConfig: Configuraciones del mundo
-        :param mapConfig: Configuraciones del mapa
+        :param game_config: Configuraciones del juego
+        :param user_config: Configuraciones de usuario
+        :param view_config: Configuraciones de la vista
+        :param window_config: Configuraciones de la ventana
+        :param world_config: Configuraciones del mundo
+        :param map_config: Configuraciones del mapa
         :return: void
         """
 
         # Variables de clase
-        self.config_game = gameConfig  # configuraciones del juego
-        self.config_map = mapConfig  # configuracion del mapa
-        self.config_user = userConfig  # configuraciones de usuario
-        self.config_view = viewConfig  # configuraciones de la vista
-        self.config_window = windowConfig  # configuraciones de la ventana
-        self.config_world = worldConfig  # configuraciones del mundo
+        self.config_game = game_config  # configuraciones del juego
+        self.config_map = map_config  # configuracion del mapa
+        self.config_user = user_config  # configuraciones de usuario
+        self.config_view = view_config  # configuraciones de la vista
+        self.config_window = window_config  # configuraciones de la ventana
+        self.config_world = world_config  # configuraciones del mundo
         self.controller = None  # controlador
         self.font = getFonts("menu")  # se obtiene la fuente por defecto
         self.langs = langs  # idiomas del juego
         self.menu_inicial_title_font = pygame.font.Font(getFonts("nfs"), 55)
-        self.screen = window.getSurface()  # se obtiene la superficie de dibujo
-        self.sound_state = gameConfig.isTrue("ENABLESOUND")  # define si los sonidos estan activos
+        self.screen = window.get_surface()  # se obtiene la superficie de dibujo
+        self.sound_state = game_config.isTrue(
+            "ENABLESOUND")  # define si los sonidos estan activos
         self.view = None  # vista
         self.window = window  # ventana de visualización
         self.world = world  # mundo
         # Canales de sonido de los menues
         self.menuSoundChannel = pygame.mixer.Channel(4)
-        self.menuSoundChannel.set_volume(float(self.config_world.getValue("CHANNEL_4")))
+        self.menuSoundChannel.set_volume(
+            float(self.config_world.getValue("CHANNEL_4")))
         self.menuButtonChannel = pygame.mixer.Channel(5)
-        self.menuSoundChannel.set_volume(float(self.config_world.getValue("CHANNEL_5")))
+        self.menuSoundChannel.set_volume(
+            float(self.config_world.getValue("CHANNEL_5")))
         # Sonido de fondo del menu de inicio
         self.menu_inicial_sfx = pygame.mixer.Sound(getSounds("intro"))
         self.menu_button_up = pygame.mixer.Sound(getSounds("down"))
         self.menu_button_down = pygame.mixer.Sound(getSounds("up"))
         # Se renderiza la fuente del titulo
-        self.menu_inicial_title = self.menu_inicial_title_font.render(self.langs.get(10), 1, (255, 255, 255))
-        self.menu_inicial_title_shadow = self.menu_inicial_title_font.render(self.langs.get(10), 1, (0, 0, 0))
-        self.menu_inicial_title_shadow_width = self.menu_inicial_title_shadow.get_size()[0]
+        self.menu_inicial_title = self.menu_inicial_title_font.render(
+            self.langs.get(10), 1, (255, 255, 255))
+        self.menu_inicial_title_shadow = self.menu_inicial_title_font.render(
+            self.langs.get(10), 1, (0, 0, 0))
+        self.menu_inicial_title_shadow_width = \
+            self.menu_inicial_title_shadow.get_size()[0]
         self.menu_inicial_title_width = self.menu_inicial_title.get_size()[0]
         self.menu_inicial_title_shadow_pos = (
-            self.window.getWindowWidth() / 2 - self.menu_inicial_title_shadow_width / 2 - 3,
-            (self.window.getWindowHeight() - 400) / 2 - 70)
-        self.menu_inicial_title_pos = (self.window.getWindowWidth() / 2 - self.menu_inicial_title_width / 2,
-                                       (self.window.getWindowHeight() - 400) / 2 - 65)
+            self.window.get_window_width() / 2 - self.menu_inicial_title_shadow_width / 2 - 3,
+            (self.window.get_window_height() - 400) / 2 - 70)
+        self.menu_inicial_title_pos = (
+            self.window.get_window_width() / 2 - self.menu_inicial_title_width / 2,
+            (self.window.get_window_height() - 400) / 2 - 65)
         # Menues
         self.actualmenu = None
         self.menu_inicial = None
@@ -91,8 +101,9 @@ class createUImenu:
         # Se crean las imagenes de fondo
         self.splashimages = []
         for key in range(1, 11):
-            image = pygame.transform.scale(pygame.image.load(getImages("splash" + str(key))),
-                                           (window.getWindowWidth(), window.getWindowHeight()))
+            image = pygame.transform.scale(
+                pygame.image.load(getImages("splash" + str(key))),
+                (window.get_window_width(), window.get_window_height()))
             self.splashimages.append(image)
         # Tiempos de efectos visuales de fondo
         self.splashindex = 0
@@ -142,7 +153,8 @@ class createUImenu:
         except:
             self.screen.blit(self.splashimages[0], (0, 0))
         self.menu_inicial.draw(self.screen)
-        self.screen.blit(self.menu_inicial_title_shadow, self.menu_inicial_title_shadow_pos)
+        self.screen.blit(self.menu_inicial_title_shadow,
+                         self.menu_inicial_title_shadow_pos)
         self.screen.blit(self.menu_inicial_title, self.menu_inicial_title_pos)
         # Se reproduce el sonido de fondo
         if not self.menuSoundChannel.get_busy() and self.sound_state:
@@ -176,41 +188,70 @@ class createUImenu:
         """
         try:
             # Colores de autos
-            COLOR_CAR_1_1 = [(self.langs.get(100), "lr_classic_yellow"), (self.langs.get(96), "lr_classic_blue"),
-                             (self.langs.get(97), "lr_classic_cyan"), (self.langs.get(99), "lr_classic_red"),
+            COLOR_CAR_1_1 = [(self.langs.get(100), "lr_classic_yellow"),
+                             (self.langs.get(96), "lr_classic_blue"),
+                             (self.langs.get(97), "lr_classic_cyan"),
+                             (self.langs.get(99), "lr_classic_red"),
                              (self.langs.get(98), "lr_classic_pink")]
-            COLOR_CAR_1_2 = [(self.langs.get(96), "lr_classic_blue"), (self.langs.get(97), "lr_classic_cyan"),
-                             (self.langs.get(99), "lr_classic_red"), (self.langs.get(98), "lr_classic_pink"),
+            COLOR_CAR_1_2 = [(self.langs.get(96), "lr_classic_blue"),
+                             (self.langs.get(97), "lr_classic_cyan"),
+                             (self.langs.get(99), "lr_classic_red"),
+                             (self.langs.get(98), "lr_classic_pink"),
                              (self.langs.get(100), "lr_classic_yellow")]
-            COLOR_CAR_1_3 = [(self.langs.get(97), "lr_classic_cyan"), (self.langs.get(99), "lr_classic_red"),
-                             (self.langs.get(98), "lr_classic_pink"), (self.langs.get(100), "lr_classic_yellow"),
+            COLOR_CAR_1_3 = [(self.langs.get(97), "lr_classic_cyan"),
+                             (self.langs.get(99), "lr_classic_red"),
+                             (self.langs.get(98), "lr_classic_pink"),
+                             (self.langs.get(100), "lr_classic_yellow"),
                              (self.langs.get(96), "lr_classic_blue")]
-            COLOR_CAR_1_4 = [(self.langs.get(99), "lr_classic_red"), (self.langs.get(98), "lr_classic_pink"),
-                             (self.langs.get(100), "lr_classic_yellow"), (self.langs.get(96), "lr_classic_blue"),
+            COLOR_CAR_1_4 = [(self.langs.get(99), "lr_classic_red"),
+                             (self.langs.get(98), "lr_classic_pink"),
+                             (self.langs.get(100), "lr_classic_yellow"),
+                             (self.langs.get(96), "lr_classic_blue"),
                              (self.langs.get(97), "lr_classic_cyan")]
-            COLOR_CAR_1_5 = [(self.langs.get(98), "lr_classic_pink"), (self.langs.get(100), "lr_classic_yellow"),
-                             (self.langs.get(96), "lr_classic_blue"), (self.langs.get(97), "lr_classic_cyan"),
+            COLOR_CAR_1_5 = [(self.langs.get(98), "lr_classic_pink"),
+                             (self.langs.get(100), "lr_classic_yellow"),
+                             (self.langs.get(96), "lr_classic_blue"),
+                             (self.langs.get(97), "lr_classic_cyan"),
                              (self.langs.get(99), "lr_classic_red")]
-            COLOR_CAR_2_1 = [(self.langs.get(96), "lr_modern_blue"), (self.langs.get(99), "lr_modern_red"),
-                             (self.langs.get(98), "lr_modern_pink"), (self.langs.get(101), "lr_modern_green")]
-            COLOR_CAR_2_2 = [(self.langs.get(99), "lr_modern_red"), (self.langs.get(98), "lr_modern_pink"),
-                             (self.langs.get(101), "lr_modern_green"), (self.langs.get(96), "lr_modern_blue")]
-            COLOR_CAR_2_3 = [(self.langs.get(98), "lr_modern_pink"), (self.langs.get(101), "lr_modern_green"),
-                             (self.langs.get(96), "lr_modern_blue"), (self.langs.get(99), "lr_modern_red")]
-            COLOR_CAR_2_4 = [(self.langs.get(101), "lr_modern_green"), (self.langs.get(96), "lr_modern_blue"),
-                             (self.langs.get(99), "lr_modern_red"), (self.langs.get(98), "lr_modern_pink")]
-            COLOR_CAR_3_1 = [(self.langs.get(100), "lr_super_yellow"), (self.langs.get(97), "lr_super_cyan"),
-                             (self.langs.get(98), "lr_super_pink"), (self.langs.get(101), "lr_super_green")]
-            COLOR_CAR_3_2 = [(self.langs.get(97), "lr_super_cyan"), (self.langs.get(98), "lr_super_pink"),
-                             (self.langs.get(101), "lr_super_green"), (self.langs.get(100), "lr_super_yellow")]
-            COLOR_CAR_3_3 = [(self.langs.get(98), "lr_super_pink"), (self.langs.get(101), "lr_super_green"),
-                             (self.langs.get(100), "lr_super_yellow"), (self.langs.get(97), "lr_super_cyan")]
-            COLOR_CAR_3_4 = [(self.langs.get(101), "lr_super_green"), (self.langs.get(100), "lr_super_yellow"),
-                             (self.langs.get(97), "lr_super_cyan"), (self.langs.get(98), "lr_super_pink")]
+            COLOR_CAR_2_1 = [(self.langs.get(96), "lr_modern_blue"),
+                             (self.langs.get(99), "lr_modern_red"),
+                             (self.langs.get(98), "lr_modern_pink"),
+                             (self.langs.get(101), "lr_modern_green")]
+            COLOR_CAR_2_2 = [(self.langs.get(99), "lr_modern_red"),
+                             (self.langs.get(98), "lr_modern_pink"),
+                             (self.langs.get(101), "lr_modern_green"),
+                             (self.langs.get(96), "lr_modern_blue")]
+            COLOR_CAR_2_3 = [(self.langs.get(98), "lr_modern_pink"),
+                             (self.langs.get(101), "lr_modern_green"),
+                             (self.langs.get(96), "lr_modern_blue"),
+                             (self.langs.get(99), "lr_modern_red")]
+            COLOR_CAR_2_4 = [(self.langs.get(101), "lr_modern_green"),
+                             (self.langs.get(96), "lr_modern_blue"),
+                             (self.langs.get(99), "lr_modern_red"),
+                             (self.langs.get(98), "lr_modern_pink")]
+            COLOR_CAR_3_1 = [(self.langs.get(100), "lr_super_yellow"),
+                             (self.langs.get(97), "lr_super_cyan"),
+                             (self.langs.get(98), "lr_super_pink"),
+                             (self.langs.get(101), "lr_super_green")]
+            COLOR_CAR_3_2 = [(self.langs.get(97), "lr_super_cyan"),
+                             (self.langs.get(98), "lr_super_pink"),
+                             (self.langs.get(101), "lr_super_green"),
+                             (self.langs.get(100), "lr_super_yellow")]
+            COLOR_CAR_3_3 = [(self.langs.get(98), "lr_super_pink"),
+                             (self.langs.get(101), "lr_super_green"),
+                             (self.langs.get(100), "lr_super_yellow"),
+                             (self.langs.get(97), "lr_super_cyan")]
+            COLOR_CAR_3_4 = [(self.langs.get(101), "lr_super_green"),
+                             (self.langs.get(100), "lr_super_yellow"),
+                             (self.langs.get(97), "lr_super_cyan"),
+                             (self.langs.get(98), "lr_super_pink")]
             # Tipos de auto
-            TYPECAR_1 = [(self.langs.get(43), "1"), (self.langs.get(44), "2"), (self.langs.get(45), "3")]
-            TYPECAR_2 = [(self.langs.get(44), "2"), (self.langs.get(45), "3"), (self.langs.get(43), "1")]
-            TYPECAR_3 = [(self.langs.get(45), "3"), (self.langs.get(43), "1"), (self.langs.get(44), "2")]
+            TYPECAR_1 = [(self.langs.get(43), "1"), (self.langs.get(44), "2"),
+                         (self.langs.get(45), "3")]
+            TYPECAR_2 = [(self.langs.get(44), "2"), (self.langs.get(45), "3"),
+                         (self.langs.get(43), "1")]
+            TYPECAR_3 = [(self.langs.get(45), "3"), (self.langs.get(43), "1"),
+                         (self.langs.get(44), "2")]
 
             def _launchTrack(*args):
                 """
@@ -219,10 +260,10 @@ class createUImenu:
                 """
                 self.reset(0)
                 self.menuSoundChannel.stop()
-                self.world.loadMap()
+                self.world.load_map()
                 self.controller.disableMenu()
                 self.controller.setPlayer()
-                self.view.startPlayingRender()
+                self.view.start_playing_render()
 
             def _saveConfig(value, *args):
                 """
@@ -242,24 +283,28 @@ class createUImenu:
                     self.menu_configuracion.actual.opciones.pop(2)
                     self.menu_configuracion.actual.posOptionY -= (
                         -self.menu_configuracion.actual.fontsize / 2 - self.menu_configuracion.actual.optiondy / 2)
-                    self.menu_configuracion.addSelector(self.langs.get(110), self.window.getDisplayList(), _saveConfig,
-                                                        None, self.config_window, "SCREENSIZE", index=2)
+                    self.menu_configuracion.addSelector(self.langs.get(110),
+                                                        self.window.get_display_list(),
+                                                        _saveConfig,
+                                                        None,
+                                                        self.config_window,
+                                                        "SCREENSIZE", index=2)
                     self.menu_configuracion.actual.size -= 1
                     # self.window.update()
                     # self.view.updateWindowSize()
                 # Se aplican la configuraciones
                 # Si se cambio el modo de ventana
                 if args[1] == "WINDOWED" and value == "FALSE":
-                    self.window.setFullscreen()
+                    self.window.set_fullscreen()
                 elif args[1] == "WINDOWED" and value == "TRUE":
-                    self.window.setWindowed()
+                    self.window.set_windowed()
                 # Si se activan / desactivan los sonidos
                 if args[1] == "ENABLESOUND":
                     if value == "FALSE": self.menu_inicial_sfx.stop()
                     self.updateSound()
                 # Si se activa / desactiva el mostrar los fps en el titulo de la ventana
                 if args[1] == "SHOWFPS":
-                    self.view.updateShowFPS()
+                    self.view.update_show_fps()
                 # Si se cambia la pista a jugar
                 if args[1] == "TYPECAR":
                     self.menu_jugar.actual.opciones.pop(2)
@@ -267,31 +312,53 @@ class createUImenu:
                     self.menu_jugar.actual.posOptionY -= 2 * (
                         -self.menu_jugar.actual.fontsize / 2 - self.menu_jugar.actual.optiondy / 2)
                     if value == "1":
-                        self.menu_jugar.addSelector(self.langs.get(94), TYPECAR_1, _saveConfig, _launchTrack,
-                                                    self.config_user, "TYPECAR", index=2)
-                        self.config_user.setParameter("TEXTURE", "lr_classic_red")
-                        self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_1_4, _saveConfig, _launchTrack,
-                                                    self.config_user, "TEXTURE", index=3)
+                        self.menu_jugar.addSelector(self.langs.get(94),
+                                                    TYPECAR_1, _saveConfig,
+                                                    _launchTrack,
+                                                    self.config_user,
+                                                    "TYPECAR", index=2)
+                        self.config_user.setParameter("TEXTURE",
+                                                      "lr_classic_red")
+                        self.menu_jugar.addSelector(self.langs.get(95),
+                                                    COLOR_CAR_1_4, _saveConfig,
+                                                    _launchTrack,
+                                                    self.config_user,
+                                                    "TEXTURE", index=3)
                     elif value == "2":
-                        self.menu_jugar.addSelector(self.langs.get(94), TYPECAR_2, _saveConfig, _launchTrack,
-                                                    self.config_user, "TYPECAR", index=2)
-                        self.config_user.setParameter("TEXTURE", "lr_modern_red")
-                        self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_2_2, _saveConfig, _launchTrack,
-                                                    self.config_user, "TEXTURE", index=3)
+                        self.menu_jugar.addSelector(self.langs.get(94),
+                                                    TYPECAR_2, _saveConfig,
+                                                    _launchTrack,
+                                                    self.config_user,
+                                                    "TYPECAR", index=2)
+                        self.config_user.setParameter("TEXTURE",
+                                                      "lr_modern_red")
+                        self.menu_jugar.addSelector(self.langs.get(95),
+                                                    COLOR_CAR_2_2, _saveConfig,
+                                                    _launchTrack,
+                                                    self.config_user,
+                                                    "TEXTURE", index=3)
                     elif value == "3":
-                        self.menu_jugar.addSelector(self.langs.get(94), TYPECAR_3, _saveConfig, _launchTrack,
-                                                    self.config_user, "TYPECAR", index=2)
-                        self.config_user.setParameter("TEXTURE", "lr_super_cyan")
-                        self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_3_2, _saveConfig, _launchTrack,
-                                                    self.config_user, "TEXTURE", index=3)
+                        self.menu_jugar.addSelector(self.langs.get(94),
+                                                    TYPECAR_3, _saveConfig,
+                                                    _launchTrack,
+                                                    self.config_user,
+                                                    "TYPECAR", index=2)
+                        self.config_user.setParameter("TEXTURE",
+                                                      "lr_super_cyan")
+                        self.menu_jugar.addSelector(self.langs.get(95),
+                                                    COLOR_CAR_3_2, _saveConfig,
+                                                    _launchTrack,
+                                                    self.config_user,
+                                                    "TEXTURE", index=3)
                     self.menu_jugar.actual.size -= 2
                     args[0].export()
                 # Si se activa/ desactiva el mostrar el fantasma
                 if args[1] == "SHOWGHOST":
-                    self.view.updateShowGhost()
+                    self.view.update_show_ghost()
 
             # Menu jugar
-            self.menu_jugar = Menu(self.window, self.font, self.langs.get(61), draw_region_y=55)
+            self.menu_jugar = Menu(self.window, self.font, self.langs.get(61),
+                                   draw_region_y=55)
             self.menu_jugar.addOption(self.langs.get(104), _launchTrack, "a")
             # Se cargan los mapas
             tracks = []
@@ -300,109 +367,170 @@ class createUImenu:
             for track in TRACKS.keys():
                 if track != actual_map:
                     tracks.append((TRACKS[track], str(track)))
-            self.menu_jugar.addSelector(self.langs.get(103), tracks, _saveConfig, None, self.config_map, "DEFAULTMAP")
+            self.menu_jugar.addSelector(self.langs.get(103), tracks,
+                                        _saveConfig, None, self.config_map,
+                                        "DEFAULTMAP")
             if self.config_user.getValue("TYPECAR") == "1":
                 typecar_values = TYPECAR_1
             elif self.config_user.getValue("TYPECAR") == "2":
                 typecar_values = TYPECAR_2
             else:
                 typecar_values = TYPECAR_3
-            self.menu_jugar.addSelector(self.langs.get(94), typecar_values, _saveConfig, None, self.config_user,
+            self.menu_jugar.addSelector(self.langs.get(94), typecar_values,
+                                        _saveConfig, None, self.config_user,
                                         "TYPECAR")
             if self.config_user.getValue("TYPECAR") == "1":
                 if self.config_user.getValue("TEXTURE") == "lr_classic_yellow":
-                    self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_1_1, _saveConfig, _launchTrack,
+                    self.menu_jugar.addSelector(self.langs.get(95),
+                                                COLOR_CAR_1_1, _saveConfig,
+                                                _launchTrack,
                                                 self.config_user, "TEXTURE")
                 elif self.config_user.getValue("TEXTURE") == "lr_classic_blue":
-                    self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_1_2, _saveConfig, _launchTrack,
+                    self.menu_jugar.addSelector(self.langs.get(95),
+                                                COLOR_CAR_1_2, _saveConfig,
+                                                _launchTrack,
                                                 self.config_user, "TEXTURE")
                 elif self.config_user.getValue("TEXTURE") == "lr_classic_cyan":
-                    self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_1_3, _saveConfig, _launchTrack,
+                    self.menu_jugar.addSelector(self.langs.get(95),
+                                                COLOR_CAR_1_3, _saveConfig,
+                                                _launchTrack,
                                                 self.config_user, "TEXTURE")
                 elif self.config_user.getValue("TEXTURE") == "lr_classic_red":
-                    self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_1_4, _saveConfig, _launchTrack,
+                    self.menu_jugar.addSelector(self.langs.get(95),
+                                                COLOR_CAR_1_4, _saveConfig,
+                                                _launchTrack,
                                                 self.config_user, "TEXTURE")
                 elif self.config_user.getValue("TEXTURE") == "lr_classic_pink":
-                    self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_1_5, _saveConfig, _launchTrack,
+                    self.menu_jugar.addSelector(self.langs.get(95),
+                                                COLOR_CAR_1_5, _saveConfig,
+                                                _launchTrack,
                                                 self.config_user, "TEXTURE")
                 else:
-                    self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_1_4, _saveConfig, _launchTrack,
+                    self.menu_jugar.addSelector(self.langs.get(95),
+                                                COLOR_CAR_1_4, _saveConfig,
+                                                _launchTrack,
                                                 self.config_user, "TEXTURE")
             elif self.config_user.getValue("TYPECAR") == "2":
                 if self.config_user.getValue("TEXTURE") == "lr_modern_blue":
-                    self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_2_1, _saveConfig, _launchTrack,
+                    self.menu_jugar.addSelector(self.langs.get(95),
+                                                COLOR_CAR_2_1, _saveConfig,
+                                                _launchTrack,
                                                 self.config_user, "TEXTURE")
                 elif self.config_user.getValue("TEXTURE") == "lr_modern_red":
-                    self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_2_2, _saveConfig, _launchTrack,
+                    self.menu_jugar.addSelector(self.langs.get(95),
+                                                COLOR_CAR_2_2, _saveConfig,
+                                                _launchTrack,
                                                 self.config_user, "TEXTURE")
                 elif self.config_user.getValue("TEXTURE") == "lr_modern_pink":
-                    self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_2_3, _saveConfig, _launchTrack,
+                    self.menu_jugar.addSelector(self.langs.get(95),
+                                                COLOR_CAR_2_3, _saveConfig,
+                                                _launchTrack,
                                                 self.config_user, "TEXTURE")
                 elif self.config_user.getValue("TEXTURE") == "lr_modern_green":
-                    self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_2_4, _saveConfig, _launchTrack,
+                    self.menu_jugar.addSelector(self.langs.get(95),
+                                                COLOR_CAR_2_4, _saveConfig,
+                                                _launchTrack,
                                                 self.config_user, "TEXTURE")
                 else:
-                    self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_2_2, _saveConfig, _launchTrack,
+                    self.menu_jugar.addSelector(self.langs.get(95),
+                                                COLOR_CAR_2_2, _saveConfig,
+                                                _launchTrack,
                                                 self.config_user, "TEXTURE")
             elif self.config_user.getValue("TYPECAR") == "3":
                 if self.config_user.getValue("TEXTURE") == "lr_super_yellow":
-                    self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_3_1, _saveConfig, _launchTrack,
+                    self.menu_jugar.addSelector(self.langs.get(95),
+                                                COLOR_CAR_3_1, _saveConfig,
+                                                _launchTrack,
                                                 self.config_user, "TEXTURE")
                 elif self.config_user.getValue("TEXTURE") == "lr_super_cyan":
-                    self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_3_2, _saveConfig, _launchTrack,
+                    self.menu_jugar.addSelector(self.langs.get(95),
+                                                COLOR_CAR_3_2, _saveConfig,
+                                                _launchTrack,
                                                 self.config_user, "TEXTURE")
                 elif self.config_user.getValue("TEXTURE") == "lr_super_pink":
-                    self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_3_3, _saveConfig, _launchTrack,
+                    self.menu_jugar.addSelector(self.langs.get(95),
+                                                COLOR_CAR_3_3, _saveConfig,
+                                                _launchTrack,
                                                 self.config_user, "TEXTURE")
                 elif self.config_user.getValue("TEXTURE") == "lr_super_green":
-                    self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_3_4, _saveConfig, _launchTrack,
+                    self.menu_jugar.addSelector(self.langs.get(95),
+                                                COLOR_CAR_3_4, _saveConfig,
+                                                _launchTrack,
                                                 self.config_user, "TEXTURE")
                 else:
-                    self.menu_jugar.addSelector(self.langs.get(95), COLOR_CAR_3_2, _saveConfig, _launchTrack,
+                    self.menu_jugar.addSelector(self.langs.get(95),
+                                                COLOR_CAR_3_2, _saveConfig,
+                                                _launchTrack,
                                                 self.config_user, "TEXTURE")
             self.menu_jugar.addOption(self.langs.get(102), MENU_BACK)
             # Menu de configuraciones
-            self.menu_configuracion = Menu(self.window, self.font, self.langs.get(62), centered=False, draw_region_x=5,
+            self.menu_configuracion = Menu(self.window, self.font,
+                                           self.langs.get(62), centered=False,
+                                           draw_region_x=5,
                                            font_size=25, option_margin=20)
             if self.config_window.isTrue("WINDOWED"):
-                window_values = [(self.langs.get(84), "TRUE"), (self.langs.get(85), "FALSE")]
+                window_values = [(self.langs.get(84), "TRUE"),
+                                 (self.langs.get(85), "FALSE")]
             else:
-                window_values = [(self.langs.get(85), "FALSE"), (self.langs.get(84), "TRUE")]
+                window_values = [(self.langs.get(85), "FALSE"),
+                                 (self.langs.get(84), "TRUE")]
             if self.config_game.isTrue("ENABLESOUND"):
-                sound_values = [(self.langs.get(84), "TRUE"), (self.langs.get(85), "FALSE")]
+                sound_values = [(self.langs.get(84), "TRUE"),
+                                (self.langs.get(85), "FALSE")]
             else:
-                sound_values = [(self.langs.get(85), "FALSE"), (self.langs.get(84), "TRUE")]
+                sound_values = [(self.langs.get(85), "FALSE"),
+                                (self.langs.get(84), "TRUE")]
             if self.config_game.getValue("LANG") == "ES":
-                lang_values = [(self.langs.get(89), "ES"), (self.langs.get(90), "EN")]
+                lang_values = [(self.langs.get(89), "ES"),
+                               (self.langs.get(90), "EN")]
             else:
-                lang_values = [(self.langs.get(90), "EN"), (self.langs.get(89), "ES")]
+                lang_values = [(self.langs.get(90), "EN"),
+                               (self.langs.get(89), "ES")]
             # if self.config_game.getValue("FPS") == "60": fps_values = [("60", "60"), ("30", "30"), ("45", "45")]
             # elif self.config_game.getValue("FPS") == "30": fps_values = [("30", "30"), ("45", "45"), ("60", "60")]
             # else: fps_values = [("45", "45"), ("60", "60"), ("30", "30")]
             if self.config_view.isTrue("SHOWFPS"):
-                showfps_values = [(self.langs.get(84), "TRUE"), (self.langs.get(85), "FALSE")]
+                showfps_values = [(self.langs.get(84), "TRUE"),
+                                  (self.langs.get(85), "FALSE")]
             else:
-                showfps_values = [(self.langs.get(85), "FALSE"), (self.langs.get(84), "TRUE")]
+                showfps_values = [(self.langs.get(85), "FALSE"),
+                                  (self.langs.get(84), "TRUE")]
             if self.config_view.isTrue("SHOWGHOST"):
-                showghost_values = [(self.langs.get(84), "TRUE"), (self.langs.get(85), "FALSE")]
+                showghost_values = [(self.langs.get(84), "TRUE"),
+                                    (self.langs.get(85), "FALSE")]
             else:
-                showghost_values = [(self.langs.get(85), "FALSE"), (self.langs.get(84), "TRUE")]
-            self.menu_configuracion.addSelector(self.langs.get(88), lang_values, _saveConfig, None, self.config_game,
+                showghost_values = [(self.langs.get(85), "FALSE"),
+                                    (self.langs.get(84), "TRUE")]
+            self.menu_configuracion.addSelector(self.langs.get(88),
+                                                lang_values, _saveConfig, None,
+                                                self.config_game,
                                                 "LANG")
-            self.menu_configuracion.addSelector(self.langs.get(87), sound_values, _saveConfig, None, self.config_game,
+            self.menu_configuracion.addSelector(self.langs.get(87),
+                                                sound_values, _saveConfig,
+                                                None, self.config_game,
                                                 "ENABLESOUND")
-            self.menu_configuracion.addSelector(self.langs.get(110), self.window.getDisplayList(), _saveConfig, None,
-                                                self.config_window, "SCREENSIZE")
-            self.menu_configuracion.addSelector(self.langs.get(83), window_values, _saveConfig, None,
+            self.menu_configuracion.addSelector(self.langs.get(110),
+                                                self.window.get_display_list(),
+                                                _saveConfig, None,
+                                                self.config_window,
+                                                "SCREENSIZE")
+            self.menu_configuracion.addSelector(self.langs.get(83),
+                                                window_values, _saveConfig,
+                                                None,
                                                 self.config_window, "WINDOWED")
             # self.menu_configuracion.addSelector(self.langs.get(91), fps_values, _saveConfig, None, self.config_game, "FPS")
-            self.menu_configuracion.addSelector(self.langs.get(92), showfps_values, _saveConfig, None, self.config_view,
+            self.menu_configuracion.addSelector(self.langs.get(92),
+                                                showfps_values, _saveConfig,
+                                                None, self.config_view,
                                                 "SHOWFPS")
-            self.menu_configuracion.addSelector(self.langs.get(93), showghost_values, _saveConfig, None,
+            self.menu_configuracion.addSelector(self.langs.get(93),
+                                                showghost_values, _saveConfig,
+                                                None,
                                                 self.config_view, "SHOWGHOST")
             self.menu_configuracion.addOption(self.langs.get(86), MENU_BACK)
             # Menu de ayuda
-            menu_ayuda = textMenu(self.window, self.font, self.langs.get(63), font_text_size=18, draw_text_region=2,
+            menu_ayuda = textMenu(self.window, self.font, self.langs.get(63),
+                                  font_text_size=18, draw_text_region=2,
                                   draw_region_y=58)
             menu_ayuda.addText(self.langs.get(66))
             menu_ayuda.addText(self.langs.get(68))
@@ -418,7 +546,8 @@ class createUImenu:
             menu_ayuda.addText(self.langs.get(78))
             menu_ayuda.addOption(self.langs.get(67), MENU_BACK)
             # Menu acerca de
-            menu_acercade = textMenu(self.window, self.font, self.langs.get(64), text_centered=True,
+            menu_acercade = textMenu(self.window, self.font,
+                                     self.langs.get(64), text_centered=True,
                                      draw_text_region=50, draw_region_y=50)
             menu_acercade.addText(self.langs.get(79))
             menu_acercade.addText(self.langs.get(80))
@@ -426,9 +555,11 @@ class createUImenu:
             menu_acercade.addText(self.langs.get(82))
             menu_acercade.addOption(self.langs.get(67), MENU_BACK)
             # Se crea el menú de inicio
-            self.menu_inicial = Menu(self.window, self.font, self.langs.get(60), draw_region_y=56)
+            self.menu_inicial = Menu(self.window, self.font,
+                                     self.langs.get(60), draw_region_y=56)
             self.menu_inicial.addOption(self.langs.get(61), self.menu_jugar)
-            self.menu_inicial.addOption(self.langs.get(62), self.menu_configuracion)
+            self.menu_inicial.addOption(self.langs.get(62),
+                                        self.menu_configuracion)
             self.menu_inicial.addOption(self.langs.get(63), menu_ayuda)
             self.menu_inicial.addOption(self.langs.get(64), menu_acercade)
             self.menu_inicial.addOption(self.langs.get(65), MENU_EXIT)
@@ -447,8 +578,8 @@ class createUImenu:
             :return: void
             """
             self.setZeroIndex()
-            self.world.clearActualMap()
-            self.view.stopPlayingRender()
+            self.world.clear_actual_map()
+            self.view.stop_playing_render()
             self.controller.delPlayer()
 
         def _back():
@@ -458,7 +589,7 @@ class createUImenu:
             """
             self.setZeroIndex()
             self.controller.disableMenu()
-            self.world.getActualMap().getPlayer().soundUnpause()
+            self.world.get_actual_map().getPlayer().sound_unpause()
 
         def _reinitiate():
             """
@@ -466,9 +597,10 @@ class createUImenu:
             :return: void
             """
             _back()
-            self.world.getActualMap().getPlayer().clear(True)
+            self.world.get_actual_map().getPlayer().clear(True)
 
-        self.menu_pausa = Menu(self.window, self.font, self.langs.get(105), height=230, width=440, font_size=30,
+        self.menu_pausa = Menu(self.window, self.font, self.langs.get(105),
+                               height=230, width=440, font_size=30,
                                draw_region_y=60)
         self.menu_pausa.addOption(self.langs.get(107), _back)
         self.menu_pausa.addOption(self.langs.get(106), _reinitiate)

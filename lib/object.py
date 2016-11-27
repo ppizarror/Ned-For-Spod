@@ -35,9 +35,9 @@ class gameObject:
         :param cameraPos: Posición de la camara
         :return: void
         """
-        drawx = cameraPos[0] - self.pos[0] + (window.getWindowWidth() - 1000) / 2
-        drawy = cameraPos[1] - self.pos[1] + (window.getWindowHeight() - 600) / 2
-        if (-self.width <= drawx <= window.getWindowWidth()) and (-self.height <= drawy <= window.getWindowHeight()):
+        drawx = cameraPos[0] - self.pos[0] + (window.get_window_width() - 1000) / 2
+        drawy = cameraPos[1] - self.pos[1] + (window.get_window_height() - 600) / 2
+        if (-self.width <= drawx <= window.get_window_width()) and (-self.height <= drawy <= window.get_window_height()):
             surface.blit(self.texture, (drawx, drawy))
 
     def getDimension(self):
