@@ -42,7 +42,7 @@ Este proyecto está licenciado bajo GPLv2 (GNU General Public License, version 2
 
 ## Autor
 Pablo Pizarro
-2015
+2015-2017
 
 [1]:	http://www.pygame.org/ "http://www.pygame.org"
 [2]:	https://pypi.python.org/pypi/mechanize/
