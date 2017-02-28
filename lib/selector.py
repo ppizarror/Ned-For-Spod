@@ -1,12 +1,17 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-#
-# Clase selector, permite manejar elementos y funciones para una entrada del menu
-#
-# Autor: PABLO PIZARRO @ ppizarro ~
-# Fecha: ABRIL 2015
+# coding=utf-8
+"""
+Clase selector, permite manejar elementos y funciones para una entrada del menu
 
-class Selector:
+Autor: PABLO PIZARRO @ ppizarro ~
+Fecha: ABRIL 2015
+"""
+
+if __name__ == '__main__':
+    # noinspection PyUnresolvedReferences
+    from path import *  # @UnusedWildImport
+
+
+class Selector(object):
     """Selector del menú"""
 
     # Función constructora

@@ -1,11 +1,11 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# coding=utf-8
+"""
+MENU
+Brinda distintas opciones las cuales se pueden seleccionar
 
-# MENU
-# Brinda distintas opciones las cuales se pueden seleccionar
-#
-# Autor: PABLO PIZARRO @ ppizarro ~
-# Fecha: ABRIL 2015
+Autor: PABLO PIZARRO @ ppizarro ~
+Fecha: ABRIL 2015
+"""
 
 # Importación de librerías
 import types
@@ -35,6 +35,7 @@ SELECTOR = -1
 SHADOW = (0, 0, 0)
 
 
+# noinspection PyAttributeOutsideInit,PyBroadException,PyUnresolvedReferences
 class Menu(object):
     """Crea menús dinámicos"""
 
@@ -59,13 +60,15 @@ class Menu(object):
             bgcolor = kwargs.get("bgcolor")
         else:
             bgcolor = MENU_BGCOLOR
-        self.bgColor = (bgcolor[0], bgcolor[1], bgcolor[2], int(255 * (1 - (100 - bgalpha) / 100.0)))
+        self.bgColor = (bgcolor[0], bgcolor[1], bgcolor[2],
+                        int(255 * (1 - (100 - bgalpha) / 100.0)))
         # Color del titulo
         if kwargs.get("bgcolor_title") is not None:
             bgcolor = kwargs.get("bgcolor_title")
         else:
             bgcolor = MENU_TITLE_BG_COLOR
-        self.bgColorTitle = (bgcolor[0], bgcolor[1], bgcolor[2], int(255 * (1 - (100 - bgalpha) / 100.0)))
+        self.bgColorTitle = (bgcolor[0], bgcolor[1], bgcolor[2],
+                             int(255 * (1 - (100 - bgalpha) / 100.0)))
         # Menu centrado
         if kwargs.get("centered") is not None:
             self.centered_option = kwargs.get("centered")
@@ -135,8 +138,10 @@ class Menu(object):
         self.posx = (window.get_window_width() - self.width) / 2
         self.posy = (window.get_window_height() - self.height) / 2
         # Puntos del rectangulo del fondo
-        self.bgRect = [(self.posx, self.posy), (self.posx + self.width, self.posy),
-                       (self.posx + self.width, self.posy + self.height), (self.posx, self.posy + self.height)]
+        self.bgRect = [(self.posx, self.posy),
+                       (self.posx + self.width, self.posy),
+                       (self.posx + self.width, self.posy + self.height),
+                       (self.posx, self.posy + self.height)]
         # Punto a dibujar de las opciones
         if kwargs.get("draw_region_x") is not None:
             self.drawRegionX = kwargs.get("draw_region_x")
@@ -146,32 +151,39 @@ class Menu(object):
             self.drawRegionY = kwargs.get("draw_region_y")
         else:
             self.drawRegionY = MENU_DRAW_Y
-        self.posOptionX = int(self.width * (self.drawRegionX / 100.0)) + self.posx
-        self.posOptionY = int(self.height * (self.drawRegionY / 100.0)) + self.posy
+        self.posOptionX = int(
+            self.width * (self.drawRegionX / 100.0)) + self.posx
+        self.posOptionY = int(
+            self.height * (self.drawRegionY / 100.0)) + self.posy
         # Se obtiene el titlo y el rectangulo
         self.title = self.fonttitle.render(title, 1, self.fontColor)
         title_width = self.title.get_size()[0]
-        self.titleRect = [(self.posx, self.posy), (self.posx + self.width, self.posy),
-                          (self.posx + self.width, self.posy + self.fontsize_title / 2), \
-                          (self.posx + title_width + 25, self.posy + self.fontsize_title / 2),
-                          (self.posx + title_width + 5, self.posy + self.fontsize_title + 5), \
+        self.titleRect = [(self.posx, self.posy),
+                          (self.posx + self.width, self.posy),
+                          (self.posx + self.width,
+                           self.posy + self.fontsize_title / 2),
+                          (self.posx + title_width + 25,
+                           self.posy + self.fontsize_title / 2),
+                          (self.posx + title_width + 5,
+                           self.posy + self.fontsize_title + 5),
                           (self.posx, self.posy + self.fontsize_title + 5)]
         self.titlePos = (self.posx + 5, self.posy - 3)
 
     # noinspection PyShadowingNames
-    def addOption(self, elementName, Menu, *args):
+    def add_option(self, element_name, menu, *args):
         """
         Agrega una entrada al menú
-        :param elementName: Nombre del elemento
-        :param Menu: Dirección del elemento (del tipo menú)
+        :param element_name: Nombre del elemento
+        :param menu: Dirección del elemento (del tipo menú)
         :param args: argumentos del objeto
         :return: void
         """
-        self.actual.opciones.append([elementName, Menu, args])
+        self.actual.opciones.append([element_name, menu, args])
         self.actual.size += 1
-        if self.actual.size > 1: self.actual.posOptionY += -self.actual.fontsize / 2 - self.actual.optiondy / 2
+        if self.actual.size > 1:
+            self.actual.posOptionY += -self.actual.fontsize / 2 - self.actual.optiondy / 2
 
-    def addSelector(self, title, values, event, *args, **kwargs):
+    def add_selector(self, title, values, event, *args, **kwargs):
         """
         Agrega un selector (menú de opciones lateral) como entrada al menú
         :param title: Titulo del selector
@@ -182,11 +194,17 @@ class Menu(object):
         :return: void
         """
         if kwargs.get("index") is not None:
-            self.actual.opciones.insert(kwargs.get("index"), [SELECTOR, Selector(title, values, event, *args)])
+            self.actual.opciones.insert(kwargs.get("index"), [SELECTOR,
+                                                              Selector(title,
+                                                                       values,
+                                                                       event,
+                                                                       *args)])
         else:
-            self.actual.opciones.append([SELECTOR, Selector(title, values, event, *args)])
+            self.actual.opciones.append(
+                [SELECTOR, Selector(title, values, event, *args)])
         self.actual.size += 1
-        if self.actual.size > 1: self.actual.posOptionY += -self.actual.fontsize / 2 - self.actual.optiondy / 2
+        if self.actual.size > 1:
+            self.actual.posOptionY += -self.actual.fontsize / 2 - self.actual.optiondy / 2
 
     def down(self):
         """
@@ -202,9 +220,11 @@ class Menu(object):
         :return: void
         """
         # Se dibuja el fondo del menú
-        pygame.gfxdraw.filled_polygon(surface, self.actual.bgRect, self.actual.bgColor)
+        pygame.gfxdraw.filled_polygon(surface, self.actual.bgRect,
+                                      self.actual.bgColor)
         # Se dibuja el titulo
-        pygame.gfxdraw.filled_polygon(surface, self.actual.titleRect, self.bgColorTitle)
+        pygame.gfxdraw.filled_polygon(surface, self.actual.titleRect,
+                                      self.bgColorTitle)
         surface.blit(self.actual.title, self.titlePos)
         # Se dibujan las opciones
         dy = 0
@@ -213,19 +233,25 @@ class Menu(object):
             if option[0] == SELECTOR:
                 # Si el indice seleccionado es el item se cambia el color
                 if dy == self.actual.index:
-                    text = self.actual.font.render(option[1].get(), 1, self.actual.selectedcolor)
-                    textBg = self.actual.font.render(option[1].get(), 1, SHADOW)
+                    text = self.actual.font.render(option[1].get(), 1,
+                                                   self.actual.selectedcolor)
+                    text_bg = self.actual.font.render(option[1].get(), 1,
+                                                      SHADOW)
                 else:
-                    text = self.actual.font.render(option[1].get(), 1, self.actual.fontColor)
-                    textBg = self.actual.font.render(option[1].get(), 1, SHADOW)
+                    text = self.actual.font.render(option[1].get(), 1,
+                                                   self.actual.fontColor)
+                    text_bg = self.actual.font.render(option[1].get(), 1,
+                                                      SHADOW)
             else:
                 # Si el indice seleccionado es el item se cambia el color
                 if dy == self.actual.index:
-                    text = self.actual.font.render(option[0], 1, self.actual.selectedcolor)
-                    textBg = self.actual.font.render(option[0], 1, SHADOW)
+                    text = self.actual.font.render(option[0], 1,
+                                                   self.actual.selectedcolor)
+                    text_bg = self.actual.font.render(option[0], 1, SHADOW)
                 else:
-                    text = self.actual.font.render(option[0], 1, self.actual.fontColor)
-                    textBg = self.actual.font.render(option[0], 1, SHADOW)
+                    text = self.actual.font.render(option[0], 1,
+                                                   self.actual.fontColor)
+                    text_bg = self.actual.font.render(option[0], 1, SHADOW)
             # Se obtiene el texto y su ancho
             text_width, text_height = text.get_size()
             # Si el texto está centrado se obtiene el tamaño de la fuente
@@ -236,37 +262,50 @@ class Menu(object):
                 text_dx = 0
             # Se dibuja la fuente
             if self.actual.option_shadow:
-                surface.blit(textBg, (self.actual.posOptionX + text_dx - 3, self.actual.posOptionY + dy * (
-                    self.actual.fontsize + self.actual.optiondy) + text_dy - 3))
+                surface.blit(text_bg, (self.actual.posOptionX + text_dx - 3,
+                                       self.actual.posOptionY + dy * (
+                                           self.actual.fontsize + self.actual.optiondy) + text_dy - 3))
             surface.blit(text, (self.actual.posOptionX + text_dx,
-                                self.actual.posOptionY + dy * (self.actual.fontsize + self.actual.optiondy) + text_dy))
+                                self.actual.posOptionY + dy * (
+                                    self.actual.fontsize + self.actual.optiondy) + text_dy))
             # Si se tiene la seleccionada se dibuja el rectangulo
             if self.actual.drawselrect and (dy == self.actual.index):
                 if not self.actual.centered_option:
                     text_dx_tl = -text_width
                 else:
                     text_dx_tl = text_dx
-                pygame.draw.line(surface, self.actual.selectedcolor, (self.actual.posOptionX + text_dx - 10,
-                                                                      self.actual.posOptionY + dy * (
-                                                                          self.actual.fontsize + self.actual.optiondy) + text_dy - 2), \
-                                 (self.actual.posOptionX - text_dx_tl + 10, self.actual.posOptionY + dy * (
-                                     self.actual.fontsize + self.actual.optiondy) + text_dy - 2), self.actual.rectwidth)
-                pygame.draw.line(surface, self.actual.selectedcolor, (self.actual.posOptionX + text_dx - 10,
-                                                                      self.actual.posOptionY + dy * (
-                                                                          self.actual.fontsize + self.actual.optiondy) - text_dy + 2), \
-                                 (self.actual.posOptionX - text_dx_tl + 10, self.actual.posOptionY + dy * (
-                                     self.actual.fontsize + self.actual.optiondy) - text_dy + 2), self.actual.rectwidth)
-                pygame.draw.line(surface, self.actual.selectedcolor, (self.actual.posOptionX + text_dx - 10,
-                                                                      self.actual.posOptionY + dy * (
-                                                                          self.actual.fontsize + self.actual.optiondy) + text_dy - 2), \
+                pygame.draw.line(surface, self.actual.selectedcolor,
                                  (self.actual.posOptionX + text_dx - 10,
-                                  self.actual.posOptionY + dy * (self.actual.fontsize + self.optiondy) - text_dy + 2),
+                                  self.actual.posOptionY + dy * (
+                                      self.actual.fontsize + self.actual.optiondy) + text_dy - 2),
+                                 (self.actual.posOptionX - text_dx_tl + 10,
+                                  self.actual.posOptionY + dy * (
+                                      self.actual.fontsize + self.actual.optiondy) + text_dy - 2),
                                  self.actual.rectwidth)
-                pygame.draw.line(surface, self.actual.selectedcolor, (self.actual.posOptionX - text_dx_tl + 10,
-                                                                      self.actual.posOptionY + dy * (
-                                                                          self.actual.fontsize + self.actual.optiondy) + text_dy - 2), \
-                                 (self.actual.posOptionX - text_dx_tl + 10, self.actual.posOptionY + dy * (
-                                     self.actual.fontsize + self.actual.optiondy) - text_dy + 2), self.actual.rectwidth)
+                pygame.draw.line(surface, self.actual.selectedcolor,
+                                 (self.actual.posOptionX + text_dx - 10,
+                                  self.actual.posOptionY + dy * (
+                                      self.actual.fontsize + self.actual.optiondy) - text_dy + 2),
+                                 (self.actual.posOptionX - text_dx_tl + 10,
+                                  self.actual.posOptionY + dy * (
+                                      self.actual.fontsize + self.actual.optiondy) - text_dy + 2),
+                                 self.actual.rectwidth)
+                pygame.draw.line(surface, self.actual.selectedcolor,
+                                 (self.actual.posOptionX + text_dx - 10,
+                                  self.actual.posOptionY + dy * (
+                                      self.actual.fontsize + self.actual.optiondy) + text_dy - 2),
+                                 (self.actual.posOptionX + text_dx - 10,
+                                  self.actual.posOptionY + dy * (
+                                      self.actual.fontsize + self.optiondy) - text_dy + 2),
+                                 self.actual.rectwidth)
+                pygame.draw.line(surface, self.actual.selectedcolor,
+                                 (self.actual.posOptionX - text_dx_tl + 10,
+                                  self.actual.posOptionY + dy * (
+                                      self.actual.fontsize + self.actual.optiondy) + text_dy - 2),
+                                 (self.actual.posOptionX - text_dx_tl + 10,
+                                  self.actual.posOptionY + dy * (
+                                      self.actual.fontsize + self.actual.optiondy) - text_dy + 2),
+                                 self.actual.rectwidth)
             dy += 1
 
     def left(self):
@@ -289,14 +328,15 @@ class Menu(object):
         while True:
             if self.actual.prev is not None:
                 prev = self.actual.prev
-                prevDraw = self.actual.prevDraw
-                self.draw = prevDraw
+                prev_draw = self.actual.prevDraw
+                self.draw = prev_draw
                 self.actual.index = 0
                 self.actual = prev
                 self.actual.prev = None
                 self.actual.prevDraw = None
                 i += 1
-                if total != 0 and i == total: break
+                if total != 0 and i == total:
+                    break
             else:
                 break
 
@@ -328,8 +368,8 @@ class Menu(object):
                 # Si es volver al menu anterior
                 if opcion == MENU_BACK:
                     prev = self.actual.prev
-                    prevDraw = self.actual.prevDraw
-                    self.draw = prevDraw
+                    prev_draw = self.actual.prevDraw
+                    self.draw = prev_draw
                     self.actual.index = 0
                     self.actual = prev
                     self.actual.prev = None
@@ -339,7 +379,7 @@ class Menu(object):
                     pygame.quit()
                     utils.destroyProcess()
             # Si el tipo es una función
-            elif isinstance(opcion, types.FunctionType):
+            elif isinstance(opcion, types.FunctionType) or callable(opcion):
                 if len(self.actual.opciones[self.actual.index][2]) > 0:
                     opcion(*self.actual.opciones[self.actual.index][2])
                 else:

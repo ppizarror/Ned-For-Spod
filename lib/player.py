@@ -7,21 +7,19 @@ Maneja la comunicación con el servidor para el caso de los marcadores
 Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015
 """
+
 if __name__ == '__main__':
     from path import *  # @UnusedWildImport
 
 # Importación de librerías
-from math import sqrt  # @UnusedImport
 import math
-from operator import pos
 import random
 import string
 from bin import pygame
 from bin.browser import unescape
-from bin.errors import *  # @UnusedWildImport
+from bin.errors import *
 from bin.hashdir import md5str
-from bin.utils import urlencode, Request, urlopen, \
-    getBetweenTags  # @UnusedImport
+from bin.utils import Request, urlopen, getBetweenTags
 
 # Definición de constantes
 ACELCONST = 300  # aceleracion por dt
@@ -76,9 +74,9 @@ STATE_NEWLAP = "NEWLAP"  # indica que el jugador completó la vuelta anterior
 STATE_NULL = "NONE"  # indica ausencia de estado
 STATE_OFFROAD = "OFFROAD"  # indica si el auto se salio de la pista
 STATE_WRONGWAY = "WRONGWAY"  # indica que el jugador conduce en sentido inverso a la orientación de la pista
-TIMETO_SHOW_FRENADO = 0.3  # tiempo que se debe presionar continuamente el botón de frenado para mostrar las marcas en el asfalto
+TIMETO_SHOW_FRENADO = 0.3  # tiempo que se debe presionar el botón de frenado para mostrar las marcas en el asfalto
 TRACK_NOT_DEFINED = "$notdefined$"  # pista no definida
-VALIDUSERNAME = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"  # caracteres válidos para un nombre de jugador online
+VALIDUSERNAME = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"  # caracteres válidos
 VEL_PASTO = 60  # velocidad máxima en el pasto
 WEB_BROWSER = True  # indica si se usa el navegador web pasado por argumento o no
 WHITE = (255, 255, 255)  # color blanco
@@ -957,8 +955,7 @@ class Player(object):
                 self.marcasTierra[index] = (new_x, new_y)
             else:
                 if math.sqrt((new_x - self.marcasTierra[index][0]) ** 2 + (
-                            new_y - self.marcasTierra[index][
-                            1]) ** 2) > MIN_LENGTH_MARCA:
+                            new_y - self.marcasTierra[index][1]) ** 2) > MIN_LENGTH_MARCA:
                     # Se elige el color de dibujado
                     color_choice = random.randint(-10, 2)
                     if color_choice < 0:
@@ -1100,8 +1097,7 @@ class Player(object):
             self.marcasFrenado[index] = (new_x, new_y)
         else:
             if math.sqrt((new_x - self.marcasFrenado[index][0]) ** 2 + (
-                        new_y - self.marcasFrenado[index][
-                        1]) ** 2) > MIN_LENGTH_FRENADO:
+                        new_y - self.marcasFrenado[index][1]) ** 2) > MIN_LENGTH_FRENADO:
                 # Se elige el color de dibujado
                 color_choice = random.randint(-10, 2)
                 if color_choice < 0:
@@ -1124,7 +1120,7 @@ class Player(object):
                 if not self.soundWheelsChannel.get_busy():
                     if self.sound_state:
                         self.soundWheelsChannel.play(
-                        self.soundTrack[SOUND_TRACK_WHEEL])
+                            self.soundTrack[SOUND_TRACK_WHEEL])
 
     def marcar_frenado_hb(self, pos_rueda, index):
         """
@@ -1143,8 +1139,7 @@ class Player(object):
             self.marcasFrenadoHB[index] = (new_x, new_y)
         else:
             if math.sqrt((new_x - self.marcasFrenadoHB[index][0]) ** 2 + (
-                        new_y - self.marcasFrenadoHB[index][
-                        1]) ** 2) > MIN_LENGTH_FRENADO:
+                        new_y - self.marcasFrenadoHB[index][1]) ** 2) > MIN_LENGTH_FRENADO:
                 # Se elige el color de dibujado
                 color_choice = random.randint(-10, 2)
                 if color_choice < 0:
@@ -1169,7 +1164,7 @@ class Player(object):
                 if not self.soundWheelsChannel.get_busy():
                     if self.sound_state:
                         self.soundWheelsChannel.play(
-                        self.soundTrack[SOUND_TRACK_WHEEL_HB])
+                            self.soundTrack[SOUND_TRACK_WHEEL_HB])
 
     def return_to_track(self):
         """
@@ -1193,7 +1188,8 @@ class Player(object):
         """
         if controller:  # si se mueve el auto mediante el controlador
             actual_vel = self.get_vel()
-            if MINROTVEL < actual_vel < self.maxrotvel * self.agarre:  # si se esta bajo la maxima velocidad de rotacion ->creciente
+            # Si se esta bajo la maxima velocidad de rotacion ->creciente
+            if MINROTVEL < actual_vel < self.maxrotvel * self.agarre:
                 self.angle = (self.angle + max(
                     min(ROTVEL * t * direction * 1 * cos((actual_vel * 90) / (
                         2 * self.maxrotvel * self.agarre)),
@@ -1378,9 +1374,7 @@ class Player(object):
         if (rel_pos[1] - 1.25 * self.window.get_window_height()) < \
                 self.mapLimits[1] or (
                     rel_pos[1] + 1.0 * self.window.get_window_height()) > \
-                self.mapLimits[3] or \
-                        (rel_pos[0] - 1.25 * self.window.get_window_width()) < \
-                        self.mapLimits[0] or (
+                self.mapLimits[3] or (rel_pos[0] - 1.25 * self.window.get_window_width()) < self.mapLimits[0] or (
                     rel_pos[0] + 1.0 * self.window.get_window_width()) > \
                 self.mapLimits[2]:
             self.return_to_track()
@@ -1390,10 +1384,10 @@ class Player(object):
         else:
             next_index = (self.lastIndexTrack + 1) % self.trackSize
             if self.check_track_index(
-                    next_index):  # si se avanzo correctamente
+                    next_index):  # si se avanzó correctamente
                 self.lastIndexTrack = next_index  # se avanza en la pista
-                self.lastIndexTrackAng = self.angle  # se guarda el angulo asociado al ultimo sector valido de la pista
-                self.lastIndexTrackPos = self.get_pos()  # se guarda la posición asociada al ultimo sector valido de la pista
+                self.lastIndexTrackAng = self.angle  # se guarda el angulo asociado al ultimo sector válido de la pista
+                self.lastIndexTrackPos = self.get_pos()  # se guarda la posición asociada al ultimo sector válido
                 if self.lastIndexTrack == 0:  # si se volvió al punto de origen entonces aumenta la pista
                     self.lapCount += 1
                     self.totalTime.append(self.lapTime)

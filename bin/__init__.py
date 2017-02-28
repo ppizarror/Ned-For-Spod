@@ -38,7 +38,7 @@ except:
 
 # Importación de librerías internas
 try:
-    from pygame.locals import *
+    from pygame import *
     import pygame
     import pygame.gfxdraw
 except:

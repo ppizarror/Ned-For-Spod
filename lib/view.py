@@ -6,6 +6,7 @@ Es el encargado de dibujar sobre la pantalla todos los modelos
 Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015
 """
+
 if __name__ == '__main__':
     from path import *  # @UnusedWildImport
 
@@ -14,9 +15,8 @@ from bin import *  # @UnusedWildImport
 from bin.errors import *  # @UnusedWildImport
 from controller import STATE_MENU, STATE_NEXT, STATE_PLAY
 from data import DIR_SAVES
-from player import TRACK_NOT_DEFINED, STATE_CORRECT, STATE_INVALIDPOS, \
-    STATE_NEWLAP, STATE_NULL, STATE_OFFROAD, STATE_WRONGWAY, METRICS, \
-    CAMBIO_NEUTRO, CAMBIO_REVERSA  # @UnusedImport
+from player import TRACK_NOT_DEFINED, STATE_INVALIDPOS, STATE_NULL, STATE_OFFROAD, STATE_WRONGWAY, METRICS, \
+    CAMBIO_NEUTRO, CAMBIO_REVERSA
 from resources.fonts import getFonts
 from resources.images import getImages
 from Revolgraph import Revolgraph
@@ -34,7 +34,7 @@ COLOR_RESULT_LINE = (51, 51, 51)
 COLOR_VELOCIMETER = (255, 255, 255, 128)
 
 
-# noinspection PyBroadException
+# noinspection PyBroadException,PyUnresolvedReferences
 class View(object):
     """Vista de la aplicación"""
 
@@ -171,22 +171,22 @@ class View(object):
         # Si se encuentra jugando
         if state == STATE_PLAY and self.isPlaying:
             # Se obtiene la posición de la cámara
-            camera_pos = self.map.getPlayer().get_pos()
-            camera_rel_pos = self.map.getPlayer().get_relative_pos()
+            camera_pos = self.map.get_player().get_pos()
+            camera_rel_pos = self.map.get_player().get_relative_pos()
             # Se redibuja el fondo
-            bg_size = self.map.getBackgroundSize()
-            defaultx = self.map.getMapLimits()[0]
-            max_x = self.map.getMapLimits()[2]
-            max_y = self.map.getMapLimits()[3]
-            y = self.map.getMapLimits()[1]
-            fondo = self.map.getBackground()
+            bg_size = self.map.get_background_size()
+            defaultx = self.map.get_map_limits()[0]
+            max_x = self.map.get_map_limits()[2]
+            max_y = self.map.get_map_limits()[3]
+            y = self.map.get_map_limits()[1]
+            fondo = self.map.get_background()
             while True:
                 x = defaultx
                 while True:
                     drawx = -camera_rel_pos[0] + x
                     drawy = -camera_rel_pos[1] + y
-                    if -bg_size[0] < drawx < self.windowWidth and -bg_size[
-                        1] < drawy < self.windowHeight:  # si se ve en la pantalla se dibuja
+                    # Si se ve en la pantalla se dibuja
+                    if -bg_size[0] < drawx < self.windowWidth and -bg_size[1] < drawy < self.windowHeight:
                         self.screen.blit(fondo, (drawx, drawy))
                     x += bg_size[0]
                     if x >= max_x:
@@ -196,63 +196,55 @@ class View(object):
                     break
             # Se dibujan las marcas del terreno
             if self.show_mark_ground:
-                for marca_tierra in self.map.getMarcasTierra():
+                for marca_tierra in self.map.get_marcas_tierra():
                     pos_ini = marca_tierra[0]
                     pos_fin = marca_tierra[1]
-                    drawxini = (-self.windowWidth / 2 + camera_pos[0]) + \
-                               pos_ini[0]
+                    drawxini = (-self.windowWidth / 2 + camera_pos[0]) + pos_ini[0]
                     drawyini = (-self.windowHeight + camera_pos[1]) + pos_ini[
                         1] + 300
-                    drawxfin = (-self.windowWidth / 2 + camera_pos[0]) + \
-                               pos_fin[0]
+                    drawxfin = (-self.windowWidth / 2 + camera_pos[0]) + pos_fin[0]
                     drawyfin = (-self.windowHeight + camera_pos[1]) + pos_fin[
                         1] + 300
-                    if (
-                                        0 <= drawxini <= self.windowWidth and 0 <= drawyini <= self.windowHeight) or \
-                            (
-                                                0 <= drawxfin <= self.windowWidth and 0 <= drawyfin <= self.windowHeight):
+                    if (0 <= drawxini <= self.windowWidth and 0 <= drawyini <= self.windowHeight) or (
+                                        0 <= drawxfin <= self.windowWidth and 0 <= drawyfin <= self.windowHeight):
                         pygame.draw.line(self.screen, marca_tierra[2],
                                          (drawxini, drawyini),
                                          (drawxfin, drawyfin),
                                          self.mark_ground_size)
             # Se dibujan las pistas
             if self.show_track:
-                for track in self.map.getTrack():
+                for track in self.map.get_track():
                     track.draw(self.screen, self.window, camera_pos)
             # Se dibujan las marcas sobre la pista
             if self.show_mark_track:
-                for marca_camino in self.map.getMarcasFrenado():
+                for marca_camino in self.map.get_marcas_frenado():
                     pos_ini = marca_camino[0]
                     pos_fin = marca_camino[1]
-                    drawxini = (-self.windowWidth / 2 + camera_pos[0]) + \
-                               pos_ini[0]
+                    drawxini = (-self.windowWidth / 2 + camera_pos[0]) + pos_ini[0]
                     drawyini = (-self.windowHeight + camera_pos[1]) + pos_ini[
                         1] + 300
-                    drawxfin = (-self.windowWidth / 2 + camera_pos[0]) + \
-                               pos_fin[0]
+                    drawxfin = (-self.windowWidth / 2 + camera_pos[0]) + pos_fin[0]
                     drawyfin = (-self.windowHeight + camera_pos[1]) + pos_fin[
                         1] + 300
-                    if (
-                                        0 <= drawxini <= self.windowWidth and 0 <= drawyini <= self.windowHeight) or \
-                            (
-                                                0 <= drawxfin <= self.windowWidth and 0 <= drawyfin <= self.windowHeight):
+                    if (0 <= drawxini <= self.windowWidth and 0 <= drawyini <= self.windowHeight) or (
+                                        0 <= drawxfin <= self.windowWidth and 0 <= drawyfin <= self.windowHeight):
                         pygame.draw.line(self.screen, marca_camino[2],
                                          (drawxini, drawyini),
                                          (drawxfin, drawyfin),
                                          self.mark_track_size)
             # Si no se ha terminado la pista
-            if not self.map.getPlayer().finished_lap():
+            if not self.map.get_player().finished_lap():
                 # Se dibuja el jugador
                 if self.show_player:
-                    self.map.getPlayer().collide(self.screen, time)
-                    message = self.map.getPlayer().draw(self.screen, time,
-                                                        True, self.window,
-                                                        draw_ruedas=self.show_ruedas,
-                                                        show_ghost=self.show_ghost)
+                    self.map.get_player().collide(self.screen, time)
+                    message = self.map.get_player().draw(self.screen, time,
+                                                         True, self.window,
+                                                         draw_ruedas=self.show_ruedas,
+                                                         show_ghost=self.show_ghost)
                 else:
                     message = STATE_NULL
                 # Se dibujan las decoraciones
-                for decoration in self.map.getDecorations():
+                for decoration in self.map.get_decorations():
                     decoration.draw(self.screen, self.window, camera_pos)
                 # Se dibuja la ui
                 if self.show_ui:
@@ -260,7 +252,7 @@ class View(object):
                     self.screen.blit(self.speedRect, (
                         self.speedPos[0] - 300, self.speedPos[1] - 50))
                     self.screen.blit(self.speedFont.render(
-                        str(self.map.getPlayer().get_vel_kph()), 1,
+                        str(self.map.get_player().get_vel_kph()), 1,
                         COLOR_VELOCIMETER),
                         (self.speedPos[0] - 10,
                          self.speedPos[1] + 10))
@@ -292,62 +284,61 @@ class View(object):
                     self.screen.blit(
                         self.lapFontL.render(
                             str(self.map.player.get_lap_pos()) + "/" + str(
-                                self.map.getLaps()), 1,
+                                self.map.get_laps()), 1,
                             COLOR_VELOCIMETER),
                         (self.lapPos[0] - 12, self.lapPos[1]))
                     # Dibuja el tiempo de vuelta
                     self.screen.blit(
                         self.lapTimeFont.render(self.lang.get(
-                            12) + " " * 6 + self.map.getPlayer().get_lap_time(),
+                            12) + " " * 6 + self.map.get_player().get_lap_time(),
                                                 1,
                                                 COLOR_VELOCIMETER),
                         (self.lapPos[0] - 121, self.lapPos[1] + 40))
                     # Se dibujan los objetivos
                     k = 0
                     if self.map.player.get_lap_pos() == 1:
-                        for obj in self.map.getPlayer().get_track_objetives():
+                        for obj in self.map.get_player().get_track_objetives():
                             if k == 0:
                                 self.screen.blit(
                                     self.lapTimeFont.render(self.lang.get(19,
-                                                                          self.map.getPlayer().get_lap_time(
+                                                                          self.map.get_player().get_lap_time(
                                                                               obj)),
                                                             1,
                                                             COLOR_ORO),
                                     (20, 20 + 29 * k))
-                                if self.map.getPlayer().get_lap_time_no_format() > obj:
+                                if self.map.get_player().get_lap_time_no_format() > obj:
                                     pygame.draw.line(self.screen, COLOR_ALERT,
                                                      (17, 31 + 29 * k),
                                                      (155, 31 + 29 * k), 3)
                             if k == 1:
                                 self.screen.blit(
                                     self.lapTimeFont.render(self.lang.get(20,
-                                                                          self.map.getPlayer().get_lap_time(
+                                                                          self.map.get_player().get_lap_time(
                                                                               obj)),
                                                             1,
                                                             COLOR_PLATA),
                                     (20, 20 + 29 * k))
-                                if self.map.getPlayer().get_lap_time_no_format() > obj:
+                                if self.map.get_player().get_lap_time_no_format() > obj:
                                     pygame.draw.line(self.screen, COLOR_ALERT,
                                                      (17, 31 + 29 * k),
                                                      (175, 31 + 29 * k), 3)
                             if k == 2:
                                 self.screen.blit(
                                     self.lapTimeFont.render(self.lang.get(21,
-                                                                          self.map.getPlayer().get_lap_time(
+                                                                          self.map.get_player().get_lap_time(
                                                                               obj)),
                                                             1,
                                                             COLOR_BRONCE),
                                     (20, 20 + 29 * k))
-                                if self.map.getPlayer().get_lap_time_no_format() > obj:
+                                if self.map.get_player().get_lap_time_no_format() > obj:
                                     pygame.draw.line(self.screen, COLOR_ALERT,
                                                      (17, 31 + 29 * k),
                                                      (195, 31 + 29 * k), 3)
                             k += 1
                     else:
-                        for obj in self.map.getPlayer().get_track_objetives():
+                        for obj in self.map.get_player().get_track_objetives():
                             if k == 0:
-                                if self.map.getPlayer().get_fast_lap()[
-                                    1] < obj:
+                                if self.map.get_player().get_fast_lap()[1] < obj:
                                     self.screen.blit(self.lapTimeFont.render(
                                         self.lang.get(19, self.lang.get(46)),
                                         1,
@@ -356,17 +347,16 @@ class View(object):
                                     self.screen.blit(
                                         self.lapTimeFont.render(
                                             self.lang.get(19,
-                                                          self.map.getPlayer().get_lap_time(
+                                                          self.map.get_player().get_lap_time(
                                                               obj)),
                                             1, COLOR_ORO), (20, 20 + 29 * k))
-                                    if self.map.getPlayer().get_lap_time_no_format() > obj:
+                                    if self.map.get_player().get_lap_time_no_format() > obj:
                                         pygame.draw.line(self.screen,
                                                          COLOR_ALERT,
                                                          (17, 31 + 29 * k),
                                                          (155, 31 + 29 * k), 3)
                             if k == 1:
-                                if self.map.getPlayer().get_fast_lap()[
-                                    1] < obj:
+                                if self.map.get_player().get_fast_lap()[1] < obj:
                                     self.screen.blit(self.lapTimeFont.render(
                                         self.lang.get(20, self.lang.get(46)),
                                         1,
@@ -375,17 +365,16 @@ class View(object):
                                     self.screen.blit(
                                         self.lapTimeFont.render(
                                             self.lang.get(20,
-                                                          self.map.getPlayer().get_lap_time(
+                                                          self.map.get_player().get_lap_time(
                                                               obj)),
                                             1, COLOR_PLATA), (20, 20 + 29 * k))
-                                    if self.map.getPlayer().get_lap_time_no_format() > obj:
+                                    if self.map.get_player().get_lap_time_no_format() > obj:
                                         pygame.draw.line(self.screen,
                                                          COLOR_ALERT,
                                                          (17, 31 + 29 * k),
                                                          (155, 31 + 29 * k), 3)
                             if k == 2:
-                                if self.map.getPlayer().get_fast_lap()[
-                                    1] < obj:
+                                if self.map.get_player().get_fast_lap()[1] < obj:
                                     self.screen.blit(self.lapTimeFont.render(
                                         self.lang.get(21, self.lang.get(46)),
                                         1,
@@ -394,11 +383,11 @@ class View(object):
                                     self.screen.blit(
                                         self.lapTimeFont.render(
                                             self.lang.get(21,
-                                                          self.map.getPlayer().get_lap_time(
+                                                          self.map.get_player().get_lap_time(
                                                               obj)),
                                             1, COLOR_BRONCE),
                                         (20, 20 + 29 * k))
-                                    if self.map.getPlayer().get_lap_time_no_format() > obj:
+                                    if self.map.get_player().get_lap_time_no_format() > obj:
                                         pygame.draw.line(self.screen,
                                                          COLOR_ALERT,
                                                          (17, 31 + 29 * k),
@@ -428,23 +417,23 @@ class View(object):
                     if not red:
                         self.screen.blit(
                             self.lapTimeFont.render(self.lang.get(
-                                12) + " " * 6 + self.map.getPlayer().get_lap_time(),
+                                12) + " " * 6 + self.map.get_player().get_lap_time(),
                                                     1,
                                                     COLOR_VELOCIMETER),
                             (self.lapPos[0] - 121, self.lapPos[1] + 40))
                     else:
                         self.screen.blit(
                             self.lapTimeFont.render(self.lang.get(
-                                12) + " " * 6 + self.map.getPlayer().get_lap_time(),
+                                12) + " " * 6 + self.map.get_player().get_lap_time(),
                                                     1,
                                                     COLOR_ALERT),
                             (self.lapPos[0] - 121, self.lapPos[1] + 40))
             # Si ya termino la pista se muestran los resultados
             else:
                 # Se dibuja al jugador sin actualizar
-                self.map.getPlayer().draw(self.screen, time, False,
-                                          self.window, draw_ruedas=False,
-                                          show_ghost=True)
+                self.map.get_player().draw(self.screen, time, False,
+                                           self.window, draw_ruedas=False,
+                                           show_ghost=True)
                 # Se dibuja el recuadro de resultados
                 self.screen.blit(self.resultsScreen, self.resultsScreenPos)
                 self.screen.blit(
@@ -453,7 +442,7 @@ class View(object):
                     (self.resultsScreenPos[0] + 10,
                      self.resultsScreenPos[1] + 17))
                 self.screen.blit(self.resultsFontTitleTrack.render(
-                    self.lang.get(17) + self.map.getTrackTitle(), 1,
+                    self.lang.get(17) + self.map.get_track_title(), 1,
                     COLOR_VELOCIMETER),
                     (self.resultsScreenPos[0] + 223,
                      self.resultsScreenPos[1] + 35))
@@ -488,7 +477,7 @@ class View(object):
                                                        COLOR_VELOCIMETER),
                     (self.resultsScreenPos[0] + 470,
                      self.resultsScreenPos[1] + 38))
-                tipo = self.map.getPlayer().get_type()
+                tipo = self.map.get_player().get_type()
                 if tipo == 1:
                     self.screen.blit(
                         self.resultsFontTitleSubtl2.render(self.lang.get(43),
@@ -511,10 +500,10 @@ class View(object):
                         (self.resultsScreenPos[0] + 590,
                          self.resultsScreenPos[1] + 38))
                 # Resultados
-                tiempo = self.map.getPlayer().get_fast_lap()[1]
-                oro = self.map.getPlayer().get_track_objetives()[0]
-                plata = self.map.getPlayer().get_track_objetives()[1]
-                bronce = self.map.getPlayer().get_track_objetives()[2]
+                tiempo = self.map.get_player().get_fast_lap()[1]
+                oro = self.map.get_player().get_track_objetives()[0]
+                plata = self.map.get_player().get_track_objetives()[1]
+                bronce = self.map.get_player().get_track_objetives()[2]
                 self.screen.blit(
                     self.resultsFontTitleSubtl2.render(self.lang.get(19, ""),
                                                        1, COLOR_ORO),
@@ -537,7 +526,7 @@ class View(object):
                         (self.resultsScreenPos[0] + 50,
                          self.resultsScreenPos[1] + 118))
                     self.screen.blit(self.resultsFontTitleSubtl2.render(
-                        self.lang.get(48, self.map.getPlayer().get_lap_time(
+                        self.lang.get(48, self.map.get_player().get_lap_time(
                             oro - tiempo)), 1, COLOR_COMPLETED),
                         (self.resultsScreenPos[0] + 50,
                          self.resultsScreenPos[1] + 138))
@@ -548,7 +537,7 @@ class View(object):
                         (self.resultsScreenPos[0] + 50,
                          self.resultsScreenPos[1] + 118))
                     self.screen.blit(self.resultsFontTitleSubtl2.render(
-                        self.lang.get(49, self.map.getPlayer().get_lap_time(
+                        self.lang.get(49, self.map.get_player().get_lap_time(
                             tiempo - oro)), 1, COLOR_ALERT),
                         (self.resultsScreenPos[0] + 50,
                          self.resultsScreenPos[1] + 138))
@@ -559,7 +548,7 @@ class View(object):
                         (self.resultsScreenPos[0] + 63,
                          self.resultsScreenPos[1] + 178))
                     self.screen.blit(self.resultsFontTitleSubtl2.render(
-                        self.lang.get(48, self.map.getPlayer().get_lap_time(
+                        self.lang.get(48, self.map.get_player().get_lap_time(
                             plata - tiempo)), 1, COLOR_COMPLETED),
                         (self.resultsScreenPos[0] + 50,
                          self.resultsScreenPos[1] + 198))
@@ -570,7 +559,7 @@ class View(object):
                         (self.resultsScreenPos[0] + 63,
                          self.resultsScreenPos[1] + 178))
                     self.screen.blit(self.resultsFontTitleSubtl2.render(
-                        self.lang.get(49, self.map.getPlayer().get_lap_time(
+                        self.lang.get(49, self.map.get_player().get_lap_time(
                             tiempo - plata)), 1, COLOR_ALERT),
                         (self.resultsScreenPos[0] + 50,
                          self.resultsScreenPos[1] + 198))
@@ -581,7 +570,7 @@ class View(object):
                         (self.resultsScreenPos[0] + 83,
                          self.resultsScreenPos[1] + 238))
                     self.screen.blit(self.resultsFontTitleSubtl2.render(
-                        self.lang.get(48, self.map.getPlayer().get_lap_time(
+                        self.lang.get(48, self.map.get_player().get_lap_time(
                             bronce - tiempo)), 1, COLOR_COMPLETED),
                         (self.resultsScreenPos[0] + 50,
                          self.resultsScreenPos[1] + 258))
@@ -592,7 +581,7 @@ class View(object):
                         (self.resultsScreenPos[0] + 83,
                          self.resultsScreenPos[1] + 238))
                     self.screen.blit(self.resultsFontTitleSubtl2.render(
-                        self.lang.get(49, self.map.getPlayer().get_lap_time(
+                        self.lang.get(49, self.map.get_player().get_lap_time(
                             tiempo - bronce)), 1, COLOR_ALERT),
                         (self.resultsScreenPos[0] + 50,
                          self.resultsScreenPos[1] + 258))
@@ -608,28 +597,28 @@ class View(object):
                     (self.resultsScreenPos[0] + 492,
                      self.resultsScreenPos[1] + 70))
                 self.screen.blit(self.resultsFontTitleContent.render(
-                    self.lang.get(22, self.map.getPlayer().get_lap_time(
-                        sum(self.map.getPlayer().get_laps_time()))), 1,
+                    self.lang.get(22, self.map.get_player().get_lap_time(
+                        sum(self.map.get_player().get_laps_time()))), 1,
                     COLOR_VELOCIMETER), (
                     self.resultsScreenPos[0] + 205,
                     self.resultsScreenPos[1] + 120))
                 self.screen.blit(
                     self.resultsFontTitleContent.render(self.lang.get(23,
-                                                                      self.map.getPlayer().get_fast_lap()[
+                                                                      self.map.get_player().get_fast_lap()[
                                                                           0]),
                                                         1,
                                                         COLOR_VELOCIMETER), (
                         self.resultsScreenPos[0] + 205,
                         self.resultsScreenPos[1] + 160))
                 self.screen.blit(self.resultsFontTitleContent.render(
-                    self.lang.get(24, self.map.getPlayer().get_lap_time(
-                        self.map.getPlayer().get_fast_lap()[1])), 1,
+                    self.lang.get(24, self.map.get_player().get_lap_time(
+                        self.map.get_player().get_fast_lap()[1])), 1,
                     COLOR_VELOCIMETER), (
                     self.resultsScreenPos[0] + 205,
                     self.resultsScreenPos[1] + 180))
                 self.screen.blit(
                     self.resultsFontTitleContent.render(
-                        self.lang.get(25, self.map.getPlayer().get_fast_vel()),
+                        self.lang.get(25, self.map.get_player().get_fast_vel()),
                         1,
                         COLOR_VELOCIMETER), (
                         self.resultsScreenPos[0] + 205,
@@ -640,20 +629,20 @@ class View(object):
                         self.resultsScreenPos[0] + 205,
                         self.resultsScreenPos[1] + 260))
                 self.screen.blit(self.resultsFontTitleContent.render(
-                    self.map.getPlayer().get_lap_time(
-                        self.map.getPlayer().get_tiempo_fuera()) + "s", 1,
+                    self.map.get_player().get_lap_time(
+                        self.map.get_player().get_tiempo_fuera()) + "s", 1,
                     COLOR_VELOCIMETER), (
                     self.resultsScreenPos[0] + 205,
                     self.resultsScreenPos[1] + 280))
                 self.screen.blit(
                     self.resultsFontTitleContent.render(
-                        self.lang.get(27, self.map.getPlayer().get_puntaje()),
+                        self.lang.get(27, self.map.get_player().get_puntaje()),
                         1,
                         COLOR_VELOCIMETER), (
                         self.resultsScreenPos[0] + 205,
                         self.resultsScreenPos[1] + 320))
                 # Marcadores online
-                scores = self.map.getPlayer().get_scoreboard_online()
+                scores = self.map.get_player().get_scoreboard_online()
                 if len(scores) > 0:
                     if scores[0] == NO_ERROR:
                         self.screen.blit(self.resultsFontTitleSubtl2.render(
@@ -755,15 +744,14 @@ class View(object):
                         (self.resultsScreenPos[0] + 481,
                          self.resultsScreenPos[1] + 120))
                 # Se guardan los resultados y se consulta la siguiente pista
-                if not self.map.resultsSaved():
+                if not self.map.results_saved():
                     self.map.results = True
                     save = open(
-                        DIR_SAVES + str(hash(self.map.getTrackTitle())) + str(
-                            hash(self.map.getPlayer().username)) + \
-                        str(hash(self.map.getPlayer().get_type())) + ".txt",
-                        "w")
+                        DIR_SAVES + str(hash(self.map.get_track_title())) + str(
+                            hash(self.map.get_player().username)) + str(
+                            hash(self.map.get_player().get_type())) + ".txt", "w")
                     save.write(
-                        "<player>" + self.map.getPlayer().username + "</player>")
+                        "<player>" + self.map.get_player().username + "</player>")
                     if tiempo < oro:
                         save.write("<oro>1</oro>")
                     else:
@@ -781,16 +769,16 @@ class View(object):
                     save.write(
                         "<bronce_t>" + str(tiempo - oro) + "</bronce_t>")
                     save.close()
-                    self.map.getPlayer().set_next_track(
+                    self.map.get_player().set_next_track(
                         TRACKS[get_next_track(self.world.get_actual_index())])
                 # Se dibujan los botones debajo del recuadro
-                if self.map.getPlayer().get_next_track() != TRACK_NOT_DEFINED:
+                if self.map.get_player().get_next_track() != TRACK_NOT_DEFINED:
                     quit_text = self.buttonsResultsFont.render(
                         self.lang.get(108), 1, COLOR_VELOCIMETER)
                     quit_text_width = quit_text.get_size()[0]
                     next_text = self.buttonsResultsFont.render(
                         self.lang.get(109,
-                                      self.map.getPlayer().get_next_track()),
+                                      self.map.get_player().get_next_track()),
                         1, COLOR_VELOCIMETER)
                     next_text_width = next_text.get_size()[0]
                     pygame.gfxdraw.filled_polygon(self.screen, [
@@ -822,22 +810,22 @@ class View(object):
 
         # Si está en un menu
         elif state == STATE_MENU:
-            if self.isPlaying and not self.map.getPlayer().finished_lap():
+            if self.isPlaying and not self.map.get_player().finished_lap():
                 self.menu.setActualMenu(MENU_PAUSE)
                 self.menu.drawMenuPause()
             else:
                 self.menu.setActualMenu(MENU_INICIAL)
                 # Si se vuelve al menu principal se destruye
-                if self.isPlaying and self.map.getPlayer().finished_lap():
+                if self.isPlaying and self.map.get_player().finished_lap():
                     self.world.clear_actual_map()
                     self.stop_playing_render()
-                    self.controller.delPlayer()
+                    self.controller.del_player()
                 self.menu.drawMenuInicial(time)
         # Si el evento es avanzar de pista
         elif state == STATE_NEXT:
             self.world.clear_actual_map()
             self.world.load_map(NEXT_TRACK)
-            self.controller.setPlayer()
+            self.controller.set_player()
             self.start_playing_render()
         # Se actualiza la pantalla
         pygame.display.flip()

@@ -6,7 +6,7 @@ Obtiene el checksum del proyecto.
 
 Ned for Spod
 Autor: PABLO PIZARRO @ ppizarro ~
-Fecha: ABRIL 2015
+Fecha: ABRIL 2015 - FEBRERO 2017
 """
 
 # Importación de librerías
@@ -24,7 +24,7 @@ from resources.icons import getIcons  # @UnresolvedImport
 pygame.init()  # @UndefinedVariable
 
 # Definición de constantes
-VERBOSE = True  # imprime el estado del juego en consola
+VERBOSE = False  # imprime el estado del juego en consola
 
 
 def main():
@@ -66,6 +66,7 @@ def main():
             utils.destroyProcess()  # @UndefinedVariable
 
     # Creación de ventana
+    # noinspection PyUnresolvedReferences
     window = Window(window_config, lang.get(10),
                     pygame.image.load(getIcons("icon")),
                     display_info)  # @UndefinedVariable
@@ -75,7 +76,7 @@ def main():
     # Se crea el mundo
     world = World(world_config, map_config, window, checksum, score_config,
                   user_config, lang, game_config, verbose=VERBOSE)
-    # TEST: world.loadMap(1)
+    # world.load_map(1)
 
     # Se crean los menús de inicio y pause
     menus = Createuimenu(lang, window, world, game_config, user_config,

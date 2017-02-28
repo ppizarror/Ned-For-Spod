@@ -1,12 +1,12 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-#
-# Adminsitra la direccion de directorios de la aplicación
-# Se pueden incluir todos los directorios salvo bin/
-#
-# Game template
-# Autor: PABLO PIZARRO @ ppizarro ~
-# Fecha: ABRIL 2015
+# coding=utf-8
+"""
+Adminsitra la direccion de directorios de la aplicación
+Se pueden incluir todos los directorios salvo bin/
+
+Game template
+Autor: PABLO PIZARRO @ ppizarro ~
+Fecha: ABRIL 2015
+"""
 
 # Importación de librerías
 import os

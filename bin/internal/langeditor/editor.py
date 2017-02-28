@@ -12,13 +12,15 @@ from tkFileDialog import *  # @UnusedWildImport
 import tkFont
 import ttk
 
-
-try: import winsound
-except: pass
+try:
+    import winsound
+except:
+    pass
 
 # Configuración de librerías
 reload(sys)
 sys.setdefaultencoding('UTF8')
+_PATH = str(os.path.abspath(os.path.dirname(__file__))).replace('\\', '/')
 
 # Constantes del programa
 AUTOR = "Pablo Pizarro"
@@ -26,7 +28,8 @@ C_DATA = [650, 450, False, False, False, "*//*", False]
 DATADOCUMENTS = "doc/"
 DATAICONS = "icons/"
 DATACONFIG = "config/"
-DATALANGS = str(os.path.abspath(os.path.dirname(__file__))).replace("bin/internal/langeditor", "resources/langs/")
+DATALANGS = _PATH.replace("bin/internal/langeditor", "resources/langs/")
+print DATALANGS
 DATARECOVER = "recover/"
 DEFAULT_FONT_TITLE = "Arial", 10
 EMAIL = "ppizarror@ing.uchile.cl"
@@ -38,11 +41,14 @@ ALERTICON = DATAICONS + "alert.ico"
 TITLE = "Langs"
 VERSION = 1.8
 LANGEND = ".lng"
-ml_columns = ("ID", \
-              "                                                              String            " + \
+ml_columns = ("   ID   ", \
+              "                               String            " + \
               "                                                  ")
 
+
 # Genera una matriz dado un archivo
+
+
 def loadFromArchive(archive):
     l = list()
     archive = open(archive, "r")
@@ -100,6 +106,7 @@ def sortby(tree, col, descending):
     for indx, item in enumerate(data): tree.move(item[1], '', indx)
     tree.heading(col, command=lambda col=col: sortby(tree, col, int(not descending)))
 
+
 # Se cargan la lista de idiomas disponibles
 try:
     LANGLIST = loadFromArchive(LANGFILE)
@@ -107,6 +114,7 @@ except:
     archive = open(LANGFILE, "w")
     archive.close()
     LANGLIST = ""
+
 
 # Clase pop
 class pop:
@@ -293,6 +301,7 @@ class pop:
             self.values.append(i)
             self.sent = True
             self.destruir()
+
 
 # Se cargan las configuraciones
 try:

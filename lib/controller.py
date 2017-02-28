@@ -1,15 +1,16 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-if __name__ == '__main__': from path import *  # @UnusedWildImport
+# coding=utf-8
+"""
+CONTROL
+Maneja los eventos.
 
-# CONTROL
-# Maneja los eventos.
-#
-# Autor: PABLO PIZARRO @ ppizarro ~
-# Fecha: ABRIL 2015
+Autor: PABLO PIZARRO @ ppizarro ~
+Fecha: ABRIL 2015
+"""
+
+if __name__ == '__main__':
+    from path import *  # @UnusedWildImport
 
 # Importación de librerías
-from fileinput import filename  # @UnusedImport
 from bin import *  # @UnusedWildImport
 from data import DIR_SAVES
 
@@ -18,14 +19,21 @@ STATE_MENU = "MENU"  # indica que se encuentra en un menú
 STATE_NEXT = "NEXT"  # indica que se avanza a la siguiente pista
 STATE_PLAY = "PLAY"  # indica que se está jugando
 
+
 # Funciones del programa
 def pygame_to_pil_img(pg_surface):
+    """
+    Convierte una imagen de PIL a PYGAME
+    :param pg_surface:
+    :return:
+    """
     imgstr = pygame.image.tostring(pg_surface, 'RGB')  # @UndefinedVariable
     # noinspection PyDeprecation
     return Image.fromstring('RGB', pg_surface.get_size(), imgstr)
 
 
-class Controller:
+# noinspection PyBroadException,PyUnresolvedReferences
+class Controller(object):
     """Clase que maneja eventos"""
 
     # noinspection PyShadowingNames
@@ -49,7 +57,7 @@ class Controller:
             self.verbose = False
         # Modelos del juego
         if world.get_actual_map() is not None:
-            self.player = world.get_actual_map().getPlayer()
+            self.player = world.get_actual_map().get_player()
         else:
             self.player = None
         # Variables del controlador
@@ -61,21 +69,21 @@ class Controller:
         self.window = window  # ventana
         self.world = world  # mundo del juego
 
-    def delPlayer(self):
+    def del_player(self):
         """
         Elimina al jugador
         :return: void
         """
         self.player = None
 
-    def disableMenu(self):
+    def disable_menu(self):
         """
         Desactiva el menú
         :return: void
         """
         self.inmenu = False
 
-    def enableMenu(self):
+    def enable_menu(self):
         """
         Activa el menú
         :return: void
@@ -87,13 +95,14 @@ class Controller:
         Función que verifica los eventos de entrada
         :return: void
         """
-        time = float(self.clock.get_time()) / 1000.0  # tiempo que tomo el frame en generarse
+        time = float(
+            self.clock.get_time()) / 1000.0  # tiempo que tomo el frame en generarse
         # Se obtienen los eventos base
         for event in pygame.event.get():
             # Si se cierra la ventana (con evento QUIT o ALT-F4)
             try:
-                if event.type == QUIT or (event.type == KEYDOWN and event.key == K_F4 and (
-                            key[K_LALT] or key[K_LALT])): utils.destroyProcess()  # @UndefinedVariable
+                if event.type == QUIT or (event.type == KEYDOWN and event.key == K_F4 and (key[K_LALT] or key[K_LALT])):
+                    utils.destroyProcess()  # @UndefinedVariable
             except:
                 utils.destroyProcess()
             # Si se presiona una tecla
@@ -104,11 +113,13 @@ class Controller:
                     if self.inmenu:
                         self.inmenu = False
                         if self.player is not None:
-                            if not self.player.finished_lap(): self.player.sound_unpause()
+                            if not self.player.finished_lap():
+                                self.player.sound_unpause()
                     # Abrir menu
                     else:
                         if self.player is not None:
-                            if not self.player.finished_lap(): self.player.sound_pause()
+                            if not self.player.finished_lap():
+                                self.player.sound_pause()
                         self.inmenu = True
                 # Si se esta jugando
                 if self.player is not None and not self.inmenu:
@@ -119,22 +130,19 @@ class Controller:
                         # Captura de pantalla
                         if event.key == K_F3:
                             try:
-                                fileimg = 'screenshot_' + str(abs(hash(utils.generateRandom6()))) + '.png'
-                                surfimg = pygame_to_pil_img(pygame.display.get_surface())
+                                fileimg = 'screenshot_' + str(abs(
+                                    hash(utils.generateRandom6()))) + '.png'
+                                surfimg = pygame_to_pil_img(
+                                    pygame.display.get_surface())
                                 surfimg.save(DIR_SAVES + fileimg)
-                                if self.verbose: print self.lang.get(58, fileimg)
+                                if self.verbose:
+                                    print self.lang.get(58, fileimg)
                             except:
-                                if self.verbose: print self.lang.get(59)
-                                # Cambios
-                                #   elif event.key == K_p:
-                                #       self.player.subirCambio()
-                                #   elif event.key == K_l:
-                                #       self.player.bajarCambio()
-                                # Imprime posición para poner decoraciones
-                                #   elif event.key == K_F12:
-                                #       print (self.player.getPos()[0] - 217 - 200, self.player.getPos()[1] - 217)
+                                if self.verbose:
+                                    print self.lang.get(59)
                     else:
-                        if event.key == K_RETURN: return STATE_NEXT
+                        if event.key == K_RETURN:
+                            return STATE_NEXT
                 # Si no se esta jugando -> menu inicial
                 else:
                     # Subir opción en menú
@@ -169,7 +177,8 @@ class Controller:
                     self.player.stop_acelerating()
                 # Frenar
                 if key_pressed[K_DOWN] or key_pressed[K_s] or key_pressed[K_SPACE]:
-                    self.player.desacelerate(self.player.get_desacel(), time, True)
+                    self.player.desacelerate(self.player.get_desacel(), time,
+                                             True)
                 else:
                     self.player.stop_track_marking()
                 # Doblar a la izquierda
@@ -197,7 +206,7 @@ class Controller:
                     #       self.player.posy -= 30
         # Si no existe un jugador se fuerza el menu
         else:
-            self.enableMenu()
+            self.enable_menu()
             return STATE_MENU
         # Se retorna el estado del controlador
         if self.inmenu:
@@ -205,9 +214,9 @@ class Controller:
         else:
             return STATE_PLAY
 
-    def setPlayer(self):
+    def set_player(self):
         """
         Define el jugador
         :return: void
         """
-        self.player = self.world.get_actual_map().getPlayer()
+        self.player = self.world.get_actual_map().get_player()

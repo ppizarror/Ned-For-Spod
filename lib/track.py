@@ -1,29 +1,32 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-if __name__ == '__main__': from path import *  # @UnusedWildImport
+# coding=utf-8
+"""
+TRACK
+Permite crear una pista, posee tanto decoraciones como coches
 
-# TRACK
-# Permite crear una pista, posee tanto decoraciones como coches
-#
-# Autor: PABLO PIZARRO @ ppizarro ~
-# Fecha: ABRIL 2015
+Autor: PABLO PIZARRO @ ppizarro ~
+Fecha: ABRIL 2015
+"""
+
+if __name__ == '__main__':
+    # noinspection PyUnresolvedReferences
+    from path import *  # @UnusedWildImport
 
 # Importación de librerías
 from bin import pygame
-from object import gameObject
+from object import Gameobject
 from player import Player
 from resources.images import getImages
 
 
-class mapTrack:
+# noinspection PyBroadException,PyUnresolvedReferences
+class Maptrack(object):
     """Pista de carreras"""
 
-    def __init__(self, config, window, **kwargs):
+    def __init__(self, config, window):
         """
         Función constructora
         :param config: Configuraciones de las pistas
         :param window: Ventana de la aplicación
-        :param kwargs: Parámetros adicionales
         :return: void
         """
 
@@ -48,11 +51,13 @@ class mapTrack:
         self.track = []  # pista misma (imagen)
         self.track_coords = []  # coordenadas de la pista
 
-    def addCar(self, type, texture, automatic, angle, player, logic_track, sounds, sound_channels, checksum,  # @DontTrace @ReservedAssignment
-               scoreconfig, username, tracktitle, gameConfig, browser, **kwargs):
+    def add_car(self, _type, texture, automatic, angle, player, logic_track,
+                sounds, sound_channels, checksum,
+                scoreconfig, username, tracktitle, game_config, browser,
+                **kwargs):
         """
         Función que añade un auto al modelo
-        :param type: Tipo de auto
+        :param _type: Tipo de auto
         :param texture: Textura del auto
         :param automatic: Define si la transmisión es automático/manual
         :param angle: �?ngulo inicial del auto
@@ -64,7 +69,7 @@ class mapTrack:
         :param scoreconfig: Configuraciones del scoreboard
         :param username: Username del usuario
         :param tracktitle: Título de la pista
-        :param gameConfig: Configuraciones del juego
+        :param game_config: Configuraciones del juego
         :param browser: Navegador web
         :param kwargs: Parámetros adicionales
         :return: void
@@ -85,33 +90,49 @@ class mapTrack:
         if player:
             del self.player
             pos = self.window.get_window_size()
-            image = self.loadImage(texture, **kwargs)
-            imageWidth, imageHeight = image.get_size()
-            self.player = Player(type, image, self.loadImage(shadow, alpha=True),
-                                 (pos[0] / 2 - imageWidth / 2, pos[1] / 2 - imageHeight / 2), \
-                                 angle, True, self.getMarcasFrenado(), self.getMarcasTierra(), logic_track, self.laps,
-                                 sounds, sound_channels, self.loadImage(ghost, alpha=True), checksum, scoreconfig,
+            image = self.load_image(texture, **kwargs)
+            image_width, image_height = image.get_size()
+            self.player = Player(_type, image,
+                                 self.load_image(shadow, alpha=True),
+                                 (pos[0] / 2 - image_width / 2,
+                                  pos[1] / 2 - image_height / 2),
+                                 angle, True, self.get_marcas_frenado(),
+                                 self.get_marcas_tierra(), logic_track,
+                                 self.laps,
+                                 sounds, sound_channels,
+                                 self.load_image(ghost, alpha=True), checksum,
+                                 scoreconfig,
                                  username, tracktitle,
-                                 self.objetives, automatic, self.getMapLimits(), self.window, gameConfig, browser,
+                                 self.objetives, automatic,
+                                 self.get_map_limits(), self.window,
+                                 game_config,
+                                 browser,
                                  **kwargs)
         else:
-            self.enemies.append(Player(type, self.loadImage(texture, **kwargs), self.loadImage(shadow, alpha=True), \
-                                       pos, angle, False, self.getMarcasFrenado(), self.getMarcasTierra(), logic_track,
-                                       self.laps, sounds, sound_channels, self.loadImage(ghost, alpha=True), checksum,
-                                       scoreconfig, username, tracktitle, self.objetives, automatic,
-                                       self.getMapLimits(), self.window, gameConfig, browser, **kwargs))
+            self.enemies.append(
+                Player(_type, self.load_image(texture, **kwargs),
+                       self.load_image(shadow, alpha=True),
+                       pos, angle, False,
+                       self.get_marcas_frenado(),
+                       self.get_marcas_tierra(), logic_track,
+                       self.laps, sounds, sound_channels,
+                       self.load_image(ghost, alpha=True),
+                       checksum,
+                       scoreconfig, username, tracktitle,
+                       self.objetives, automatic,
+                       self.get_map_limits(), self.window,
+                       game_config, browser, **kwargs))
 
-    def addDecoration(self, texture, pos, **kwargs):
+    def add_decoration(self, texture, pos):
         """
         Función que agrega una decoración
         :param texture: Textura del objeto
         :param pos: Posición (x,y) en el mundo
-        :param kwargs: Parámetros adicionales
         :return: void
         """
-        self.decorations.append(gameObject(texture, 2, pos))
+        self.decorations.append(Gameobject(texture, 2, pos))
 
-    def addMarcasFrenado(self, linea):
+    def add_marcas_frenado(self, linea):
         """
         Función que agrega una marca de frenado
         :param linea: Línea a agregar
@@ -119,7 +140,7 @@ class mapTrack:
         """
         self.marcas_frenado.append(linea)
 
-    def addMarcasTierra(self, linea):
+    def add_marcas_tierra(self, linea):
         """
         Función que agrega una marca en la tierra
         :param linea: Línea a agregar
@@ -127,20 +148,21 @@ class mapTrack:
         """
         self.marcas_tierra.append(linea)
 
-    def addTrack(self, texture, pos, **kwargs):
+    def add_track(self, texture, pos):
         """
         Función que agrega una pista al circuito
         :param texture: Textura de la pista
         :param pos: Posición (x,y) en el mundo
-        :param kwargs: Parámetros adicionales
         :return: void
         """
         image = texture
         width, height = image.get_size()
-        self.track.append(gameObject(image, 1, pos))
+        self.track.append(Gameobject(image, 1, pos))
         self.track_coords.append(
-            [(self.window.get_window_width() / 2 - pos[0], self.window.get_window_height() / 2 - pos[1]), \
-             (self.window.get_window_width() / 2 - pos[0] + width, self.window.get_window_height() / 2 - pos[1] + height)])
+            [(self.window.get_window_width() / 2 - pos[0],
+              self.window.get_window_height() / 2 - pos[1]),
+             (self.window.get_window_width() / 2 - pos[0] + width,
+              self.window.get_window_height() / 2 - pos[1] + height)])
 
     def clean(self):
         """
@@ -162,116 +184,117 @@ class mapTrack:
         # Se borra
         del self
 
-    def getBackground(self):
+    def get_background(self):
         """
         Función que retorna el fondo de la pista
         :return: void
         """
         return self.background
 
-    def getBackgroundSize(self):
+    def get_background_size(self):
         """
         Función que retorna el tamaño del fondo
         :return: Tupla (w,h)
         """
         return self.backgroundSize
 
-    def getBackgroundTeselation(self):
+    def get_background_teselation(self):
         """
         Función que retorna las veces que hay que dibujar en ambos ejes
         :return: Integer
         """
         return self.backgroundTesel
 
-    def getDecorations(self):
+    def get_decorations(self):
         """
         Función que retorna las decoraciones
         :return: Lista de <object>
         """
         return self.decorations
 
-    def getLaps(self):
+    def get_laps(self):
         """
         Retorna el numero de vueltas del circuito
         :return: Integer
         """
         return self.laps
 
-    def getPlayer(self):
+    def get_player(self):
         """
         Función que retorna al jugador
         :return: Objeto <player>
         """
         return self.player
 
-    def getMarcasFrenado(self):
+    def get_marcas_frenado(self):
         """
         Función que retorna las marcas de frenado en la pista
         :return: Lista
         """
         return self.marcas_frenado
 
-    def getMarcasTierra(self):
+    def get_marcas_tierra(self):
         """
         Función que retorna las marcas de la tierra
         :return: Lista
         """
         return self.marcas_tierra
 
-    def getMapLimits(self):
+    def get_map_limits(self):
         """
         Función que retorna los limites del mapa
         :return: Tupla (w,h)
         """
         return self.mapLimits
 
-    def getTrackTitle(self):
+    def get_track_title(self):
         """
         Retorna el título del mapa
         :return: String
         """
         return self.title
 
-    def getTrack(self):
+    def get_track(self):
         """
         Función que retorna la pista
         :return: Objeto <track>
         """
         return self.track
 
-    def getTrackLogic(self):
+    def get_track_logic(self):
         """
         Función que retorna la pista lógica
         :return: Retorna las coordenadas de cada elemento de la pista
         """
         return self.track_coords
 
-    def loadImage(self, texture_name, color_key=(0, 0, 0), **kwargs):
+    def load_image(self, texture_name, color_key=(0, 0, 0), **kwargs):
         """
         Función que carga una imagen
         :param texture_name: Dirección física de la textura
-        :param color_key: �?ndice de color
+        :param color_key: Índice de color
         :param kwargs: Parámetros adicionales
         :return: Objeto imagen
         """
         # Si la imagen no ha sido cargada entonces se carga y se guarda
         if texture_name not in self.images.keys():
             if kwargs.get("alpha"):
-                image = pygame.image.load(getImages(texture_name)).convert_alpha()
+                image = pygame.image.load(
+                    getImages(texture_name)).convert_alpha()
             else:
                 image = pygame.image.load(getImages(texture_name)).convert(32)
                 image.set_colorkey(color_key)
             self.images[texture_name] = image
         return self.images[texture_name]
 
-    def resultsSaved(self):
+    def results_saved(self):
         """
         Función que retorna si se han calculado los resultados de la pista o no
         :return: booleano
         """
         return self.results
 
-    def setBackground(self, texture):
+    def set_background(self, texture):
         """
         Función que define el fondo a dibujar
         :param texture: Textura
@@ -280,7 +303,7 @@ class mapTrack:
         self.background = texture
         self.backgroundSize = texture.get_size()
 
-    def setMapLimits(self, x1, y1, x2, y2):
+    def set_map_limits(self, x1, y1, x2, y2):
         """
         Función que define las coordenadas máximas del mapa
         :param x1: Posición x mínima
@@ -291,7 +314,7 @@ class mapTrack:
         """
         self.mapLimits = [x1, y1, x2, y2]
 
-    def setLaps(self, laps):
+    def set_laps(self, laps):
         """
         Función que define la cantidad de vueltas del mapa
         :param laps: Número de vueltas
@@ -299,7 +322,7 @@ class mapTrack:
         """
         self.laps = laps
 
-    def setObjetives(self, objetives):
+    def set_objetives(self, objetives):
         """
         Función que define los objetivos del mapa
         :param objetives: Lista de objetivos
@@ -307,7 +330,7 @@ class mapTrack:
         """
         self.objetives = objetives
 
-    def setTitle(self, title):
+    def set_title(self, title):
         """
         Función que establece el nombre del mapa
         :param title: Título del mapa

@@ -14,12 +14,12 @@ Fecha: ABRIL 2015
 
 # Importación de librerías de sistema
 from datetime import date
-import math  # @UnusedImport
 import os
 import sys
 from bin import configLoader
 
 reload(sys)
+# noinspection PyUnresolvedReferences
 sys.setdefaultencoding('UTF8')  # @UndefinedVariable
 sys.dont_write_bytecode = True
 
@@ -126,6 +126,7 @@ def get_hash(filename):
     return abs(hash(filename)) % (10 ** HASH_LEN)
 
 
+# noinspection PyShadowingNames
 def hash_valid(listhash):
     """
     Función que retorna si no se tienen colisiones en el hash.
@@ -195,7 +196,6 @@ if __name__ == '__main__':
     # Se obtiene la hora
     SCAN_DATE = get_date()
 
-
     # noinspection PyShadowingNames
     def _run(folder):
         print scanconfig.getValue("ARGUMENT_LOADING").format(folder),
@@ -205,14 +205,14 @@ if __name__ == '__main__':
             look(folder, __actualpath + folder, filelist)
             if scanconfig.isTrue("HASH"):
                 hashedlist = []
-                for i in filelist: hashedlist.append([get_hash(i), i])
+                for i in filelist:
+                    hashedlist.append([get_hash(i), i])
                 hashedlist.sort()
                 initfile = open(__actualpath + folder + "/__init__.py", "w")
                 c = 0
                 totalelements = len(hashedlist)
-                for line in HEADER.split("\n"): initfile.write(
-                    line.format(folder, folder.upper(), SCAN_DATE,
-                                totalelements) + "\n")
+                for line in HEADER.split("\n"):
+                    initfile.write(line.format(folder, folder.upper(), SCAN_DATE, totalelements) + "\n")
                 for line in hashedlist:
                     if c < totalelements - 1:
                         initfile.write(
@@ -229,8 +229,8 @@ if __name__ == '__main__':
                                                                        "/").replace(
                                 folder + "/", "") + '"\n')
                     c += 1
-                for line in HEADER_LAST.split("\n"): initfile.write(
-                    line.format(folder.upper(), folder.title()) + "\n")
+                for line in HEADER_LAST.split("\n"):
+                    initfile.write(line.format(folder.upper(), folder.title()) + "\n")
                 initfile.close()
                 # Se verifican colisiones de la hashlist
                 validate_hash = hash_valid(hashedlist)
@@ -250,9 +250,8 @@ if __name__ == '__main__':
                 c = 0
                 totalelements = len(filelist)
                 prev_folder = ""
-                for line in HEADER.split("\n"): initfile.write(
-                    line.format(folder, folder.upper(), SCAN_DATE,
-                                totalelements) + "\n")
+                for line in HEADER.split("\n"):
+                    initfile.write(line.format(folder, folder.upper(), SCAN_DATE, totalelements) + "\n")
                 for line in filelist:
                     linefolder = get_folder(line)
                     if prev_folder != linefolder:
@@ -271,8 +270,8 @@ if __name__ == '__main__':
                                                                           "/").replace(
                                 folder + "/", "") + '"\n')
                     c += 1
-                for line in HEADER_LAST.split("\n"): initfile.write(
-                    line.format(folder.upper(), folder.title()) + "\n")
+                for line in HEADER_LAST.split("\n"):
+                    initfile.write(line.format(folder.upper(), folder.title()) + "\n")
                 initfile.close()
                 print scanconfig.getValue("FOLDER_LOADED").format(
                     len(filelist))

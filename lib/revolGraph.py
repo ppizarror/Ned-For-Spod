@@ -1,11 +1,14 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-if __name__ == '__main__': from path import *  # @UnusedWildImport
+# coding=utf-8
+"""
+Grafico de las revoluciones
 
-# Grafico de las revoluciones
-#
-# Autor: PABLO PIZARRO @ ppizarro ~
-# Fecha: ABRIL 2015
+Autor: PABLO PIZARRO @ ppizarro ~
+Fecha: ABRIL 2015
+"""
+
+if __name__ == '__main__':
+    # noinspection PyUnresolvedReferences
+    from path import *  # @UnusedWildImport
 
 # Importación de librerías
 from bin import pygame
