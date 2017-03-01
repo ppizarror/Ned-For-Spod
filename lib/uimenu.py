@@ -258,7 +258,6 @@ class Createuimenu(object):
                 Lanza una pista
                 :return: void
                 """
-                print 'fkk'
                 self.reset(0)
                 self.menuSoundChannel.stop()
                 self.world.load_map()

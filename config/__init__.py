@@ -12,10 +12,17 @@
 
 # Importación de librerías
 import os
+import sys
+
+if getattr(sys, 'frozen', False):
+    application_path = os.path.dirname(sys.executable)
+elif __file__:
+    application_path = os.path.dirname(__file__)
 
 # Definición de directorios
-__actualpath = str(os.path.abspath(os.path.dirname(__file__))).replace("\\", "/") + "/"
+__actualpath = application_path.replace("\\", "/") + "/"
 DIR_CONFIG = __actualpath
+# DIR_CONFIG = __actualpath + 'config/' # compilacion
 
 # Test
 if __name__ == '__main__':

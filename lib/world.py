@@ -993,9 +993,9 @@ class World(object):
                                          (0, -300))
                 # Se define la posición inicial del jugador
                 self.actualMap.player.set_default_pos((350, 110))
-            except:
-                print self.langs.get(53, self.langs.get(57,
-                                                        self.actualMap.get_track_title()))
+            except Exception, e:
+                print str(e)
+                print self.langs.get(53, self.langs.get(57, self.actualMap.get_track_title()))
                 self.clear_actual_map()
 
     def load_sound(self, sound_file):

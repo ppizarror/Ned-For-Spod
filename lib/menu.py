@@ -35,7 +35,7 @@ SELECTOR = -1
 SHADOW = (0, 0, 0)
 
 
-# noinspection PyAttributeOutsideInit,PyBroadException,PyUnresolvedReferences
+# noinspection PyAttributeOutsideInit,PyBroadException,PyUnresolvedReferences,PyShadowingNames
 class Menu(object):
     """Crea menús dinámicos"""
 
