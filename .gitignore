@@ -28,3 +28,12 @@ Thumbs.db
 
 # Photoshop files
 *.psd
+
+# Build folders
+build/
+dist/
+appicon.ico
+version.txt
+*.bat
+appcompile.spec
+main.spec

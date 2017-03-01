@@ -29,11 +29,12 @@ if __binconfig.isTrue("DONT_WRITE_BYTECODE"):
 # Importación de librerías externas
 try:
     import mechanize  # @UnresolvedImport @NoMove
-except:
+except Exception, e:
+    print str(e)
     errors.throw(errors.ERROR_IMPORTERRORMECHANIZE)
 try:
     from pil import Image  # @UnresolvedImport
-except:
+except Exception, e:
     errors.throw(errors.ERROR_IMPORTERRORPIL)
 
 # Importación de librerías internas
@@ -41,7 +42,8 @@ try:
     from pygame import *
     import pygame
     import pygame.gfxdraw
-except:
+except Exception, e:
+    print str(e)
     errors.throw(errors.ERROR_IMPORTERRORPYGAME)
 try:
     from hashdir import md5file, path_checksum
@@ -49,7 +51,8 @@ try:
     import langs
     import utils
     import username
-except:
+except Exception, e:
+    print str(e)
     errors.throw(errors.ERROR_IMPORTERRORINTERNAL)
 
 # Constantes de bin
