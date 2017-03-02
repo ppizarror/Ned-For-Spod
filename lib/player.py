@@ -1409,11 +1409,10 @@ class Player(object):
                                 1 - self.totalLaps)) + 0.3 / (
                                           current_min ** 1.5)))
                         # Se sube el puntaje a la web
-                        scoreboard_insert_url = self.scoreLink.format(
-                            self.hash[0], self.hash[1], self.hash[2],
-                            md5str(self.trackName),
-                            valid_username(self.username),
-                            self.score, round(current_min, 1), self.type)
+                        scoreboard_insert_url = self.scoreLink.format(self.hash[0], self.hash[1], self.hash[2],
+                                                                      md5str(self.trackName),
+                                                                      valid_username(self.username), self.score,
+                                                                      round(current_min, 1), self.type)
                         if WEB_BROWSER:
                             self.browser.abrirLink(scoreboard_insert_url)
                         else:

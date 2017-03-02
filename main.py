@@ -35,6 +35,7 @@ def main():
 
     # Se obtiene el checksum del juego
     checksum = [path_checksum('lib', VERBOSE),
+                '8e1fd1c03d2bfe89d7dbdab8b0c4c69a',
                 path_checksum('bin', VERBOSE)]
 
     # Se cargan las configuraciones

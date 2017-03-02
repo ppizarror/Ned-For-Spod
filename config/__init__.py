@@ -22,7 +22,7 @@ elif __file__:
 # Definición de directorios
 __actualpath = application_path.replace("\\", "/") + "/"
 DIR_CONFIG = __actualpath
-# DIR_CONFIG = __actualpath + 'config/' # compilacion
+# DIR_CONFIG = __actualpath + 'config/'  # compilacion
 
 # Test
 if __name__ == '__main__':

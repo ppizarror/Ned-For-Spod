@@ -32,6 +32,7 @@ COLOR_ORO = (231, 174, 24)
 COLOR_PLATA = (192, 192, 192)
 COLOR_RESULT_LINE = (51, 51, 51)
 COLOR_VELOCIMETER = (255, 255, 255, 128)
+SAVE_FILE_STATICS = False
 
 
 # noinspection PyBroadException,PyUnresolvedReferences
@@ -738,13 +739,10 @@ class View(object):
                              self.resultsScreenPos[1] + 120))
                 else:
                     self.screen.blit(
-                        self.resultsFontTitleContent.render(self.lang.get(34),
-                                                            1,
-                                                            COLOR_VELOCIMETER),
-                        (self.resultsScreenPos[0] + 481,
-                         self.resultsScreenPos[1] + 120))
+                        self.resultsFontTitleContent.render(self.lang.get(34), 1, COLOR_VELOCIMETER),
+                        (self.resultsScreenPos[0] + 481, self.resultsScreenPos[1] + 120))
                 # Se guardan los resultados y se consulta la siguiente pista
-                if not self.map.results_saved():
+                if not self.map.results_saved() and SAVE_FILE_STATICS:
                     self.map.results = True
                     save = open(
                         DIR_SAVES + str(hash(self.map.get_track_title())) + str(
