@@ -19,7 +19,7 @@ from player import TRACK_NOT_DEFINED, STATE_INVALIDPOS, STATE_NULL, STATE_OFFROA
     CAMBIO_NEUTRO, CAMBIO_REVERSA
 from resources.fonts import getFonts
 from resources.images import getImages
-from Revolgraph import Revolgraph
+from revolgraph import Revolgraph
 from uimenu import MENU_INICIAL, MENU_PAUSE
 from world import NEXT_TRACK, get_next_track, TRACKS
 
