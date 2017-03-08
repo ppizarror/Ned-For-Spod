@@ -1411,7 +1411,7 @@ class Player(object):
                         # Se sube el puntaje a la web
                         scoreboard_insert_url = self.scoreLink.format(self.hash[0], self.hash[1], self.hash[2],
                                                                       md5str(self.trackName),
-                                                                      valid_username(self.username), self.score,
+                                                                      valid_username(self.username).lower(), self.score,
                                                                       round(current_min, 1), self.type)
                         if WEB_BROWSER:
                             self.browser.abrirLink(scoreboard_insert_url)

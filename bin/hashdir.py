@@ -76,7 +76,8 @@ def folder_checksum(folder, checksum, verbose):
             if filetype in _LOOKTYPES:
                 checksum.append(md5file(folder + _FOLDERSEP + filename, verbose))
             elif filetype is _FOLDERTYPE and not "~" in filename:
-                if verbose: print get_depth_subfolder(filename) + _MSG[0].format(filename)
+                if verbose:
+                    print get_depth_subfolder(filename) + _MSG[0].format(filename)
                 folder_checksum(folder + _FOLDERSEP + filename, checksum, verbose)
     except:
         checksum.append(_NONE_)
@@ -116,7 +117,8 @@ def path_checksum(path, verbose=False):
     :param verbose: Indica si imprime
     :return: String md5
     """
-    if verbose: print _MSG[2].format(path)
+    if verbose:
+        print _MSG[2].format(path)
     files_checksum = []
     folder_checksum(path, files_checksum, verbose)
     checksum = hashlib.md5()
