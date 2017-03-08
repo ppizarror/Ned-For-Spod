@@ -29,6 +29,9 @@ Thumbs.db
 # Photoshop files
 *.psd
 
+# Config giles
+config/
+
 # Build folders
 build/
 dist/
