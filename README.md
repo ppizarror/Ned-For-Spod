@@ -33,9 +33,8 @@ Actualmente en OSX no se obtienen buenos resultados, sin embargo el programa pue
 - Español
 - Inglés
 
-
 ## Ejecutar
-Para correr el juego ingrese en la terminal: _python main.py_
+Para correr el juego ingrese en la terminal: `python main.py`
 
 ## Licencia
 Este proyecto está licenciado bajo GPLv2 (GNU General Public License, version 2) [https://www.gnu.org/licenses/gpl-2.0.html][5].
