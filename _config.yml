@@ -1,0 +1,8 @@
+title: Ned-for-spod
+description: Juego de carreras en 2d desarrollado en python-pygame
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
