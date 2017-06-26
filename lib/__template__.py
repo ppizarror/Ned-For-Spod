@@ -1,8 +1,8 @@
 # coding=utf-8
 """
-DESCRIPCION DE LA CLASE
+TITULO OBJETO
+Descripción objeto
 
-Game template
 Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015
 """

@@ -2,7 +2,7 @@
 """
 MENU TEXTUAL
 Menu el cual posee un campo textual (correspsondiente a varias lineas) las
-cuales se imprimen en dicho menu. Adicionalmente posee botones
+cuales se imprimen en dicho menu. Adicionalmente posee botones.
 
 Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015
@@ -20,7 +20,7 @@ TEXT_MARGIN = 10
 TEXT_NEWLINE = ""
 
 
-# noinspection PyUnresolvedReferences
+# noinspection PyUnresolvedReferences,PyShadowingNames
 class Textmenu(Menu, object):
     """Menú textual"""
 

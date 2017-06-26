@@ -1,8 +1,8 @@
 # coding=utf-8
 """
 OBJETO
-Maneja objetos del mundo, como pistas y decoraciones
-Dibuja a los elementos en pantalla
+Maneja objetos del mundo, como pistas y decoraciones, dibuja a los elementos
+en pantalla.
 
 Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015

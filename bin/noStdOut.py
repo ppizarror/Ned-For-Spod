@@ -1,13 +1,14 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-#
-# Desactiva el standard output de python
+# coding=utf-8
+"""
+NOSTDOUT
+Desactiva el standard output de Python.
 
-# Game template
-# Autor: PABLO PIZARRO @ ppizarro ~
-# Fecha: ABRIL 2015
+Autor: PABLO PIZARRO @ ppizarro ~
+Fecha: ABRIL 2015
+"""
 
-class noStdOut:
+# noinspection PyMissingOrEmptyDocstring,PyPep8Naming
+class noStdOut(object):
     """Desactiva print"""
 
     def __init__(self): pass

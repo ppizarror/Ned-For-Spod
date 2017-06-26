@@ -16,7 +16,7 @@ Fecha: ABRIL 2015
 from datetime import date
 import os
 import sys
-from bin import configLoader
+from bin import Configloader
 
 reload(sys)
 # noinspection PyUnresolvedReferences
@@ -31,13 +31,13 @@ sys.path.append(__actualpath.replace("\\resources", ""))
 # Importación de librerías internas
 
 # Se cargan las configuraciones
-config = configLoader(".config/filetype.ini")
+config = Configloader(".config/filetype.ini")
 folderformats = {}
 for folder in config.getParameters():
     if folder != "FORMAT":
         _fileformats = config.getValue(folder).strip(config.getValue("FORMAT"))
         folderformats[folder] = _fileformats
-scanconfig = configLoader(".config/scan.ini")
+scanconfig = Configloader(".config/scan.ini")
 
 # Constantes del programa
 HASH_LEN = int(scanconfig.getValue("SIZE"))

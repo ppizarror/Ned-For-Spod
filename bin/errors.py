@@ -1,17 +1,16 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-#
-# Almacena todos los errores propios de bin, provee adem�s una función para retornar un
-# mensaje de error dado parámetros
+# coding=utf-8
+"""
+ERRORS
+Almacena todos los errores propios de bin, provee además una función para
+retornar un mensaje de error dado parámetros.
 
-# Game template
-# Autor: PABLO PIZARRO @ ppizarro ~
-# Fecha: ABRIL 2015
+Autor: PABLO PIZARRO @ ppizarro ~
+Fecha: ABRIL 2015
+"""
 
 # Importación de librerías
 import sys
 from colors import Color
-
 
 # Constantes de errores
 BR_ERRORxERROR_SET_FORM = 8
@@ -74,6 +73,7 @@ def createMSG(message, *args):
     return message.format(*args)
 
 
+# noinspection PyBroadException
 def throw(error, *args):
     """
     Función que termina el programa mostrando un mensaje de error

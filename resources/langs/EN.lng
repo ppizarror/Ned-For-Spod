@@ -48,7 +48,7 @@
 57 // Track|'{0}'|corrupted
 58 // Screensave|saved|in|/data/saves|as|'{0}'
 59 // Error|at|saving|the|screensave
-60 // Principal|menu
+60 // Main|menu
 61 // Play
 62 // Settings
 63 // Help
@@ -74,7 +74,7 @@
 83 // Windowed|mode
 84 // Enabled
 85 // Disabled
-86 // Return|to|the|principal|menu
+86 // Return|to|main|menu
 87 // Sound
 88 // Language|(reload)
 89 // Espanol

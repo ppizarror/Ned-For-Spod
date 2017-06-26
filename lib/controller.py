@@ -7,10 +7,12 @@ Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015
 """
 
+from __future__ import print_function
 if __name__ == '__main__':
     from path import *  # @UnusedWildImport
 
 # Importación de librerías
+# noinspection PyFromFutureImport
 from bin import *  # @UnusedWildImport
 from data import DIR_SAVES
 
@@ -28,11 +30,11 @@ def pygame_to_pil_img(pg_surface):
     :return:
     """
     imgstr = pygame.image.tostring(pg_surface, 'RGB')  # @UndefinedVariable
-    # noinspection PyDeprecation
+    # noinspection PyDeprecation,PyUnresolvedReferences
     return Image.fromstring('RGB', pg_surface.get_size(), imgstr)
 
 
-# noinspection PyBroadException,PyUnresolvedReferences
+# noinspection PyBroadException,PyUnresolvedReferences,PyShadowingNames
 class Controller(object):
     """Clase que maneja eventos"""
 
@@ -136,10 +138,10 @@ class Controller(object):
                                     pygame.display.get_surface())
                                 surfimg.save(DIR_SAVES + fileimg)
                                 if self.verbose:
-                                    print self.lang.get(58, fileimg)
+                                    print(self.lang.get(58, fileimg))
                             except:
                                 if self.verbose:
-                                    print self.lang.get(59)
+                                    print(self.lang.get(59))
                     else:
                         if event.key == K_RETURN:
                             return STATE_NEXT

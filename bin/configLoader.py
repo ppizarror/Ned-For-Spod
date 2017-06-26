@@ -1,22 +1,23 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-#
-# Permite cargar configuraciones dado un archivo dado por parámetro
-# Formato de archivo:
-#
-#    #comentario
-#    CONFIG_1 = VALUE
-#    CONFIG_2 = VALUE2
-#
-# Game template
-# Autor: PABLO PIZARRO @ ppizarro ~
-# Fecha: ABRIL 2015
+# coding=utf-8
+"""
+CONFIGLOADER
+Permite cargar configuraciones dado un archivo dado por parámetro
+Formato de archivo:
+
+    #comentario
+    CONFIG_1 = VALUE
+    CONFIG_2 = VALUE2
+
+Autor: PABLO PIZARRO @ ppizarro ~
+Fecha: ABRIL 2015
+"""
 
 # Importación de librerías
+from __future__ import print_function
+# noinspection PyUnresolvedReferences
 import operator  # @UnusedImport
 import errors
 from utils import string2list
-
 
 # Definición de constantes
 CONFIG_COMMENT = "#"
@@ -31,7 +32,8 @@ FALSE = "FALSE"
 TRUE = "TRUE"
 
 
-class configLoader:
+# noinspection PyBroadException,PyShadowingBuiltins,PyPep8Naming
+class Configloader(object):
     """Carga configuraciones y retorna sus elementos"""
 
     def __init__(self, filename, **kwargs):
@@ -43,7 +45,7 @@ class configLoader:
         """
         # Se carga el archivo de configuraciones
         try:
-            file = open(filename.replace("\\", "/"), "r")  # @ReservedAssignment
+            file = open(filename.replace('\\', '/'))  # @ReservedAssignment
         except:
             errors.throw(errors.ERROR_NOCONFIGFILE, filename)
         # Variables
@@ -68,7 +70,7 @@ class configLoader:
             if not (self.totalconfigs + len(self.config_single)):
                 errors.warning(errors.WARNING_NOCONFIGFOUND, filename)
             else:
-                print CONFIG_LOAD.format(filename)
+                print(CONFIG_LOAD.format(filename))
         else:
             self.verbose = False
         file.close()
@@ -92,9 +94,11 @@ class configLoader:
                 f.write(str(key) + CONFIG_SEPARATOR + self.configs[key] + "\n")
             # Se cierra el archivo
             f.close()
-            if self.verbose: print CONFIG_SAVED.format(name)
+            if self.verbose:
+                print(CONFIG_SAVED.format(name))
         except:
-            if self.verbose: errors.throw(errors.ERROR_CONFIGBADEXPORT)
+            if self.verbose:
+                errors.throw(errors.ERROR_CONFIGBADEXPORT)
 
     def isTrue(self, param):
         """
@@ -146,14 +150,15 @@ class configLoader:
         :return: void
         """
         if self.totalconfigs + len(self.config_single) > 0:
-            print CONFIG_PRINTPARAMETER
+            print(CONFIG_PRINTPARAMETER)
             if self.totalconfigs > 0:
                 for parameter in self.getParameters():
-                    print CONFIG_PRINTPARAM.format(parameter, self.configs[parameter])
+                    print(CONFIG_PRINTPARAM.format(parameter,
+                                                   self.configs[parameter]))
             for config in self.config_single:
-                print CONFIG_PRINTPARAMSIMPLE.format(config)
+                print(CONFIG_PRINTPARAMSIMPLE.format(config))
         else:
-            print CONFIG_PRINTNOCONFIG
+            print(CONFIG_PRINTNOCONFIG)
         return
 
     def setParameter(self, paramName, paramValue):
@@ -165,9 +170,10 @@ class configLoader:
         """
         self.configs[paramName] = paramValue
 
+
 # Test
 if __name__ == '__main__':
-    binconfig = configLoader(".config/bin.ini", verbose=True)
+    binconfig = Configloader(".config/bin.ini", verbose=True)
     binconfig.isTrue("DONT_WRITE_BYTECODE")
     binconfig.getParameters()
     binconfig.printParameters()
@@ -177,6 +183,6 @@ if __name__ == '__main__':
     binconfig.setParameter("SET_DEFAULT_ENCODING", "W-850")
     binconfig.printParameters()
     binconfig.export(False, "hola.txt")
-    print binconfig.getValue(binconfig.getParameters()[1])
-    print binconfig.getValue("DONT_WRITE_BYTECODE")
-    print binconfig.getValue("SET_DEFAULT_ENCODING")
+    print(binconfig.getValue(binconfig.getParameters()[1]))
+    print(binconfig.getValue("DONT_WRITE_BYTECODE"))
+    print(binconfig.getValue("SET_DEFAULT_ENCODING"))

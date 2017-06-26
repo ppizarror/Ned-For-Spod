@@ -1,18 +1,18 @@
 # coding=utf-8
 """
-Clases del juego
+LIB
 Permite administrar las clases lógicas del juego
-Las librerías auxiliares o que no pertenecen a la lógica van en /bin
+Las librerías auxiliares o que no pertenecen a la lógica van en /bin.
 
-Game template
 Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015
 """
 
 # Configuración de entorno
-from bin import configLoader
+from bin import Configloader
 import libdir
+# noinspection PyUnresolvedReferences
 from path import *
 
 # noinspection PyProtectedMember
-__binconfig = configLoader(libdir._LIB_CONFIG + "lib.ini")
+__binconfig = Configloader(libdir._LIB_CONFIG + "lib.ini")

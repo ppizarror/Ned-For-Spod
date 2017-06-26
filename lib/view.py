@@ -1,7 +1,7 @@
 # coding=utf-8
 """
 VISTA
-Es el encargado de dibujar sobre la pantalla todos los modelos
+Es el encargado de dibujar sobre la pantalla todos los modelos.
 
 Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015
@@ -35,7 +35,7 @@ COLOR_VELOCIMETER = (255, 255, 255, 128)
 SAVE_FILE_STATICS = False
 
 
-# noinspection PyBroadException,PyUnresolvedReferences
+# noinspection PyBroadException,PyUnresolvedReferences,PyShadowingNames
 class View(object):
     """Vista de la aplicación"""
 

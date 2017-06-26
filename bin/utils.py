@@ -1,20 +1,19 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-#
-# Este archivo provee de funciones básicas que son globalmente usadas
-#
-# Game template
-# Autor: PABLO PIZARRO @ ppizarro ~
-# Fecha: ABRIL 2015
+# coding=utf-8
+"""
+UTILS
+Este archivo provee de funciones básicas que son globalmente usadas.
+
+Autor: PABLO PIZARRO @ ppizarro ~
+Fecha: ABRIL 2015
+"""
 
 # Importación de librerías de entorno
+from __future__ import print_function
 import json
 import re
-import sys  # @UnusedImport
 import urllib2
 import errors
 from path import *  # @UnusedWildImport
-
 
 # Importación de librerías de sistema
 try:
@@ -31,7 +30,9 @@ except:
     errors.throw(errors.ERROR_IMPORTSYSTEMERROR)
 
 # Importación de librerías externas
+# noinspection PyBroadException
 try:
+    # noinspection PyUnresolvedReferences
     import WConio  # @UnresolvedImport
 except:
     if os.name == "nt":
@@ -84,16 +85,20 @@ def colorcmd(cmd, color):
     if color in _CMD_COLORS:
         color = _CMD_COLORS[color]
         try:
-            ctypes.windll.kernel32.SetConsoleTextAttribute(ctypes.windll.kernel32.GetStdHandle(-11), color)  # @UndefinedVariable
+            ctypes.windll.kernel32.SetConsoleTextAttribute(
+                ctypes.windll.kernel32.GetStdHandle(-11),
+                color)  # @UndefinedVariable
         except:
             pass
-        print cmd,
+        print(cmd)
         try:
-            ctypes.windll.kernel32.SetConsoleTextAttribute(ctypes.windll.kernel32.GetStdHandle(-11), 0x07)  # @UndefinedVariable
+            ctypes.windll.kernel32.SetConsoleTextAttribute(
+                ctypes.windll.kernel32.GetStdHandle(-11),
+                0x07)  # @UndefinedVariable
         except:
             pass
     else:
-        print cmd,
+        print(cmd)
 
 
 def delAccent(txt):
@@ -102,8 +107,10 @@ def delAccent(txt):
     :param txt: String
     :return: String con acentos eliminados
     """
-    txt = txt.replace("�??", "A").replace("É", "E").replace("�?", "I").replace("Ó", "O").replace("Ú", "U")
-    return txt.replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u")
+    txt = txt.replace("�??", "A").replace("É", "E").replace("�?", "I").replace(
+        "Ó", "O").replace("Ú", "U")
+    return txt.replace("á", "a").replace("é", "e").replace("í", "i").replace(
+        "ó", "o").replace("ú", "u")
 
 
 def delMatrix(matrix):
@@ -128,6 +135,7 @@ def clrscr():
         pass
 
 
+# noinspection PyUnresolvedReferences
 def destroyProcess():
     """
     Destruye el proceso del programa
@@ -144,7 +152,8 @@ def generateRandom6():
     Genera un string de 6 carácteres aleatorios
     :return: String
     """
-    return ''.join(choice(string.ascii_uppercase) for i in range(6))  # @UnusedVariable
+    return ''.join(
+        choice(string.ascii_uppercase) for i in range(6))  # @UnusedVariable
 
 
 def generateRandom12():
@@ -152,7 +161,8 @@ def generateRandom12():
     Genera un string de 12 carácteres aleatorios
     :return: String
     """
-    return ''.join(choice(string.ascii_uppercase) for i in range(12))  # @UnusedVariable
+    return ''.join(
+        choice(string.ascii_uppercase) for i in range(12))  # @UnusedVariable
 
 
 def getBetweenTags(html, tagi, tagf):
@@ -206,11 +216,15 @@ def getTerminalSize():
     :return: tupla
     """
     env = os.environ
-    # noinspection PyShadowingNames
+
+    # noinspection PyShadowingNames,PyMissingOrEmptyDocstring,PyBroadException,PyUnresolvedReferences
     def ioctl_GWINSZ(fd):
         try:
-            import fcntl, termios, struct  # @UnresolvedImport
-            cr = struct.unpack('hh', fcntl.ioctl(fd, termios.TIOCGWINSZ, '1234'))
+            import fcntl
+            import termios
+            import struct
+            cr = struct.unpack('hh',
+                               fcntl.ioctl(fd, termios.TIOCGWINSZ, '1234'))
         except:
             return
         return cr
@@ -227,6 +241,7 @@ def getTerminalSize():
     return int(cr[1]), int(cr[0])
 
 
+# noinspection PyArgumentEqualDefault
 def getVersion(label, headers):
     """
     Obtener la versión del programa
@@ -235,13 +250,17 @@ def getVersion(label, headers):
     :return: String
     """
     http_headers = {"User-Agent": headers}
-    request_object = Request(LINK_PPPRJ, None, http_headers)  # @UndefinedVariable
+    request_object = Request(LINK_PPPRJ, None,
+                             http_headers)  # @UndefinedVariable
     response = urllib2.urlopen(request_object)
     html = response.read()
-    html = getBetweenTags(getBetweenTags(html, "<" + label + ">", "</" + label + ">"), "<version>", "</version>")
+    html = getBetweenTags(
+        getBetweenTags(html, "<" + label + ">", "</" + label + ">"),
+        "<version>", "</version>")
     return html.strip()
 
 
+# noinspection PyArgumentEqualDefault
 def googleTranslate(text, translate_lang, header, web, source_lang=None):
     """
     Traduce una linea usando el motor de traducciones de google
@@ -253,7 +272,9 @@ def googleTranslate(text, translate_lang, header, web, source_lang=None):
     :return: String traducido
     """
     if source_lang is None: source_lang = 'auto'
-    params = urlencode({'client': 't', 'tl': translate_lang, 'q': text.encode('utf-8'), 'sl': source_lang})
+    params = urlencode(
+        {'client': 't', 'tl': translate_lang, 'q': text.encode('utf-8'),
+         'sl': source_lang})
     http_headers = {"User-Agent": header}
     request_object = Request(web + params, None, http_headers)
     response = urlopen(request_object)
@@ -277,6 +298,7 @@ def isIn(termino, matriz):
     return False
 
 
+# noinspection PyBroadException
 def loadFile(archive, lang=_MSG_LOADINGFILE, **kwargs):
     """
     Carga un archivo y retorna una matriz
@@ -285,16 +307,21 @@ def loadFile(archive, lang=_MSG_LOADINGFILE, **kwargs):
     :param kwargs: Parámetros adicionales
     :return: Lista
     """
-    if kwargs.get("show_state"): print lang.format("(...)" + archive[_CONSOLE_WRAP:].replace("//", "/")).replace("\"",""),
+    if kwargs.get("show_state"):
+        print(lang.format(
+            "(...)" + archive[_CONSOLE_WRAP:].replace("//", "/")).replace("\"",
+                                                                          ""))
     try:
         l = list()
-        archive = open(archive, "r")
+        archive = open(archive)
         for i in archive:
             l.append(i.decode('utf-8').strip())
         archive.close()
-        if kwargs.get("show_state"): print _MSG_OK
+        if kwargs.get("show_state"):
+            print(_MSG_OK)
     except:
-        if kwargs.get("show_state"): print "error"
+        if kwargs.get("show_state"):
+            print("error")
         l = []
     return l
 
@@ -306,8 +333,9 @@ def printMatrix(matrix):
     :return: void
     """
     for j in matrix:
-        for k in j: print k,
-        print "\n"
+        for k in j:
+            print(k)
+        print("\n")
 
 
 def sortAndUniq(input):  # @ReservedAssignment
@@ -349,17 +377,21 @@ def sumMatrix(matrix):
     except:
         return -1
 
+
 # Test
 if __name__ == '__main__':
-    print string2list("foo bar", " ")
-    print getDate()
-    print getHour()
+    print(string2list("foo bar", " "))
+    print(getDate())
+    print(getHour())
     colorcmd("test in purple\n", "purple")
-    print generateRandom6()
-    print getTerminalSize()
+    print(generateRandom6())
+    print(getTerminalSize())
     # noinspection PyTypeChecker
-    print loadFile("__init__.ini")
-    print sortAndUniq([1, 1, 1, 1, 1, 2, 2, 2, 3, 4, 10, 5])
-    print getBetweenTags("<player>Username<title></title></player>", "<player>", "</player>")
-    print getBetweenTags("<player>Username</player><title>Altername</title>", "<player>", "</player>")
-    print getBetweenTags("<player>Username</player><title>Altername</title>", "<title>", "</title>")
+    print(loadFile("__init__.ini"))
+    print(sortAndUniq([1, 1, 1, 1, 1, 2, 2, 2, 3, 4, 10, 5]))
+    print(getBetweenTags("<player>Username<title></title></player>", "<player>",
+                         "</player>"))
+    print(getBetweenTags("<player>Username</player><title>Altername</title>",
+                         "<player>", "</player>"))
+    print(getBetweenTags("<player>Username</player><title>Altername</title>",
+                         "<title>", "</title>"))

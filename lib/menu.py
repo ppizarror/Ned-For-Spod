@@ -1,7 +1,7 @@
 # coding=utf-8
 """
 MENU
-Brinda distintas opciones las cuales se pueden seleccionar
+Brinda distintas opciones las cuales se pueden seleccionar.
 
 Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015

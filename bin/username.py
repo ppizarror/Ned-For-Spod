@@ -1,40 +1,49 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-if __name__ == '__main__': from path import *  # @UnusedWildImport
+# coding=utf-8
+"""
+USERNAME
+Provee una función para retornar el nombre de usuario si es que el actual no
+es válido.
 
-# Provee una función para retornar el nombre de usuario si es que el actual no es válido
-#
-# Autor: PABLO PIZARRO @ ppizarro ~
-# Fecha: ABRIL 2015
+Autor: PABLO PIZARRO @ ppizarro ~
+Fecha: ABRIL 2015
+"""
+
+from __future__ import print_function
+
+if __name__ == '__main__':
+    # noinspection PyUnresolvedReferences
+    from path import *  # @UnusedWildImport
 
 # Importación de librerías
 # noinspection PyProtectedMember
-import os
-import pygame, string  # @UnusedImport
-import pygame.gfxdraw
 from pygame.locals import *  # @UnusedWildImport
+# noinspection PyProtectedMember
 from path import _DIR_BIN
 from resources.fonts import getFonts  # @UnresolvedImport
 from resources.icons import getIcons  # @UnresolvedImport
+import os
+import pygame
+import pygame.gfxdraw
 
 # Constantes del programa
 COLOR_BLACK = (0, 0, 0, 200)  # color negro
 COLOR_WHITE = (255, 255, 255)  # color blanco
-NO_VALID_NAME = "NULL"  # evento invalido
+NO_VALID_NAME = 'NULL'  # evento invalido
 BLACKLIST = []  # nombres de usuario invalido
-NULLSTATE = "NULL"  # estado nulo
+NULLSTATE = 'NULL'  # estado nulo
 POS_INPUT = (10, 58)  # posicion a dibujar el input
 SCREEN_SIZE = (350, 100)  # tamaño de la pantalla
 TITLE_BG_COLOR = (170, 65, 50)  # color de fondo del titulo
-VALIDUSERNAME = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"  # caracteres válidos
+VALIDUSERNAME = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'  # caracteres válidos
 
 # Nombres de usuario invalidos
-blacklist = open(_DIR_BIN + "server/blacklist.data", "r")
-for line in blacklist: BLACKLIST.append(line.strip())
+blacklist = open(_DIR_BIN + 'server/blacklist.data')
+for line in blacklist:
+    BLACKLIST.append(line.strip())
 blacklist.close()
 
 
-class Input:
+class Input(object):
     """Clase input, permite ingresar texto a un string dado los eventos asociados al programa principal"""
 
     def __init__(self, size, prompt):
@@ -44,7 +53,7 @@ class Input:
         :param prompt: Mensaje
         :return: void
         """
-        self.font = pygame.font.Font(getFonts("menu"), 17)
+        self.font = pygame.font.Font(getFonts('menu'), 17)
         self.maxlength = size
         self.prompt = prompt
         self.value = ''
@@ -69,7 +78,8 @@ class Input:
         for event in events:
             # Si se levanta una tecla
             if event.type == KEYUP:
-                if event.key == K_LSHIFT or event.key == K_RSHIFT: self.shifted = False
+                if event.key == K_LSHIFT or event.key == K_RSHIFT:
+                    self.shifted = False
             # Si se presiona una tecla
             if event.type == KEYDOWN:
                 if event.key == K_BACKSPACE:
@@ -206,10 +216,12 @@ class Input:
                         self.value += 'Y'
                     elif event.key == K_z:
                         self.value += 'Z'
-        if len(self.value) > self.maxlength >= 0: self.value = self.value[:-1]
+        if len(self.value) > self.maxlength >= 0:
+            self.value = self.value[:-1]
         return NULLSTATE
 
 
+# noinspection PyUnresolvedReferences,PyUnusedLocal
 def request(title, inputtext):
     """
     Función que abre una ventana para pedir un nombre de usuario
@@ -219,9 +231,10 @@ def request(title, inputtext):
     """
     # Se crea la ventana
     os.environ['SDL_VIDEO_CENTERED'] = '1'
-    display = pygame.display.set_mode(SCREEN_SIZE, pygame.NOFRAME)  # @UnusedVariable
+    pygame.display.set_mode(SCREEN_SIZE,
+                            pygame.NOFRAME)  # @UnusedVariable
     pygame.display.set_caption(title)
-    pygame.display.set_icon(pygame.image.load(getIcons("icon")))
+    pygame.display.set_icon(pygame.image.load(getIcons('icon')))
     screen = pygame.display.get_surface()
     nombre = Input(10, inputtext)
 
@@ -230,17 +243,21 @@ def request(title, inputtext):
 
     # Se crea el titulo de la ventana
     window_title_fontsize = 30
-    window_title = pygame.font.Font(getFonts("menu"), window_title_fontsize)
+    window_title = pygame.font.Font(getFonts('menu'), window_title_fontsize)
     window_title_font = window_title.render(title, 1, COLOR_WHITE)
     window_title_width = window_title_font.get_size()[0]
-    window_title_pos = [(0, 0), (SCREEN_SIZE[0], 0), (SCREEN_SIZE[0], int(window_title_fontsize / 2)),
-                        (window_title_width + 15, int(window_title_fontsize / 2)), \
-                        (window_title_width + 5, window_title_fontsize + 7), (0, window_title_fontsize + 7)]
+    window_title_pos = [(0, 0), (SCREEN_SIZE[0], 0),
+                        (SCREEN_SIZE[0], int(window_title_fontsize / 2)),
+                        (window_title_width + 15,
+                         int(window_title_fontsize / 2)),
+                        (window_title_width + 5, window_title_fontsize + 7),
+                        (0, window_title_fontsize + 7)]
 
     # Se lanza el programa
     while True:
         clock.tick(60)  # se definen los fps
-        time = float(clock.get_time()) / 1000.0  # tiempo que tomo el frame en generarse @UnusedVariable
+        time = float(
+            clock.get_time()) / 1000.0  # tiempo que tomo el frame en generarse
         screen.fill(COLOR_BLACK)  # se limpia la pantalla
 
         # Se dibuja el rectangulo rojo del titulo
@@ -253,11 +270,13 @@ def request(title, inputtext):
             if event.type == QUIT:
                 return NO_VALID_NAME
             elif event.type == KEYDOWN:
-                if event.key == K_ESCAPE: return NO_VALID_NAME
+                if event.key == K_ESCAPE:
+                    return NO_VALID_NAME
 
-                # Se recoge el resultado
+                    # Se recoge el resultado
         state = nombre.update(events)
-        if state != NULLSTATE and validate(state): return state
+        if state != NULLSTATE and validate(state):
+            return state
 
         # Se dibuja el campo en pantalla
         nombre.draw(screen)
@@ -275,15 +294,17 @@ def validate(username):
     if username.upper() not in BLACKLIST:
         if 4 <= len(username) <= 10:
             for char in username:
-                if char not in VALIDUSERNAME: return False
+                if char not in VALIDUSERNAME:
+                    return False
             return True
     return False
+
 
 # Test
 if __name__ == '__main__':
     pygame.init()
-    print validate("Player")
-    print validate("Test")
-    print validate("1")
-    print validate("$INVALIDNAME'")
-    request("Crea un perfil", "Nombre (4-10 caracteres): ")
+    print(validate('Player'))
+    print(validate('Test'))
+    print(validate('1'))
+    print(validate('$INVALIDNAME\''))
+    request('Crea un perfil', 'Nombre (4-10 caracteres): ')

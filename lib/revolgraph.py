@@ -1,6 +1,7 @@
 # coding=utf-8
 """
-Grafico de las revoluciones
+REVOLGRAPH
+Grafico de las revoluciones.
 
 Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015

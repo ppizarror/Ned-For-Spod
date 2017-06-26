@@ -1,21 +1,29 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-if __name__ == '__main__': from path import *  # @UnusedWildImport
+# coding=utf-8
+"""
+BROWSER
+Sencillo navegador web.
 
-# Sencillo navegador web
-#
-# Autor: PABLO PIZARRO @ ppizarro ~
-# Fecha: ABRIL 2015
+Autor: PABLO PIZARRO @ ppizarro ~
+Fecha: ABRIL 2015
+"""
 
 # Importación de librerías
+if __name__ == '__main__':
+    # noinspection PyUnresolvedReferences
+    from path import *  # @UnusedWildImport
+
+# noinspection PyCompatibility
 import cookielib
+# noinspection PyCompatibility
 import htmlentitydefs
 import re
 import errors
+# noinspection PyUnresolvedReferences
 import mechanize  # @UnresolvedImport
 
 # Constantes
 HREF_HEADERS = "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1"
+
 
 # Funciones de clase
 def unescape(text):
@@ -25,7 +33,7 @@ def unescape(text):
     :return: HTML sin caracteres
     """
 
-    # noinspection PyShadowingNames
+    # noinspection PyShadowingNames,PyCompatibility,PyMissingOrEmptyDocstring
     def fixup(m):
         text = m.group(0)
         if text[:2] == "&#":
@@ -46,7 +54,8 @@ def unescape(text):
     return re.sub("&#?\w+;", fixup, text)
 
 
-class Browser:
+# noinspection PyBroadException
+class Browser(object):
     """Navegador web"""
 
     def __init__(self):
@@ -67,7 +76,8 @@ class Browser:
         self.br.set_handle_refresh(False)
         self.br.set_handle_robots(False)
         # noinspection PyProtectedMember
-        self.br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
+        self.br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(),
+                                   max_time=1)
 
     def playBrowser(self):
         """
@@ -182,7 +192,8 @@ class Browser:
             if len(form) > 0 and len(values) > 0:
                 if len(form) == len(values):
                     try:
-                        for i in range(len(form)): self.br.form[form[i]] = values[i]
+                        for i in range(len(form)):
+                            self.br.form[form[i]] = values[i]
                         self.br.submit()
                     except:
                         return errors.BR_ERRORxERROR_SET_SUBMIT

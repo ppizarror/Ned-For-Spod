@@ -2,11 +2,13 @@
 """
 PLAYER
 Maneja lo que es un auto, sus texturas, propiedades y manejo lógico
-Maneja la comunicación con el servidor para el caso de los marcadores
+Maneja la comunicación con el servidor para el caso de los marcadores.
 
 Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015
 """
+
+from __future__ import print_function
 
 if __name__ == '__main__':
     from path import *  # @UnusedWildImport
@@ -248,7 +250,7 @@ def valid_username(username):
         return name[0:10]
 
 
-# noinspection PyUnboundLocalVariable,PyBroadException,PyTypeChecker,PyAttributeOutsideInit
+# noinspection PyUnboundLocalVariable,PyBroadException,PyTypeChecker,PyAttributeOutsideInit,PyArgumentEqualDefault
 class Player(object):
     """Objeto player, que representa cualquier entidad en el mapa"""
 
@@ -431,7 +433,7 @@ class Player(object):
                 cambio = self.cambio
                 if cambio > 0 and 0 < self.get_revl() < 99:
                     if self.get_vel_kph() > self.velcambios[self.cambio]:
-                        print "<TODO>FRENO:MOTOR"
+                        print('<TODO>FRENO:MOTOR')
                     self.velx += self.acel[cambio] * ecos(self.angle) * t
                     self.vely += self.acel[cambio] * esin(self.angle) * t
                     self.tiempoAcelerando += t
@@ -955,7 +957,8 @@ class Player(object):
                 self.marcasTierra[index] = (new_x, new_y)
             else:
                 if math.sqrt((new_x - self.marcasTierra[index][0]) ** 2 + (
-                            new_y - self.marcasTierra[index][1]) ** 2) > MIN_LENGTH_MARCA:
+                            new_y - self.marcasTierra[index][
+                            1]) ** 2) > MIN_LENGTH_MARCA:
                     # Se elige el color de dibujado
                     color_choice = random.randint(-10, 2)
                     if color_choice < 0:
@@ -1012,7 +1015,7 @@ class Player(object):
             angl = min_ang(self.angle) * sin(
                 (self.get_vel() * 90) / self.maxvelkmh) * t * self.lastdirangle
             self.angle += angl
-            self.rotate(self.lastdirangle, t, True)
+            self.rotate(self.lastdirangle, t)
         if self.get_vel() > prev_vel:  # se comprueba que no se este acelerando
             self.velx = 0
             self.vely = 0
@@ -1097,7 +1100,8 @@ class Player(object):
             self.marcasFrenado[index] = (new_x, new_y)
         else:
             if math.sqrt((new_x - self.marcasFrenado[index][0]) ** 2 + (
-                        new_y - self.marcasFrenado[index][1]) ** 2) > MIN_LENGTH_FRENADO:
+                        new_y - self.marcasFrenado[index][
+                        1]) ** 2) > MIN_LENGTH_FRENADO:
                 # Se elige el color de dibujado
                 color_choice = random.randint(-10, 2)
                 if color_choice < 0:
@@ -1139,7 +1143,8 @@ class Player(object):
             self.marcasFrenadoHB[index] = (new_x, new_y)
         else:
             if math.sqrt((new_x - self.marcasFrenadoHB[index][0]) ** 2 + (
-                        new_y - self.marcasFrenadoHB[index][1]) ** 2) > MIN_LENGTH_FRENADO:
+                        new_y - self.marcasFrenadoHB[index][
+                        1]) ** 2) > MIN_LENGTH_FRENADO:
                 # Se elige el color de dibujado
                 color_choice = random.randint(-10, 2)
                 if color_choice < 0:
@@ -1374,7 +1379,9 @@ class Player(object):
         if (rel_pos[1] - 1.25 * self.window.get_window_height()) < \
                 self.mapLimits[1] or (
                     rel_pos[1] + 1.0 * self.window.get_window_height()) > \
-                self.mapLimits[3] or (rel_pos[0] - 1.25 * self.window.get_window_width()) < self.mapLimits[0] or (
+                self.mapLimits[3] or (
+                    rel_pos[0] - 1.25 * self.window.get_window_width()) < \
+                self.mapLimits[0] or (
                     rel_pos[0] + 1.0 * self.window.get_window_width()) > \
                 self.mapLimits[2]:
             self.return_to_track()
@@ -1409,10 +1416,11 @@ class Player(object):
                                 1 - self.totalLaps)) + 0.3 / (
                                           current_min ** 1.5)))
                         # Se sube el puntaje a la web
-                        scoreboard_insert_url = self.scoreLink.format(self.hash[0], self.hash[1], self.hash[2],
-                                                                      md5str(self.trackName),
-                                                                      valid_username(self.username).lower(), self.score,
-                                                                      round(current_min, 1), self.type)
+                        scoreboard_insert_url = self.scoreLink.format(
+                            self.hash[0], self.hash[1], self.hash[2],
+                            md5str(self.trackName),
+                            valid_username(self.username).lower(), self.score,
+                            round(current_min, 1), self.type)
                         if WEB_BROWSER:
                             self.browser.abrirLink(scoreboard_insert_url)
                         else:
@@ -1424,7 +1432,7 @@ class Player(object):
                         # Si existe comunicación con el servidor
                         try:
                             if self.verbose:
-                                print "Conectando con el servidor ...",
+                                print('Conectando con el servidor ...', )
                             if WEB_BROWSER:
                                 scoreboard = unescape(self.browser.getHtml())
                             else:
@@ -1455,11 +1463,11 @@ class Player(object):
                                 else:
                                     self.scoreBoardOnline.append([line])
                             if self.verbose:
-                                print "ok"
+                                print('ok')
                         # Error de conexión
                         except:
                             if self.verbose:
-                                print "fail"
+                                print('fail')
                                 warning(ERROR_SCOREBOARD_NOCONECTIONMSG)
                             self.scoreBoardOnline = [
                                 ERROR_SCOREBOARD_NOCONECTION]

@@ -12,17 +12,18 @@
 # Importación de liberías
 import os
 
-
 # Definición de variables
-__actualpath = str(os.path.abspath(os.path.dirname(__file__))).replace("\\","/") + "/"
+__actualpath = str(os.path.abspath(os.path.dirname(__file__))).replace("\\",
+                                                                       "/") + "/"
 
 # Librería de /icons
 ICONS = {
 
-	#Resources/Icons
-	"icon": __actualpath + "icon.png", \
-	"launcher": __actualpath + "launcher.ico"
+    # Resources/Icons
+    "icon": __actualpath + "icon.png", \
+    "launcher": __actualpath + "launcher.ico"
 }
+
 
 # Función que retorna el elemento <index> de la librería ICONS
 def getIcons(index):
@@ -31,13 +32,14 @@ def getIcons(index):
     except:
         return -1
 
+
 # Función que retorna los archivos en ICONS
 def getIconsKeys():
     return ICONS.keys()
+
 
 # Función que imprime los archivos en ICONS
 def printIconsValues():
     print "<KEY> ICONS[<KEY>]"
     for file in ICONS.keys():
-        print file +" "+str(ICONS[file])
-    
+        print file + " " + str(ICONS[file])

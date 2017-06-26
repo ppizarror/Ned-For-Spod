@@ -1,7 +1,8 @@
 # coding=utf-8
 """
+WINDOW
 Ventana del juego, instancia la ventana en función de la configuración inicial
-Adicionalmente maneja tamaños y superficies
+Adicionalmente maneja tamaños y superficies.
 
 Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015

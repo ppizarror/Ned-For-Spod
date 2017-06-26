@@ -1,7 +1,7 @@
 # coding=utf-8
 """
 TRACK
-Permite crear una pista, posee tanto decoraciones como coches
+Permite crear una pista, posee tanto decoraciones como coches.
 
 Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015

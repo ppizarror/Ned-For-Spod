@@ -1,6 +1,7 @@
 # coding=utf-8
 """
-Clase selector, permite manejar elementos y funciones para una entrada del menu
+SELECTOR
+Clase selector, permite manejar elementos y funciones para una entrada del menú.
 
 Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015

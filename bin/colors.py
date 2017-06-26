@@ -1,11 +1,11 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-#
-# Maneja los colores en la consola
+# coding=utf-8
+"""
+COLORS
+Maneja los colores en la consola.
 
-# Colors
-# Autor: PABLO PIZARRO @ ppizarro ~
-# Fecha: JULIO 2015
+Autor: PABLO PIZARRO @ ppizarro ~
+Fecha: JULIO 2015
+"""
 
 # Importación de librerías
 import os

@@ -1,9 +1,8 @@
 # coding=utf-8
 """
-Permite la importación multiple
-Agrega librerías al path
+PATH
+Permite la importación múltiple, agrega librerías al path
 
-Game template
 Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015
 """
@@ -13,6 +12,7 @@ import sys
 from libdir import DIR_LIB, DIR_BIN
 
 # Se agregan directorios al path
+# noinspection PyCompatibility
 reload(sys)
 sys.path.append(DIR_LIB)
 sys.path.append(DIR_BIN)
