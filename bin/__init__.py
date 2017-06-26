@@ -17,7 +17,7 @@ from path import *
 # noinspection PyUnresolvedReferences
 import os
 import bindir
-from Configloader import Configloader
+from configloader import Configloader
 import errors
 
 

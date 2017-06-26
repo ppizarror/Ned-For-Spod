@@ -12,7 +12,7 @@ from __future__ import print_function
 import math
 # noinspection PyProtectedMember
 from bindir import _LANG_DIRCONFIG, _LANG_DIRLANGS, _DIR_CONFIG
-from Configloader import Configloader
+from configloader import Configloader
 import errors
 from utils import googleTranslate
 
