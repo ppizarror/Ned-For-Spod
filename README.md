@@ -1,6 +1,6 @@
 # Ned For Spod
-[![@ppizarror](http://latex.ppizarror.com/Template-Informe/resources/autor2.svg)](http://ppizarror.com)
-[![Licencia MiT](http://latex.ppizarror.com/Template-Informe/resources/Licencia-MIT-blue.svg)](https://opensource.org/licenses/MIT/)
+[![@ppizarror](http://ppizarror.com/resources/images/autor.svg)](http://ppizarror.com)
+[![Licencia GPL](http://ppizarror.com/resources/images/licenciagpl2.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![Python](http://ppizarror.com/resources/images/python27.svg)](https://www.python.org/downloads/)
 
 ![][image-1]
