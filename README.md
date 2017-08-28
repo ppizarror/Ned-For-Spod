@@ -1,4 +1,8 @@
 # Ned For Spod
+[![@ppizarror](http://latex.ppizarror.com/Template-Informe/resources/autor2.svg)](http://ppizarror.com)
+[![Licencia MiT](http://latex.ppizarror.com/Template-Informe/resources/Licencia-MIT-blue.svg)](https://opensource.org/licenses/MIT/)
+[![Python](http://ppizarror.com/resources/images/python27.svg)](https://www.python.org/downloads/)
+
 ![][image-1]
 Juego en 2D de carreras de autos enteramente desarrollado en python-pygame.
 
@@ -31,7 +35,7 @@ Actualmente en OSX no se obtienen buenos resultados, sin embargo el programa pue
 
 ## Idiomas disponibles
 - Español
-- Inglés
+- English
 
 ## Ejecutar
 Para correr el juego ingrese en la terminal: `python main.py`
