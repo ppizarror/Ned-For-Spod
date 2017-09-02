@@ -41,11 +41,10 @@ Actualmente en OSX no se obtienen buenos resultados, sin embargo el programa pue
 Para correr el juego ingrese en la terminal: `python main.py`
 
 ## Licencia
-Este proyecto está licenciado bajo GPLv2 (GNU General Public License, version 2) [https://www.gnu.org/licenses/gpl-2.0.html][5].
+Este proyecto está licenciado bajo GPLv2 (GNU General Public License, version 2) [https://www.gnu.org/licenses/gpl-2.0.html].
 
 ## Autor
-Pablo Pizarro
-2015-2017
+<a href="http://ppizarror.com">Pablo Pizarro R.</a>, 2015-2017.
 
 [1]:	http://www.pygame.org/ "http://www.pygame.org"
 [2]:	https://pypi.python.org/pypi/mechanize/
@@ -53,7 +52,7 @@ Pablo Pizarro
 [4]:	https://pypi.python.org/pypi/pyperclip
 [5]:	https://www.gnu.org/licenses/gpl-2.0.html
 
-[image-1]:	https://raw.githubusercontent.com/ppizarror/ppizarror.github.io/master/resources/images/nfs-python/splash.jpg "Menú principal"
-[image-2]:	https://raw.githubusercontent.com/ppizarror/ppizarror.github.io/master/resources/images/nfs-python/gameplay3.jpg "Vuelta en el desierto"
-[image-3]:	https://raw.githubusercontent.com/ppizarror/ppizarror.github.io/master/resources/images/nfs-python/gameplay1.jpg "Fantasma y algunos efectos gráficos"
-[image-4]:	https://raw.githubusercontent.com/ppizarror/ppizarror.github.io/master/resources/images/nfs-python/results.jpg "Resultados"
+[image-1]: http://ppizarror.com/resources/images/nfs-python/splash.jpg "Menú principal"
+[image-2]: http://ppizarror.com/resources/images/nfs-python/gameplay3.jpg "Vuelta en el desierto"
+[image-3]: http://ppizarror.com/resources/images/nfs-python/gameplay1.jpg "Fantasma y algunos efectos gráficos"
+[image-4]: http://ppizarror.com/resources/images/nfs-python/results.jpg "Resultados"
