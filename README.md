@@ -1,10 +1,14 @@
-# Ned For Spod
-[![@ppizarror](http://ppizarror.com/resources/images/autor.svg)](http://ppizarror.com)
-[![Licencia GPL](http://ppizarror.com/resources/images/licenciagpl2.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
-[![Python](http://ppizarror.com/resources/images/python27.svg)](https://www.python.org/downloads/)
-
-![][image-1]
-Juego en 2D de carreras de autos enteramente desarrollado en python-pygame.
+<h1 align="center">
+  <a href="http://ppizarror.com/Ned-For-Spod/" title="Ned For Spod">
+    <img alt="Ned For Spod" src="https://github.com/ppizarror/Ned-For-Spod/raw/master/resources/icons/icon.png" width="200px" height="200px" />
+  </a>
+  <br /><br />
+  Ned For Spod</h1>
+<p align="center">Juego en 2D de carreras de autos enteramente desarrollado en python-pygame</p>
+<div align="center"><a href="http://ppizarror.com"><img alt="@ppizarror" src="http://ppizarror.com/badges/autor.svg" /></a>
+<a href="https://www.gnu.org/licenses/gpl-2.0.html/"><img alt="Licencia GPL v2" src="http://ppizarror.com/badges/licenciagpl2.svg" /></a>
+<a href="https://www.python.org/downloads/"><img alt="Python 2.7" src="http://ppizarror.com/badges/python27.svg" /></a>
+</div><br />
 
 ## Introducción
 Ned for Spod es un juego _top view_ de carreras de automóviles, el cual tiene por objetivo batir tiempos de vuelta de cada pista.
@@ -38,13 +42,10 @@ Actualmente en OSX no se obtienen buenos resultados, sin embargo el programa pue
 - English
 
 ## Ejecutar
-Para correr el juego ingrese en la terminal: `python main.py`
+Para correr el juego ingrese en la terminal: ```python main.py```
 
 ## Licencia
-Este proyecto está licenciado bajo GPLv2 (GNU General Public License, version 2) [https://www.gnu.org/licenses/gpl-2.0.html].
-
-## Autor
-<a href="http://ppizarror.com">Pablo Pizarro R.</a> | 2015-2017.
+Este proyecto está licenciado bajo GPLv2 (GNU General Public License, version 2) [https://www.gnu.org/licenses/gpl-2.0.html]
 
 [1]:	http://www.pygame.org/ "http://www.pygame.org"
 [2]:	https://pypi.python.org/pypi/mechanize/
@@ -56,3 +57,6 @@ Este proyecto está licenciado bajo GPLv2 (GNU General Public License, version 2
 [image-2]: http://ppizarror.com/resources/images/nfs-python/gameplay3.jpg "Vuelta en el desierto"
 [image-3]: http://ppizarror.com/resources/images/nfs-python/gameplay1.jpg "Fantasma y algunos efectos gráficos"
 [image-4]: http://ppizarror.com/resources/images/nfs-python/results.jpg "Resultados"
+
+## Autor
+<a href="http://ppizarror.com" title="ppizarror">Pablo Pizarro R.</a> | 2015 - 2017
