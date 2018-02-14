@@ -40,3 +40,6 @@ version.txt
 *.bat
 appcompile.spec
 main.spec
+
+# Server files
+php/
