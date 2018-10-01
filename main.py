@@ -62,7 +62,7 @@ def main():
             user_config.setParameter('NAME', new_name)
             user_config.export()
         else:
-            utils.destroyProcess()
+            utils.destroy_process()
 
             # Creación de ventana
     # noinspection PyUnresolvedReferences

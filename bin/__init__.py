@@ -20,7 +20,6 @@ import bindir
 from configloader import Configloader
 import errors
 
-
 # Configuración de entorno
 # noinspection PyProtectedMember
 __binconfig = Configloader(bindir._DIR_CONFIG + "bin.ini")

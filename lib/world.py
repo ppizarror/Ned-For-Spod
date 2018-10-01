@@ -9,17 +9,16 @@ Fecha: ABRIL 2015
 
 # Importación de librerías
 from __future__ import print_function
-
-if __name__ == '__main__':
-    # noinspection PyUnresolvedReferences
-    from path import *  # @UnusedWildImport
-
 from bin import pygame
 from bin.browser import Browser, HREF_HEADERS
 from bin.errors import throw, ERROR_TRACKNOTEXIST
 from resources.images import getImages
 from resources.sounds import getSounds
 from track import Maptrack
+
+if __name__ == '__main__':
+    # noinspection PyUnresolvedReferences
+    from path import *  # @UnusedWildImport
 
 # Definición de constantes
 NEXT_TRACK = -1
@@ -112,7 +111,7 @@ class World(object):
                 float(self.configWorld.getValue("CHANNEL_" + str(i))))
         # Se crea el navegador web
         self.browser = Browser()
-        self.browser.addHeaders(HREF_HEADERS)
+        self.browser.add_headers(HREF_HEADERS)
 
     def clear_actual_map(self):
         """

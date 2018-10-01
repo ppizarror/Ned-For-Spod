@@ -10,10 +10,6 @@ Fecha: ABRIL 2015
 
 from __future__ import print_function
 
-if __name__ == '__main__':
-    # noinspection PyUnresolvedReferences
-    from path import *  # @UnusedWildImport
-
 # Importación de librerías
 # noinspection PyProtectedMember
 from pygame.locals import *  # @UnusedWildImport
@@ -21,9 +17,14 @@ from pygame.locals import *  # @UnusedWildImport
 from path import _DIR_BIN
 from resources.fonts import getFonts  # @UnresolvedImport
 from resources.icons import getIcons  # @UnresolvedImport
+# noinspection PyUnresolvedReferences
 import os
 import pygame
 import pygame.gfxdraw
+
+if __name__ == '__main__':
+    # noinspection PyUnresolvedReferences
+    from path import *  # @UnusedWildImport
 
 # Constantes del programa
 COLOR_BLACK = (0, 0, 0, 200)  # color negro

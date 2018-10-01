@@ -10,7 +10,7 @@ Fecha: ABRIL 2015
 
 if __name__ == '__main__':
     # noinspection PyUnresolvedReferences
-    from path import *  # @UnusedWildImport
+    from path import *
 
 
 class Gameobject(object):
@@ -42,7 +42,7 @@ class Gameobject(object):
         drawx = camera_pos[0] - self.pos[0] + (window.get_window_width() - 1000) / 2
         drawy = camera_pos[1] - self.pos[1] + (window.get_window_height() - 600) / 2
         if (-self.width <= drawx <= window.get_window_width()) and (
-                        -self.height <= drawy <= window.get_window_height()):
+                -self.height <= drawy <= window.get_window_height()):
             surface.blit(self.texture, (drawx, drawy))
 
     def get_dimension(self):

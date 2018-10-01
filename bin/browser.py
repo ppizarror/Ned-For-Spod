@@ -7,11 +7,6 @@ Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015
 """
 
-# Importación de librerías
-if __name__ == '__main__':
-    # noinspection PyUnresolvedReferences
-    from path import *  # @UnusedWildImport
-
 # noinspection PyCompatibility
 import cookielib
 # noinspection PyCompatibility
@@ -19,7 +14,12 @@ import htmlentitydefs
 import re
 import errors
 # noinspection PyUnresolvedReferences
-import mechanize  # @UnresolvedImport
+import mechanize
+
+# Importación de librerías
+if __name__ == '__main__':
+    # noinspection PyUnresolvedReferences
+    from path import *
 
 # Constantes
 HREF_HEADERS = "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1"
@@ -79,14 +79,14 @@ class Browser(object):
         self.br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(),
                                    max_time=1)
 
-    def playBrowser(self):
+    def play_browser(self):
         """
         Obtener el browser
         :return: Browser
         """
         return self.br
 
-    def addHeaders(self, header):
+    def add_headers(self, header):
         """
         Agregar headers al navegador
         :param header: String de browser header
@@ -94,7 +94,7 @@ class Browser(object):
         """
         self.br.addheaders = [('User-agent', header)]
 
-    def abrirLink(self, web):
+    def abrir_link(self, web):
         """
         Ingresar a una dirección web
         :param web: Link a web
@@ -107,7 +107,7 @@ class Browser(object):
         except:
             return errors.BR_ERRORxNO_ACCESS_WEB
 
-    def getHtml(self):
+    def get_html(self):
         """
         Obtener el código html
         :return: String
@@ -117,7 +117,7 @@ class Browser(object):
         else:
             return errors.BR_ERRORxNO_OPENED
 
-    def getTitle(self):
+    def get_title(self):
         """
         Obtener el título
         :return: String
@@ -127,7 +127,7 @@ class Browser(object):
         else:
             return errors.BR_ERRORxNO_OPENED
 
-    def getHeaders(self):
+    def get_headers(self):
         """
         Obtener los headers
         :return: String
@@ -137,7 +137,7 @@ class Browser(object):
         else:
             return errors.BR_ERRORxNO_OPENED
 
-    def getForms(self):
+    def get_forms(self):
         """
         Obtener los forms
         :return: String
@@ -147,7 +147,7 @@ class Browser(object):
         else:
             return errors.BR_ERRORxNO_OPENED
 
-    def selectFormById(self, formid):
+    def select_form_by_id(self, formid):
         """
         Definir un formulario como activo mediante un id
         :param formid: String
@@ -166,7 +166,7 @@ class Browser(object):
         else:
             return errors.BR_ERRORxNO_FORMID
 
-    def selectFormByName(self, formname):
+    def select_form_by_name(self, formname):
         """
         Definir un formulario como activo mediante un id
         :param formname: Nombre del formulario
@@ -181,7 +181,7 @@ class Browser(object):
         else:
             return errors.BR_ERRORxNO_FORMID
 
-    def submitForm(self, form, values):
+    def submit_form(self, form, values):
         """
         Enviar un formulario
         :param form: Formulario
@@ -204,7 +204,7 @@ class Browser(object):
         else:
             return errors.BR_ERRORxNO_SELECTED_FORM
 
-    def clearCookies(self):
+    def clear_cookies(self):
         """
         Elimina las cookies
         :return: void

@@ -80,7 +80,7 @@ def folder_checksum(folder, checksum, verbose):
             if filetype in _LOOKTYPES:
                 checksum.append(
                     md5file(folder + _FOLDERSEP + filename, verbose))
-            elif filetype is _FOLDERTYPE and not "~" in filename:
+            elif filetype is _FOLDERTYPE and "~" not in filename:
                 if verbose:
                     print(get_depth_subfolder(filename) + _MSG[0].format(
                         filename))

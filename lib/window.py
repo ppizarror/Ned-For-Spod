@@ -8,14 +8,15 @@ Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015
 """
 
+# Importación de librerías
+from pygame.locals import *
+from bin import pygame
+# noinspection PyUnresolvedReferences
+import os
+
 if __name__ == '__main__':
     # noinspection PyUnresolvedReferences
     from path import *  # @UnusedWildImport
-
-# Importación de librerías
-import os
-from pygame.locals import *  # @UnusedWildImport
-from bin import pygame
 
 # Constantes del programa
 FORMAT_16_9 = "(16:9) {0}x{1}"

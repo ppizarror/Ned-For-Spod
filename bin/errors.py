@@ -63,7 +63,7 @@ WARNING_HEADER = Color.BLUE + "[WARNING] " + Color.END
 WARNING_NOCONFIGFOUND = "No se han encontrado configuraciones en el archivo '{0}'"
 
 
-def createMSG(message, *args):
+def create_msg(message, *args):
     """
     Función que crea un mensaje de error dado argumentos iniciales
     :param message: Código de error
@@ -81,7 +81,7 @@ def throw(error, *args):
     :param args: Mensaje
     :return: void
     """
-    print(ERROR_HEADER + createMSG(error, *args))
+    print(ERROR_HEADER + create_msg(error, *args))
     try:
         exit()
     except:
@@ -96,4 +96,4 @@ def warning(error, *args):
     :return: void
     """
     print (WARNING_HEADER
-           + createMSG(error, *args))
+           + create_msg(error, *args))

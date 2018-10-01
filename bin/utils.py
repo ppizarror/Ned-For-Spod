@@ -16,6 +16,7 @@ import errors
 from path import *  # @UnusedWildImport
 
 # Importación de librerías de sistema
+# noinspection PyBroadException
 try:
     from datetime import date
     from random import choice
@@ -26,7 +27,7 @@ try:
     import signal
     import string
     import time
-except:
+except Exception, e:
     errors.throw(errors.ERROR_IMPORTSYSTEMERROR)
 
 # Importación de librerías externas
@@ -58,7 +59,7 @@ _MSG_LOADINGFILE = "Cargando archivo '{0}' ..."
 _MSG_OK = "[OK]"
 
 
-def compareVersion(ver1, ver2):
+def compare_version(ver1, ver2):
     """
     Se compara entre dos versiones y se retorna el ganador
     :param ver1: Versión actual
@@ -84,6 +85,7 @@ def colorcmd(cmd, color):
     """
     if color in _CMD_COLORS:
         color = _CMD_COLORS[color]
+        # noinspection PyBroadException
         try:
             ctypes.windll.kernel32.SetConsoleTextAttribute(
                 ctypes.windll.kernel32.GetStdHandle(-11),
@@ -91,6 +93,7 @@ def colorcmd(cmd, color):
         except:
             pass
         print(cmd)
+        # noinspection PyBroadException
         try:
             ctypes.windll.kernel32.SetConsoleTextAttribute(
                 ctypes.windll.kernel32.GetStdHandle(-11),
@@ -101,19 +104,19 @@ def colorcmd(cmd, color):
         print(cmd)
 
 
-def delAccent(txt):
+def del_accent(txt):
     """
     Elimina los acentos de un string
     :param txt: String
     :return: String con acentos eliminados
     """
-    txt = txt.replace("�??", "A").replace("É", "E").replace("�?", "I").replace(
+    txt = txt.replace("Á", "A").replace("É", "E").replace("Í", "I").replace(
         "Ó", "O").replace("Ú", "U")
     return txt.replace("á", "a").replace("é", "e").replace("í", "i").replace(
         "ó", "o").replace("ú", "u")
 
 
-def delMatrix(matrix):
+def del_matrix(matrix):
     """
     Borrar una matriz
     :param matrix: Matriz
@@ -121,7 +124,8 @@ def delMatrix(matrix):
     """
     a = len(matrix)
     if a > 0:
-        for k in range(a): matrix.pop(0)  # @UnusedVariable
+        for k in range(a):
+            matrix.pop(0)
 
 
 def clrscr():
@@ -129,6 +133,7 @@ def clrscr():
     Limpia la pantalla
     :return: void
     """
+    # noinspection PyBroadException
     try:
         WConio.clrscr()
     except:
@@ -136,7 +141,7 @@ def clrscr():
 
 
 # noinspection PyUnresolvedReferences
-def destroyProcess():
+def destroy_process():
     """
     Destruye el proceso del programa
     :return: void
@@ -147,25 +152,25 @@ def destroyProcess():
         os.kill(os.getpid(), signal.SIGKILL)
 
 
-def generateRandom6():
+def generate_random6():
     """
     Genera un string de 6 carácteres aleatorios
     :return: String
     """
-    return ''.join(
-        choice(string.ascii_uppercase) for i in range(6))  # @UnusedVariable
+    # noinspection PyUnusedLocal
+    return ''.join(choice(string.ascii_uppercase) for i in range(6))
 
 
-def generateRandom12():
+def generate_random12():
     """
     Genera un string de 12 carácteres aleatorios
     :return: String
     """
-    return ''.join(
-        choice(string.ascii_uppercase) for i in range(12))  # @UnusedVariable
+    # noinspection PyUnusedLocal
+    return ''.join(choice(string.ascii_uppercase) for i in range(12))
 
 
-def getBetweenTags(html, tagi, tagf):
+def get_between_tags(html, tagi, tagf):
     """
     Función que retorna un valor entre dos tagss
     :param html: Contenido html
@@ -175,13 +180,17 @@ def getBetweenTags(html, tagi, tagf):
     """
     tagi = tagi.strip()
     tagf = tagf.strip()
+    # noinspection PyBroadException
     try:
         posi = html.index(tagi)
         if ("<" in tagi) and (">" not in tagi):
             c = 1
             while True:
+                # noinspection PyBroadException
                 try:
-                    if html[posi + c] == ">": posi += (c + 1); break
+                    if html[posi + c] == ">":
+                        posi += (c + 1)
+                        break
                     c += 1
                 except:
                     return errors.ERROR_TAG_INITNOTCORRECTENDING
@@ -193,7 +202,7 @@ def getBetweenTags(html, tagi, tagf):
         return False
 
 
-def getHour():
+def get_hour():
     """
     Función que retorna la hora de sistema
     :return: String
@@ -201,7 +210,7 @@ def getHour():
     return time.ctime(time.time())[11:16]
 
 
-def getDate():
+def get_date():
     """
     Obtiene la fecha del dia actual
     :return: String dd/mm/aaaa
@@ -210,7 +219,7 @@ def getDate():
     return str(fecha.day) + "/" + str(fecha.month) + "/" + str(fecha.year)
 
 
-def getTerminalSize():
+def get_terminal_size():
     """
     Devuelve el tamaño de la consola
     :return: tupla
@@ -218,7 +227,7 @@ def getTerminalSize():
     env = os.environ
 
     # noinspection PyShadowingNames,PyMissingOrEmptyDocstring,PyBroadException,PyUnresolvedReferences
-    def ioctl_GWINSZ(fd):
+    def ioctl_gwinsz(fd):
         try:
             import fcntl
             import termios
@@ -229,39 +238,42 @@ def getTerminalSize():
             return
         return cr
 
-    cr = ioctl_GWINSZ(0) or ioctl_GWINSZ(1) or ioctl_GWINSZ(2)
+    cr = ioctl_gwinsz(0) or ioctl_gwinsz(1) or ioctl_gwinsz(2)
     if not cr:
+        # noinspection PyBroadException
         try:
             fd = os.open(os.ctermid(), os.O_RDONLY)
-            cr = ioctl_GWINSZ(fd)
+            cr = ioctl_gwinsz(fd)
             os.close(fd)
         except:
             pass
-    if not cr: cr = (env.get('LINES', 25), env.get('COLUMNS', 80))
+    if not cr:
+        cr = (env.get('LINES', 25), env.get('COLUMNS', 80))
     return int(cr[1]), int(cr[0])
 
 
 # noinspection PyArgumentEqualDefault
-def getVersion(label, headers):
+def get_version(label, headers):
     """
     Obtener la versión del programa
     :param label: Label del programa
     :param headers: Headers web
     :return: String
     """
+    link = 'LINK_PPPRJ'
     http_headers = {"User-Agent": headers}
-    request_object = Request(LINK_PPPRJ, None,
+    request_object = Request(link, None,
                              http_headers)
     response = urllib2.urlopen(request_object)
     html = response.read()
-    html = getBetweenTags(
-        getBetweenTags(html, "<" + label + ">", "</" + label + ">"),
+    html = get_between_tags(
+        get_between_tags(html, "<" + label + ">", "</" + label + ">"),
         "<version>", "</version>")
     return html.strip()
 
 
 # noinspection PyArgumentEqualDefault
-def googleTranslate(text, translate_lang, header, web, source_lang=None):
+def google_translate(text, translate_lang, header, web, source_lang=None):
     """
     Traduce una linea usando el motor de traducciones de google
     :param text: Texto a traducir
@@ -271,7 +283,8 @@ def googleTranslate(text, translate_lang, header, web, source_lang=None):
     :param source_lang: Idioma origen
     :return: String traducido
     """
-    if source_lang is None: source_lang = 'auto'
+    if source_lang is None:
+        source_lang = 'auto'
     params = urlencode(
         {'client': 't', 'tl': translate_lang, 'q': text.encode('utf-8'),
          'sl': source_lang})
@@ -285,7 +298,7 @@ def googleTranslate(text, translate_lang, header, web, source_lang=None):
     return translate_text
 
 
-def isIn(termino, matriz):
+def is_in(termino, matriz):
     """
     Función que comprueba si un elemento esta en una matriz (no completamente)
     :param termino: Elemento
@@ -294,12 +307,13 @@ def isIn(termino, matriz):
     """
     if termino is not None:
         for elem in matriz:
-            if elem in termino: return True
+            if elem in termino:
+                return True
     return False
 
 
 # noinspection PyBroadException
-def loadFile(archive, lang=_MSG_LOADINGFILE, **kwargs):
+def load_file(archive, lang=_MSG_LOADINGFILE, **kwargs):
     """
     Carga un archivo y retorna una matriz
     :param archive: Archivo
@@ -308,25 +322,23 @@ def loadFile(archive, lang=_MSG_LOADINGFILE, **kwargs):
     :return: Lista
     """
     if kwargs.get("show_state"):
-        print(lang.format(
-            "(...)" + archive[_CONSOLE_WRAP:].replace("//", "/")).replace("\"",
-                                                                          ""))
+        print(lang.format("(...)" + archive[_CONSOLE_WRAP:].replace("//", "/")).replace("\"", ""))
     try:
-        l = list()
+        _l = list()
         archive = open(archive)
         for i in archive:
-            l.append(i.decode('utf-8').strip())
+            _l.append(i.decode('utf-8').strip())
         archive.close()
         if kwargs.get("show_state"):
             print(_MSG_OK)
     except:
         if kwargs.get("show_state"):
             print("error")
-        l = []
-    return l
+        _l = []
+    return _l
 
 
-def printMatrix(matrix):
+def print_matrix(matrix):
     """
     Función que imprime una matriz en pantalla
     :param matrix: Matriz
@@ -338,14 +350,14 @@ def printMatrix(matrix):
         print("\n")
 
 
-def sortAndUniq(input):  # @ReservedAssignment
+def sort_and_uniq(inp):
     """
     Función que elimina datos repetidos
-    :param input: Lista
+    :param inp: Lista
     :return: Lista modificada
     """
     output = []
-    for x in input:
+    for x in inp:
         if x not in output:
             output.append(x)
     output.sort()
@@ -363,16 +375,18 @@ def string2list(string, separator):
     return string.strip().split(separator)
 
 
-def sumMatrix(matrix):
+def sum_matrix(matrix):
     """
     Función que suma lista de listas
     :param matrix: Matrices
     :return: Double
     """
     suma = 0
+    # noinspection PyBroadException
     try:
         for j in matrix:
-            for k in j: suma += k
+            for k in j:
+                suma += k
         return suma
     except:
         return -1
@@ -381,17 +395,17 @@ def sumMatrix(matrix):
 # Test
 if __name__ == '__main__':
     print(string2list("foo bar", " "))
-    print(getDate())
-    print(getHour())
+    print(get_date())
+    print(get_hour())
     colorcmd("test in purple\n", "purple")
-    print(generateRandom6())
-    print(getTerminalSize())
+    print(generate_random6())
+    print(get_terminal_size())
     # noinspection PyTypeChecker
-    print(loadFile("__init__.ini"))
-    print(sortAndUniq([1, 1, 1, 1, 1, 2, 2, 2, 3, 4, 10, 5]))
-    print(getBetweenTags("<player>Username<title></title></player>", "<player>",
-                         "</player>"))
-    print(getBetweenTags("<player>Username</player><title>Altername</title>",
-                         "<player>", "</player>"))
-    print(getBetweenTags("<player>Username</player><title>Altername</title>",
-                         "<title>", "</title>"))
+    print(load_file("__init__.ini"))
+    print(sort_and_uniq([1, 1, 1, 1, 1, 2, 2, 2, 3, 4, 10, 5]))
+    print(get_between_tags("<player>Username<title></title></player>", "<player>",
+                           "</player>"))
+    print(get_between_tags("<player>Username</player><title>Altername</title>",
+                           "<player>", "</player>"))
+    print(get_between_tags("<player>Username</player><title>Altername</title>",
+                           "<title>", "</title>"))

@@ -9,9 +9,6 @@ Fecha: ABRIL 2015
 """
 
 # Importación de librerías
-if __name__ == '__main__':
-    # noinspection PyUnresolvedReferences
-    from path import *  # @UnusedWildImport
 import random
 from bin import errors
 from bin import pygame
@@ -21,6 +18,10 @@ from resources.images import getImages
 from resources.sounds import getSounds
 from textmenu import Textmenu
 from world import TRACKS
+
+if __name__ == '__main__':
+    # noinspection PyUnresolvedReferences
+    from path import *  # @UnusedWildImport
 
 # Constantes del prograMA
 MENU_PAUSE = "MENU_PAUSE"
@@ -282,7 +283,7 @@ class Createuimenu(object):
                     args[0].export()
                     self.menu_configuracion.actual.opciones.pop(2)
                     self.menu_configuracion.actual.posOptionY -= (
-                        -self.menu_configuracion.actual.fontsize / 2 - self.menu_configuracion.actual.optiondy / 2)
+                            -self.menu_configuracion.actual.fontsize / 2 - self.menu_configuracion.actual.optiondy / 2)
                     self.menu_configuracion.add_selector(self.langs.get(110),
                                                          self.window.get_display_list(),
                                                          _saveConfig,
@@ -311,7 +312,7 @@ class Createuimenu(object):
                     self.menu_jugar.actual.opciones.pop(2)
                     self.menu_jugar.actual.opciones.pop(2)
                     self.menu_jugar.actual.posOptionY -= 2 * (
-                        -self.menu_jugar.actual.fontsize / 2 - self.menu_jugar.actual.optiondy / 2)
+                            -self.menu_jugar.actual.fontsize / 2 - self.menu_jugar.actual.optiondy / 2)
                     if value == "1":
                         self.menu_jugar.add_selector(self.langs.get(94),
                                                      TYPECAR_1, _saveConfig,

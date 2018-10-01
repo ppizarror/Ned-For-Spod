@@ -7,15 +7,15 @@ Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015
 """
 
-if __name__ == '__main__':
-    # noinspection PyUnresolvedReferences
-    from path import *  # @UnusedWildImport
-
 # Importación de librerías
 from bin import pygame
 from object import Gameobject
 from player import Player
 from resources.images import getImages
+
+if __name__ == '__main__':
+    # noinspection PyUnresolvedReferences
+    from path import *
 
 
 # noinspection PyBroadException,PyUnresolvedReferences

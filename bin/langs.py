@@ -14,7 +14,7 @@ import math
 from bindir import _LANG_DIRCONFIG, _LANG_DIRLANGS, _DIR_CONFIG
 from configloader import Configloader
 import errors
-from utils import googleTranslate
+from utils import google_translate
 
 # noinspection PyProtectedMember
 # Se cargan las configuraciones
@@ -101,7 +101,7 @@ class Langloader(object):
             errors.warning(errors.ERROR_LANGBADINDEX, str(index))
             return NULL_LANG.format(str(index))
 
-    def printAll(self):
+    def print_all(self):
         """
         Imprime todos los elementos del idioma
         :return: void
@@ -121,13 +121,11 @@ class Langloader(object):
         text = self.get(index)
         if langselfconfig.isTrue(
                 "TRANSLATIONS"):  # Si el servicio de traducciones esta activado
-            if not NULL_IDENTIFIER in text:
+            if NULL_IDENTIFIER not in text:
                 try:  # Se consulta por la traducción al servicio de google
-                    return googleTranslate(text, to,
-                                           langtranslateconfig.getValue(
-                                               "WEB_HEADER"),
-                                           langtranslateconfig.getValue(
-                                               "WEB_GOOGLETRANSLATE"))
+                    return google_translate(text, to,
+                                            langtranslateconfig.getValue("WEB_HEADER"),
+                                            langtranslateconfig.getValue("WEB_GOOGLETRANSLATE"))
                 except:  # Si ocurre algún error en la traducción
                     return text
             else:
@@ -152,7 +150,7 @@ if __name__ == '__main__':
     print(lang.get(12))
     print(lang.get("a"))
     # print lang.translate(11, "eng")
-    lang.printAll()
+    lang.print_all()
     print(lang.get(14, 1, 2, 3))
     print(lang.get(14, 1, 2, 3, noformat=True))
     print(lang.get(12, "pablo"))

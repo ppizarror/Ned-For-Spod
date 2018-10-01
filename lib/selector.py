@@ -9,7 +9,7 @@ Fecha: ABRIL 2015
 
 if __name__ == '__main__':
     # noinspection PyUnresolvedReferences
-    from path import *  # @UnusedWildImport
+    from path import *
 
 
 class Selector(object):

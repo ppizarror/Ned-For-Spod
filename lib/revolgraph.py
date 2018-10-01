@@ -7,12 +7,12 @@ Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015
 """
 
+# Importación de librerías
+from bin import pygame
+
 if __name__ == '__main__':
     # noinspection PyUnresolvedReferences
     from path import *  # @UnusedWildImport
-
-# Importación de librerías
-from bin import pygame
 
 
 class Revolgraph(object):

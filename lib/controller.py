@@ -105,9 +105,9 @@ class Controller(object):
             # Si se cierra la ventana (con evento QUIT o ALT-F4)
             try:
                 if event.type == QUIT or (event.type == KEYDOWN and event.key == K_F4 and (key[K_LALT] or key[K_LALT])):
-                    utils.destroyProcess()
+                    utils.destroy_process()
             except:
-                utils.destroyProcess()
+                utils.destroy_process()
             # Si se presiona una tecla
             if event.type == KEYDOWN:
                 # Se activa el menu de pausa
@@ -134,7 +134,7 @@ class Controller(object):
                         if event.key == K_F3:
                             try:
                                 fileimg = 'screenshot_' + str(abs(
-                                    hash(utils.generateRandom6()))) + '.png'
+                                    hash(utils.generate_random6()))) + '.png'
                                 surfimg = pygame_to_pil_img(
                                     pygame.display.get_surface())
                                 surfimg.save(DIR_SAVES + fileimg)

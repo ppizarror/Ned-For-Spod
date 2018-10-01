@@ -10,9 +10,6 @@ Fecha: ABRIL 2015
 
 from __future__ import print_function
 
-if __name__ == '__main__':
-    from path import *  # @UnusedWildImport
-
 # Importación de librerías
 import math
 import random
@@ -21,7 +18,10 @@ from bin import pygame
 from bin.browser import unescape
 from bin.errors import *
 from bin.hashdir import md5str
-from bin.utils import Request, urlopen, getBetweenTags
+from bin.utils import Request, urlopen, get_between_tags
+
+if __name__ == '__main__':
+    from path import *  # @UnusedWildImport
 
 # Definición de constantes
 ACELCONST = 300  # aceleracion por dt
@@ -162,9 +162,9 @@ def rotate_point(point, origin, theta):
     :return: Punto (x,y) rotado en theta grados con respecto a origin
     """
     newx = cos(theta) * (point[0] - origin[0]) - sin(theta) * (
-        point[1] - origin[1])
+            point[1] - origin[1])
     newy = sin(theta) * (point[0] - origin[0]) + cos(theta) * (
-        point[1] - origin[1])
+            point[1] - origin[1])
     return int(newx + origin[0]), int(newy + origin[1])
 
 
@@ -385,13 +385,9 @@ class Player(object):
         # Se obtiene el tamaño de la imagen
         shadow_texture = pygame.transform.scale(shadow_texture,
                                                 (int(shadow_texture.get_size()[
-                                                         0] * (
-                                                         1 + SHADOW_PERCENTAGE[
-                                                             0])),
+                                                         0] * (1 + SHADOW_PERCENTAGE[0])),
                                                  int(shadow_texture.get_size()[
-                                                         1] * (
-                                                         1 + SHADOW_PERCENTAGE[
-                                                             1]))))
+                                                         1] * (1 + SHADOW_PERCENTAGE[1]))))
         self.imagenRotada = self.texture  # textura de la imagen rotada
         self.imagenRotadaSize = self.texture.get_size()  # tamaño de la imagen rotada
         self.shadow_texture = shadow_texture  # textura de la sombra
@@ -403,12 +399,9 @@ class Player(object):
         self.marks_ground = mark_ground  # marcas en la tierra
         # Si se pasa como parametro rotate se rota la imagen
         if kwargs.get("rotate"):
-            self.shadow_texture = pygame.transform.rotate(self.shadow_texture,
-                                                          kwargs.get("rotate"))
-            self.texture = pygame.transform.rotate(self.texture,
-                                                   kwargs.get("rotate"))
-            self.texture_ghost = pygame.transform.rotate(self.texture_ghost,
-                                                         kwargs.get("rotate"))
+            self.shadow_texture = pygame.transform.rotate(self.shadow_texture, kwargs.get("rotate"))
+            self.texture = pygame.transform.rotate(self.texture, kwargs.get("rotate"))
+            self.texture_ghost = pygame.transform.rotate(self.texture_ghost, kwargs.get("rotate"))
         self.rotate(0, 0, False)
         # Se activa el sonido idle
         if self.sound_state:
@@ -612,20 +605,20 @@ class Player(object):
         if self.playable:
             surface.blit(self.shadow_texture_rotada,
                          [int(self.drawablepos[0] - (
-                             self.shadow_texture_size[0] - self.width) / 2),
+                                 self.shadow_texture_size[0] - self.width) / 2),
                           int(self.drawablepos[1] - (
-                              self.shadow_texture_size[1] - self.height) / 2)])
+                                  self.shadow_texture_size[1] - self.height) / 2)])
             surface.blit(self.imagenRotada, [int(self.drawablepos[0] - (
-                self.imagenRotadaSize[0] - self.width) / 2),
+                    self.imagenRotadaSize[0] - self.width) / 2),
                                              int(self.drawablepos[1] - (
-                                                 self.imagenRotadaSize[
-                                                     1] - self.height) / 2)])
+                                                     self.imagenRotadaSize[
+                                                         1] - self.height) / 2)])
         else:
             surface.blit(self.shadow_texture_rotada, [int(
                 self.posx - (self.shadow_texture_size[0] - self.width) / 2),
                 int(self.posy - (
-                    self.shadow_texture_size[
-                        1] - self.height) / 2)])
+                        self.shadow_texture_size[
+                            1] - self.height) / 2)])
             surface.blit(self.imagenRotada, [
                 int(self.posx - (self.imagenRotadaSize[0] - self.width) / 2),
                 int(self.posy - (self.imagenRotadaSize[1] - self.height) / 2)])
@@ -828,9 +821,9 @@ class Player(object):
         w1 = self.width / 2
         h1 = self.height / 2
         pos_x = int(-self.posx + 2 * self.drawablepos[0] + 2 * w1) - (
-                                                                         self.window.get_window_width() - 1000) / 2
+                self.window.get_window_width() - 1000) / 2
         pos_y = int(-self.posy + 3 * self.drawablepos[1] + 0.1 * h1) - (
-                                                                           self.window.get_window_height() - 600) / 2
+                self.window.get_window_height() - 600) / 2
         return pos_x, pos_y
 
     def get_revl(self):
@@ -856,7 +849,7 @@ class Player(object):
                     return 95
                 prev_revl = (float(cambio - 1) / (self.maxcambio - 1)) * 100
                 revl_cambio = float(self.get_vel_kph() - prev_vel) / (
-                    next_vel - prev_vel)
+                        next_vel - prev_vel)
                 return min(prev_revl + revl_cambio * (100 - prev_revl), 100)
         else:
             cambio = self.cambio
@@ -876,7 +869,7 @@ class Player(object):
                     return 95
                 prev_revl = (float(cambio - 1) / (self.maxcambio - 1)) * 100
                 revl_cambio = float(self.get_vel_kph() - prev_vel) / (
-                    next_vel - prev_vel)
+                        next_vel - prev_vel)
                 if cambio == 1:
                     return max(15,
                                min(prev_revl + revl_cambio * (100 - prev_revl),
@@ -957,8 +950,7 @@ class Player(object):
                 self.marcasTierra[index] = (new_x, new_y)
             else:
                 if math.sqrt((new_x - self.marcasTierra[index][0]) ** 2 + (
-                            new_y - self.marcasTierra[index][
-                            1]) ** 2) > MIN_LENGTH_MARCA:
+                        new_y - self.marcasTierra[index][1]) ** 2) > MIN_LENGTH_MARCA:
                     # Se elige el color de dibujado
                     color_choice = random.randint(-10, 2)
                     if color_choice < 0:
@@ -1100,8 +1092,7 @@ class Player(object):
             self.marcasFrenado[index] = (new_x, new_y)
         else:
             if math.sqrt((new_x - self.marcasFrenado[index][0]) ** 2 + (
-                        new_y - self.marcasFrenado[index][
-                        1]) ** 2) > MIN_LENGTH_FRENADO:
+                    new_y - self.marcasFrenado[index][1]) ** 2) > MIN_LENGTH_FRENADO:
                 # Se elige el color de dibujado
                 color_choice = random.randint(-10, 2)
                 if color_choice < 0:
@@ -1143,8 +1134,7 @@ class Player(object):
             self.marcasFrenadoHB[index] = (new_x, new_y)
         else:
             if math.sqrt((new_x - self.marcasFrenadoHB[index][0]) ** 2 + (
-                        new_y - self.marcasFrenadoHB[index][
-                        1]) ** 2) > MIN_LENGTH_FRENADO:
+                    new_y - self.marcasFrenadoHB[index][1]) ** 2) > MIN_LENGTH_FRENADO:
                 # Se elige el color de dibujado
                 color_choice = random.randint(-10, 2)
                 if color_choice < 0:
@@ -1197,19 +1187,13 @@ class Player(object):
             if MINROTVEL < actual_vel < self.maxrotvel * self.agarre:
                 self.angle = (self.angle + max(
                     min(ROTVEL * t * direction * 1 * cos((actual_vel * 90) / (
-                        2 * self.maxrotvel * self.agarre)),
+                            2 * self.maxrotvel * self.agarre)),
                         self.maxangvel),
                     - self.maxangvel)) % 360
             elif self.maxrotvel * self.agarre <= actual_vel:  # Si se esta sobre la velocidad de rotacion -> decreciente
-                self.angle = (
-                                 self.angle + max(
-                                     min(ROTVEL * t * direction * max(
-                                         cos((actual_vel * 90) / (
-                                             1.3 * self.agarre * (
-                                                 self.maxvel - 2 * self.maxrotvel))),
-                                         0.4),
-                                         self.maxangvel),
-                                     -self.maxangvel)) % 360
+                self.angle = (self.angle + max(min(ROTVEL * t * direction * max(
+                    cos((actual_vel * 90) / (1.3 * self.agarre * (self.maxvel - 2 * self.maxrotvel))),
+                    0.4), self.maxangvel), -self.maxangvel)) % 360
             else:
                 return
             self.desacelerate(self.roce, t, False)
@@ -1378,11 +1362,11 @@ class Player(object):
         rel_pos = self.get_relative_pos()
         if (rel_pos[1] - 1.25 * self.window.get_window_height()) < \
                 self.mapLimits[1] or (
-                    rel_pos[1] + 1.0 * self.window.get_window_height()) > \
+                rel_pos[1] + 1.0 * self.window.get_window_height()) > \
                 self.mapLimits[3] or (
-                    rel_pos[0] - 1.25 * self.window.get_window_width()) < \
+                rel_pos[0] - 1.25 * self.window.get_window_width()) < \
                 self.mapLimits[0] or (
-                    rel_pos[0] + 1.0 * self.window.get_window_width()) > \
+                rel_pos[0] + 1.0 * self.window.get_window_width()) > \
                 self.mapLimits[2]:
             self.return_to_track()
         # Se comprueba el avance en la pista
@@ -1411,10 +1395,10 @@ class Player(object):
                     if self.finished_lap():
                         self.score = int(
                             100000 * ((0.3 / (
-                                self.tiempoFuera + 1) + 0.4 / math.sqrt(
+                                    self.tiempoFuera + 1) + 0.4 / math.sqrt(
                                 float(sumtime / current_min) +
                                 1 - self.totalLaps)) + 0.3 / (
-                                          current_min ** 1.5)))
+                                              current_min ** 1.5)))
                         # Se sube el puntaje a la web
                         scoreboard_insert_url = self.scoreLink.format(
                             self.hash[0], self.hash[1], self.hash[2],
@@ -1422,7 +1406,7 @@ class Player(object):
                             valid_username(self.username).lower(), self.score,
                             round(current_min, 1), self.type)
                         if WEB_BROWSER:
-                            self.browser.abrirLink(scoreboard_insert_url)
+                            self.browser.abrir_link(scoreboard_insert_url)
                         else:
                             http_header = {
                                 "User-Agent": self.scoreConfig.getValue(
@@ -1434,7 +1418,7 @@ class Player(object):
                             if self.verbose:
                                 print('Conectando con el servidor ...', )
                             if WEB_BROWSER:
-                                scoreboard = unescape(self.browser.getHtml())
+                                scoreboard = unescape(self.browser.get_html())
                             else:
                                 response = urlopen(request_object)
                                 scoreboard = response.read()
@@ -1446,13 +1430,13 @@ class Player(object):
                             for i in range(1, len(scoreboard_list) - 1):
                                 line = string_cleaner(scoreboard_list[i])
                                 if line != "NULL":
-                                    color = getBetweenTags(line, "<color>",
+                                    color = get_between_tags(line, "<color>",
                                                            "</color>")
-                                    player = getBetweenTags(line, "<player>",
+                                    player = get_between_tags(line, "<player>",
                                                             "</player>")[0:10]
-                                    score = getBetweenTags(line, "<score>",
+                                    score = get_between_tags(line, "<score>",
                                                            "</score>")
-                                    indexp = getBetweenTags(line, "<index>",
+                                    indexp = get_between_tags(line, "<index>",
                                                             "</index>")
                                     if color == "red":
                                         color = SCOREBOARD_RED

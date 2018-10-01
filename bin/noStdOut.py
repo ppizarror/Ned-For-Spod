@@ -7,6 +7,7 @@ Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015
 """
 
+
 # noinspection PyMissingOrEmptyDocstring,PyPep8Naming
 class noStdOut(object):
     """Desactiva print"""

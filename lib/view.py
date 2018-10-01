@@ -7,9 +7,6 @@ Autor: PABLO PIZARRO @ ppizarro ~
 Fecha: ABRIL 2015
 """
 
-if __name__ == '__main__':
-    from path import *  # @UnusedWildImport
-
 # Importación de librerías
 from bin import *  # @UnusedWildImport
 from bin.errors import *  # @UnusedWildImport
@@ -22,6 +19,9 @@ from resources.images import getImages
 from revolgraph import Revolgraph
 from uimenu import MENU_INICIAL, MENU_PAUSE
 from world import NEXT_TRACK, get_next_track, TRACKS
+
+if __name__ == '__main__':
+    from path import *
 
 # Definición de constantes
 COLOR_ALERT = (165, 0, 0, 128)
@@ -113,11 +113,11 @@ class View(object):
         self.resultsButtonNextPos = (
             int((self.windowWidth + 680) / 2) - 15, int(
                 (
-                    self.windowHeight + 400) / 2) - 5)  # posicion del boton siguiente del plano de resultados
+                        self.windowHeight + 400) / 2) - 5)  # posicion del boton siguiente del plano de resultados
         self.resultsButtonQuitPos = (
             int((self.windowWidth - 680) / 2) + 15, int(
                 (
-                    self.windowHeight + 400) / 2) - 5)  # posicion del boton cerrar del plano de resultados
+                        self.windowHeight + 400) / 2) - 5)  # posicion del boton cerrar del plano de resultados
         self.resultsFontTitle = pygame.font.Font(getFonts("speed"),
                                                  30)  # fuente de los resultados
         self.resultsFontTitleContent = pygame.font.Font(getFonts("speed"),
@@ -132,7 +132,7 @@ class View(object):
             getImages("results")).convert_alpha()  # pantalla de resultados
         self.resultsScreenPos = (int((self.windowWidth - 680) / 2),
                                  int((
-                                         self.windowHeight - 400) / 2) - 25)  # posición en pantalla de los resultados
+                                             self.windowHeight - 400) / 2) - 25)  # posición en pantalla de los resultados
         self.revolPos = (self.windowWidth - 20,
                          self.windowHeight - 60)  # posición del cuenta-revoluciones
         self.revolRect = pygame.image.load(
@@ -207,7 +207,7 @@ class View(object):
                     drawyfin = (-self.windowHeight + camera_pos[1]) + pos_fin[
                         1] + 300
                     if (0 <= drawxini <= self.windowWidth and 0 <= drawyini <= self.windowHeight) or (
-                                        0 <= drawxfin <= self.windowWidth and 0 <= drawyfin <= self.windowHeight):
+                            0 <= drawxfin <= self.windowWidth and 0 <= drawyfin <= self.windowHeight):
                         pygame.draw.line(self.screen, marca_tierra[2],
                                          (drawxini, drawyini),
                                          (drawxfin, drawyfin),
@@ -228,7 +228,7 @@ class View(object):
                     drawyfin = (-self.windowHeight + camera_pos[1]) + pos_fin[
                         1] + 300
                     if (0 <= drawxini <= self.windowWidth and 0 <= drawyini <= self.windowHeight) or (
-                                        0 <= drawxfin <= self.windowWidth and 0 <= drawyfin <= self.windowHeight):
+                            0 <= drawxfin <= self.windowWidth and 0 <= drawyfin <= self.windowHeight):
                         pygame.draw.line(self.screen, marca_camino[2],
                                          (drawxini, drawyini),
                                          (drawxfin, drawyfin),

@@ -9,7 +9,7 @@ Fecha: ABRIL 2015
 """
 
 # Importación de librerías
-from menu import *  # @UnusedWildImport
+from menu import *
 
 # Configuraciones de menú
 MENU_FONT_TEXT_SIZE = 25
@@ -103,7 +103,7 @@ class Textmenu(Menu, object):
                 text_dx = 0
             surface.blit(text, (self.actual.posTextX + text_dx,
                                 self.actual.posOptionY + dy * (
-                                    self.actual.font_textsize + self.actual.textdy)))
+                                        self.actual.font_textsize + self.actual.textdy)))
             dy += 1
         dy_index = 0
         for option in self.actual.opciones:
@@ -143,10 +143,10 @@ class Textmenu(Menu, object):
             if self.actual.option_shadow:
                 surface.blit(text_bg, (self.actual.posOptionX + text_dx - 3,
                                        self.actual.posOptionY + dy * (
-                                           self.actual.fontsize + self.actual.optiondy) + text_dy - 3))
+                                               self.actual.fontsize + self.actual.optiondy) + text_dy - 3))
             surface.blit(text, (self.actual.posOptionX + text_dx,
                                 self.actual.posOptionY + dy * (
-                                    self.actual.fontsize + self.actual.optiondy) + text_dy))
+                                        self.actual.fontsize + self.actual.optiondy) + text_dy))
             # Si se tiene la seleccionada se dibuja el rectangulo
             if self.actual.drawselrect and (dy_index == self.actual.index):
                 if not self.actual.centered_option:
@@ -156,34 +156,34 @@ class Textmenu(Menu, object):
                 pygame.draw.line(surface, self.actual.selectedcolor,
                                  (self.actual.posOptionX + text_dx - 10,
                                   self.actual.posOptionY + dy * (
-                                      self.actual.fontsize + self.actual.optiondy) + text_dy - 2),
+                                          self.actual.fontsize + self.actual.optiondy) + text_dy - 2),
                                  (self.actual.posOptionX - text_dx_tl + 10,
                                   self.actual.posOptionY + dy * (
-                                      self.actual.fontsize + self.actual.optiondy) + text_dy - 2),
+                                          self.actual.fontsize + self.actual.optiondy) + text_dy - 2),
                                  self.actual.rectwidth)
                 pygame.draw.line(surface, self.actual.selectedcolor,
                                  (self.actual.posOptionX + text_dx - 10,
                                   self.actual.posOptionY + dy * (
-                                      self.actual.fontsize + self.actual.optiondy) - text_dy + 2),
+                                          self.actual.fontsize + self.actual.optiondy) - text_dy + 2),
                                  (self.actual.posOptionX - text_dx_tl + 10,
                                   self.actual.posOptionY + dy * (
-                                      self.actual.fontsize + self.actual.optiondy) - text_dy + 2),
+                                          self.actual.fontsize + self.actual.optiondy) - text_dy + 2),
                                  self.actual.rectwidth)
                 pygame.draw.line(surface, self.actual.selectedcolor,
                                  (self.actual.posOptionX + text_dx - 10,
                                   self.actual.posOptionY + dy * (
-                                      self.actual.fontsize + self.actual.optiondy) + text_dy - 2),
+                                          self.actual.fontsize + self.actual.optiondy) + text_dy - 2),
                                  (self.actual.posOptionX + text_dx - 10,
                                   self.actual.posOptionY + dy * (
-                                      self.actual.fontsize + self.optiondy) - text_dy + 2),
+                                          self.actual.fontsize + self.optiondy) - text_dy + 2),
                                  self.actual.rectwidth)
                 pygame.draw.line(surface, self.actual.selectedcolor,
                                  (self.actual.posOptionX - text_dx_tl + 10,
                                   self.actual.posOptionY + dy * (
-                                      self.actual.fontsize + self.actual.optiondy) + text_dy - 2),
+                                          self.actual.fontsize + self.actual.optiondy) + text_dy - 2),
                                  (self.actual.posOptionX - text_dx_tl + 10,
                                   self.actual.posOptionY + dy * (
-                                      self.actual.fontsize + self.actual.optiondy) - text_dy + 2),
+                                          self.actual.fontsize + self.actual.optiondy) - text_dy + 2),
                                  self.actual.rectwidth)
             dy += 1
             dy_index += 1
