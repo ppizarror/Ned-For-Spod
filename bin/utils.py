@@ -87,14 +87,14 @@ def colorcmd(cmd, color):
         try:
             ctypes.windll.kernel32.SetConsoleTextAttribute(
                 ctypes.windll.kernel32.GetStdHandle(-11),
-                color)  # @UndefinedVariable
+                color)
         except:
             pass
         print(cmd)
         try:
             ctypes.windll.kernel32.SetConsoleTextAttribute(
                 ctypes.windll.kernel32.GetStdHandle(-11),
-                0x07)  # @UndefinedVariable
+                0x07)
         except:
             pass
     else:
@@ -144,7 +144,7 @@ def destroyProcess():
     if os.name == "nt":
         os.system("taskkill /PID " + str(os.getpid()) + " /F")
     else:
-        os.kill(os.getpid(), signal.SIGKILL)  # @UndefinedVariable
+        os.kill(os.getpid(), signal.SIGKILL)
 
 
 def generateRandom6():
@@ -232,7 +232,7 @@ def getTerminalSize():
     cr = ioctl_GWINSZ(0) or ioctl_GWINSZ(1) or ioctl_GWINSZ(2)
     if not cr:
         try:
-            fd = os.open(os.ctermid(), os.O_RDONLY)  # @UndefinedVariable
+            fd = os.open(os.ctermid(), os.O_RDONLY)
             cr = ioctl_GWINSZ(fd)
             os.close(fd)
         except:
@@ -251,7 +251,7 @@ def getVersion(label, headers):
     """
     http_headers = {"User-Agent": headers}
     request_object = Request(LINK_PPPRJ, None,
-                             http_headers)  # @UndefinedVariable
+                             http_headers)
     response = urllib2.urlopen(request_object)
     html = response.read()
     html = getBetweenTags(

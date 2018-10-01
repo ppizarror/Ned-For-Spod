@@ -8,13 +8,14 @@ Fecha: ABRIL 2015
 """
 
 from __future__ import print_function
-if __name__ == '__main__':
-    from path import *  # @UnusedWildImport
 
 # Importación de librerías
 # noinspection PyFromFutureImport
-from bin import *  # @UnusedWildImport
+from bin import *
 from data import DIR_SAVES
+
+if __name__ == '__main__':
+    from path import *
 
 # Definición de constantes
 STATE_MENU = "MENU"  # indica que se encuentra en un menú
@@ -29,7 +30,7 @@ def pygame_to_pil_img(pg_surface):
     :param pg_surface:
     :return:
     """
-    imgstr = pygame.image.tostring(pg_surface, 'RGB')  # @UndefinedVariable
+    imgstr = pygame.image.tostring(pg_surface, 'RGB')
     # noinspection PyDeprecation,PyUnresolvedReferences
     return Image.fromstring('RGB', pg_surface.get_size(), imgstr)
 
@@ -104,7 +105,7 @@ class Controller(object):
             # Si se cierra la ventana (con evento QUIT o ALT-F4)
             try:
                 if event.type == QUIT or (event.type == KEYDOWN and event.key == K_F4 and (key[K_LALT] or key[K_LALT])):
-                    utils.destroyProcess()  # @UndefinedVariable
+                    utils.destroyProcess()
             except:
                 utils.destroyProcess()
             # Si se presiona una tecla

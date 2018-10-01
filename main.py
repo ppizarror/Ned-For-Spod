@@ -21,7 +21,7 @@ from lib.world import World  # @UnresolvedImport
 from resources.icons import getIcons  # @UnresolvedImport
 
 # Iniciación de librerías
-pygame.init()  # @UndefinedVariable
+pygame.init()
 
 # Definición de constantes
 VERBOSE = False  # imprime el estado del juego en consola
@@ -49,28 +49,25 @@ def main():
     world_config = Configloader(DIR_CONFIG + 'world.ini', verbose=VERBOSE)
 
     # Se carga el idioma
-    lang = langs.Langloader(game_config.getValue('LANG'))  # @UndefinedVariable
+    lang = langs.Langloader(game_config.getValue('LANG'))
 
     # Se carga la información de la pantalla del cliente
-    display_info = pygame.display.Info()  # @UndefinedVariable
+    display_info = pygame.display.Info()
 
     # Se comprueba que el nombre de jugador no sea Player, si no es valido se pide uno nuevo
     if not username.validate(
-            user_config.getValue('NAME')):  # @UndefinedVariable
-        new_name = username.request(lang.get(111),
-                                    lang.get(112))  # @UndefinedVariable
-        if new_name is not username.NO_VALID_NAME:  # @UndefinedVariable
+            user_config.getValue('NAME')):
+        new_name = username.request(lang.get(111), lang.get(112))
+        if new_name is not username.NO_VALID_NAME:
             user_config.setParameter('NAME', new_name)
             user_config.export()
         else:
-            utils.destroyProcess()  # @UndefinedVariable
+            utils.destroyProcess()
 
-    # Creación de ventana
+            # Creación de ventana
     # noinspection PyUnresolvedReferences
-    window = Window(window_config, lang.get(10),
-                    pygame.image.load(getIcons('icon')),
-                    display_info)  # @UndefinedVariable
-    clock = pygame.time.Clock()  # reloj @UndefinedVariable
+    window = Window(window_config, lang.get(10), pygame.image.load(getIcons('icon')), display_info)
+    clock = pygame.time.Clock()  # reloj
     fps = int(game_config.getValue('FPS'))  # fps a dibujar
 
     # Se crea el mundo
@@ -87,8 +84,7 @@ def main():
     menus.addView(vista)
 
     # Se crea el controlador
-    control = Controller(world, clock, lang, control_config, window, menus,
-                         verbose=VERBOSE)
+    control = Controller(world, clock, lang, control_config, window, menus, verbose=VERBOSE)
     menus.addController(control)
     vista.add_controller(control)
 

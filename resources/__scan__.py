@@ -20,7 +20,7 @@ from bin import Configloader
 
 reload(sys)
 # noinspection PyUnresolvedReferences
-sys.setdefaultencoding('UTF8')  # @UndefinedVariable
+sys.setdefaultencoding('UTF8')
 sys.dont_write_bytecode = True
 
 # Se obtiene el directorio actual
@@ -196,23 +196,23 @@ if __name__ == '__main__':
     # Se obtiene la hora
     SCAN_DATE = get_date()
 
-    # noinspection PyShadowingNames
-    def _run(folder):
-        print scanconfig.getValue("ARGUMENT_LOADING").format(folder),
-        if folder in os.listdir(__actualpath):
+
+    def _run(_folder):
+        print scanconfig.getValue("ARGUMENT_LOADING").format(_folder),
+        if _folder in os.listdir(__actualpath):
             # Se cargan los archivos
             filelist = []
-            look(folder, __actualpath + folder, filelist)
+            look(_folder, __actualpath + _folder, filelist)
             if scanconfig.isTrue("HASH"):
                 hashedlist = []
-                for i in filelist:
-                    hashedlist.append([get_hash(i), i])
+                for _i in filelist:
+                    hashedlist.append([get_hash(_i), _i])
                 hashedlist.sort()
-                initfile = open(__actualpath + folder + "/__init__.py", "w")
+                initfile = open(__actualpath + _folder + "/__init__.py", "w")
                 c = 0
                 totalelements = len(hashedlist)
                 for line in HEADER.split("\n"):
-                    initfile.write(line.format(folder, folder.upper(), SCAN_DATE, totalelements) + "\n")
+                    initfile.write(line.format(_folder, _folder.upper(), SCAN_DATE, totalelements) + "\n")
                 for line in hashedlist:
                     if c < totalelements - 1:
                         initfile.write(
@@ -220,17 +220,17 @@ if __name__ == '__main__':
                                 1].replace(__actualpath,
                                            '__actualpath + "').replace("\\",
                                                                        "/").replace(
-                                folder + "/", "") + '", \\\n')
+                                _folder + "/", "") + '", \\\n')
                     else:
                         initfile.write(
                             "\t" + str(line[0]).rjust(HASH_LEN) + ": " + line[
                                 1].replace(__actualpath,
                                            '__actualpath + "').replace("\\",
                                                                        "/").replace(
-                                folder + "/", "") + '"\n')
+                                _folder + "/", "") + '"\n')
                     c += 1
                 for line in HEADER_LAST.split("\n"):
-                    initfile.write(line.format(folder.upper(), folder.title()) + "\n")
+                    initfile.write(line.format(_folder.upper(), _folder.title()) + "\n")
                 initfile.close()
                 # Se verifican colisiones de la hashlist
                 validate_hash = hash_valid(hashedlist)
@@ -246,12 +246,12 @@ if __name__ == '__main__':
                 del hashedlist
             else:
                 filelist.sort()
-                initfile = open(__actualpath + folder + "/__init__.py", "w")
+                initfile = open(__actualpath + _folder + "/__init__.py", "w")
                 c = 0
                 totalelements = len(filelist)
                 prev_folder = ""
                 for line in HEADER.split("\n"):
-                    initfile.write(line.format(folder, folder.upper(), SCAN_DATE, totalelements) + "\n")
+                    initfile.write(line.format(_folder, _folder.upper(), SCAN_DATE, totalelements) + "\n")
                 for line in filelist:
                     linefolder = get_folder(line)
                     if prev_folder != linefolder:
@@ -262,22 +262,22 @@ if __name__ == '__main__':
                             '\t"' + get_filename(line) + '": ' + line.replace(
                                 __actualpath, '__actualpath + "').replace("\\",
                                                                           "/").replace(
-                                folder + "/", "") + '", \\\n')
+                                _folder + "/", "") + '", \\\n')
                     else:
                         initfile.write(
                             '\t"' + get_filename(line) + '": ' + line.replace(
                                 __actualpath, '__actualpath + "').replace("\\",
                                                                           "/").replace(
-                                folder + "/", "") + '"\n')
+                                _folder + "/", "") + '"\n')
                     c += 1
                 for line in HEADER_LAST.split("\n"):
-                    initfile.write(line.format(folder.upper(), folder.title()) + "\n")
+                    initfile.write(line.format(_folder.upper(), _folder.title()) + "\n")
                 initfile.close()
                 print scanconfig.getValue("FOLDER_LOADED").format(
                     len(filelist))
             del filelist
         else:
-            print scanconfig.getValue("FOLDER_NOT_EXIST").format(folder)
+            print scanconfig.getValue("FOLDER_NOT_EXIST").format(_folder)
 
 
     for i in range(1, len(sys.argv)):

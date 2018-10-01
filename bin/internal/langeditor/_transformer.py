@@ -8,7 +8,7 @@ import sys
 
 
 reload(sys)
-sys.setdefaultencoding('UTF8') #@UndefinedVariable
+sys.setdefaultencoding('UTF8')
 
 DL = "//"
 DL2 = " // "

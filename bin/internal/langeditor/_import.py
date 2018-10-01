@@ -8,7 +8,7 @@ import sys
 
 
 reload(sys)
-sys.setdefaultencoding('UTF8') #@UndefinedVariable
+sys.setdefaultencoding('UTF8')
 
 try:
     namearchive = raw_input("Ingrese el nombre del archivo que desea transformar: ").replace(".txt", "")
