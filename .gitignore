@@ -4,6 +4,9 @@
 # Pycharm
 .idea/
 
+# Visual Code
+.vscode/
+
 # Pydev
 .project
 .pydevproject
