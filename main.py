@@ -64,7 +64,7 @@ def main():
         else:
             utils.destroy_process()
 
-            # Creación de ventana
+    # Creación de ventana
     # noinspection PyUnresolvedReferences
     window = Window(window_config, lang.get(10), pygame.image.load(getIcons('icon')), display_info)
     clock = pygame.time.Clock()  # reloj
