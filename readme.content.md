@@ -41,7 +41,7 @@ Este proyecto está licenciado bajo GPLv2 [https://www.gnu.org/licenses/gpl-2.0.
 [4]:	https://pypi.python.org/pypi/pyperclip
 [5]:	https://www.gnu.org/licenses/gpl-2.0.html
 
-[image-1]: http://ppizarror.com/resources/images/nfs-python/splash.jpg "Menú principal"
-[image-2]: http://ppizarror.com/resources/images/nfs-python/gameplay3.jpg "Vuelta en el desierto"
-[image-3]: http://ppizarror.com/resources/images/nfs-python/gameplay1.jpg "Fantasma y algunos efectos gráficos"
-[image-4]: http://ppizarror.com/resources/images/nfs-python/results.jpg "Resultados"
+[image-1]: https://ppizarror.com/resources/images/nfs-python/splash.jpg "Menú principal"
+[image-2]: https://ppizarror.com/resources/images/nfs-python/gameplay3.jpg "Vuelta en el desierto"
+[image-3]: https://ppizarror.com/resources/images/nfs-python/gameplay1.jpg "Fantasma y algunos efectos gráficos"
+[image-4]: https://ppizarror.com/resources/images/nfs-python/results.jpg "Resultados"
