@@ -1391,7 +1391,8 @@ class Player(object):
                         fast_index += 1
                     sumtime = sum(self.totalTime)
                     self.fastlap = [fast_index, round(current_min, 1)]
-                    # si se acabo la carrera se escoge la vuelta mas rapida y se calcula el puntaje total
+                    
+                    # Si se acabo la carrera se escoge la vuelta mas rapida y se calcula el puntaje total
                     if self.finished_lap():
                         self.score = int(
                             100000 * ((0.3 / (

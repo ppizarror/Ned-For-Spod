@@ -6,7 +6,7 @@ Carga todas las configuraciones.
 Obtiene el checksum del proyecto.
 
 Autor: PABLO PIZARRO @ ppizarro ~
-Fecha: ABRIL 2015 - FEBRERO 2017
+Fecha: ABRIL 2015 - FEBRERO 2019
 """
 
 # Importación de librerías
