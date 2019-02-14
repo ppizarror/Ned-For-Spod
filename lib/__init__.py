@@ -4,7 +4,7 @@ LIB
 Permite administrar las clases lógicas del juego
 Las librerías auxiliares o que no pertenecen a la lógica van en /bin.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 

@@ -4,7 +4,7 @@ WINDOW
 Ventana del juego, instancia la ventana en función de la configuración inicial
 Adicionalmente maneja tamaños y superficies.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 

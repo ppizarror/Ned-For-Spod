@@ -4,7 +4,7 @@ OBJETO
 Maneja objetos del mundo, como pistas y decoraciones, dibuja a los elementos
 en pantalla.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 

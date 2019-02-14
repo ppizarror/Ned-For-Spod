@@ -4,7 +4,7 @@ PLAYER
 Maneja lo que es un auto, sus texturas, propiedades y manejo lógico
 Maneja la comunicación con el servidor para el caso de los marcadores.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 

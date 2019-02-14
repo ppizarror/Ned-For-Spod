@@ -3,7 +3,7 @@
 HASHDIR
 Maneja el checksum de los archivos.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 

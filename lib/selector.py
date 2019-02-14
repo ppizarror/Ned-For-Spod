@@ -3,7 +3,7 @@
 SELECTOR
 Clase selector, permite manejar elementos y funciones para una entrada del menú.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 

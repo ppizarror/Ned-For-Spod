@@ -3,7 +3,7 @@
 UTILS
 Este archivo provee de funciones básicas que son globalmente usadas.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 
@@ -20,14 +20,14 @@ from path import *  # @UnusedWildImport
 try:
     from datetime import date
     from random import choice
-    from urllib import urlencode
+    from urllib import urlencode,urlopen
     from urllib2 import urlopen, Request
     import ctypes
     import os
     import signal
     import string
     import time
-except Exception, e:
+except Exception:
     errors.throw(errors.ERROR_IMPORTSYSTEMERROR)
 
 # Importación de librerías externas
@@ -262,8 +262,7 @@ def get_version(label, headers):
     """
     link = 'LINK_PPPRJ'
     http_headers = {"User-Agent": headers}
-    request_object = Request(link, None,
-                             http_headers)
+    request_object = Request(link, None, http_headers)
     response = urllib2.urlopen(request_object)
     html = response.read()
     html = get_between_tags(

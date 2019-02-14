@@ -4,7 +4,7 @@ ERRORS
 Almacena todos los errores propios de bin, provee además una función para
 retornar un mensaje de error dado parámetros.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 

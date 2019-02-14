@@ -3,7 +3,7 @@
 COLORS
 Maneja los colores en la consola.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: JULIO 2015
 """
 

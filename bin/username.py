@@ -4,7 +4,7 @@ USERNAME
 Provee una función para retornar el nombre de usuario si es que el actual no
 es válido.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 

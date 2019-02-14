@@ -3,7 +3,7 @@
 REVOLGRAPH
 Grafico de las revoluciones.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 

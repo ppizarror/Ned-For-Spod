@@ -4,7 +4,7 @@ LIBDIR
 Adminsitra la direccion de directorios de la aplicación
 Se pueden incluir todos los directorios salvo bin/
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 

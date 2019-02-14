@@ -3,7 +3,7 @@
 WORLD
 Maneja distintos mapas.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ ppizarro
 Fecha: ABRIL 2015
 """
 
@@ -18,7 +18,7 @@ from track import Maptrack
 
 if __name__ == '__main__':
     # noinspection PyUnresolvedReferences
-    from path import *  # @UnusedWildImport
+    from path import *
 
 # Definición de constantes
 NEXT_TRACK = -1
@@ -69,8 +69,8 @@ class World(object):
         else:
             self.verbose = False
         # Variables de clase
-        self.actualMap = None  # mapa actual
-        self.actualMapIndex = -1  # indice del mapa actual
+        self.actualMap = None  # Mapa actual
+        self.actualMapIndex = -1  # Indice del mapa actual
         self.checksum = checksum  # checksum del juego
         self.configMap = config_map  # configuraciones de los mapas
         self.configWorld = config_world  # configuración del mundo

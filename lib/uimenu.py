@@ -4,7 +4,7 @@ CLASE USER-INTERFACE MENU
 Crea los menús de interacción del juego, toma como argumento todas las variables
 a las cuales el menu puede acceder, como idiomas, configuraciones y modelos.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 

@@ -3,7 +3,7 @@
 NOSTDOUT
 Desactiva el standard output de Python.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 

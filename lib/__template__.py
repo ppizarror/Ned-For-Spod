@@ -3,7 +3,7 @@
 TITULO OBJETO
 Descripción objeto
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 

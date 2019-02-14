@@ -3,7 +3,7 @@
 MENU
 Brinda distintas opciones las cuales se pueden seleccionar.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 

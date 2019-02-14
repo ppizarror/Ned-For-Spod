@@ -5,31 +5,31 @@ Archivo principal del juego.
 Carga todas las configuraciones.
 Obtiene el checksum del proyecto.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ ppizarro
 Fecha: ABRIL 2015 - FEBRERO 2019
 """
 
 # Importación de librerías
-from bin import *  # @UnusedWildImport
-from bin import Configloader, langs  # @UnresolvedImport @UnusedImport
-from config import DIR_CONFIG  # @UnresolvedImport
-from lib.controller import Controller  # @UnresolvedImport
-from lib.uimenu import Createuimenu  # @UnresolvedImport
-from lib.view import View  # @UnresolvedImport
-from lib.window import Window  # @UnresolvedImport
-from lib.world import World  # @UnresolvedImport
-from resources.icons import getIcons  # @UnresolvedImport
+from bin import *
+from bin import Configloader, langs
+from config import DIR_CONFIG
+from lib.controller import Controller
+from lib.uimenu import Createuimenu
+from lib.view import View
+from lib.window import Window
+from lib.world import World
+from resources.icons import getIcons
 
 # Iniciación de librerías
 pygame.init()
 
 # Definición de constantes
-VERBOSE = False  # imprime el estado del juego en consola
+VERBOSE = False  # Imprime el estado del juego en consola
 
 
 def main():
     """
-    Prepara las ventanas, define modelos, controlador y vista y corre el programa
+    Prepara las ventanas, define modelos, controlador y vista y corre el programa.
     :return: void
     """
 
@@ -65,10 +65,9 @@ def main():
             utils.destroy_process()
 
     # Creación de ventana
-    # noinspection PyUnresolvedReferences
     window = Window(window_config, lang.get(10), pygame.image.load(getIcons('icon')), display_info)
-    clock = pygame.time.Clock()  # reloj
-    fps = int(game_config.getValue('FPS'))  # fps a dibujar
+    clock = pygame.time.Clock()  # Reloj
+    fps = int(game_config.getValue('FPS'))  # FPS a dibujar
 
     # Se crea el mundo
     world = World(world_config, map_config, window, checksum, score_config,

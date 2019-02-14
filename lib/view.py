@@ -3,7 +3,7 @@
 VISTA
 Es el encargado de dibujar sobre la pantalla todos los modelos.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 

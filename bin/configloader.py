@@ -8,7 +8,7 @@ Formato de archivo:
     CONFIG_1 = VALUE
     CONFIG_2 = VALUE2
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 

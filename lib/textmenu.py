@@ -4,7 +4,7 @@ MENU TEXTUAL
 Menu el cual posee un campo textual (correspsondiente a varias lineas) las
 cuales se imprimen en dicho menu. Adicionalmente posee botones.
 
-Autor: PABLO PIZARRO @ ppizarro ~
+Autor: PABLO PIZARRO @ppizarror
 Fecha: ABRIL 2015
 """
 
