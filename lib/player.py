@@ -24,64 +24,63 @@ if __name__ == '__main__':
     from path import *  # @UnusedWildImport
 
 # Definición de constantes
-ACELCONST = 300  # aceleracion por dt
-AGARRECONST = 1  # agarre por defecto
-BGREEN = (0, 200, 0)  # color verde claro
-BLACK = (0, 0, 0, 100)  # color negro
-BLUE = (0, 0, 255)  # color azul
-BROWN = (139, 69, 19, 100)  # color cafe
-CAMBIO = [-0.4, 1.15, 0.97, 0.84, 0.71,
-          0.59]  # taza de aceleración por cada cambio
-CAMBIO_NEUTRO = "N"  # cambio neutro
-CAMBIO_REVERSA = "R"  # cambio en reversa
-DEFAULT_NAME_PLAYER = "Player"  # nombre por defecto del jugador
-DESACELCONST = 200  # desaceleración por dt
-DGREY = (25, 25, 25)  # color gris
-D_BROWN = (117, 58, 16, 100)  # color cafe oscuro
-GREEN = (0, 160, 0)  # color verde claro
-HIGH = 1.5  # parámetro -alto- de los tipos de auto
-LBLACK = (25, 25, 25, 100)  # color negro mas claro (para las frenadas)
-LBLUE = (0, 200, 255)  # color azul claro
-LGREY = (75, 75, 75)  # color azul oscuro
-LLBLACK = (47, 47, 47, 100)  # color negro aún mas claro para las frenadas
-LOW = 0.5  # parámetro -bajo- de los tipos de auto
-LOWEST_VALUE_VEL_DESACEL = 1  # valor minimo de velocidad aceptado para las desaceleraciones
-L_BROWN = (162, 80, 22, 100)  # clor cafe claro
+ACELCONST = 300  # Aceleracion por dt
+AGARRECONST = 1  # Agarre por defecto
+BGREEN = (0, 200, 0)  # Color verde claro
+BLACK = (0, 0, 0, 100)  # Color negro
+BLUE = (0, 0, 255)  # Color azul
+BROWN = (139, 69, 19, 100)  # Color cafe
+CAMBIO = [-0.4, 1.15, 0.97, 0.84, 0.71, 0.59]  # Taza de aceleración por cada cambio
+CAMBIO_NEUTRO = "N"  # Cambio neutro
+CAMBIO_REVERSA = "R"  # Cambio en reversa
+DEFAULT_NAME_PLAYER = "Player"  # Nombre por defecto del jugador
+DESACELCONST = 200  # Desaceleración por dt
+DGREY = (25, 25, 25)  # Color gris
+D_BROWN = (117, 58, 16, 100)  # Color cafe oscuro
+GREEN = (0, 160, 0)  # Color verde claro
+HIGH = 1.5  # Parámetro -alto- de los tipos de auto
+LBLACK = (25, 25, 25, 100)  # Color negro mas claro (para las frenadas)
+LBLUE = (0, 200, 255)  # Color azul claro
+LGREY = (75, 75, 75)  # Color azul oscuro
+LLBLACK = (47, 47, 47, 100)  # Color negro aún mas claro para las frenadas
+LOW = 0.5  # Parámetro -bajo- de los tipos de auto
+LOWEST_VALUE_VEL_DESACEL = 1  # Valor minimo de velocidad aceptado para las desaceleraciones
+L_BROWN = (162, 80, 22, 100)  # Color cafe claro
 MARK_DELETE_RANDOM = False  # Se borra de forma random
-MAXANGVEL = [1.15, 1.10, 1.0]  # máxima velocidad angular
-MAXROTVEL = [80, 140, 100]  # máxima velocidad de rotación
-MAXVELCONST = 1000  # constante de velocidad máxima
-MAX_GROUND_MARKS = 700  # número de marcas en la tierra
-MAX_TRACK_MARKS = 800  # número de marcas en el asfalto
-MAX_VEL_KMH = 250  # velocidad máxima en kilómetros por hora
-MEDIUM = 1  # parámetro -medio- en los tipos de auto
-METRICS = "km/h"  # indica el sistema metrico de unidad de medida para la velocidad
-MID_LOW = 0.8  # coeficiente medio-bajo
-MINROTVEL = 5  # mínima velocidad para rotar el auto
-MIN_LENGTH_FRENADO = 10  # mínima distancia para mostrar las marcas en el asfalto
-MIN_LENGTH_MARCA = 6  # mínima distancia para mostrar las marcas en la tierra
-MIN_VEL_MARK_FRENADO = 50  # mínima velocidad para mostrar marcas en el asfalto
-RED = (255, 0, 0)  # color rojo
-ROCE = 120  # coeficiente de roce en el asfalto
-ROCE_PASTO = 190  # coeficiente de roce en el pasto
-ROTVEL = 80  # velocidad de rotación
-SCOREBOARD_RED = (165, 0, 0, 128)  # color rojo del scoreboard
-SCOREBOARD_WHITE = (255, 255, 255, 128)  # color blanco del scoreboard
-SHADOW_PERCENTAGE = [0.06, 0.03]  # porcentaje de sombra
-SOUND_TRACK_WHEEL = 0  # sonido a reproducir cuando se frena
-SOUND_TRACK_WHEEL_HB = 1  # sonido del freno de mano
-STATE_CORRECT = "SIG"  # indica que el jugador avanzó correctamente en la pista
-STATE_INVALIDPOS = "INVALIDPOS"  # indica si se salió de la pista
-STATE_NEWLAP = "NEWLAP"  # indica que el jugador completó la vuelta anterior
-STATE_NULL = "NONE"  # indica ausencia de estado
-STATE_OFFROAD = "OFFROAD"  # indica si el auto se salio de la pista
-STATE_WRONGWAY = "WRONGWAY"  # indica que el jugador conduce en sentido inverso a la orientación de la pista
-TIMETO_SHOW_FRENADO = 0.3  # tiempo que se debe presionar el botón de frenado para mostrar las marcas en el asfalto
-TRACK_NOT_DEFINED = "$notdefined$"  # pista no definida
-VALIDUSERNAME = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"  # caracteres válidos
-VEL_PASTO = 60  # velocidad máxima en el pasto
-WEB_BROWSER = True  # indica si se usa el navegador web pasado por argumento o no
-WHITE = (255, 255, 255)  # color blanco
+MAXANGVEL = [1.15, 1.10, 1.0]  # Máxima velocidad angular
+MAXROTVEL = [80, 140, 100]  # Máxima velocidad de rotación
+MAXVELCONST = 1000  # Constante de velocidad máxima
+MAX_GROUND_MARKS = 700  # Número de marcas en la tierra
+MAX_TRACK_MARKS = 800  # Número de marcas en el asfalto
+MAX_VEL_KMH = 250  # Velocidad máxima en kilómetros por hora
+MEDIUM = 1  # Parámetro -medio- en los tipos de auto
+METRICS = "km/h"  # Indica el sistema metrico de unidad de medida para la velocidad
+MID_LOW = 0.8  # Coeficiente medio-bajo
+MINROTVEL = 5  # Mínima velocidad para rotar el auto
+MIN_LENGTH_FRENADO = 10  # Mínima distancia para mostrar las marcas en el asfalto
+MIN_LENGTH_MARCA = 6  # Mínima distancia para mostrar las marcas en la tierra
+MIN_VEL_MARK_FRENADO = 50  # Mínima velocidad para mostrar marcas en el asfalto
+RED = (255, 0, 0)  # Color rojo
+ROCE = 120  # Coeficiente de roce en el asfalto
+ROCE_PASTO = 190  # Coeficiente de roce en el pasto
+ROTVEL = 80  # Velocidad de rotación
+SCOREBOARD_RED = (165, 0, 0, 128)  # Color rojo del scoreboard
+SCOREBOARD_WHITE = (255, 255, 255, 128)  # Color blanco del scoreboard
+SHADOW_PERCENTAGE = [0.06, 0.03]  # Porcentaje de sombra
+SOUND_TRACK_WHEEL = 0  # Sonido a reproducir cuando se frena
+SOUND_TRACK_WHEEL_HB = 1  # Sonido del freno de mano
+STATE_CORRECT = "SIG"  # Indica que el jugador avanzó correctamente en la pista
+STATE_INVALIDPOS = "INVALIDPOS"  # Indica si se salió de la pista
+STATE_NEWLAP = "NEWLAP"  # Indica que el jugador completó la vuelta anterior
+STATE_NULL = "NONE"  # Indica ausencia de estado
+STATE_OFFROAD = "OFFROAD"  # Indica si el auto se salio de la pista
+STATE_WRONGWAY = "WRONGWAY"  # Indica que el jugador conduce en sentido inverso a la orientación de la pista
+TIMETO_SHOW_FRENADO = 0.3  # Tiempo que se debe presionar el botón de frenado para mostrar las marcas en el asfalto
+TRACK_NOT_DEFINED = "$notdefined$"  # Pista no definida
+VALIDUSERNAME = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"  # Caracteres válidos
+VEL_PASTO = 60  # Velocidad máxima en el pasto
+WEB_BROWSER = True  # Indica si se usa el navegador web pasado por argumento o no
+WHITE = (255, 255, 255)  # Color blanco
 
 
 def abs_trig(x):
@@ -235,7 +234,8 @@ def string_cleaner(s):
 
 def valid_username(username):
     """
-    Retorna un nombre de jugador válido para el scoreboard online
+    Retorna un nombre de jugador válido para el scoreboard online.
+
     :param username: Nombre de usuario
     :return: Nombre de usuario modificado
     """
@@ -262,7 +262,7 @@ class Player(object):
                  automatic, map_limits, window, game_config, browser,
                  **kwargs):
         """
-        Función constructora
+        Función constructora.
         :param _type: Tipo de auto
         :param texture: Textura del auto
         :param shadow_texture: Textura de la sombra del auto
@@ -295,121 +295,124 @@ class Player(object):
             self.verbose = True
         else:
             self.verbose = False
+
         # se definen variables independientes
-        self.acel = []  # aceleracion del auto
-        self.agarre = 0  # agarre del auto al suelo (para las curvas)
-        self.angle = angle % 360  # angulo de rotacion del auto en radianes
-        self.automatic = automatic  # transmision del auto automatica/manual
-        self.browser = browser  # navegador web
-        self.cambio = 0  # cambio del vehiculo
-        self.defaultAngle = angle % 360  # ángulo por defecto
-        self.desacel = 0  # frenado del auto
-        self.drawablepos = (pos[0], pos[1])  # define la posicion inicial
-        self.fastlap = [0, 0.0]  # vuelta rapida
-        self.finished = False  # indica si ya se acabo el juego
-        self.gameConfig = game_config  # se guarda la configuración del usuario
-        self.ghost = None  # fantasma de la vuelta más rápida
-        self.ghost_actual = []  # fantasma de la vuelta actual
-        self.ghost_i = 0  # indice de dibujo del fantasma actual más rápido
-        self.hash = _hash  # hash del programa
-        self.highVelocity = 0  # velocidad maxima alcanzada en toda la carrera
-        self.initPos = (0, 0)  # posicion por default al partir un mapa
-        self.lapCount = 1  # conteo de vueltas en la pista
-        self.lapTime = 0  # tiempo de vuelta
-        self.lastIndexTrack = 0  # ultimo indice visitado en la pista
-        self.lastIndexTrackAng = angle % 360  # ultimo angulo visitado en la pista
-        self.lastIndexTrackPos = pos  # posición del jugador
-        self.lastcambio = 0  # último cambio efectuado
-        self.lastdirangle = 0  # última dirección angular de rotación
-        self.logic_track = logic_track  # lista de coordenadas de la pista actual
-        self.mapLimits = map_limits  # limites del mapa
-        self.marcasFrenado = [None, None]  # frenados rueda 3, 4
-        self.marcasFrenadoHB = [None, None]  # frenado de mano rueda 3,4
-        self.marcasTierra = [None, None, None, None]  # marcas rueda 1, 2 ,3, 4
-        self.maxangvel = 0  # máxima velocidad angular
-        self.maxcambio = 0  # cambio máximo del auto
-        self.maxrotvel = 0  # máxima velocidad de rotación
-        self.maxvel = 0  # velocidad maxima del auto
-        self.maxvelkmh = 0  # velocidad máxima en kilómetros por hora
-        self.nextTrack = TRACK_NOT_DEFINED  # nombre de la siguiente pista a jugar
-        self.playable = playable  # define si se puede controlar al auto o no
-        self.pos_center = (0, 0)  # posición del centro
-        self.posrueda_1 = (0, 0)  # posición rueda superior derecha
-        self.posrueda_2 = (0, 0)  # posición rueda superior izquierda
-        self.posrueda_3 = (0, 0)  # posición rueda inferior izquierda
-        self.posrueda_4 = (0, 0)  # posición rueda inferior derecha
-        self.posx = pos[0]  # posicion en x
-        self.posy = pos[1]  # posicion en y
-        self.roce = 0  # roce de las ruedas
-        self.score = 0  # puntaje de la pista
-        self.scoreBoardOnline = []  # scoreboard online
-        self.scoreConfig = score_config  # configuraciones de los puntajes
-        self.scoreLink = score_config.getValue("WEB_I")  # link del scoreboard
-        self.soundGear = sounds[0]  # sonido del motor al acelerar
-        self.soundGearChannel = sounds_channels[0]  # canal de sonido del motor
+        self.acel = []  # Aceleracion del auto
+        self.agarre = 0  # Agarre del auto al suelo (para las curvas)
+        self.angle = angle % 360  # Angulo de rotacion del auto en radianes
+        self.automatic = automatic  # Transmision del auto automatica/manual
+        self.browser = browser  # Navegador web
+        self.cambio = 0  # Cambio del vehiculo
+        self.defaultAngle = angle % 360  # Ángulo por defecto
+        self.desacel = 0  # Frenado del auto
+        self.drawablepos = (pos[0], pos[1])  # Define la posicion inicial
+        self.fastlap = [0, 0.0]  # Vuelta rapida
+        self.finished = False  # Indica si ya se acabo el juego
+        self.gameConfig = game_config  # Se guarda la configuración del usuario
+        self.ghost = None  # Fantasma de la vuelta más rápida
+        self.ghost_actual = []  # Fantasma de la vuelta actual
+        self.ghost_i = 0  # Índice de dibujo del fantasma actual más rápido
+        self.hash = _hash  # Hash del programa
+        self.highVelocity = 0  # Velocidad maxima alcanzada en toda la carrera
+        self.initPos = (0, 0)  # Posicion por default al partir un mapa
+        self.lapCount = 1  # Conteo de vueltas en la pista
+        self.lapTime = 0  # Tiempo de vuelta
+        self.lastIndexTrack = 0  # Último indice visitado en la pista
+        self.lastIndexTrackAng = angle % 360  # Último angulo visitado en la pista
+        self.lastIndexTrackPos = pos  # Posición del jugador
+        self.lastcambio = 0  # Último cambio efectuado
+        self.lastdirangle = 0  # Última dirección angular de rotación
+        self.logic_track = logic_track  # Lista de coordenadas de la pista actual
+        self.mapLimits = map_limits  # Límites del mapa
+        self.marcasFrenado = [None, None]  # Frenados rueda 3, 4
+        self.marcasFrenadoHB = [None, None]  # Frenado de mano rueda 3,4
+        self.marcasTierra = [None, None, None, None]  # Marcas rueda 1, 2 ,3, 4
+        self.maxangvel = 0  # Máxima velocidad angular
+        self.maxcambio = 0  # Cambio máximo del auto
+        self.maxrotvel = 0  # Máxima velocidad de rotación
+        self.maxvel = 0  # Velocidad maxima del auto
+        self.maxvelkmh = 0  # Velocidad máxima en kilómetros por hora
+        self.nextTrack = TRACK_NOT_DEFINED  # Nombre de la siguiente pista a jugar
+        self.playable = playable  # Define si se puede controlar al auto o no
+        self.pos_center = (0, 0)  # Posición del centro
+        self.posrueda_1 = (0, 0)  # Posición rueda superior derecha
+        self.posrueda_2 = (0, 0)  # Posición rueda superior izquierda
+        self.posrueda_3 = (0, 0)  # Posición rueda inferior izquierda
+        self.posrueda_4 = (0, 0)  # Posición rueda inferior derecha
+        self.posx = pos[0]  # Posicion en x
+        self.posy = pos[1]  # Posicion en y
+        self.roce = 0  # Roce de las ruedas
+        self.score = 0  # Puntaje de la pista
+        self.scoreBoardOnline = []  # Scoreboard online
+        self.scoreConfig = score_config  # Configuraciones de los puntajes
+        self.scoreLink = score_config.getValue("WEB_I")  # Link del scoreboard
+        self.soundGear = sounds[0]  # Sonido del motor al acelerar
+        self.soundGearChannel = sounds_channels[0]  # Canal de sonido del motor
         self.soundGearPlaying = 0
-        self.soundGearR = sounds[1]  # sonido del motor al frenar
-        self.soundGroundChannel = sounds_channels[
-            2]  # canal de los sonidos de la tierra
-        self.soundMusicChannel = sounds_channels[
-            3]  # canal de sonidos de fondo
-        self.soundResults = sounds[4]  # sonido al terminar la carrera
-        self.soundTrack = sounds[3]  # sonidos de llanta
-        self.soundTrackOffroad = sounds[2]  # sonido en la tierra
-        self.soundWheelsChannel = sounds_channels[
-            1]  # canal de sonido de las ruedas en frenado
-        self.sound_state = game_config.isTrue(
-            "ENABLESOUND")  # define si los sonidos estan activos
-        self.texture = texture  # textura del auto
-        self.texture_ghost = ghost  # textura del fantasma
-        self.tiempoAcelerando = 0  # tiempo continuo de aceleración
-        self.tiempoFrenado = 0  # tiempo continuo de frenado
-        self.tiempoFrenoDeMano = 0  # freno continuo con freno de mano
-        self.tiempoFuera = 0  # tiempo total fuera de la pista
-        self.totalLaps = total_laps  # vueltas totales del circuito
-        self.totalTime = []  # tiempo por cada vuelta
-        self.trackCheckPoint = 0  # indice de la pista que es checkpoint
-        self.trackName = trackname  # nombre de la pista
-        self.trackObjetives = trackobjetives  # objetivos de tiempo de la pista actual
-        self.trackSize = 0  # largo del circuito
-        self.type = _type  # tipo de auto
-        self.username = username  # nombre del usuario
-        self.velcambios = []  # velocidades para cada cambio
-        self.velx = 0  # velocidad en x
-        self.vely = 0  # velocidad en y
-        self.window = window  # ventana del juego
+        self.soundGearR = sounds[1]  # Sonido del motor al frenar
+        self.soundGroundChannel = sounds_channels[2]  # Canal de los sonidos de la tierra
+        self.soundMusicChannel = sounds_channels[3]  # Canal de sonidos de fondo
+        self.soundResults = sounds[4]  # Sonido al terminar la carrera
+        self.soundTrack = sounds[3]  # Sonidos de llanta
+        self.soundTrackOffroad = sounds[2]  # Sonido en la tierra
+        self.soundWheelsChannel = sounds_channels[1]  # Canal de sonido de las ruedas en frenado
+        self.sound_state = game_config.isTrue("ENABLESOUND")  # Define si los sonidos estan activos
+        self.texture = texture  # Textura del auto
+        self.texture_ghost = ghost  # Textura del fantasma
+        self.tiempoAcelerando = 0  # Tiempo continuo de aceleración
+        self.tiempoFrenado = 0  # Tiempo continuo de frenado
+        self.tiempoFrenoDeMano = 0  # Freno continuo con freno de mano
+        self.tiempoFuera = 0  # Tiempo total fuera de la pista
+        self.totalLaps = total_laps  # Vueltas totales del circuito
+        self.totalTime = []  # Tiempo por cada vuelta
+        self.trackCheckPoint = 0  # Índice de la pista que es checkpoint
+        self.trackName = trackname  # Nombre de la pista
+        self.trackObjetives = trackobjetives  # Objetivos de tiempo de la pista actual
+        self.trackSize = 0  # Largo del circuito
+        self.type = _type  # Tipo de auto
+        self.username = username  # Nombre del usuario
+        self.velcambios = []  # Velocidades para cada cambio
+        self.velx = 0  # Velocidad en x
+        self.vely = 0  # Velocidad en y
+        self.window = window  # Ventana del juego
+
         # Se carga el tipo
         self.load_type(_type)
+
         # Se obtiene el rectangulo de la imagen
         self.rect = self.texture.get_rect()
+
         # Se obtiene el tamaño de la imagen
         shadow_texture = pygame.transform.scale(shadow_texture,
                                                 (int(shadow_texture.get_size()[
                                                          0] * (1 + SHADOW_PERCENTAGE[0])),
                                                  int(shadow_texture.get_size()[
                                                          1] * (1 + SHADOW_PERCENTAGE[1]))))
-        self.imagenRotada = self.texture  # textura de la imagen rotada
-        self.imagenRotadaSize = self.texture.get_size()  # tamaño de la imagen rotada
-        self.shadow_texture = shadow_texture  # textura de la sombra
-        self.shadow_texture_rotada = shadow_texture  # textura de la sombra rotada
-        self.shadow_texture_size = shadow_texture.get_size()  # tamaño de la sombra rotada
-        self.width, self.height = self.texture.get_size()  # dimensiones de la imagen
+        self.imagenRotada = self.texture  # Textura de la imagen rotada
+        self.imagenRotadaSize = self.texture.get_size()  # Tamaño de la imagen rotada
+        self.shadow_texture = shadow_texture  # Textura de la sombra
+        self.shadow_texture_rotada = shadow_texture  # Textura de la sombra rotada
+        self.shadow_texture_size = shadow_texture.get_size()  # Tamaño de la sombra rotada
+        self.width, self.height = self.texture.get_size()  # Dimensiones de la imagen
+
         # Se obtienen las variables de la pista
-        self.marks_track = mark_track  # marcas en la pista
-        self.marks_ground = mark_ground  # marcas en la tierra
+        self.marks_track = mark_track  # Marcas en la pista
+        self.marks_ground = mark_ground  # Marcas en la tierra
+
         # Si se pasa como parametro rotate se rota la imagen
         if kwargs.get("rotate"):
             self.shadow_texture = pygame.transform.rotate(self.shadow_texture, kwargs.get("rotate"))
             self.texture = pygame.transform.rotate(self.texture, kwargs.get("rotate"))
             self.texture_ghost = pygame.transform.rotate(self.texture_ghost, kwargs.get("rotate"))
         self.rotate(0, 0, False)
+
         # Se activa el sonido idle
         if self.sound_state:
             self.soundGearChannel.play(self.soundGear[1], -1)
 
     def acelerate(self, t):
         """
-        Acelera el auto (modifica la aceleracion)
+        Acelera el auto (modifica la aceleración).
         :param t: Tiempo t
         :return: void
         """
@@ -434,7 +437,7 @@ class Player(object):
 
     def bajar_cambio(self):
         """
-        Baja el cambio
+        Baja el cambio.
         :return: void
         """
         if not self.automatic:
@@ -442,7 +445,7 @@ class Player(object):
 
     def check_track(self):
         """
-        Comprueba que el auto esté en una cierta pista del mapa y retorna el indice de la pista colisionada
+        Comprueba que el auto esté en una cierta pista del mapa y retorna el indice de la pista colisionada.
         :return: indice entre -1 y inf+
         """
         # Posición relativa en el mapa
@@ -455,11 +458,11 @@ class Player(object):
                 return index
             index += 1
         else:
-            return -1  # codigo de error
+            return -1  # Código de error
 
     def check_track_index(self, index):
         """
-        Compreba que el auto esté en una región en particular del cirguito
+        Compreba que el auto esté en una región en particular del cirguito.
         :param index: Indice que representa la posición en la pista
         :return: booleano True/False
         """
@@ -476,13 +479,13 @@ class Player(object):
 
     def clear(self, sound_idle=False):
         """
-        Limpia todas las variables y deja el auto en la posición y angulos originales
+        Limpia todas las variables y deja el auto en la posición y angulos originales.
         :param sound_idle: Indica si se deja el sonido del motor en indle
         :return: void
         """
-        for i in range(len(self.marks_ground)):  # @UnusedVariable
+        for i in range(len(self.marks_ground)):
             self.marks_ground.pop()
-        for j in range(len(self.marks_track)):  # @UnusedVariable
+        for j in range(len(self.marks_track)):
             self.marks_track.pop()
         self.load_type(self.type)
         self.angle = self.defaultAngle
@@ -513,7 +516,7 @@ class Player(object):
         del self.totalTime
         self.totalTime = []
         self.trackCheckPoint = self.check_track()
-        self.lastIndexTrack = self.trackCheckPoint  # se define el indice actual como el primero de la pista
+        self.lastIndexTrack = self.trackCheckPoint  # Se define el indice actual como el primero de la pista
         self.lastIndexTrackPos = self.initPos
         if self.sound_state and sound_idle:  # Si los sonidos estan activados se deja el sonido de motor en idle
             self.soundGearChannel.play(self.soundGear[1], -1)
@@ -521,7 +524,7 @@ class Player(object):
     # noinspection PyUnusedLocal
     def collide(self, surface, t, **kwargs):
         """
-        Comprueba colisiones con objetos
+        Comprueba colisiones con objetos.
         :param surface: Superficie de dibujo
         :param t: Tiempo t
         :param kwargs: Parámetros adicionales
@@ -545,7 +548,7 @@ class Player(object):
 
     def desacelerate(self, acel, t, marks):
         """
-        Frena el auto
+        Frena el auto.
         :param acel: Constante de desaceleración
         :param t: Tiempo t
         :param marks: Lista de marcas
@@ -560,10 +563,10 @@ class Player(object):
             self.velx = 0
         if abs(self.vely) < LOWEST_VALUE_VEL_DESACEL:
             self.vely = 0
-        if self.get_vel() > prev_vel:  # se comprueba que no se este acelerando
+        if self.get_vel() > prev_vel:  # Se comprueba que no se este acelerando
             self.velx = 0
             self.vely = 0
-        else:  # si se desacelero
+        else:  # Si se desacelero
             if marks:
                 self.tiempoFrenado += t
                 if self.tiempoFrenado > TIMETO_SHOW_FRENADO and self.get_vel() > MIN_VEL_MARK_FRENADO:
@@ -574,7 +577,7 @@ class Player(object):
 
     def draw(self, surface, t, update, window, **kwargs):
         """
-        Dibuja el auto
+        Dibuja el auto.
         :param surface: Superficie de dibujo
         :param t: Tiempo t
         :param update: Indica si actualizar los parámetros fisicos del auto
@@ -586,6 +589,7 @@ class Player(object):
             msg = self.update(t)
         else:
             msg = STATE_NULL
+
         # Se dibuja el fantasma
         if self.ghost is not None and kwargs.get("show_ghost"):
             if self.ghost_i < len(self.ghost):
@@ -601,6 +605,7 @@ class Player(object):
                            ghost[0][1] - (height - self.height) / 2))
                 surface.blit(image, pos)
                 self.ghost_i += 1
+
         # Se dibuja al jugador
         if self.playable:
             surface.blit(self.shadow_texture_rotada,
@@ -622,6 +627,7 @@ class Player(object):
             surface.blit(self.imagenRotada, [
                 int(self.posx - (self.imagenRotadaSize[0] - self.width) / 2),
                 int(self.posy - (self.imagenRotadaSize[1] - self.height) / 2)])
+
         # Si se dibujan las ruedas
         if kwargs.get("draw_ruedas"):
             pygame.draw.line(surface, (255, 255, 255), self.pos_center,
@@ -634,11 +640,13 @@ class Player(object):
                              (self.pos_rueda3[0], self.pos_rueda3[1] + 5), 5)
             pygame.draw.line(surface, (255, 255, 255), self.pos_rueda4,
                              (self.pos_rueda4[0], self.pos_rueda4[1] + 5), 5)
+
         # Si se dibuja el poligono lógico del auto
         if kwargs.get("draw_car"):
             pygame.draw.polygon(surface, (0, 0, 0),
                                 [self.pos_rueda1, self.pos_rueda2,
                                  self.pos_rueda3, self.pos_rueda4])
+
         # Se añade el fantasma a la lista del fantasma actual
         if update:
             w1 = self.width / 2
@@ -651,7 +659,7 @@ class Player(object):
 
     def finished_lap(self):
         """
-        Determina si se termino la pista o no
+        Determina si se termino la pista o no.
         :return: booleano True/False
         """
         if self.lapCount > self.totalLaps:
@@ -668,14 +676,14 @@ class Player(object):
 
     def get_angle(self):
         """
-        Retorna el angulo de rotación del auto
+        Retorna el angulo de rotación del auto.
         :return: Angulo en grados sexagesimales
         """
         return self.angle
 
     def get_cambio(self, v=None):
         """
-        Retorna la marcha del auto
+        Retorna la marcha del auto.
         :param v: Indica si la velocidad es en kph o la interna
         :return: Integer entre 0 1 inf+
         """
@@ -693,6 +701,7 @@ class Player(object):
                 else:
                     break
             new_cambio = min(cambio, self.maxcambio - 1)
+
         # Se cambia el sonido si se modificó el cambio
         if new_cambio != self.lastcambio:
             # Se detiene el sonido anterior
@@ -732,42 +741,42 @@ class Player(object):
 
     def get_desacel(self):
         """
-        Retorna la desaceleración del auto
+        Retorna la desaceleración del auto.
         :return: Double
         """
         return self.desacel
 
     def get_fast_lap(self):
         """
-        Retorna la vuelta rápida del circuito
+        Retorna la vuelta rápida del circuito.
         :return: Tiempo de vuelta de la pista
         """
         return self.fastlap
 
     def get_fast_vel(self):
         """
-        Retorna la velocidad máxima alcanzada
+        Retorna la velocidad máxima alcanzada.
         :return: Double
         """
         return self.get_vel_kph(self.highVelocity)
 
     def get_next_track(self):
         """
-        Retorna la siguiente psita
+        Retorna la siguiente psita.
         :return: Double
         """
         return self.nextTrack
 
     def get_lap_pos(self):
         """
-        Retorna la vuelta actual en el circuito
+        Retorna la vuelta actual en el circuito.
         :return: Integer
         """
         return self.lapCount
 
     def get_lap_time(self, t=None):
         """
-        Retorna el tiempo de vuelta en un string imprimible
+        Retorna el tiempo de vuelta en un string imprimible.
         :param t: Tiempo t
         :return: String con el formato xx:yy
         """
@@ -787,35 +796,35 @@ class Player(object):
 
     def get_lap_time_no_format(self):
         """
-        Retorna el tiempo de vuelta sin formato
+        Retorna el tiempo de vuelta sin formato.
         :return: Double de tiempo en segundos
         """
         return self.lapTime
 
     def get_scoreboard_online(self):
         """
-        Retorna el scoreboard online
+        Retorna el scoreboard online.
         :return: Retorna una lista de puntajes imprimibles
         """
         return self.scoreBoardOnline
 
     def get_pos(self):
         """
-        Retorna la posición del auto
+        Retorna la posición del auto.
         :return: Tupla (x,y)
         """
         return self.posx, self.posy
 
     def get_puntaje(self):
         """
-        Retorna el puntaje del jugador
+        Retorna el puntaje del jugador.
         :return: Double
         """
         return self.score
 
     def get_relative_pos(self):
         """
-        Retorna la posición relativa al mundo
+        Retorna la posición relativa al mundo.
         :return: Tupla (x,y)
         """
         w1 = self.width / 2
@@ -828,7 +837,7 @@ class Player(object):
 
     def get_revl(self):
         """
-        Retorna las revoluciones del motor
+        Retorna las revoluciones del motor.
         :return: Integer entre 0 y 100
         """
         if self.automatic:
@@ -880,35 +889,35 @@ class Player(object):
 
     def get_laps_time(self):
         """
-        Retorna los tiempos de vuelta
+        Retorna los tiempos de vuelta.
         :return: Lista de tiempos de vuelta en segundos
         """
         return self.totalTime
 
     def get_tiempo_fuera(self):
         """
-        Retorna el tiempo fuera de la pista
+        Retorna el tiempo fuera de la pista.
         :return: Tiempo en segundos
         """
         return self.tiempoFuera
 
     def get_track_objetives(self):
         """
-        Retorna el objetivo de la pista
+        Retorna el objetivo de la pista.
         :return: Retorna el objetivo en segundos del tipo actual
         """
         return self.trackObjetives[self.type - 1]
 
     def get_type(self):
         """
-        Retorna el tipo de auto
+        Retorna el tipo de auto.
         :return: Integer entre 0 y inf+
         """
         return self.type
 
     def get_vel_kph(self, v=None):
         """
-        Retorna la velocidad en kilómetros por hora
+        Retorna la velocidad en kilómetros por hora.
         :param v: Permite definir la velocidad
         :return: Integer entre 0 y inf+
         """
@@ -920,7 +929,7 @@ class Player(object):
 
     def get_vel(self):
         """
-        Obtiene el módulo de la velocidad
+        Obtiene el módulo de la velocidad.
         :return: Double
         """
         return math.sqrt(self.velx ** 2 + self.vely ** 2)
@@ -928,7 +937,7 @@ class Player(object):
     # noinspection PyShadowingNames
     def ground_touch(self, roce, color, pos, index, t):
         """
-        Comprueba toques con el suelo
+        Comprueba toques con el suelo.
         :param roce: Constante de roce
         :param color: Color esperado
         :param pos: Posición de comprobación
@@ -984,7 +993,7 @@ class Player(object):
 
     def hand_brake(self, t):
         """
-        Aplica freno de mano
+        Aplica freno de mano.
         :param t: Tiempo t
         :return: void
         """
@@ -998,6 +1007,7 @@ class Player(object):
             self.velx = 0
         if abs(self.vely) < LOWEST_VALUE_VEL_DESACEL:
             self.vely = 0
+
         # Se calcula el desplazamiento angular
         angle_despl = True
         for i in range(5):
@@ -1008,10 +1018,10 @@ class Player(object):
                 (self.get_vel() * 90) / self.maxvelkmh) * t * self.lastdirangle
             self.angle += angl
             self.rotate(self.lastdirangle, t)
-        if self.get_vel() > prev_vel:  # se comprueba que no se este acelerando
+        if self.get_vel() > prev_vel:  # Se comprueba que no se este acelerando
             self.velx = 0
             self.vely = 0
-        else:  # si se desacelero
+        else:  # Si se desacelero
             self.tiempoFrenoDeMano += t
             if self.get_vel() > 0 and self.tiempoFrenoDeMano > 0:
                 self.marcar_frenado_hb(self.pos_rueda1, 0)
@@ -1019,13 +1029,14 @@ class Player(object):
             else:
                 self.marcasFrenadoHB = [None, None]
 
-    def load_type(self, _type):  # @ReservedAssignment
+    def load_type(self, _type):
         """
-        Cargar tipo de auto
+        Cargar tipo de auto.
         :param _type: Tipo de auto
         :return: void
         """
-        # Classic: media velocidad, gran frenado, gran agarre y baja aceleracion
+
+        # Classic: media velocidad, gran frenado, gran agarre y baja aceleración
         if _type == 1:
             acel = MID_LOW * ACELCONST
             self.acel = [CAMBIO[0] * acel, CAMBIO[1] * acel, CAMBIO[2] * acel,
@@ -1042,7 +1053,8 @@ class Player(object):
             self.velcambios = [50, 72, 100, 115, self.maxvelkmh,
                                2 * self.maxvelkmh]
             self.maxcambio = 5
-        # Modern: media velocidad, medio frenado, medio agarre y media aceleracion
+
+        # Modern: media velocidad, medio frenado, medio agarre y media aceleración
         elif _type == 2:
             acel = MEDIUM * ACELCONST
             self.acel = [CAMBIO[0] * acel, CAMBIO[1] * acel, CAMBIO[2] * acel,
@@ -1058,7 +1070,8 @@ class Player(object):
             self.rocePasto = MEDIUM * ROCE_PASTO
             self.velcambios = [80, 130, 170, 220, 240, self.maxvelkmh]
             self.maxcambio = 6
-        # Super: alta velocidad, mal frenado, mal agarre, alta aceleracion
+
+        # Super: alta velocidad, mal frenado, mal agarre, alta aceleración
         elif _type == 3:
             acel = HIGH * ACELCONST
             self.acel = [CAMBIO[0] * acel, CAMBIO[1] * acel, CAMBIO[2] * acel,
@@ -1077,7 +1090,7 @@ class Player(object):
 
     def marcar_frenado(self, pos_rueda, index):
         """
-        Marca el frenado en la pista
+        Marca el frenado en la pista.
         :param pos_rueda: Posición de marcado
         :param index: Indice de la marca
         :return: void
@@ -1093,6 +1106,7 @@ class Player(object):
         else:
             if math.sqrt((new_x - self.marcasFrenado[index][0]) ** 2 + (
                     new_y - self.marcasFrenado[index][1]) ** 2) > MIN_LENGTH_FRENADO:
+
                 # Se elige el color de dibujado
                 color_choice = random.randint(-10, 2)
                 if color_choice < 0:
@@ -1101,6 +1115,7 @@ class Player(object):
                     color = LBLACK
                 else:
                     color = LLBLACK
+
                 # Se agrega la linea a las marcas_frenado
                 self.marks_track.append(
                     [(int(self.marcasFrenado[index][0]),
@@ -1111,6 +1126,7 @@ class Player(object):
                 if len(self.marks_track) > MAX_TRACK_MARKS:
                     self.marks_track.pop(random.randint(0, MAX_TRACK_MARKS))
                 # sound_choice = random.randint(0,2) modo azar
+
                 # Se reproduce un sonido mientras el canal no se esté usando
                 if not self.soundWheelsChannel.get_busy():
                     if self.sound_state:
@@ -1119,7 +1135,7 @@ class Player(object):
 
     def marcar_frenado_hb(self, pos_rueda, index):
         """
-        Marca el frenado en la pista usando el freno de mano
+        Marca el frenado en la pista usando el freno de mano.
         :param pos_rueda: Posición de marcado
         :param index: Indice de la marca
         :return: void
@@ -1135,6 +1151,7 @@ class Player(object):
         else:
             if math.sqrt((new_x - self.marcasFrenadoHB[index][0]) ** 2 + (
                     new_y - self.marcasFrenadoHB[index][1]) ** 2) > MIN_LENGTH_FRENADO:
+
                 # Se elige el color de dibujado
                 color_choice = random.randint(-10, 2)
                 if color_choice < 0:
@@ -1143,7 +1160,8 @@ class Player(object):
                     color = LBLACK
                 else:
                     color = LLBLACK
-                # Se agrega la linea a las marcas_frenado
+
+                # Se agrega la línea a las marcas_frenado
                 self.marks_track.append([(int(self.marcasFrenadoHB[index][0]),
                                           int(self.marcasFrenadoHB[index][1])),
                                          (int(new_x), int(new_y)), color])
@@ -1155,6 +1173,7 @@ class Player(object):
                     else:
                         self.marks_track.pop(0)
                 # sound_choice = random.randint(0,2) modo azar
+
                 # Se reproduce un sonido mientras el canal no se esté usando
                 if not self.soundWheelsChannel.get_busy():
                     if self.sound_state:
@@ -1163,7 +1182,7 @@ class Player(object):
 
     def return_to_track(self):
         """
-        Retornar el auto a la pista
+        Retornar el auto a la pista.
         :return: void
         """
         self.angle = self.lastIndexTrackAng
@@ -1175,13 +1194,13 @@ class Player(object):
 
     def rotate(self, direction, t, controller=True):
         """
-        Rota el auto
+        Rota el auto.
         :param direction: Dirección de rotación
         :param t: Tiempo t
         :param controller: Controlador del programa
         :return: void
         """
-        if controller:  # si se mueve el auto mediante el controlador
+        if controller:  # Si se mueve el auto mediante el controlador
             actual_vel = self.get_vel()
             # Si se esta bajo la maxima velocidad de rotacion ->creciente
             if MINROTVEL < actual_vel < self.maxrotvel * self.agarre:
@@ -1200,12 +1219,14 @@ class Player(object):
             self.velx = actual_vel * ecos(self.angle)
             self.vely = actual_vel * esin(self.angle)
             self.lastdirangle = direction
+
         # Se modifican las texturas
         self.imagenRotada = pygame.transform.rotate(self.texture, self.angle)
         self.imagenRotadaSize = self.imagenRotada.get_size()
         self.shadow_texture_rotada = pygame.transform.rotate(
             self.shadow_texture, self.angle)
         self.shadow_texture_size = self.shadow_texture_rotada.get_size()
+
         # Modifica la posición de las ruedas
         #  _  ____  _
         # | R3    R2 |
@@ -1241,35 +1262,39 @@ class Player(object):
     # noinspection PyShadowingNames
     def set_default_pos(self, pos):
         """
-        Definir la posición inicial del auto en la pista
+        Definir la posición inicial del auto en la pista.
         :param pos: Posición (x,y) en la pista
         :return: void
         """
-        # se modifica la posición
+        # Se modifica la posición
         self.posx = pos[0]
         self.posy = pos[1]
         self.initPos = (self.posx, self.posy)
-        # se modifican las variables de movimiento
+
+        # Se modifican las variables de movimiento
         self.lastcambio = 0
         self.tiempoAcelerando = 0
         self.tiempoFrenado = 0
         self.tiempoFrenoDeMano = 0
         self.lastdirangle = 0
-        # se detienene los sonidos y se deja en idle
+
+        # Se detienene los sonidos y se deja en idle
         if self.sound_state:
             self.soundGearChannel.play(self.soundGear[1], -1)
         self.soundGroundChannel.stop()
         self.soundWheelsChannel.stop()
-        # se obtiene la posición de la pista inicial (que sera la meta para cada vuelta)
+
+        # Se obtiene la posición de la pista inicial (que sera la meta para cada vuelta)
         self.trackCheckPoint = self.check_track()
-        self.lastIndexTrack = self.trackCheckPoint  # se define el indice actual como el primero de la pista
+        self.lastIndexTrack = self.trackCheckPoint  # Se define el indice actual como el primero de la pista
         self.lastIndexTrackPos = pos
+
         # Se obtiene el largo de la pista
         self.trackSize = len(self.logic_track)
 
     def set_next_track(self, track):
         """
-        Define la sigiente pista
+        Define la sigiente pista.
         :param track: String con el nombre de la pista
         :return: void
         """
@@ -1277,7 +1302,7 @@ class Player(object):
 
     def set_logic_track(self, track):
         """
-        Redefine la pista lógica
+        Redefine la pista lógica.
         :param track: Objeto track
         :return: void
         """
@@ -1285,7 +1310,7 @@ class Player(object):
 
     def sound_mute(self):
         """
-        Detiene todos los sonidos del auto
+        Detiene todos los sonidos del auto.
         :return: void
         """
         self.soundGearChannel.stop()
@@ -1295,7 +1320,7 @@ class Player(object):
 
     def sound_pause(self):
         """
-        Pausa todos los sonidos del auto
+        Pausa todos los sonidos del auto.
         :return: void
         """
         self.soundGearChannel.pause()
@@ -1305,7 +1330,7 @@ class Player(object):
 
     def sound_unpause(self):
         """
-        Reanuda todos los sonidos del auto
+        Reanuda todos los sonidos del auto.
         :return: void
         """
         self.soundGearChannel.unpause()
@@ -1315,7 +1340,7 @@ class Player(object):
 
     def stop_acelerating(self):
         """
-        Detiene el evento de aceleración
+        Detiene el evento de aceleración.
         :return: void
         """
         self.tiempoAcelerando = 0
@@ -1323,7 +1348,7 @@ class Player(object):
 
     def stop_track_marking(self):
         """
-        Detiene las marcas en el asfalto
+        Detiene las marcas en el asfalto.
         :return: void
         """
         self.marcasFrenado = [None, None]
@@ -1332,7 +1357,7 @@ class Player(object):
 
     def stop_track_marking_hb(self):
         """
-        Detiene las marcas en el asfalto por el freno de mano
+        Detiene las marcas en el asfalto por el freno de mano.
         :return: void
         """
         self.tiempoFrenoDeMano = 0
@@ -1341,7 +1366,7 @@ class Player(object):
 
     def subir_cambio(self):
         """
-        Sube el cambio del vehiculo
+        Sube el cambio del vehiculo.
         :return: void
         """
         if not self.automatic:
@@ -1350,7 +1375,7 @@ class Player(object):
 
     def update(self, t):
         """
-        Actualiza la posicion usando el tiempo y retorna un mensaje para que view la represente en pantalla
+        Actualiza la posicion usando el tiempo y retorna un mensaje para que view la represente en pantalla.
         :param t: Tiempo t
         :return: Mensaje de estado
         """
@@ -1358,6 +1383,7 @@ class Player(object):
         self.posy += self.vely * t
         self.desacelerate(self.roce, t, False)
         self.lapTime += t
+
         # Si se sale del mapa se resetea
         rel_pos = self.get_relative_pos()
         if (rel_pos[1] - 1.25 * self.window.get_window_height()) < \
@@ -1369,17 +1395,27 @@ class Player(object):
                 rel_pos[0] + 1.0 * self.window.get_window_width()) > \
                 self.mapLimits[2]:
             self.return_to_track()
+
         # Se comprueba el avance en la pista
         if self.check_track_index(self.lastIndexTrack):  # si no se ha avanzado
             return STATE_NULL
         else:
             next_index = (self.lastIndexTrack + 1) % self.trackSize
-            if self.check_track_index(
-                    next_index):  # si se avanzó correctamente
-                self.lastIndexTrack = next_index  # se avanza en la pista
-                self.lastIndexTrackAng = self.angle  # se guarda el angulo asociado al ultimo sector válido de la pista
-                self.lastIndexTrackPos = self.get_pos()  # se guarda la posición asociada al ultimo sector válido
-                if self.lastIndexTrack == 0:  # si se volvió al punto de origen entonces aumenta la pista
+
+            # Si se avanzó correctamente
+            if self.check_track_index(next_index):
+
+                # Se avanza en la pista
+                self.lastIndexTrack = next_index
+
+                # Se guarda el angulo asociado al ultimo sector válido de la pista
+                self.lastIndexTrackAng = self.angle
+
+                # Se guarda la posición asociada al ultimo sector válido
+                self.lastIndexTrackPos = self.get_pos()
+
+                # Si se volvió al punto de origen entonces aumenta la pista
+                if self.lastIndexTrack == 0:
                     self.lapCount += 1
                     self.totalTime.append(self.lapTime)
                     fast_index = 0
@@ -1391,15 +1427,13 @@ class Player(object):
                         fast_index += 1
                     sumtime = sum(self.totalTime)
                     self.fastlap = [fast_index, round(current_min, 1)]
-                    
+
                     # Si se acabo la carrera se escoge la vuelta mas rapida y se calcula el puntaje total
                     if self.finished_lap():
                         self.score = int(
-                            100000 * ((0.3 / (
-                                    self.tiempoFuera + 1) + 0.4 / math.sqrt(
+                            100000 * ((0.3 / (self.tiempoFuera + 1) + 0.4 / math.sqrt(
                                 float(sumtime / current_min) +
-                                1 - self.totalLaps)) + 0.3 / (
-                                              current_min ** 1.5)))
+                                1 - self.totalLaps)) + 0.3 / (current_min ** 1.5)))
                         # Se sube el puntaje a la web
                         scoreboard_insert_url = self.scoreLink.format(
                             self.hash[0], self.hash[1], self.hash[2],
@@ -1409,9 +1443,7 @@ class Player(object):
                         if WEB_BROWSER:
                             self.browser.abrir_link(scoreboard_insert_url)
                         else:
-                            http_header = {
-                                "User-Agent": self.scoreConfig.getValue(
-                                    "HEADER")}
+                            http_header = {"User-Agent": self.scoreConfig.getValue("HEADER")}
                             request_object = Request(scoreboard_insert_url,
                                                      None, http_header)
                         # Si existe comunicación con el servidor
@@ -1424,21 +1456,16 @@ class Player(object):
                                 response = urlopen(request_object)
                                 scoreboard = response.read()
                             # Se obtiene el scoreboard
-                            scoreboard_list = str(scoreboard).strip().split(
-                                "<br>")
+                            scoreboard_list = str(scoreboard).strip().split("<br>")
                             status = string_cleaner(scoreboard_list[0])
                             self.scoreBoardOnline.append(status)
                             for i in range(1, len(scoreboard_list) - 1):
                                 line = string_cleaner(scoreboard_list[i])
                                 if line != "NULL":
-                                    color = get_between_tags(line, "<color>",
-                                                           "</color>")
-                                    player = get_between_tags(line, "<player>",
-                                                            "</player>")[0:10]
-                                    score = get_between_tags(line, "<score>",
-                                                           "</score>")
-                                    indexp = get_between_tags(line, "<index>",
-                                                            "</index>")
+                                    color = get_between_tags(line, "<color>", "</color>")
+                                    player = get_between_tags(line, "<player>", "</player>")[0:10]
+                                    score = get_between_tags(line, "<score>", "</score>")
+                                    indexp = get_between_tags(line, "<index>", "</index>")
                                     if color == "red":
                                         color = SCOREBOARD_RED
                                     elif color == "white":
@@ -1456,7 +1483,8 @@ class Player(object):
                                 warning(ERROR_SCOREBOARD_NOCONECTIONMSG)
                             self.scoreBoardOnline = [
                                 ERROR_SCOREBOARD_NOCONECTION]
-                    # si no se acabo la carrera se reemplaza el fantasma
+
+                    # Si no se acabo la carrera se reemplaza el fantasma
                     else:
                         # Se volca un ghost en otro si es que se disminuye el tiempo
                         if self.ghost is None:
@@ -1477,7 +1505,9 @@ class Player(object):
                     return STATE_NEWLAP
                 else:
                     return STATE_CORRECT
-            else:  # si no esta avanzado entonces
+
+            # Si no esta avanzado entonces
+            else:
                 self.tiempoFuera += t
                 actual_index_trk = self.check_track()
                 if actual_index_trk == -1:
@@ -1490,7 +1520,7 @@ class Player(object):
 
     def update_sound(self):
         """
-        Comprueba si los sonidos están activos
+        Comprueba si los sonidos están activos.
         :return: void
         """
         self.sound_state = self.gameConfig.isTrue("ENABLESOUND")

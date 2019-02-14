@@ -169,7 +169,7 @@ class View(object):
         """
         time = float(
             self.clock.get_time()) / 1000.0  # tiempo que tomo el frame en generarse
-        
+
         # Si la opcion de mostrar fps esta habilitada
         if self.show_fps:
             self.window.set_window_title(self.lang.get(10) + " - FPS: " + str(
@@ -506,6 +506,7 @@ class View(object):
                                                            COLOR_VELOCIMETER),
                         (self.resultsScreenPos[0] + 590,
                          self.resultsScreenPos[1] + 38))
+
                 # Resultados
                 tiempo = self.map.get_player().get_fast_lap()[1]
                 oro = self.map.get_player().get_track_objetives()[0]
@@ -592,6 +593,7 @@ class View(object):
                             tiempo - bronce)), 1, COLOR_ALERT),
                         (self.resultsScreenPos[0] + 50,
                          self.resultsScreenPos[1] + 258))
+
                 # Estadisticas
                 self.screen.blit(
                     self.resultsFontTitleSubtl.render(self.lang.get(31), 1,
@@ -648,6 +650,7 @@ class View(object):
                         COLOR_VELOCIMETER), (
                         self.resultsScreenPos[0] + 205,
                         self.resultsScreenPos[1] + 320))
+
                 # Marcadores online
                 scores = self.map.get_player().get_scoreboard_online()
                 if len(scores) > 0:
@@ -698,6 +701,7 @@ class View(object):
                                          self.resultsScreenPos[
                                              1] + 126 + 19 * i))
                             i += 1
+
                     # Se imprimen mensajes de error
                     elif scores[0] == ERROR_SCOREBOARD_NOCONECTION:
                         self.screen.blit(self.resultsFontTitleContent.render(
@@ -747,6 +751,7 @@ class View(object):
                     self.screen.blit(
                         self.resultsFontTitleContent.render(self.lang.get(34), 1, COLOR_VELOCIMETER),
                         (self.resultsScreenPos[0] + 481, self.resultsScreenPos[1] + 120))
+
                 # Se guardan los resultados y se consulta la siguiente pista
                 if not self.map.results_saved() and SAVE_FILE_STATICS:
                     self.map.results = True
@@ -775,6 +780,7 @@ class View(object):
                     save.close()
                     self.map.get_player().set_next_track(
                         TRACKS[get_next_track(self.world.get_actual_index())])
+
                 # Se dibujan los botones debajo del recuadro
                 if self.map.get_player().get_next_track() != TRACK_NOT_DEFINED:
                     quit_text = self.buttonsResultsFont.render(
@@ -825,25 +831,27 @@ class View(object):
                     self.stop_playing_render()
                     self.controller.del_player()
                 self.menu.drawMenuInicial(time)
+
         # Si el evento es avanzar de pista
         elif state == STATE_NEXT:
             self.world.clear_actual_map()
             self.world.load_map(NEXT_TRACK)
             self.controller.set_player()
             self.start_playing_render()
+
         # Se actualiza la pantalla
         pygame.display.flip()
 
     def set_map(self):
         """
-        Define el mapa actual
+        Define el mapa actual.
         :return: void
         """
         self.map = self.world.get_actual_map()
 
     def start_playing_render(self):
         """
-        Empieza el renderizado del mapa
+        Empieza el renderizado del mapa.
         :return: void
         """
         self.isPlaying = True
@@ -851,7 +859,7 @@ class View(object):
 
     def stop_playing_render(self):
         """
-        Detiene el renderizado del mapa
+        Detiene el renderizado del mapa.
         :return: void
         """
         self.isPlaying = False
@@ -859,27 +867,27 @@ class View(object):
 
     def update_show_ghost(self):
         """
-        Comprueba si se cambio el parametro show_ghost
+        Comprueba si se cambio el parametro show_ghost.
         :return: void
         """
         self.show_ghost = self.viewConfig.isTrue(
-            "SHOWGHOST")  # define si se dibuja al ghost o no
+            "SHOWGHOST")  # Define si se dibuja al ghost o no
 
     def update_show_fps(self):
         """
-        Comprueba si se cambio el parametro show_fps
+        Comprueba si se cambio el parametro show_fps.
         :return: void
         """
         self.show_fps = self.viewConfig.isTrue(
-            "SHOWFPS")  # define si se dibuja el fps en el titulo de la ventana
+            "SHOWFPS")  # Define si se dibuja el fps en el titulo de la ventana
         if not self.show_fps:
             self.window.set_window_title(
-                self.lang.get(10))  # se define el titulo por defecto
+                self.lang.get(10))  # Se define el titulo por defecto
 
     def update_window_size(self):
         """
-        Actualiza el tamaño de la ventana
+        Actualiza el tamaño de la ventana.
         :return: void
         """
-        self.windowHeight = self.window.get_window_height()  # alto de la ventana
-        self.windowWidth = self.window.get_window_width()  # ancho de la ventana
+        self.windowHeight = self.window.get_window_height()  # Alto de la ventana
+        self.windowWidth = self.window.get_window_width()  # Ancho de la ventana

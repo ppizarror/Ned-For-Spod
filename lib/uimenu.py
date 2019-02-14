@@ -35,7 +35,7 @@ class Createuimenu(object):
     def __init__(self, langs, window, world, game_config, user_config,
                  view_config, window_config, world_config, map_config):
         """
-        Función constructora
+        Función constructora.
         :param langs: Diccionario de idioma
         :param window: Ventana de la aplicación
         :param world: Objeto mundo
@@ -49,22 +49,23 @@ class Createuimenu(object):
         """
 
         # Variables de clase
-        self.config_game = game_config  # configuraciones del juego
-        self.config_map = map_config  # configuracion del mapa
-        self.config_user = user_config  # configuraciones de usuario
-        self.config_view = view_config  # configuraciones de la vista
-        self.config_window = window_config  # configuraciones de la ventana
-        self.config_world = world_config  # configuraciones del mundo
-        self.controller = None  # controlador
-        self.font = getFonts("menu")  # se obtiene la fuente por defecto
-        self.langs = langs  # idiomas del juego
+        self.config_game = game_config  # Configuraciones del juego
+        self.config_map = map_config  # Configuracion del mapa
+        self.config_user = user_config  # Configuraciones de usuario
+        self.config_view = view_config  # Configuraciones de la vista
+        self.config_window = window_config  # Configuraciones de la ventana
+        self.config_world = world_config  # Configuraciones del mundo
+        self.controller = None  # Controlador
+        self.font = getFonts("menu")  # Se obtiene la fuente por defecto
+        self.langs = langs  # Idiomas del juego
         self.menu_inicial_title_font = pygame.font.Font(getFonts("nfs"), 55)
-        self.screen = window.get_surface()  # se obtiene la superficie de dibujo
+        self.screen = window.get_surface()  # Se obtiene la superficie de dibujo
         self.sound_state = game_config.isTrue(
-            "ENABLESOUND")  # define si los sonidos estan activos
-        self.view = None  # vista
-        self.window = window  # ventana de visualización
-        self.world = world  # mundo
+            "ENABLESOUND")  # Define si los sonidos estan activos
+        self.view = None  # Vista
+        self.window = window  # Ventana de visualización
+        self.world = world  # Mundo
+
         # Canales de sonido de los menues
         self.menuSoundChannel = pygame.mixer.Channel(4)
         self.menuSoundChannel.set_volume(
@@ -72,11 +73,13 @@ class Createuimenu(object):
         self.menuButtonChannel = pygame.mixer.Channel(5)
         self.menuSoundChannel.set_volume(
             float(self.config_world.getValue("CHANNEL_5")))
+
         # Sonido de fondo del menu de inicio
         self.menu_inicial_sfx = pygame.mixer.Sound(getSounds("intro"))
         self.menu_button_up = pygame.mixer.Sound(getSounds("down"))
         self.menu_button_down = pygame.mixer.Sound(getSounds("up"))
-        # Se renderiza la fuente del titulo
+
+        # Se renderiza la fuente del título
         self.menu_inicial_title = self.menu_inicial_title_font.render(
             self.langs.get(10), 1, (255, 255, 255))
         self.menu_inicial_title_shadow = self.menu_inicial_title_font.render(
@@ -90,22 +93,26 @@ class Createuimenu(object):
         self.menu_inicial_title_pos = (
             self.window.get_window_width() / 2 - self.menu_inicial_title_width / 2,
             (self.window.get_window_height() - 400) / 2 - 65)
+
         # Menues
         self.actualmenu = None
         self.menu_inicial = None
         self.menu_jugar = None
         self.menu_pausa = None
+
         # Se crean los menues
         self.intializeMenuInicial()
         self.setActualMenu(MENU_INICIAL)
         self.initializeMenuPausa()
-        # Se crean las imagenes de fondo
+
+        # Se crean las imágenes de fondo
         self.splashimages = []
         for key in range(1, 11):
             image = pygame.transform.scale(
                 pygame.image.load(getImages("splash" + str(key))),
                 (window.get_window_width(), window.get_window_height()))
             self.splashimages.append(image)
+
         # Tiempos de efectos visuales de fondo
         self.splashindex = 0
         self.splashmaxtime = 0
@@ -113,7 +120,7 @@ class Createuimenu(object):
 
     def addController(self, controller):
         """
-        Agrega un controlador
+        Agrega un controlador.
         :param controller: Objeto <controller>
         :return: void
         """
@@ -121,7 +128,7 @@ class Createuimenu(object):
 
     def addView(self, view):
         """
-        Agrega la vista del juego
+        Agrega la vista del juego.
         :param view: Objeto <view>
         :return: void
         """
@@ -129,7 +136,7 @@ class Createuimenu(object):
 
     def down(self):
         """
-        Baja el menú actual
+        Baja el menú actual.
         :return: void
         """
         self.sound()
@@ -137,13 +144,14 @@ class Createuimenu(object):
 
     def drawMenuInicial(self, t):
         """
-        Dibujar en pantalla el menú inicial
+        Dibujar en pantalla el menú inicial.
         :param t: Tiempo t
         :return: void
         """
         # Si la imagen de fondo aun no debe cambiar entonces solo se suma el tiempo
         if self.splashtime < self.splashmaxtime:
             self.splashtime += t
+
         # Si se debe cambiar tanto el indice como el tiempo maximo
         else:
             self.splashtime = 0
@@ -157,34 +165,35 @@ class Createuimenu(object):
         self.screen.blit(self.menu_inicial_title_shadow,
                          self.menu_inicial_title_shadow_pos)
         self.screen.blit(self.menu_inicial_title, self.menu_inicial_title_pos)
+
         # Se reproduce el sonido de fondo
         if not self.menuSoundChannel.get_busy() and self.sound_state:
             self.menuSoundChannel.play(self.menu_inicial_sfx)
 
     def drawMenuPause(self):
         """
-        Dibujar en pantalla el menú de pausa
+        Dibujar en pantalla el menú de pausa.
         :return: void
         """
         self.menu_pausa.draw(self.screen)
 
     def getMenuInicial(self):
         """
-        Retorna el menú inicial
+        Retorna el menú inicial.
         :return: Objeto <menu> inicial
         """
         return self.menu_inicial
 
     def getMenuPausa(self):
         """
-        Retorna el menú de pausa
+        Retorna el menú de pausa.
         :return: Objeto <menu> de pausa
         """
         return self.menu_pausa
 
     def intializeMenuInicial(self):
         """
-        Crea el menu inicial
+        Crea el menu inicial.
         :return: void
         """
         try:
@@ -246,6 +255,7 @@ class Createuimenu(object):
                              (self.langs.get(100), "lr_super_yellow"),
                              (self.langs.get(97), "lr_super_cyan"),
                              (self.langs.get(98), "lr_super_pink")]
+
             # Tipos de auto
             TYPECAR_1 = [(self.langs.get(43), "1"), (self.langs.get(44), "2"),
                          (self.langs.get(45), "3")]
@@ -256,7 +266,7 @@ class Createuimenu(object):
 
             def _launchTrack():
                 """
-                Lanza una pista
+                Lanza una pista.
                 :return: void
                 """
                 self.reset(0)
@@ -268,7 +278,7 @@ class Createuimenu(object):
 
             def _saveConfig(value, *args):
                 """
-                Función que guarda configuraciones y las aplica
+                Función que guarda configuraciones y las aplica.
                 :param value: Valor de la configuración
                 :param *args: Argumentos adicionales
                 :return: void
@@ -361,7 +371,7 @@ class Createuimenu(object):
                 if args[1] == "SHOWGHOST":
                     self.view.update_show_ghost()
 
-            # Menu jugar
+            # Menú jugar
             self.menu_jugar = Menu(self.window, self.font, self.langs.get(61),
                                    draw_region_y=55)
             self.menu_jugar.add_option(self.langs.get(104), _launchTrack)
@@ -535,7 +545,8 @@ class Createuimenu(object):
                                                  None,
                                                  self.config_view, "SHOWGHOST")
             self.menu_configuracion.add_option(self.langs.get(86), MENU_BACK)
-            # Menu de ayuda
+
+            # Menú de ayuda
             menu_ayuda = Textmenu(self.window, self.font, self.langs.get(63),
                                   font_text_size=18, draw_text_region=2,
                                   draw_region_y=58)
@@ -552,7 +563,8 @@ class Createuimenu(object):
             menu_ayuda.add_text(self.langs.get(77))
             menu_ayuda.add_text(self.langs.get(78))
             menu_ayuda.add_option(self.langs.get(67), MENU_BACK)
-            # Menu acerca de
+
+            # Menú acerca de
             menu_acercade = Textmenu(self.window, self.font,
                                      self.langs.get(64), text_centered=True,
                                      draw_text_region=50, draw_region_y=50)
@@ -561,6 +573,7 @@ class Createuimenu(object):
             menu_acercade.add_text(self.langs.get(81))
             menu_acercade.add_text(self.langs.get(82))
             menu_acercade.add_option(self.langs.get(67), MENU_BACK)
+
             # Se crea el menú de inicio
             self.menu_inicial = Menu(self.window, self.font,
                                      self.langs.get(60), draw_region_y=56)
@@ -575,13 +588,13 @@ class Createuimenu(object):
 
     def initializeMenuPausa(self):
         """
-        Inicia el menú de pausa
+        Inicia el menú de pausa.
         :return: void
         """
 
         def _returnIntialMenu():
             """
-            Funcion que vuelve al menu principal
+            Funcion que vuelve al menú principal.
             :return: void
             """
             self.setZeroIndex()
@@ -591,7 +604,7 @@ class Createuimenu(object):
 
         def _back():
             """
-            Retorna el juego
+            Retorna el juego.
             :return: void
             """
             self.setZeroIndex()
@@ -600,7 +613,7 @@ class Createuimenu(object):
 
         def _reinitiate():
             """
-            Reinicia el juego
+            Reinicia el juego.
             :return: void
             """
             _back()
@@ -615,7 +628,7 @@ class Createuimenu(object):
 
     def left(self):
         """
-        Mueve el selector del menú actual hacia la izqueirda
+        Mueve el selector del menú actual hacia la izquierda.
         :return: void
         """
         self.sound()
@@ -624,14 +637,14 @@ class Createuimenu(object):
     def reset(self, times):
         """
         Resetea el menú
-        :param times: Número de veces (en plan recursivo)
+        :param times: Número de veces (en plan recursivo).
         :return:
         """
         self.actualmenu.reset(times)
 
     def right(self):
         """
-        Mueve el selector del menú actual hacia la derecha
+        Mueve el selector del menú actual hacia la derecha.
         :return: void
         """
         self.sound()
@@ -639,14 +652,14 @@ class Createuimenu(object):
 
     def select(self):
         """
-        Selecciona la opción actual
+        Selecciona la opción actual.
         :return: void
         """
         self.actualmenu.select()
 
     def setActualMenu(self, menuEvent):
         """
-        Define el menu actual
+        Define el menu actual.
         :param menuEvent: Evento del menú
         :return: void
         """
@@ -657,14 +670,14 @@ class Createuimenu(object):
 
     def setZeroIndex(self):
         """
-        Define el índice cero
+        Define el índice cero.
         :return: void
         """
         self.actualmenu.index = 0
 
     def sound(self):
         """
-        Reproduce el efecto de sonido del menú
+        Reproduce el efecto de sonido del menú.
         :return: void
         """
         if self.sound_state and not self.menuButtonChannel.get_busy():
@@ -672,7 +685,7 @@ class Createuimenu(object):
 
     def up(self):
         """
-        Sube el menú actual
+        Sube el menú actual.
         :return: void
         """
         self.sound()
@@ -680,7 +693,7 @@ class Createuimenu(object):
 
     def updateSound(self):
         """
-        Comprueba si los sonidos están activos
+        Comprueba si los sonidos están activos.
         :return: void
         """
         self.sound_state = self.config_game.isTrue("ENABLESOUND")

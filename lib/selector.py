@@ -18,7 +18,7 @@ class Selector(object):
     # Función constructora
     def __init__(self, title, elements, onchange=None, onreturn=None, *args):
         """
-        Función constructora
+        Función constructora.
         :param title: Título del selector
         :param elements: Elementos de selector
         :param onchange: Función a ejecutar una vez cambiado un ítem
@@ -38,7 +38,7 @@ class Selector(object):
 
     def apply(self):
         """
-        Aplica el item seleccionado al retornar
+        Aplica el item seleccionado al retornar.
         :return: void
         """
         if self.onreturn is not None:
@@ -49,7 +49,7 @@ class Selector(object):
 
     def change(self):
         """
-        Aplica el item seleccionado al cambiarlo
+        Aplica el item seleccionado al cambiarlo.
         :return: void
         """
         if self.onchange is not None:
@@ -60,14 +60,14 @@ class Selector(object):
 
     def get(self):
         """
-        Retorna el texto del elemento actual
+        Retorna el texto del elemento actual.
         :return: String
         """
         return "{0} < {1} >".format(self.title, self.elements[self.index][0])
 
     def left(self):
         """
-        Mueve el selector hacia la izquierda
+        Mueve el selector hacia la izquierda.
         :return: void
         """
         self.index = (self.index - 1) % self.total_elements
@@ -75,7 +75,7 @@ class Selector(object):
 
     def right(self):
         """
-        Mueve el selector hacia la derecha
+        Mueve el selector hacia la derecha.
         :return: void
         """
         self.index = (self.index + 1) % self.total_elements

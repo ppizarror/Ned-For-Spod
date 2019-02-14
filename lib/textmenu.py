@@ -26,7 +26,7 @@ class Textmenu(Menu, object):
 
     def __init__(self, window, font, title, **kwargs):
         """
-        Función constructora
+        Función constructora.
         :param window: Ventana de la aplicación
         :param font: Fuente del menú
         :param title: Título del menú
@@ -37,6 +37,7 @@ class Textmenu(Menu, object):
         # Se llama al constructor padre
         Menu.__init__(self, window, font, title, **kwargs)
         # Se obtienen parámetros pasados por kwargs
+
         # Define si el texto se dibuja centrado
         if kwargs.get("text_centered") is not None:
             self.centered_text = kwargs.get("text_centered")
@@ -71,7 +72,7 @@ class Textmenu(Menu, object):
 
     def add_text(self, text):
         """
-        Agrega una linea de texto
+        Agrega una linea de texto.
         :param text: Linea a agregar
         :return: void
         """
@@ -80,18 +81,19 @@ class Textmenu(Menu, object):
 
     def draw(self, surface):
         """
-        Dibujar el menú
+        Dibujar el menú.
         :param surface: Superficie de dibujo
         :return: void
         """
         # Se dibuja el fondo del menú
         pygame.gfxdraw.filled_polygon(surface, self.actual.bgRect,
                                       self.actual.bgColor)
-        # Se dibuja el titulo
+        # Se dibuja el título
         pygame.gfxdraw.filled_polygon(surface, self.actual.titleRect,
                                       self.bgColorTitle)
         surface.blit(self.actual.title, self.titlePos)
         dy = 0
+
         # Se dibuja el texto
         for linea in self.actual.text:
             text = self.actual.fonttext.render(linea, 1,

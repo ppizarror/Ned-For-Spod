@@ -41,7 +41,7 @@ class Menu(object):
 
     def __init__(self, window, font, title, **kwargs):
         """
-        Constructor
+        Constructor.
         :param window: Objeto ventana de la aplicación
         :param font: Fuente
         :param title: Titulo principal
@@ -134,14 +134,17 @@ class Menu(object):
         self.prev = None  # menu previo
         self.prevDraw = None  # menu previo
         self.size = 0  # numero de elementos en el menu
+
         # Posición del rectangulo de fondo
         self.posx = (window.get_window_width() - self.width) / 2
         self.posy = (window.get_window_height() - self.height) / 2
+
         # Puntos del rectangulo del fondo
         self.bgRect = [(self.posx, self.posy),
                        (self.posx + self.width, self.posy),
                        (self.posx + self.width, self.posy + self.height),
                        (self.posx, self.posy + self.height)]
+
         # Punto a dibujar de las opciones
         if kwargs.get("draw_region_x") is not None:
             self.drawRegionX = kwargs.get("draw_region_x")
@@ -172,7 +175,7 @@ class Menu(object):
     # noinspection PyShadowingNames
     def add_option(self, element_name, menu, *args):
         """
-        Agrega una entrada al menú
+        Agrega una entrada al menú.
         :param element_name: Nombre del elemento
         :param menu: Dirección del elemento (del tipo menú)
         :param args: argumentos del objeto
@@ -185,7 +188,7 @@ class Menu(object):
 
     def add_selector(self, title, values, event, *args, **kwargs):
         """
-        Agrega un selector (menú de opciones lateral) como entrada al menú
+        Agrega un selector (menú de opciones lateral) como entrada al menú.
         :param title: Titulo del selector
         :param values: Valores (entradas) del selector
         :param event: Evento al seleccionar
@@ -208,14 +211,14 @@ class Menu(object):
 
     def down(self):
         """
-        Bajar opción
+        Bajar opción.
         :return: void
         """
         self.actual.index = (self.actual.index - 1) % self.actual.size
 
     def draw(self, surface):
         """
-        Dibujar el menú en pantalla
+        Dibujar el menú en pantalla.
         :param surface: Superficie de dibujo
         :return: void
         """
@@ -310,7 +313,7 @@ class Menu(object):
 
     def left(self):
         """
-        Mueve el selector activo hacia la izquierda
+        Mueve el selector activo hacia la izquierda.
         :return: void
         """
         opcion = self.actual.opciones[self.actual.index][1]
@@ -319,7 +322,7 @@ class Menu(object):
 
     def reset(self, total=0):
         """
-        Resetea el menú
+        Resetea el menú.
         :param total: Total de reseteos recursivos
         :return: void
         """
@@ -342,7 +345,7 @@ class Menu(object):
 
     def right(self):
         """
-        Mueve el selector (si existe) a la derecha
+        Mueve el selector (si existe) a la derecha.
         :return: void
         """
         opcion = self.actual.opciones[self.actual.index][1]
@@ -351,7 +354,7 @@ class Menu(object):
 
     def select(self):
         """
-        Selecciona la opción actual
+        Selecciona la opción actual.
         :return:
         """
         try:

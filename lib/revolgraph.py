@@ -20,7 +20,7 @@ class Revolgraph(object):
 
     def __init__(self, blocks, pos, width, height, space=0):
         """
-        Función constructora
+        Función constructora.
         :param blocks: Bloques del gráfico horizontales
         :param pos: Posición (x,y) en pantalla
         :param width: Ancho del gráfico
@@ -50,7 +50,7 @@ class Revolgraph(object):
 
     def draw(self, surface, percentage):
         """
-        Dibuja el gráfico dado un cierto porcentaje
+        Dibuja el gráfico dado un cierto porcentaje.
         :param surface: Superficie de dibujo
         :param percentage: Porcentaje de dibujo
         :return: void
