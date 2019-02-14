@@ -8,8 +8,8 @@ Fecha: ABRIL 2015
 """
 
 # Importación de librerías
-from bin import *  # @UnusedWildImport
-from bin.errors import *  # @UnusedWildImport
+from bin import *
+from bin.errors import *
 from controller import STATE_MENU, STATE_NEXT, STATE_PLAY
 from data import DIR_SAVES
 from player import TRACK_NOT_DEFINED, STATE_INVALIDPOS, STATE_NULL, STATE_OFFROAD, STATE_WRONGWAY, METRICS, \
@@ -41,7 +41,7 @@ class View(object):
 
     def __init__(self, window, clock, world, lang, view_config, menus):
         """
-        Función constructora
+        Función constructora.
         :param window: Ventana de la aplicación
         :param clock: Reloj de pygame
         :param world: Mundo lógico
@@ -63,6 +63,7 @@ class View(object):
             self.isPlaying = False
         else:
             self.isPlaying = True
+
         # Se cargan configuraciones
         self.mark_ground_size = int(view_config.getValue(
             "GROUND_MARK_SIZE"))  # ancho de la marca en la tierra
@@ -85,11 +86,13 @@ class View(object):
         self.show_ui = view_config.isTrue(
             "SHOWUI")  # se define si se dibujan los paneles
         self.viewConfig = view_config  # configuraciones de la vista
+
         # Se defienen variables
         self.clock = clock  # reloj del juego
         self.screen = self.window.get_surface()  # superficie de dibujo
         self.windowHeight = self.window.get_window_height()  # alto de la ventana
         self.windowWidth = self.window.get_window_width()  # ancho de la ventana
+
         # Se crean objetos del HUD
         self.OutOfRoadFont = pygame.font.Font(getFonts("speed"),
                                               20)  # fuente fuera de la pista
@@ -144,6 +147,7 @@ class View(object):
             20, self.windowHeight - 60)  # posición del velocimetro
         self.speedRect = pygame.image.load(getImages(
             "velocimeter_shadowed")).convert_alpha()  # textura del velocimetro
+
         # Objetos del HUD dependientes
         self.revolGraph = Revolgraph(33, (
             self.revolPos[0] - 170, self.revolPos[1] + 7), 100,
@@ -151,7 +155,7 @@ class View(object):
 
     def add_controller(self, controller):
         """
-        Añade un controlador
+        Añade un controlador.
         :param controller: Objeto <controller>
         :return: void
         """
@@ -159,16 +163,18 @@ class View(object):
 
     def draw(self, state):
         """
-        Dibuja en pantalla
+        Dibuja en pantalla.
         :param state: Estado del controlador (string)
         :return: void
         """
         time = float(
             self.clock.get_time()) / 1000.0  # tiempo que tomo el frame en generarse
+        
         # Si la opcion de mostrar fps esta habilitada
         if self.show_fps:
             self.window.set_window_title(self.lang.get(10) + " - FPS: " + str(
                 int(self.clock.get_fps())))
+
         # Si se encuentra jugando
         if state == STATE_PLAY and self.isPlaying:
             # Se obtiene la posición de la cámara

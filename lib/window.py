@@ -16,12 +16,13 @@ import os
 
 if __name__ == '__main__':
     # noinspection PyUnresolvedReferences
-    from path import *  # @UnusedWildImport
+    from path import *
 
 # Constantes del programa
 FORMAT_16_9 = "(16:9) {0}x{1}"
 FORMAT_4_3 = "(4:3) {0}x{1}"
 FORMAT_VALUE = "{0} {1}"
+
 # Resoluciones en 16:9
 SCREEN16_9 = [(8192, 4608),
               (7680, 4320),
@@ -37,6 +38,7 @@ SCREEN16_9 = [(8192, 4608),
               (1280, 720),
               (1024, 600),
               (960, 540)]
+
 # Resoluciones en 4:3
 SCREEN4_3 = [(6400, 4800),
              (4096, 3072),
@@ -63,10 +65,10 @@ class Window(object):
 
     def __init__(self, configs, title, icon, info, **kwargs):
         """
-        Función constructora
+        Función constructora.
         :param configs: Configuración de la ventana
         :param title: Título de la aplicación
-        :param icon: �?cono de la aplicación
+        :param icon: Ícono de la aplicación
         :param info: Información de la ventana
         :param kwargs: Parámetros adicionales
         :return: void
@@ -74,13 +76,16 @@ class Window(object):
 
         # Se guarda ia informacion de la ventana
         self.info = info
+
         # Se guarda la informacion de las configuraciones
         self.config = configs
         self.height = int(configs.getValue("HEIGHT"))
         self.width = int(configs.getValue("WIDTH"))
+
         # Si esta centrada
         if configs.isTrue("CENTERED"):
             os.environ['SDL_VIDEO_CENTERED'] = '1'
+
         # Se crea la pantalla
         if configs.isTrue("WINDOWED"):
             self.display = pygame.display.set_mode((self.width, self.height),
@@ -92,7 +97,8 @@ class Window(object):
                                                    32)
         pygame.display.set_icon(icon)
         pygame.display.set_caption(title)
-        # Si se desabilita el raton
+
+        # Si se desabilita el ratón
         if not configs.isTrue("SHOW_MOUSE"):
             pygame.mouse.set_visible(False)
         else:
@@ -100,14 +106,14 @@ class Window(object):
 
     def get_display(self):
         """
-        Retorna el display
+        Retorna el display.
         :return: Objeto display
         """
         return self.display
 
     def get_display_list(self):
         """
-        Retorna una lista formateada para el selector con todas las resoluciones disponibles
+        Retorna una lista formateada para el selector con todas las resoluciones disponibles.
         :return: Lista de opciones
         """
         actual_value = FORMAT_VALUE.format(self.config.getValue("WIDTH"),
@@ -134,35 +140,35 @@ class Window(object):
     @staticmethod
     def get_surface():
         """
-        Retorna la superficie de dibujo
+        Retorna la superficie de dibujo.
         :return: Superficie de dibujo pygame
         """
         return pygame.display.get_surface()
 
     def get_window_height(self):
         """
-        Retorna el alto de la pantalla
+        Retorna el alto de la pantalla.
         :return: Integer
         """
         return self.height
 
     def get_window_size(self):
         """
-        Retorna una tupla con el tamaño de la pantalla
+        Retorna una tupla con el tamaño de la pantalla.
         :return: Tupla (w,h)
         """
         return self.width, self.height
 
     def get_window_width(self):
         """
-        Retorna el ancho de la pantalla
+        Retorna el ancho de la pantalla.
         :return: Integer
         """
         return self.width
 
     def set_fullscreen(self):
         """
-        Cambia a pantalla completa
+        Cambia a pantalla completa.
         :return: void
         """
         os.environ['SDL_VIDEO_CENTERED'] = '1'
@@ -172,7 +178,7 @@ class Window(object):
 
     def set_windowed(self):
         """
-        Cambia a pantalla reducida
+        Cambia a pantalla reducida.
         :return: void
         """
         self.display = pygame.display.set_mode((self.width, self.height),
@@ -182,7 +188,7 @@ class Window(object):
     @staticmethod
     def set_window_title(title):
         """
-        Cambia el título de la ventana
+        Cambia el título de la ventana.
         :param title: Título
         :return: void
         """
@@ -190,7 +196,7 @@ class Window(object):
 
     def update(self):
         """
-        Actualiza la ventana
+        Actualiza la ventana.
         :return: void
         """
         self.width = int(self.config.getValue("WIDTH"))

@@ -50,7 +50,7 @@ class World(object):
     def __init__(self, config_world, config_map, window, checksum,
                  score_config, user_config, lang, game_config, **kwargs):
         """
-        Función constructora
+        Función constructora.
         :param config_world: Configuraciones del mundo
         :param config_map: Configuraciones del mapa
         :param window: Ventana de la aplicación
@@ -68,22 +68,24 @@ class World(object):
             self.verbose = True
         else:
             self.verbose = False
+
         # Variables de clase
         self.actualMap = None  # Mapa actual
         self.actualMapIndex = -1  # Indice del mapa actual
-        self.checksum = checksum  # checksum del juego
-        self.configMap = config_map  # configuraciones de los mapas
-        self.configWorld = config_world  # configuración del mundo
-        self.gameConfig = game_config  # configuraciones del juego
-        self.images = {}  # Imagenes del juego
+        self.checksum = checksum  # Checksum del juego
+        self.configMap = config_map  # Configuraciones de los mapas
+        self.configWorld = config_world  # Configuración del mundo
+        self.gameConfig = game_config  # Configuraciones del juego
+        self.images = {}  # Imágenes del juego
         self.langs = lang  # Idioma del juego
-        self.playerName = user_config.getValue("NAME")  # nombre del jugador
-        self.scoreConfig = score_config  # configuraciones del scoreboard
-        self.userConfig = user_config  # configuraciones del usuario
-        self.window = window  # ventana del programa
+        self.playerName = user_config.getValue("NAME")  # Nombre del jugador
+        self.scoreConfig = score_config  # Xonfiguraciones del scoreboard
+        self.userConfig = user_config  # Configuraciones del usuario
+        self.window = window  # Ventana del programa
+
         # Se cargan los sonidos
         self.sound_state = game_config.isTrue(
-            "ENABLESOUND")  # define si se activan los sonidos o no
+            "ENABLESOUND")  # Define si se activan los sonidos o no
         self.sounds = [
             [self.load_sound("m1"), self.load_sound("n"),
              self.load_sound("m1"),
@@ -105,17 +107,19 @@ class World(object):
         self.soundsChannel = [pygame.mixer.Channel(0), pygame.mixer.Channel(1),
                               pygame.mixer.Channel(2),
                               pygame.mixer.Channel(3)]
+
         # Se configuran los canales de sonido
         for i in range(len(self.soundsChannel)):
             self.soundsChannel[i].set_volume(
                 float(self.configWorld.getValue("CHANNEL_" + str(i))))
+
         # Se crea el navegador web
         self.browser = Browser()
         self.browser.add_headers(HREF_HEADERS)
 
     def clear_actual_map(self):
         """
-        Borra el mapa actual
+        Borra el mapa actual.
         :return: void
         """
         if self.actualMap is not None:
@@ -123,27 +127,28 @@ class World(object):
 
     def get_actual_index(self):
         """
-        Retorna el índice del mapa actual
+        Retorna el índice del mapa actual.
         :return: void
         """
         return self.actualMapIndex
 
     def get_actual_map(self):
         """
-        Retorna el mapa actual
+        Retorna el mapa actual.
         :return: Objeto <track>
         """
         return self.actualMap
 
     def load_image(self, texture_name, color_key=(0, 0, 0), **kwargs):
         """
-        Función que carga una imagen
+        Función que carga una imagen.
         :param texture_name: Path de la textura
         :param color_key: Tono de color
         :param kwargs: Parámetros adicionales
         :return: Imagen
         """
         # Si la imagen no ha sido cargada entonces se carga y se guarda
+
         # Si se rota
         if kwargs.get("rotate"):
             texture_name_rot = texture_name + "_r" + str(kwargs.get("rotate"))
@@ -168,6 +173,7 @@ class World(object):
                         print(self.lang.get(53,
                                             self.langs.get(51, texture_name)))
             return self.images[texture_name_rot]
+
         # Si no se rota
         else:
             if texture_name not in self.images.keys():
@@ -192,7 +198,7 @@ class World(object):
 
     def load_map(self, index=None):
         """
-        Crea un mapa
+        Crea un mapa.
         :param index: Indice de la pista a cargar
         :return: void
         """
@@ -201,12 +207,15 @@ class World(object):
         else:
             if index == NEXT_TRACK:
                 index = get_next_track(self.actualMapIndex)
+
         # Si el indice no existe
         if index not in TRACKS.keys():
             throw(ERROR_TRACKNOTEXIST, index)
         self.actualMapIndex = index
+
         # Se crea el objeto
         self.actualMap = Maptrack(self.configMap, self.window)
+
         # Se define el titulo del mapa
         self.actualMap.set_title(TRACKS[index])
         if self.verbose:
@@ -894,8 +903,7 @@ class World(object):
                 self.actualMap.add_track(
                     self.load_image("rect_h_1", alpha=True),
                     (1700, 1800))
-                self.actualMap.add_track(self.load_image("rect_h", alpha=True),
-                                         (1700, 1500))
+                self.actualMap.add_track(self.load_image("rect_h", alpha=True), (1700, 1500))
                 self.actualMap.add_track(
                     self.load_image("rect_h_4", alpha=True),
                     (1700, 1200))
@@ -905,109 +913,57 @@ class World(object):
                                          (1300, 800))
                 self.actualMap.add_track(self.load_image("c3_3", alpha=True),
                                          (1500, 400))
-                self.actualMap.add_track(
-                    self.load_image("rect_w_1", alpha=True),
-                    (1800, 115))
-                self.actualMap.add_track(self.load_image("rect_w", alpha=True),
-                                         (2100, 100))
-                self.actualMap.add_track(self.load_image("rect_w", alpha=True),
-                                         (2400, 100))
-                self.actualMap.add_track(
-                    self.load_image("rect_w_3", alpha=True),
-                    (2700, 100))
-                self.actualMap.add_track(self.load_image("c1_1", alpha=True),
-                                         (3100, 100))
-                self.actualMap.add_track(self.load_image("rect_h", alpha=True),
-                                         (3100, -300))
-                self.actualMap.add_track(self.load_image("c2_1", alpha=True),
-                                         (3100, -600))
-                self.actualMap.add_track(
-                    self.load_image("rect_w_2", alpha=True),
-                    (2700, -685))
-                self.actualMap.add_track(self.load_image("rect_w", alpha=True),
-                                         (2400, -700))
-                self.actualMap.add_track(self.load_image("rect_w", alpha=True),
-                                         (2100, -700))
-                self.actualMap.add_track(self.load_image("rect_w", alpha=True),
-                                         (1800, -700))
-                self.actualMap.add_track(
-                    self.load_image("rect_w_1", alpha=True),
-                    (1500, -685))
-                self.actualMap.add_track(self.load_image("c3_3", alpha=True),
-                                         (1200, -400))
-                self.actualMap.add_track(self.load_image("c1_1", alpha=True),
-                                         (900, 0))
-                self.actualMap.add_track(self.load_image("c4_1", alpha=True),
-                                         (500, 0))
-                self.actualMap.add_track(self.load_image("c2_3", alpha=True),
-                                         (400, -400))
-                self.actualMap.add_track(
-                    self.load_image("rect_w_2", alpha=True),
-                    (-200, -685))
-                self.actualMap.add_track(self.load_image("rect_w", alpha=True),
-                                         (-500, -700))
-                self.actualMap.add_track(self.load_image("rect_w", alpha=True),
-                                         (-800, -700))
-                self.actualMap.add_track(
-                    self.load_image("rect_w_1", alpha=True),
-                    (-1100, -685))
-                self.actualMap.add_track(self.load_image("c3_3", alpha=True),
-                                         (-1400, -400))
-                self.actualMap.add_track(self.load_image("c1_3", alpha=True),
-                                         (-1700, 200))
-                self.actualMap.add_track(
-                    self.load_image("rect_w_3", alpha=True),
-                    (-2300, 200))
-                self.actualMap.add_track(
-                    self.load_image("rect_w_1", alpha=True),
-                    (-2600, 215))
-                self.actualMap.add_track(self.load_image("c3_4", alpha=True),
-                                         (-2900, 600))
-                self.actualMap.add_track(self.load_image("c4_3", alpha=True),
-                                         (-3000, 1200))
-                self.actualMap.add_track(self.load_image("c2_2", alpha=True),
-                                         (-2500, 1400))
-                self.actualMap.add_track(
-                    self.load_image("rect_h_4", alpha=True),
-                    (-2500, 1700))
-                self.actualMap.add_track(
-                    self.load_image("rect_h_2", alpha=True),
-                    (-2485, 2000))
-                self.actualMap.add_track(self.load_image("c4_3", alpha=True),
-                                         (-2200, 2600))
-                self.actualMap.add_track(self.load_image("c1_3", alpha=True),
-                                         (-1600, 2600))
-                self.actualMap.add_track(self.load_image("c3_4", alpha=True),
-                                         (-1200, 2000))
-                self.actualMap.add_track(self.load_image("c1_2", alpha=True),
-                                         (-700, 1600))
-                self.actualMap.add_track(self.load_image("c2_2", alpha=True),
-                                         (-700, 1100))
-                self.actualMap.add_track(self.load_image("c4_3", alpha=True),
-                                         (-1200, 900))
-                self.actualMap.add_track(self.load_image("c3_1", alpha=True),
-                                         (-1400, 300))
-                self.actualMap.add_track(self.load_image("rect_w", alpha=True),
-                                         (-1100, 200))
-                self.actualMap.add_track(self.load_image("rect_w", alpha=True),
-                                         (-900, 200))
-                self.actualMap.add_track(self.load_image("c1_2", alpha=True),
-                                         (-500, 200))
-                self.actualMap.add_track(self.load_image("c3_1", alpha=True),
-                                         (-400, -300))
-                self.actualMap.add_track(self.load_image("c2_1", alpha=True),
-                                         (0, -300))
+                self.actualMap.add_track(self.load_image("rect_w_1", alpha=True), (1800, 115))
+                self.actualMap.add_track(self.load_image("rect_w", alpha=True), (2100, 100))
+                self.actualMap.add_track(self.load_image("rect_w", alpha=True), (2400, 100))
+                self.actualMap.add_track(self.load_image("rect_w_3", alpha=True), (2700, 100))
+                self.actualMap.add_track(self.load_image("c1_1", alpha=True), (3100, 100))
+                self.actualMap.add_track(self.load_image("rect_h", alpha=True), (3100, -300))
+                self.actualMap.add_track(self.load_image("c2_1", alpha=True), (3100, -600))
+                self.actualMap.add_track(self.load_image("rect_w_2", alpha=True), (2700, -685))
+                self.actualMap.add_track(self.load_image("rect_w", alpha=True), (2400, -700))
+                self.actualMap.add_track(self.load_image("rect_w", alpha=True), (2100, -700))
+                self.actualMap.add_track(self.load_image("rect_w", alpha=True), (1800, -700))
+                self.actualMap.add_track(self.load_image("rect_w_1", alpha=True), (1500, -685))
+                self.actualMap.add_track(self.load_image("c3_3", alpha=True), (1200, -400))
+                self.actualMap.add_track(self.load_image("c1_1", alpha=True), (900, 0))
+                self.actualMap.add_track(self.load_image("c4_1", alpha=True), (500, 0))
+                self.actualMap.add_track(self.load_image("c2_3", alpha=True), (400, -400))
+                self.actualMap.add_track(self.load_image("rect_w_2", alpha=True), (-200, -685))
+                self.actualMap.add_track(self.load_image("rect_w", alpha=True), (-500, -700))
+                self.actualMap.add_track(self.load_image("rect_w", alpha=True), (-800, -700))
+                self.actualMap.add_track(self.load_image("rect_w_1", alpha=True), (-1100, -685))
+                self.actualMap.add_track(self.load_image("c3_3", alpha=True), (-1400, -400))
+                self.actualMap.add_track(self.load_image("c1_3", alpha=True), (-1700, 200))
+                self.actualMap.add_track(self.load_image("rect_w_3", alpha=True), (-2300, 200))
+                self.actualMap.add_track(self.load_image("rect_w_1", alpha=True), (-2600, 215))
+                self.actualMap.add_track(self.load_image("c3_4", alpha=True), (-2900, 600))
+                self.actualMap.add_track(self.load_image("c4_3", alpha=True), (-3000, 1200))
+                self.actualMap.add_track(self.load_image("c2_2", alpha=True), (-2500, 1400))
+                self.actualMap.add_track(self.load_image("rect_h_4", alpha=True), (-2500, 1700))
+                self.actualMap.add_track(self.load_image("rect_h_2", alpha=True), (-2485, 2000))
+                self.actualMap.add_track(self.load_image("c4_3", alpha=True), (-2200, 2600))
+                self.actualMap.add_track(self.load_image("c1_3", alpha=True), (-1600, 2600))
+                self.actualMap.add_track(self.load_image("c3_4", alpha=True), (-1200, 2000))
+                self.actualMap.add_track(self.load_image("c1_2", alpha=True), (-700, 1600))
+                self.actualMap.add_track(self.load_image("c2_2", alpha=True), (-700, 1100))
+                self.actualMap.add_track(self.load_image("c4_3", alpha=True), (-1200, 900))
+                self.actualMap.add_track(self.load_image("c3_1", alpha=True), (-1400, 300))
+                self.actualMap.add_track(self.load_image("rect_w", alpha=True), (-1100, 200))
+                self.actualMap.add_track(self.load_image("rect_w", alpha=True), (-900, 200))
+                self.actualMap.add_track(self.load_image("c1_2", alpha=True), (-500, 200))
+                self.actualMap.add_track(self.load_image("c3_1", alpha=True), (-400, -300))
+                self.actualMap.add_track(self.load_image("c2_1", alpha=True), (0, -300))
                 # Se define la posición inicial del jugador
                 self.actualMap.player.set_default_pos((350, 110))
             except Exception, e:
                 print(str(e))
-                print(self.langs.get(53, self.langs.get(57,
-                                                        self.actualMap.get_track_title())))
+                print(self.langs.get(53, self.langs.get(57, self.actualMap.get_track_title())))
                 self.clear_actual_map()
 
     def load_sound(self, sound_file):
         """
-        Carga un sonido
+        Carga un sonido.
         :param sound_file: Archivo de sonido
         :return: Sonido
         """
@@ -1017,6 +973,5 @@ class World(object):
             return pygame.mixer.Sound(getSounds(sound_file))
         except:
             if self.verbose:
-                print(self.langs.get(53, self.langs.get(54,
-                                                        sound_file)))
+                print(self.langs.get(53, self.langs.get(54, sound_file)))
             return pygame.mixer.Sound()
