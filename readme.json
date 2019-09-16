@@ -7,14 +7,14 @@
             "WIDTH": 200,
             "HEIGHT": 200
         },
-        "URL": "https://ppizarror.com/Ned-For-Spod/",
+        "URL": "",
         "URL_TITLE": "Ned For Spod"
     },
     "AUTHOR": {
         "NAME": "Pablo Pizarro R.",
         "URL": "https://ppizarror.com",
         "ALT": "ppizarror",
-        "DATE": "2015 - 2019",
+        "DATE": "2015-2019",
         "SECTION": {
             "TITLE": "Autor",
             "SHOW": true
@@ -23,17 +23,17 @@
     "DESCRIPTION": "Juego en 2D de carreras de autos enteramente desarrollado en python-pygame",
     "BADGES": {
         "0": {
-            "IMAGE": "https://ppizarror.com/badges/autor.svg",
+            "IMAGE": "https://res.ppizarror.com/badges/autor.svg",
             "HREF": "https://ppizarror.com",
             "ALT": "@ppizarror"
         },
         "1": {
-            "IMAGE": "https://ppizarror.com/badges/licenciagpl2.svg",
+            "IMAGE": "https://res.ppizarror.com/badges/licenciagpl2.svg",
             "HREF": "https://www.gnu.org/licenses/gpl-2.0.html/",
             "ALT": "Licencia GPL v2"
         },
 		"2": {
-		  "IMAGE": "https://ppizarror.com/badges/python27.svg",
+		  "IMAGE": "https://res.ppizarror.com/badges/python27.svg",
 		  "HREF": "https://www.python.org/downloads/",
 		  "ALT": "Python 2.7"
 		}

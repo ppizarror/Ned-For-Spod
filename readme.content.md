@@ -1,8 +1,11 @@
 ## Introducción
+
 Ned for Spod es un juego _top view_ de carreras de automóviles, el cual tiene por objetivo batir tiempos de vuelta de cada pista.
 
 ## Descripción
+
 El juego posee tres tipos de vehículos distintos:
+
 - Clásico
 - Moderno
 - Súper
@@ -35,13 +38,13 @@ Para correr el juego ingrese en la terminal: ```python main.py```
 ## Licencia
 Este proyecto está licenciado bajo GPLv2 [https://www.gnu.org/licenses/gpl-2.0.html]
 
-[1]:	http://www.pygame.org/ "http://www.pygame.org"
-[2]:	https://pypi.python.org/pypi/mechanize/
-[3]:	https://pypi.python.org/pypi/PIL
-[4]:	https://pypi.python.org/pypi/pyperclip
-[5]:	https://www.gnu.org/licenses/gpl-2.0.html
+[1]: http://www.pygame.org/ "http://www.pygame.org"
+[2]: https://pypi.python.org/pypi/mechanize/
+[3]: https://pypi.python.org/pypi/PIL
+[4]: https://pypi.python.org/pypi/pyperclip
+[5]: https://www.gnu.org/licenses/gpl-2.0.html
 
-[image-1]: https://ppizarror.com/resources/images/nfs-python/splash.jpg "Menú principal"
-[image-2]: https://ppizarror.com/resources/images/nfs-python/gameplay3.jpg "Vuelta en el desierto"
-[image-3]: https://ppizarror.com/resources/images/nfs-python/gameplay1.jpg "Fantasma y algunos efectos gráficos"
-[image-4]: https://ppizarror.com/resources/images/nfs-python/results.jpg "Resultados"
+[image-1]: https://res.ppizarror.com/images/nfs-python/splash.jpg "Menú principal"
+[image-2]: https://res.ppizarror.com/images/nfs-python/gameplay3.jpg "Vuelta en el desierto"
+[image-3]: https://res.ppizarror.com/images/nfs-python/gameplay1.jpg "Fantasma y algunos efectos gráficos"
+[image-4]: https://res.ppizarror.com/images/nfs-python/results.jpg "Resultados"
