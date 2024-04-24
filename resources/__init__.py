@@ -35,13 +35,13 @@ DIR_LICENCE = DIR_DOC + "licence"
 
 # Test
 if __name__ == '__main__':
-    print DIR_CHANGELOG
-    print DIR_DEV
-    print DIR_DOC
-    print DIR_DOCUMENTATION
-    print DIR_FONTS
-    print DIR_HELP
-    print DIR_ICONS
-    print DIR_IMAGES
-    print DIR_RESOURCES
-    print DIR_SOUNDS
+    print(DIR_CHANGELOG)
+    print(DIR_DEV)
+    print(DIR_DOC)
+    print(DIR_DOCUMENTATION)
+    print(DIR_FONTS)
+    print(DIR_HELP)
+    print(DIR_ICONS)
+    print(DIR_IMAGES)
+    print(DIR_RESOURCES)
+    print(DIR_SOUNDS)
